@@ -6,7 +6,7 @@
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
-                        hearders: {
+                        headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     })
@@ -16,7 +16,7 @@
                     $location.path('/list');
                 })
                 .error(function () {
-                    con.error('Error loggin in.');
+                    console.error('Error loggin in.');
                 });
             };
         });

@@ -63,3 +63,39 @@ function executePan(map) {
 function ReCenter(map) {
     
 }
+
+
+// Places Library Functions
+//Note that we need to load Powered by Google Logo in our view...Legal Requirement
+
+//Nearby Search Function
+function nearby(long, lat)
+{
+    function initialize(long, lat) {
+        var pyrmont = new google.maps.LatLng(long, lat);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: pyrmont,
+            zoom: 15
+        });
+
+        var request = {
+            location: pyrmont,
+            radius: '500',
+            types: ['store']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+    }
+
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                var place = results[i];
+                createMarker(results[i]);
+            }
+        }
+    }
+
+}

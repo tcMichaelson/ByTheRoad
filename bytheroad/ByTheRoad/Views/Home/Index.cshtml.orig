@@ -1,6 +1,10 @@
 ﻿@{ 
     Layout = null;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9f92678cdac40984710aaa42c2787993b32fb2df
 <!DOCTYPE html>
 <html ng-app="byTheRoad">
 <head>
@@ -29,6 +33,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap"
             async defer>
     </script>
-    <script src="~/Angular/scripts/mapLocation.js"></script>
 </body>
 </html>

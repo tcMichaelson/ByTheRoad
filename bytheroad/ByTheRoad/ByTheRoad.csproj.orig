@@ -255,15 +255,16 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Scripts\app.js" />
 <<<<<<< HEAD
-    <Content Include="angular\scripts\app.js" />
-    <Content Include="angular\scripts\homeController.js" />
-    <Content Include="angular\scripts\registerController.js" />
-    <Content Include="angular\services\roadService.js" />
+    <Content Include="Angular\Scripts\homeController.js" />
 =======
-    <Content Include="Angular\Scipts\app.js" />
     <Content Include="Angular\Views\home.html" />
->>>>>>> 32e04831f66766bd700ef3be0508a2e532e64d1c
+>>>>>>> 2a4e6fc52be91bbf76df50a31aec843f61a30ed5
+    <Content Include="Angular\Scripts\mapLocation.js" />
+    <Content Include="Angular\Scripts\registerController.js" />
+    <Content Include="Angular\Scripts\roadService.js" />
+    <Content Include="Angular\Views\home2.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -329,10 +330,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="angular\views\" />
-=======
->>>>>>> 32e04831f66766bd700ef3be0508a2e532e64d1c
+    <Folder Include="Angular\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>

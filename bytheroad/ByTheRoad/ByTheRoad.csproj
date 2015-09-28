@@ -259,7 +259,6 @@
     <Content Include="Angular\Views\home.html" />
     <Content Include="Angular\Scripts\homeController.js" />
     <Content Include="Angular\Scripts\mapLocation.js" />
-    <Content Include="Angular\Scripts\registerController.js" />
     <Content Include="Angular\Scripts\roadService.js" />
     <Content Include="Angular\Views\home2.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -327,7 +326,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>

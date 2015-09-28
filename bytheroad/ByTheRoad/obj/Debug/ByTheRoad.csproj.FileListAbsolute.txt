@@ -86,3 +86,5 @@ C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\bin\System.Web.Http.Owin.xml
 C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\obj\Debug\ByTheRoad.csprojResolveAssemblyReference.cache
 C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\obj\Debug\ByTheRoad.dll
 C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\obj\Debug\ByTheRoad.pdb
+C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\obj\Debug\ByTheRoad.Migrations.Intain.resources
+C:\intro#c\ByTheRoad\bytheroad\ByTheRoad\obj\Debug\ByTheRoad.csproj.GenerateResource.Cache

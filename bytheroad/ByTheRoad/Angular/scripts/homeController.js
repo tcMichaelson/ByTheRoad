@@ -3,6 +3,9 @@
         .module('byTheRoad')
         .controller('homeController', function ($location, $http) {
             var self = this;
+            self.searching = false;
+            self.registering = false;
+            self.loggingin = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {

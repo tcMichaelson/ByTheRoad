@@ -1,0 +1,33 @@
+﻿<div class="leftboxes">
+    <div class="floating-box">A</div>
+    <div class="floating-box">B</div>
+</div>
+
+
+<div class="rightboxes">
+
+    <div class="floatingmapbox">C</div>
+
+
+ <div class="rightloginbox">
+    <h3 id="login">Login Page</h3>
+    <p>Please enter you User Name and Password</p>
+    <form id="loginform" ng-submit="self.login()">
+
+    <br /><label id="label1">
+        User Name:
+    </label><br />
+    <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" /><br /><br />
+
+
+    <label id="label1">
+        Password:
+    </label><br />
+    <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" /><br /><br />
+
+
+    <input type="submit" class="btn btn-primary" value="Log In" />
+    <button type="button" onclick="location.href='#/register'" class="btn btn-info">New User Registration</button>
+     </form>
+        </div>
+</div>

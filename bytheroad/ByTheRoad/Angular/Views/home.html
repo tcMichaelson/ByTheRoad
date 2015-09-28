@@ -1,33 +1,49 @@
 ﻿<div class="leftboxes">
-    <div class="floating-box">A</div>
-    <div class="floating-box">B</div>
+    <div class="floating-box">
+        <label>Distance or Time</label><br />
+        <input type="text" ng-model="distance" />
+
+        <div class="container">
+            <h2>LookUp</h2>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Food</button>
+                <button type="button" class="btn btn-primary">Lodging</button>
+                <button type="button" class="btn btn-primary">Shopping</button>
+                <button type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="floating-box"></div>
 </div>
 
 
 <div class="rightboxes">
 
-    <div class="floatingmapbox">C</div>
+    <div class="floatingmapbox">
 
 
- <div class="rightloginbox">
-    <h3 id="login">Login Page</h3>
-    <p>Please enter you User Name and Password</p>
-    <form id="loginform" ng-submit="self.login()">
-
-    <br /><label id="label1">
-        User Name:
-    </label><br />
-    <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" /><br /><br />
+    </div>
 
 
-    <label id="label1">
-        Password:
-    </label><br />
-    <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" /><br /><br />
+    <div class="rightloginbox">
+        <h3 id="login">Login Page</h3>
+        <p>Please enter you User Name and Password</p>
+        <form id="loginform" ng-submit="self.login()">
+
+            <br /><label id="label1">
+                User Name:
+            </label><br />
+            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" /><br /><br />
 
 
-    <input type="submit" class="btn btn-primary" value="Log In" />
-    <button type="button" onclick="location.href='#/register'" class="btn btn-info">New User Registration</button>
-     </form>
-        </div>
+            <label id="label1">
+                Password:
+            </label><br />
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" /><br /><br />
+
+
+            <input type="submit" class="btn btn-primary" value="Log In" />
+            <button type="button" onclick="location.href='#/register'" class="btn btn-info">New User Registration</button>
+        </form>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 ﻿(function () {
     angular
-        .module("bugTracker")
+        .module('byTheRoad')
         .controller('registerController', function (roadService) {
             var self = this;
 

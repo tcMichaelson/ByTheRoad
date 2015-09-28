@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 90%;
+            margin: 0;
+            padding: 2%;
+        }
+
+        #map {
+            position: absolute;
+            right: 0;
+            height: 60%;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <strong>Start: </strong>
+        <input type="text" id="start" />
+        <select id="start1">
+            <option value="chicago, il">Chicago</option>
+            <option value="st louis, mo">St Louis</option>
+            <option value="joplin, mo">Joplin, MO</option>
+            <option value="oklahoma city, ok">Oklahoma City</option>
+            <option value="amarillo, tx">Amarillo</option>
+            <option value="gallup, nm">Gallup, NM</option>
+            <option value="flagstaff, az">Flagstaff, AZ</option>
+            <option value="winona, az">Winona</option>
+            <option value="kingman, az">Kingman</option>
+            <option value="barstow, ca">Barstow</option>
+            <option value="san bernardino, ca">San Bernardino</option>
+            <option value="los angeles, ca">Los Angeles</option>
+        </select>
+        <strong>End: </strong>
+        <input type="text" id="end" />
+        <select id="end1">
+            <option value="chicago, il">Chicago</option>
+            <option value="st louis, mo">St Louis</option>
+            <option value="joplin, mo">Joplin, MO</option>
+            <option value="oklahoma city, ok">Oklahoma City</option>
+            <option value="amarillo, tx">Amarillo</option>
+            <option value="gallup, nm">Gallup, NM</option>
+            <option value="flagstaff, az">Flagstaff, AZ</option>
+            <option value="winona, az">Winona</option>
+            <option value="kingman, az">Kingman</option>
+            <option value="barstow, ca">Barstow</option>
+            <option value="san bernardino, ca">San Bernardino</option>
+            <option value="los angeles, ca">Los Angeles</option>
+        </select>
+        <button id="button">Find Route</button>
+    </div>
+    <div id="map">
+
+    </div>
+
+    <script>
+        function initMap() {
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var directionsService = new google.maps.DirectionsService;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 45, lng: -90 },
+                zoom: 7
+            });
+
+            directionsDisplay.setMap(map);
+
+            var onChangeHandler = function () {
+                calcRoute(directionsService, directionsDisplay);
+            };
+            document.getElementById('button').addEventListener('click', onChangeHandler);
+
+        }
+
+        function calcRoute(directionsService, directionsDisplay) {
+            var start = document.getElementById('start').value;
+            var end = document.getElementById('end').value;
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    var lat1;
+                    var lat2;
+                    var lon1;
+                    var lon2;
+                    var d;
+                    directionsDisplay.setDirections(response);
+                    response.routes.forEach(function (route, idx) {
+                        console.log("route " + idx);
+                        route.legs.forEach(function (leg, idy) {
+                            console.log("leg " + idy);
+                            console.log("START           START                END             END")
+                            console.log("LATITUDE        LONGITUDE            LATITUDE        LONGITUDE")
+                            console.log("-----------------------------        -----------------------------")
+                            leg.steps.forEach(function (step, idz) {
+                                console.log("step " + idz, step.start_location.H, step.start_location.L, step.end_location.H, step.end_location.L, step.distance.value);
+                                lat1 = (step.start_location.H * Math.PI) / 180;
+                                lon1 = (step.start_location.L * Math.PI) / 180;
+                                lat2 = (step.end_location.H * Math.PI) / 180;
+                                lon2 = (step.end_location.L * Math.PI) / 180;
+                                console.log(lat1, lon1, lat2, lon2);
+                                d = (Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * 6371000);
+                                console.log(d);
+                            });
+                        });
+                    });
+                    console.log(Math.PI);
+                    console.log(response);
+                }
+            });
+        }
+
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap"
+            async defer>
+    </script>
+</body>
+</html>

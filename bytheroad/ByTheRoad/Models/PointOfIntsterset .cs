@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ByTheRoad.Models
 {
-    public class PointOfIntsterset
+    public class PointOfInterest
     {
         public string Id { get; set; }
         public string Name { get; set; }

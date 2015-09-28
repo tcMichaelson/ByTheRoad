@@ -1,6 +1,8 @@
 ﻿
 var map;
 var locHist = [];
+var service;
+var infowindow;
 
 function initMap() {
     var directionsDisplay = new google.maps.DirectionsRenderer;

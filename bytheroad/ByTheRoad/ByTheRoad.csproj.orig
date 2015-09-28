@@ -256,14 +256,13 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
-    <Content Include="angular\scripts\app.js" />
-    <Content Include="angular\scripts\homeController.js" />
-    <Content Include="angular\scripts\registerController.js" />
-    <Content Include="angular\services\roadService.js" />
-=======
     <Content Include="Angular\Scipts\app.js" />
     <Content Include="Angular\Views\home.html" />
->>>>>>> 32e04831f66766bd700ef3be0508a2e532e64d1c
+=======
+    <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\mapLocation.js" />
+    <Content Include="Angular\Views\home2.html" />
+>>>>>>> b0b187c3b0450d80d1d2a0832c4865aecf1f95e7
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -329,10 +328,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="angular\views\" />
-=======
->>>>>>> 32e04831f66766bd700ef3be0508a2e532e64d1c
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>

@@ -255,11 +255,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="angular\scripts\app.js" />
-    <Content Include="angular\scripts\homeController.js" />
-    <Content Include="Angular\Views\home.html" />
-    <Content Include="angular\scripts\registerController.js" />
-    <Content Include="angular\services\roadService.js" />
+    <Content Include="Angular\Scipts\app.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -325,7 +321,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="angular\views\" />
+    <Folder Include="Angular\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>

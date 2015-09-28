@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 90%;
+            margin: 0;
+            padding: 2%;
+        }
+
+        #map {
+            position: absolute;
+            right: 0;
+            height: 60%;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <strong>Start: </strong>
+        <input type="text" id="start" />
+        <strong>End: </strong>
+        <input type="text" id="end" />
+        <input type="submit" id="button" value="Find Route" />
+    </form>
+    <div id="map">
+
+    </div>
+
+    <script>
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            alert("Your browser does not support geo-location.");
+        }
+
+        function calcRoute(directionsService, directionsDisplay) {
+            var start = document.getElementById('start').value;
+            var end = document.getElementById('end').value;
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    var lat1;
+                    var lat2;
+                    var lon1;
+                    var lon2;
+                    var d;
+                    directionsDisplay.setDirections(response);
+                    response.routes.forEach(function (route, idx) {
+                        console.log("route " + idx);
+                        route.legs.forEach(function (leg, idy) {
+                            console.log("leg " + idy);
+                            console.log("START           START                END             END")
+                            console.log("LATITUDE        LONGITUDE            LATITUDE        LONGITUDE")
+                            console.log("-----------------------------        -----------------------------")
+                            leg.steps.forEach(function (step, idz) {
+                                console.log("step " + idz, step.start_location.H, step.start_location.L, step.end_location.H, step.end_location.L, step.distance.value);
+                                lat1 = (step.start_location.H * Math.PI) / 180;
+                                lon1 = (step.start_location.L * Math.PI) / 180;
+                                lat2 = (step.end_location.H * Math.PI) / 180;
+                                lon2 = (step.end_location.L * Math.PI) / 180;
+                                console.log(lat1, lon1, lat2, lon2);
+                                d = (Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * 6371000);
+                                console.log(d);
+                            });
+                        });
+                    });
+                    console.log(response);
+                }
+            });
+        }
+
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap"
+            async defer>
+    </script>
+    <script src="../Scripts/mapLocation.js"></script>
+</body>
+</html>

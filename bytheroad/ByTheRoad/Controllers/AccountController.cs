@@ -320,7 +320,7 @@ namespace ByTheRoad.Controllers
 
         // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
+        [Route("Register", Name = "Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)

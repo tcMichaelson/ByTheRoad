@@ -36,7 +36,7 @@ function ReCenter(map) {
                 lat: map.center.L += .025,
                 lng: map.center.H += .025
             };
-            map.panTo(pos);
+            map.panTo(new google.maps.LatLng(lat, lng));
         }, function () {
             handleLocationError(true, null, map.getCenter());
         });

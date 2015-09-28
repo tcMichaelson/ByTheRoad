@@ -240,6 +240,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GenericRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IGenericRepository.cs" />
     <Compile Include="Models\PointOfIntsterset .cs" />
     <Compile Include="Models\UserSavedPOI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

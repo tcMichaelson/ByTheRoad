@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ByTheRoad.Models
 {
-    public class GenericRepository
+    public class GenericRepository : IGenericRepository
     {
         private ApplicationDbContext _db;
         public GenericRepository(ApplicationDbContext db)

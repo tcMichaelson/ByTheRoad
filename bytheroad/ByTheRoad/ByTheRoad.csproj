@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Views\home.html" />
     <Content Include="Angular\Scripts\homeController.js" />
     <Content Include="Angular\Scripts\mapLocation.js" />
     <Content Include="Angular\Scripts\registerController.js" />
@@ -326,6 +327,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Angular\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>

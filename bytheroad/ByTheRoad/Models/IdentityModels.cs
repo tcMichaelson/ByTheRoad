@@ -30,8 +30,7 @@ namespace ByTheRoad.Models
         {
             return new ApplicationDbContext();
         }
-        public IList <UserSavedPOI> UsderSavedPOI { get; set; }
-        public IList <PointOfInterest> POI { get; set; }
+        public IList <UserSavedPOI> UserSavedPOI { get; set; }
 
     }
 }

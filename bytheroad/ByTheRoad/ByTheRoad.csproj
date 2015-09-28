@@ -245,7 +245,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Angular\Scipts\app.js" />
+    <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\mapLocation.js" />
     <Content Include="Angular\Views\home.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />

@@ -3,13 +3,16 @@ var map;
 var locHist = [];
 var service;
 var infowindow;
+var moves = 0;
+var newLat = 45;
+var newLng = -90;
 
 function initMap() {
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 45, lng: -90 },
-        zoom: 9
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: newLat, lng: newLng },
+        zoom:12
     });
 
     if (navigator.geolocation) {
@@ -22,6 +25,10 @@ function initMap() {
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
             console.log(locHist);
             console.log('in map init');
+            var dir = getCurrDirection();
+            console.log(map);
+            console.log(map.gm_bindings_);
+
         }, function () {
             handleLocationError(true, null, map.getCenter());
         });
@@ -30,18 +37,30 @@ function initMap() {
     }
 
     directionsDisplay.setMap(map);
-    var dir = getCurrDirection();
 
     /*
     var onChangeHandler = function () {
         calcRoute(directionsService, directionsDisplay);
     };
-    document.getElementById('button').addEventListener('click', onChangeHandler);
-
-    window.setInterval(function () {
-        executePan(map);
-    }, 5000)
     */
+    window.setInterval(function () {
+        if (moves < 5) {
+            console.log(moves);
+            executePan(map);
+            moves++;
+        }
+    }, 1000);
+    
+    
+    document.getElementById('input-btn').addEventListener('click', executePan);
+}
+
+function executePan() {
+    newLat = newLat - .025;
+    newLng = newLng - .025;
+    console.log(newLat, newLng);
+    var newLatLng = new google.maps.LatLng(newLat, newLng);
+    map.panTo(newLatLng);
 }
 
 function getCurrDirection() {
@@ -52,13 +71,7 @@ function getCurrDirection() {
     return "west";
 }
 
-function executePan(map) {
-    var pos = {
-        lat: map.center.L += .025,
-        lng: map.center.H += .025
-    };
-    map.panTo(pos);
-}
+
 
 function ReCenter(map) {
     

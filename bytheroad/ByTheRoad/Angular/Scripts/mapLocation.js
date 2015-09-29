@@ -82,7 +82,7 @@ function ReCenter(map) {
 //Note that we need to load Powered by Google Logo in our view...Legal Requirement
 
 //Nearby Search Function
-function nearby(long, lat)
+function nearby(ong, lat, radius, id, type)
 {
     function initialize(long, lat, radius, id, type) {
         var pyrmont = new google.maps.LatLng(long, lat);
@@ -115,7 +115,7 @@ function nearby(long, lat)
 
 // Text Search Request
 
-function textSearch(long, lat)
+function textSearch(long, lat, id, radius, userQuery)
 {
     function initialize() {
         var pyrmont = new google.maps.LatLng(long, lat, id, radius, userQuery);
@@ -147,7 +147,7 @@ function textSearch(long, lat)
 
 // Place details function
 
-function placeDetails(id)
+function placeDetails(id, place, status)
 {
     var request = {
         placeId: id

@@ -164,3 +164,12 @@ position:absolute;
     margin:10px;
     font-size:large;
 }
+.logo{
+    position: absolute;
+    font-size:larger;
+    font-style:italic;
+    color:darkseagreen;
+    left: 0;
+    
+}
+

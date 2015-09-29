@@ -49,7 +49,12 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
+<<<<<<< HEAD
+=======
+    directionsDisplay.setMap(map);
     console.log(locHist);
+
+>>>>>>> 1c92b8ec28986427fc8da59e6d71e4997f9bb14e
     /*
 
     window.setInterval(function () {
@@ -61,6 +66,7 @@ function initMap() {
     }, 1000);
     */
 
+<<<<<<< HEAD
     var getRouteHandler = function () {
         findRouteAndDisplay(directionsDisplay, directionsService);
     }
@@ -81,46 +87,21 @@ function findRouteAndDisplay(directionsDisplay, directionsService) {
     console.log(directionsService.route(request, function (response, status) {
         console.log(response);
         if (status === google.maps.DirectionsStatus.OK) {
-            //response.routes.forEach(function (route, idx) {
-                renderLine(response.routes[0], 0);
-            //});
-            mainRoute = response;
+            directionsDisplay.setDirections(response);
+            console.log(response);
         }
     }));
-}
+    mainRoute = response;
+    directionsDisplay.setMap(map);
 
-function renderLine(route, routeNum) {
-    var routeLine = new google.maps.Polyline;
-    var coords = [];
-    route.legs.forEach(function (leg) {
-        leg.steps.forEach(function (step) {
-            step.path.forEach(function (line) {
-                coords.push({ lat: line.L, lng: line.H });
-            });
-        });
-    });
-    routeLine.path = coords;
-    var colHex = "";
-    switch (routeNum % 4){
-        case 0:
-            colHex = "#ff7f50";
-            break;
-        case 1:
-            colHex = "#00ff00"
-            break;
-        case 2:
-            colHex = "#0000ff"
-            break;
-        case 3:
-            colHex = "#000000";
-            break;
-    }
-    routeLine.strokeColor = colHex;
-    routeLine.strokeWeight = 2;
-    routeLine.setMap(map);
 }
 
 function displaySubRoute (){
+=======
+
+
+    document.getElementById('input-btn').addEventListener('click', executePan);
+>>>>>>> 1c92b8ec28986427fc8da59e6d71e4997f9bb14e
 
 }
 

@@ -71,7 +71,7 @@ function ReCenter(map) {
 //Nearby Search Function
 function nearby(long, lat)
 {
-    function initialize(long, lat) {
+    function initialize(long, lat, radius, type) {
         var pyrmont = new google.maps.LatLng(long, lat);
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -81,8 +81,8 @@ function nearby(long, lat)
 
         var request = {
             location: pyrmont,
-            radius: '500',
-            types: ['store']
+            radius: radius,
+            types: [type]
         };
 
         service = new google.maps.places.PlacesService(map);

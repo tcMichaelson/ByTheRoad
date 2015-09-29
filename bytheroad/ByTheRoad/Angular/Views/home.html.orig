@@ -1,55 +1,121 @@
-﻿<div class="leftboxes">
+﻿<div class="nav">
+  
+            <ul>
+                <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
+               
+                <li class="about"><a ng-click="self.loggingin = !self.loggingin">Login</a></li>
+                <li class="news"><a ng-click="self.registering = !self.registering">Register</a></li>
+                <li class="contact"><a href="#">Accounts</a></li>
+            </ul>
+ </div>
+   
+
+
+<div class="leftboxes">
     <div class="floating-box">
-        <label>Distance or Time</label><br />
-        <input type="text" ng-model="distance" />
+        <label>Stop In</label><br />
+     
+       
+        <button type="button"  ng-model="self.value1" class="btn btn-default">minutes</button>
+        <button type="button" ng-model="self.value2" class="btn btn-default">miles</button>
+        <button type="button" ng-model="self.value3" class="btn btn-default">hours</button>
+
+        <label class="timeordistance">Please enter the time or distance </label> 
+
+        <input class="distance" type="text" ng-model="distance" />
 
         <div class="container">
             <h2>LookUp</h2>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary">Food</button>
-                <button type="button" class="btn btn-primary">Lodging</button>
-                <button type="button" class="btn btn-primary">Shopping</button>
-                <button type="button" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </div>
-    <div class="floating-box"></div>
+                <div class="btn-group">
+                <button  type="button" ng-model="self.value1" class="btn btn-primary">Food</button>
+                <button type="button" ng-model="self.value2" class="btn btn-primary">Lodging</button>
+                <button type="button" ng-model="self.value3" class="btn btn-primary">Shopping</button>          
+                </div>
+           <div><button type="button" ng-model="self.value4" class="btn btn-primary"> &#128269;</button>
+                <input type="text" /></div> 
+
+</div>
+        <button type="button" ng-model="self.searchresult" class="btn btn-success" style=" margin:10px; margin-left:200px;">Search Result</button>
+        
+</div>
+    
+  <div class="floating-box">
+     <form id="directionsearch">
+    
+    <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Start your search here</button> <br /> <br /> 
+    <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
+    <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
+
+    <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
+    <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
+    <button type="button" ng-hide="self.start === false"  id="input-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>   
+     </form>
+   </div>
+
 </div>
 
-
 <div class="rightboxes">
-<<<<<<< HEAD
-
     <div id="map" class="floatingmapbox">
         map box
-=======
-    
-    <div class="floatingmapbox">
-
->>>>>>> 9f92678cdac40984710aaa42c2787993b32fb2df
 
     </div>
 
 
-    <div class="rightloginbox">
-        <h3 id="login">Login Page</h3>
-        <p>Please enter you User Name and Password</p>
+    <div ng-hide="self.loggingin === false" class="rightloginbox">
+        
         <form id="loginform" ng-submit="self.login()">
-
-            <br /><label id="label1">
+            <label class="label1">
                 User Name:
-            </label><br />
-            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" /><br /><br />
-
-
-            <label id="label1">
+            </label>
+            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <label class="label1">
                 Password:
-            </label><br />
-            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" /><br /><br />
-
-
-            <input type="submit" class="btn btn-primary" value="Log In" />
-            <button type="button" onclick="location.href='#/register'" class="btn btn-info">New User Registration</button>
+            </label>
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+           <input type="submit" class="btn btn-primary" value="Log In" />
+           <button ng-click="self.loggingin = false">Cancel</button>
         </form>
     </div>
+
+<<<<<<< HEAD
+    <div ng-hide="self.registering === false"class="rightloginbox">
+        <form id="registerfrorm" ng-submit="self.registger()">
+            <label class="label">
+                User Name;
+=======
+
+
+
+    <div ng-hide="self.registering === false" class="rightregisterbox">
+        <form id="registerform" ng-submit="self.registger()">
+            <label class="label1">
+                User Name:
+>>>>>>> ed6625fb0c833d273e93b71f0deb5b7220fbd7de
+            </label>
+            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true"/>
+            <label class="label1">
+                Email:
+            </label>
+            <input class="box"name="useremail"ng-model="self.email" type="email" ng-required="true"/>
+            <label class="label1">
+                PassWord:
+            </label>
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true"/>
+            <label class="label1">
+                Confirmed Password :
+            </label>
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true"/>
+
+           
+            <input type="submit" class="bnt btn-primary" value="Register"/>
+            <button ng-click="self.registering = false">Cancel</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
 </div>

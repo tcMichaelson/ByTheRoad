@@ -65,8 +65,9 @@ function initMap() {
         findRouteAndDisplay(directionsDisplay, directionsService);
     }
 
-    document.getElementById('input-btn').addEventListener('click', executePan);
+    document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+    //document.getElementById('food-btn').addEventListener('click', nearbySearch);
 }
 
 function findRouteAndDisplay(directionsDisplay, directionsService) {
@@ -149,7 +150,8 @@ function getCurrDirection() {
 
 var infowindow;
 
-function nearbySearch() {
+function nearbySearch(type) {
+    
     console.log(locHist);
     var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
@@ -164,39 +166,13 @@ function nearbySearch() {
     service.nearbySearch({
         location: pyrmont,
         radius: 5000,
-        types: ['gas_station']
+        types: [type]
     }, callback);
 }
 
-
-
-function callback(results, status) {
-    console.log(results);
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-        }
-    }
-}
-
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
-
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
-}
-
-
 //// Text Search Request
 
-
-    function initTextSearch(userQuery) {
+    function initTextSearch() {
         console.log(locHist);
         var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
@@ -212,7 +188,7 @@ function createMarker(place) {
         var request = {
             location: pyrmont,
             radius: 5000,
-            query: userQuery
+            query: document.getElementById('textsearch').value
                     };
 
         service = new google.maps.places.PlacesService(map);
@@ -234,10 +210,24 @@ function createMarker(place) {
 //    service.getDetails(request, callback);
 
   
-//}
+    function callback(results, status) {
+        console.log(results);
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+        }
+    }
 
-//function callback(place, status) {
-//        if (status == google.maps.places.PlacesServiceStatus.OK) {
-//            createMarker(place);
-//        }
-//    }
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        });
+    }

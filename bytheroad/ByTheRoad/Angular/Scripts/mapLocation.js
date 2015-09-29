@@ -78,28 +78,6 @@ function getCurrDirection() {
 
 ////Nearby Search Function
 
-    //function initNearbySearch() {
-
-    //    var request = {
-    //        location: { lat: locHist[0].lat, lng: locHist[0].lng },
-    //        radius: '500',
-    //        types: ['store']
-    //        //types: [document.getElementById('search').value]
-    //    };
-
-    //    service = new google.maps.places.PlacesService(map);
-    //    service.nearbySearch(request, callback);
-    //}
-
-    //function callback(results, status) {
-    //    if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //        for (var i = 0; i < results.length; i++) {
-    //            var place = results[i];
-    //            createMarker(results[i]);
-    //        }
-    //    }
-    //}
-
 var infowindow;
 
 function nearbySearch() {
@@ -121,7 +99,10 @@ function nearbySearch() {
     }, callback);
 }
 
+
+
 function callback(results, status) {
+    console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -143,22 +124,25 @@ function createMarker(place) {
 }
 
 
-
-
 //// Text Search Request
 
 
-    function initTextSearch() {
-        var pyrmont = new google.maps.LatLng(long, lat, id, radius, userQuery);
+    function initTextSearch(userQuery) {
+        console.log(locHist);
+        var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
-        map = new google.maps.Map(document.getElementById(id), {
+        map = new google.maps.Map(document.getElementById('map'), {
             center: pyrmont,
             zoom: 15
         });
 
+        infowindow = new google.maps.InfoWindow();
+
+        var service = new google.maps.places.PlacesService(map);
+
         var request = {
             location: pyrmont,
-            radius: radius,
+            radius: 5000,
             query: userQuery
                     };
 
@@ -166,14 +150,7 @@ function createMarker(place) {
         service.textSearch(request, callback);
     }
 
-    function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                createMarker(results[i]);
-            }
-        }
-    }
+
 
 
 //// Place details function

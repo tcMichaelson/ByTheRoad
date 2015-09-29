@@ -6,6 +6,7 @@
             self.searching = false;
             self.registering = false;
             self.loggingin = false;
+            self.start = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {

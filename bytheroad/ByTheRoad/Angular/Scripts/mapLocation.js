@@ -73,16 +73,22 @@ function findRouteAndDisplay(directionsDisplay, directionsService) {
     var request = {
         origin: start,
         destination: end,
+        provideRouteAlternatives: true,
         travelMode: google.maps.TravelMode.DRIVING
     };
-    directionsService.route(request, function (response, status) {
+    console.log(directionsService.route(request, function (response, status) {
+        console.log(response);
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             console.log(response);
         }
-    });
-
+    }));
+    mainRoute = response;
     directionsDisplay.setMap(map);
+
+}
+
+function displaySubRoute (){
 
 }
 

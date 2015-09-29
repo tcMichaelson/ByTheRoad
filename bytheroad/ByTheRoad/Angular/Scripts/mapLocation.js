@@ -39,6 +39,7 @@ function initMap() {
 
             document.getElementById('origin').value = pos;
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
+            console.log(pos.lat, pos.lng);
             var dir = getCurrDirection();
 
         }, function () {
@@ -48,6 +49,7 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
+    console.log(locHist);
     /*
 
     window.setInterval(function () {
@@ -110,56 +112,76 @@ function getCurrDirection() {
 
 
 
-// Places Library Functions
-//Note that we need to load Powered by Google Logo in our view...Legal Requirement
+//// Places Library Functions
+////Note that we need to load Powered by Google Logo in our view...Legal Requirement
 
-//Nearby Search Function
-function nearby(long, lat, radius, id, type)
-{
-    function initialize(long, lat, radius, id, type) {
-        var pyrmont = new google.maps.LatLng(long, lat);
+////Nearby Search Function
 
-        map = new google.maps.Map(document.getElementById(id), {
-            center: pyrmont,
-            zoom: 15
-        });
+var infowindow;
 
-        var request = {
-            location: pyrmont,
-            radius: radius,
-            types: [type]
-        };
+function nearbySearch() {
+    console.log(locHist);
+    var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
-    }
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: pyrmont,
+        zoom: 15
+    });
 
-    function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                createMarker(results[i]);
-            }
-        }
-    }
+    infowindow = new google.maps.InfoWindow();
 
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: pyrmont,
+        radius: 5000,
+        types: ['gas_station']
+    }, callback);
 }
 
-// Text Search Request
 
-function textSearch(long, lat, id, radius, userQuery)
-{
-    function initialize() {
-        var pyrmont = new google.maps.LatLng(long, lat, id, radius, userQuery);
 
-        map = new google.maps.Map(document.getElementById(id), {
+function callback(results, status) {
+    console.log(results);
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+        }
+    }
+}
+
+function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
+
+//// Text Search Request
+
+
+    function initTextSearch(userQuery) {
+        console.log(locHist);
+        var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
+
+        map = new google.maps.Map(document.getElementById('map'), {
             center: pyrmont,
             zoom: 15
         });
 
+        infowindow = new google.maps.InfoWindow();
+
+        var service = new google.maps.places.PlacesService(map);
+
         var request = {
             location: pyrmont,
-            radius: radius,
+            radius: 5000,
             query: userQuery
                     };
 
@@ -167,30 +189,25 @@ function textSearch(long, lat, id, radius, userQuery)
         service.textSearch(request, callback);
     }
 
-    function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                createMarker(results[i]);
-            }
-        }
-    }
-}
 
-// Place details function
 
-function placeDetails(id, place, status)
-{
-    var request = {
-        placeId: id
-    };
 
-    service = new google.maps.places.PlacesService(map);
-    service.getDetails(request, callback);
+//// Place details function
 
-    function callback(place, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            createMarker(place);
-        }
-    }
-}
+//function placeDetails(id, place, status)
+//{
+//    var request = {
+//        placeId: id
+//    };
+
+//    service = new google.maps.places.PlacesService(map);
+//    service.getDetails(request, callback);
+
+  
+//}
+
+//function callback(place, status) {
+//        if (status == google.maps.places.PlacesServiceStatus.OK) {
+//            createMarker(place);
+//        }
+//    }

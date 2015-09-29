@@ -2,7 +2,7 @@
   
             <ul>
                 <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
-                <li class="home"><a href="">Home</a></li>
+               
                 <li class="about"><a ng-click="self.loggingin = !self.loggingin">Login</a></li>
                 <li class="news"><a ng-click="self.registering = !self.registering">Register</a></li>
                 <li class="contact"><a href="#">Accounts</a></li>
@@ -59,14 +59,16 @@
         map box
 
     </div>
+
+
     <div ng-hide="self.loggingin === false" class="rightloginbox">
         
         <form id="loginform" ng-submit="self.login()">
-            <label id="label1">
+            <label class="label1">
                 User Name:
             </label>
             <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" />
-            <label id="label1">
+            <label class="label1">
                 Password:
             </label>
             <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" />
@@ -75,27 +77,30 @@
         </form>
     </div>
 
-    <div ng-hide="self.registering === false">
-        <form id="registerfrorm" ng-submit="self.registger()">
-            <label class="label">
-                User Name;
-            </label>
-            <input class="box"name="username"ng-model="self.username"type="text"ng-required="true"/>
-            <label class="label">
-                Email
-            </label>
-            <input class="box"name="useremail"ng-model="self.email" type="email"ng-required="true"/>
-            <label class="lable">
-                PassWord
-            </label>
-            <input class="box"name="pwd"type="password"ng-model="self.password"ng-required="true"/>
-            <label class="label">
-                Confromed Password 
-            </label>
-            <input class="box"name="pwd"type="password"ng-model="self.password" ng-required="true"/>
 
-            I am registering!!
-            <input type="submit"class="bnt btn-primary" value="Register"/>
+
+
+    <div ng-hide="self.registering === false" class="rightregisterbox">
+        <form id="registerform" ng-submit="self.registger()">
+            <label class="label1">
+                User Name:
+            </label>
+            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true"/>
+            <label class="label1">
+                Email:
+            </label>
+            <input class="box"name="useremail"ng-model="self.email" type="email" ng-required="true"/>
+            <label class="label1">
+                PassWord:
+            </label>
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true"/>
+            <label class="label1">
+                Confirmed Password :
+            </label>
+            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true"/>
+
+           
+            <input type="submit" class="bnt btn-primary" value="Register"/>
             <button ng-click="self.registering = false">Cancel</button>
         </form>
     </div>

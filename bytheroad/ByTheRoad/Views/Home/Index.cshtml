@@ -9,24 +9,21 @@
 <meta name="viewport" content="width=device-width" />
 <title>@ViewBag.Title</title>
 @Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
-
-
-   
+@Scripts.Render("~/bundles/modernizr")  
    
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Angular/Scripts/app.js"></script>
     <script src="~/Angular/Scripts/roadService.js"></script>
-    <script src="~/Angular/Scripts/registerController.js"></script>
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>
 <body>
     <ng-view></ng-view>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap&libraries=places"
             async defer>
     </script>
     <script src="~/Angular/scripts/mapLocation.js"></script>
+
 </body>
 </html>

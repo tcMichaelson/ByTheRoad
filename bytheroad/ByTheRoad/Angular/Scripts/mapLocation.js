@@ -6,10 +6,12 @@ var infowindow;
 var moves = 0;
 var newLat = 45;
 var newLng = -90;
+var mainRoute;
 
 function initMap() {
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
+    var geocoder = new google.maps.Geocoder;
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: newLat, lng: newLng },
         zoom:20
@@ -22,6 +24,20 @@ function initMap() {
                 lng: position.coords.longitude
             };
             map.setCenter(pos);
+            geocoder.geocode({ 'location': pos }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    console.log(results);
+                    if (results[0]) {
+                        document.getElementById('origin').value = results[0].formatted_address;
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('GeoCoder has failed due to: ' + status);
+                }
+            });
+
+            document.getElementById('origin').value = pos;
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
             console.log(pos.lat, pos.lng);
             var dir = getCurrDirection();
@@ -33,13 +49,9 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
-    directionsDisplay.setMap(map);
     console.log(locHist);
-
     /*
-    var onChangeHandler = function () {
-        calcRoute(directionsService, directionsDisplay);
-    };
+
     window.setInterval(function () {
         if (moves < 5) {
             console.log(moves);
@@ -49,9 +61,36 @@ function initMap() {
     }, 1000);
     */
 
-
+    var getRouteHandler = function () {
+        findRouteAndDisplay(directionsDisplay, directionsService);
+    }
 
     document.getElementById('input-btn').addEventListener('click', executePan);
+    document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+}
+
+function findRouteAndDisplay(directionsDisplay, directionsService) {
+    var start = document.getElementById('origin').value;
+    var end = document.getElementById('destination').value;
+    var request = {
+        origin: start,
+        destination: end,
+        provideRouteAlternatives: true,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    console.log(directionsService.route(request, function (response, status) {
+        console.log(response);
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            console.log(response);
+        }
+    }));
+    mainRoute = response;
+    directionsDisplay.setMap(map);
+
+}
+
+function displaySubRoute (){
 
 }
 

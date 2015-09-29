@@ -29,7 +29,7 @@
                 <button  type="button" ng-model="self.value1" class="btn btn-primary">Food</button>
                 <button type="button" ng-model="self.value2" class="btn btn-primary">Lodging</button>
                 <button type="button" ng-model="self.value3" class="btn btn-primary">Shopping</button>
-                <button type="button" ng-model="self.value3"id="input-btn" ng-click="self.searching = true" class="btn btn-primary">Search</button>           
+                <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary">Search</button>           
              </div>
                 <input type="text" class="searchbox" name="search" ng-hide="self.searching === false"/>
         </div>
@@ -44,7 +44,7 @@
 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
     <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
-    <button type="button" ng-hide="self.start === false"  id="input-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>   
+    <button type="button" ng-hide="self.start === false"  id="route-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>   
 </form>
 
 

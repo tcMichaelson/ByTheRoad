@@ -131,3 +131,21 @@ function textSearch(long, lat)
         }
     }
 }
+
+// Place details function
+
+function placeDetails(id)
+{
+    var request = {
+        placeId: id
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.getDetails(request, callback);
+
+    function callback(place, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            createMarker(place);
+        }
+    }
+}

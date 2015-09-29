@@ -12,7 +12,7 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: newLat, lng: newLng },
-        zoom:15
+        zoom:20
     });
 
     if (navigator.geolocation) {
@@ -46,7 +46,7 @@ function initMap() {
         }
     }, 1000);
     */
-       
+
     document.getElementById('input-btn').addEventListener('click', executePan);
 }
 

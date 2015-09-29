@@ -38,12 +38,12 @@
  <div class="floating-box">
 <form id="directionsearch">
     
-    <button type="button"  ng-click="self.start = true" class="btn btn-success">Start your search here</button> <br /> <br /> 
+    <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Start your search here</button> <br /> <br /> 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
-    <input type="text" class="addbox" ng-hide="self.start === false" /><br />
+    <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
-    <input type="text" class="addbox" ng-hide="self.start === false" /><br /><br />
+    <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
     <button type="button" ng-hide="self.start === false"  id="input-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>   
 </form>
 

@@ -99,33 +99,7 @@ function nearbySearch() {
     }, callback);
 }
 
-
-
-function callback(results, status) {
-    console.log(results);
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-        }
-    }
-}
-
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
-
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
-}
-
-
 //// Text Search Request
-
 
     function initTextSearch(userQuery) {
         console.log(locHist);
@@ -165,10 +139,24 @@ function createMarker(place) {
 //    service.getDetails(request, callback);
 
   
-//}
+    function callback(results, status) {
+        console.log(results);
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+        }
+    }
 
-//function callback(place, status) {
-//        if (status == google.maps.places.PlacesServiceStatus.OK) {
-//            createMarker(place);
-//        }
-//    }
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        });
+    }

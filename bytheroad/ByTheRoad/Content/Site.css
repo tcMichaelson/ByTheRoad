@@ -146,6 +146,12 @@ background-color: white;
 
 }
 
+.ownsearch{
+
+    color:red;
+    margin:10px;
+}
+
 .btn btn-primary{
     height:1px;
     width:1px;

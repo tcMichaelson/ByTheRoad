@@ -73,8 +73,26 @@
     </div>
 
     <div ng-hide="self.registering === false">
-        I am registering!!
-        <button ng-click="self.registering = false">Cancel</button>
+        <form id="registerfrorm" ng-submit="self.registger()">
+            <label class="label">
+                User Name;
+            </label>
+            <input class="box"name="username"ng-model="self.username"type="text"ng-required="true"/>
+            <label class="label">
+                Email
+            </label>
+            <input class="box"name="useremail"ng-model="self.email" type="email"ng-required="true"/>
+            <label class="lable">
+                PassWord
+            </label>
+            <input class="box"name="pwd"type="password"ng-model="self.password"ng-required="true"/>
+            <label class="label">
+                Confromed Password 
+            </label>
+            <input class="box"name="pwd"type="password"ng-model="self.password" ng-required="true"/>
+            I am registering!!
+            <button ng-click="self.registering = false">Cancel</button>
+        </form>
     </div>
 
 

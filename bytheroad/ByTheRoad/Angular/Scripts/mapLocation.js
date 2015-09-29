@@ -12,7 +12,7 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: newLat, lng: newLng },
-        zoom:12
+        zoom:15
     });
 
     if (navigator.geolocation) {
@@ -23,11 +23,7 @@ function initMap() {
             };
             map.setCenter(pos);
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
-            console.log(locHist);
-            console.log('in map init');
             var dir = getCurrDirection();
-            console.log(map);
-            console.log(map.gm_bindings_);
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
@@ -42,7 +38,6 @@ function initMap() {
     var onChangeHandler = function () {
         calcRoute(directionsService, directionsDisplay);
     };
-    */
     window.setInterval(function () {
         if (moves < 5) {
             console.log(moves);
@@ -50,32 +45,27 @@ function initMap() {
             moves++;
         }
     }, 1000);
-    
-    
+    */
+       
     document.getElementById('input-btn').addEventListener('click', executePan);
 }
 
 function executePan() {
     newLat = newLat - .025;
     newLng = newLng - .025;
-    console.log(newLat, newLng);
     var newLatLng = new google.maps.LatLng(newLat, newLng);
     map.panTo(newLatLng);
+    locHist.push({ lat: newLat, lng: newLng, time: Date.now() });
+    getCurrDirection();
 }
 
 function getCurrDirection() {
     locHist.forEach(function (item) {
-        console.log('in get directions.');
-        console.log(item.lat, item.lng, item.time);
+        console.log("lat",item.lat, "lng", item.lng,"time", item.time);
     });
-    return "west";
 }
 
 
-
-function ReCenter(map) {
-    
-}
 
 
 // Places Library Functions

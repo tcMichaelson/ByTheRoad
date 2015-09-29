@@ -72,6 +72,10 @@ body {
   
 }
 
+.distance{
+background-color:coral;
+
+}
 
 .leftboxes{
 
@@ -84,8 +88,10 @@ position:absolute;
     float: left;
     width: 100%;
     height: 50%;    
-    border: 3px solid salmon;  
+    border: 1px solid salmon;  
      margin:0px;
+     padding:10px;
+    
 }
 
 
@@ -102,7 +108,7 @@ position:absolute;
 .floatingmapbox {
   border: 3px solid salmon;
   width: 100%;
-  height: 75%;
+  height: 100%;
   position: relative;
   right: 0;
    margin:0px;
@@ -118,13 +124,52 @@ position:absolute;
      height:10%;
     margin:0px;
     margin-bottom:1px;
+    padding:10px;
 }
 .btn btn-primary{
     height:1px;
     width:1px;
     display:inline;
+    padding:10px;
+
 }
 
 .searchbox {
     margin-top: 10px;
 }
+
+#directionsearch{
+    
+    padding:20px;
+}
+.addbox{
+    background-color:coral;
+    border:3px solid blue;
+    margin:10px;
+    width:70%;
+}
+
+.btn btn-default{
+    width:2px;
+   
+}
+.distance{
+    margin:10px;
+    height:50px;
+    width:100px;
+
+}
+.timeordistance{
+  
+    margin:10px;
+    font-size:large;
+}
+.logo{
+    position: absolute;
+    font-size:larger;
+    font-style:italic;
+    color:darkseagreen;
+    left: 0;
+    
+}
+

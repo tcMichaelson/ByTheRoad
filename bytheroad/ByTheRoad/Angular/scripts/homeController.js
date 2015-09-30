@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($location, $http) {
+        .controller('homeController', function ($location, $http, mapService) {
             var self = this;
 
             self.registering = false;
@@ -29,11 +29,7 @@
             };
 
             self.nearbySearch = function () {
-                nearbySearch(self.selectedItem, function (data) {
-                    self.results = data;
-                    console.log(
-                        "results = " + self.results);
-                });
+                mapService.categorySearch(self.selectedItem);
             };
 
         });

@@ -1,13 +1,14 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($location, $http) {
+        .controller('homeController', function ($location, $http, mapService) {
             var self = this;
 
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-            self.search = false;
+            self.viewingPlaces = false;
+ 
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -35,6 +36,12 @@
                 roadService.register(self);
             };
 
+                nearbySearch(self.selectedItem, function (data) {
+                mapService.categorySearch(self.selectedItem);
+
+            self.textSearch = function () {
+                mapService.initTextSearch();
+            }
         });
 
 })();

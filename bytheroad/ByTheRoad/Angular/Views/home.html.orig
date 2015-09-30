@@ -2,7 +2,6 @@
   
             <ul>
                 <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
-               
                 <li class="about"><a ng-click="self.loggingin = !self.loggingin">Login</a></li>
                 <li class="news"><a ng-click="self.registering = !self.registering">Register</a></li>
                 <li class="contact"><a href="#">Accounts</a></li>
@@ -12,69 +11,113 @@
 
 
 <div class="leftboxes">
-    <div class="floating-box">
-        <label>Stop In</label><br />
-     
-       
-        <button type="button"  ng-model="self.value1" class="btn btn-default">minutes</button>
-        <button type="button" ng-model="self.value2" class="btn btn-default">miles</button>
-        <button type="button" ng-model="self.value3" class="btn btn-default">hours</button>
-       <label class="timeordistance">Please enter the time or distance </label> 
-
-        <input class="distance" type="text" ng-model="distance" />
-
-        <div class="container">
-            <h2>LookUp</h2>
-            <div class="btn-group">
+  
 <<<<<<< HEAD
-                <button  type="button" ng-model="self.value1" class="btn btn-primary  ">
-                    <span><img src="../../fonts/glyphicons-476-dining-set.png" /></span>
+  
+    <div class="floating-box">
+
+             <button type="button"  ng-click="self.mainbtn = !self.mainbtn" class="btn btn-success">Search for a Quick Stop</button><br/>
+             <button type="button"  ng-hide="self.mainbtn=== false"  class="btn btn-default">minutes</button>
+             <button type="button"ng-hide="self.mainbtn=== false"  class="btn btn-default">miles</button>
+             <button type="button"ng-hide="self.mainbtn === false"  class="btn btn-default">hours</button>
+             <label class="timeordistance" ng-hide="self.mainbtn === false" >Please enter the time or distance </label> 
+            <input class="distance" ng-hide="self.mainbtn === false" type="text" ng-model="distance" />
+   
+  <div ng-hide="self.mainbtn === false" class="container">
+    <h2>LookUp</h2>
+     <div class="btn-group">
+                <button type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()"  class="btn btn-primary ">
+                    <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
                 </button>
-                <button type="button" ng-model="self.value2" class="btn btn-primary " >
-                    <span><img src="../../fonts/glyphicons-496-bed.png" /></span>
+                <button type="button" ng-click="self.selectedItem = 'lodging'; self.nearbySearch()" class="btn btn-primary ">
+                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
                 </button>
-                <button type="button" ng-model="self.value3" class="btn btn-primary ">
-                    <span ><img src="../../fonts/glyphicons-203-shopping-cart.png" /></span>
+                <button type="button" ng-click="self.selectedItem = 'store'; self.nearbySearch()"  class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
                 </button>
-                <button type="button" ng-model="self.value3" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'gas_station'; self.nearbySearch()" class="btn btn-primary ">
+=======
+       
+             <button type="button"  ng-click="self.mainbtn = !self.mainbtn" class="btn btn-success">Search for a Quick Stop</button><br/>
+             <button type="button"  ng-hide="self.mainbtn=== false"  class="btn btn-default">minutes</button>
+             <button type="button"ng-hide="self.mainbtn=== false"  class="btn btn-default">miles</button>
+             <button type="button"ng-hide="self.mainbtn === false"  class="btn btn-default">hours</button>
+             <label class="timeordistance" ng-hide="self.mainbtn === false" >Please enter the time or distance </label> 
+            <input class="distance" ng-hide="self.mainbtn === false" type="text" ng-model="distance" />
+   
+  <div ng-hide="self.mainbtn === false" class="container">
+    <h2>LookUp</h2>
+     <div class="btn-group">
+                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-primary ">
+                    <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary ">
+                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value4" class="btn btn-primary ">
+>>>>>>> 0f3dd22abfb802f7e9a2ba52c86ec062fc3d2d87
                     <span>
-                        <img src="../../fonts/glyphicons-472-gas-station.png" />
+                        <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>
                 </button>
-=======
-                <button  type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()" ng-model="self.value1" class="btn btn-primary glyphicon glyphicon-cutlery " id="food-btn"></button>
-                <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary glyphicon glyphicon-briefcase" ></button>
-                <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-shopping-cart"></button>
-                <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-dashboard"></button>
->>>>>>> 5d1563d371e50ffae69ce675401c14abb81de660
-                <button type="button" ng-model="self.value3"id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>           
-             </div>
-                <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false"/>
-        </div>
-    </div>
+<<<<<<< HEAD
+                 <button type="button"onclick="nearbySearch ('travel_service')"ng-model="self.value5"class="btn btn-primary">
+                     <span><img src="../../fonts/glyphicons-568-transport.png"id="img"/></span>
+                 </button> 
+                   <button type="button"onclick="nerbySearch('local_service')"ng-model="self.value6"class="btn btn-primary">
+                       <span><img src="../../fonts/glyphicons-490-handshake.png"id="img" /></span>
+                   </button>
+                   <button type="button"onclick="nerbysearch('churches')"ng-model="self.value7"class="btn btn-primary">
+                       <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png"id="img" /></span>
+                   </button>
 
+         </div>
+       <div>
+          <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>
+          <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
+=======
+                <form ng-submit="self.textSearch()">
+                    <input type="text" class="searchbox" id="textsearch" name="search" />
+                    <input type="submit" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search"/>
+                </form>
+
+>>>>>>> 69f0b014e06be1e3ee15c4c8c43e22f04fa9fdc9
+       </div>
+
+
+    </div>
+</div>
+</div>
  <div class="floating-box">
     
-<form id="directionsearch">
+     <form id="directionsearch">
     
-    <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Start your search here</button> <br /> <br /> 
+ 
+    <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Search for directions here</button> <br /> <br /> 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
     <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
     <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
     <button type="button" ng-hide="self.start === false"  id="route-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>   
-</form>
+      </form>
 
 
 
- </div>
 </div>
+</div>
+    </div>
+    
+
 <div class="rightboxes">
     <div id="map" class="floatingmapbox">
         map box
 
     </div>
+
     <div ng-hide="self.loggingin === false" class="rightloginbox">
         
         <form id="loginform" ng-submit="self.login()">

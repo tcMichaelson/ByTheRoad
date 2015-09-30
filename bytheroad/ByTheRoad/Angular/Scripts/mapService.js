@@ -2,14 +2,15 @@
     angular.module('byTheRoad').service('mapService', function () {
 
         var infowindow;
+        var self = this;
 
-        this.categorySearch = function (type, setResults) {
-            console.log(locHist);         
+        self.categorySearch = function (type) {
+            console.log(locHist);
             var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pyrmont,
-                zoom: 15
+                zoom: 13
             });
 
             infowindow = new google.maps.InfoWindow();
@@ -22,13 +23,13 @@
             }, callback);
         }
 
-        this.initTextSearch = function () {
+        self.initTextSearch = function () {
             console.log(locHist);
             var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pyrmont,
-                zoom: 15
+                zoom: 13
             });
 
             infowindow = new google.maps.InfoWindow();
@@ -45,7 +46,7 @@
             service.textSearch(request, callback);
         }
 
-        this.callback = function (results, status) {
+       function callback (results, status) {
             console.log(results);
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
@@ -55,7 +56,7 @@
 
         }
 
-        this.createMarker = function (place) {
+       function createMarker (place) {
             var placeLoc = place.geometry.location;
             var marker = new google.maps.Marker({
                 map: map,
@@ -70,7 +71,7 @@
 
     });
 
-})
+})();
 
 
 

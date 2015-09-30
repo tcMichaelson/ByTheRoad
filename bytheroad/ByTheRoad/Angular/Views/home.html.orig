@@ -54,6 +54,7 @@
     </div>
 
  <div class="floating-box">
+    
 <form id="directionsearch">
     
     <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Start your search here</button> <br /> <br /> 
@@ -90,26 +91,26 @@
         </form>
     </div>
 
-    <div ng-hide="self.registering === false"class="">
-        <form id="registerfrorm" ng-submit="self.registger()">
-            <label class="label">
-                User Name;
+    <div ng-hide="self.registering === false"class="rightregisterbox">
+        <form id="registerform" ng-submit="self.registger()">
+            <label class="label1">
+                User Name:
             </label>
-            <input class="box"name="username"ng-model="self.username"type="text"ng-required="true"/>
-            <label class="label">
-                Email
+            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true"/>
+            <label class="label1">
+                Email:
             </label>
-            <input class="box"name="useremail"ng-model="self.email" type="email"ng-required="true"/>
-            <label class="lable">
-                PassWord
+            <input class="box"name="useremail" ng-model="self.email" type="email" ng-required="true"/>
+            <label class="label1">
+                PassWord:
             </label>
-            <input class="box"name="pwd"type="password"ng-model="self.password"ng-required="true"/>
-            <label class="label">
-                Confromed Password 
+            <input class="box"name="pwd" type="password" ng-model="self.password" ng-required="true"/>
+            <label class="label2">
+                Confirmed Password :
             </label>
             <input class="box"name="pwd"type="password"ng-model="self.password" ng-required="true"/>
 
-            I am registering!!
+           
             <input type="submit"class="bnt btn-primary" value="Register"/>
             <button ng-click="self.registering = false">Cancel</button>
         </form>

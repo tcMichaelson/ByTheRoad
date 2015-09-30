@@ -59,10 +59,16 @@
 </div>
 
     <div id="seachResults">
-        <div ng-repeat="results in self.results">
+        <div ng-repeat="result in self.results">
             <ul>
                 <li>result.name</li>
-                <li>result.description</li>
+                <li>result.formatted_address</li>
+                <li>result.formatted_phone_number</li>
+                <li>result.website</li>
+                <li>result.price_level</li>
+                <li>result.rating</li>
+                <li>result.photos</li>
+                <li>result.types</li>
                 <li>result.distance</li>
                 <li>result.time</li>
             </ul>

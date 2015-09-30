@@ -12,8 +12,10 @@
 
 <div class="leftboxes">
   
+<<<<<<< HEAD
+  
     <div class="floating-box">
-       
+
              <button type="button"  ng-click="self.mainbtn = !self.mainbtn" class="btn btn-success">Search for a Quick Stop</button><br/>
              <button type="button"  ng-hide="self.mainbtn=== false"  class="btn btn-default">minutes</button>
              <button type="button"ng-hide="self.mainbtn=== false"  class="btn btn-default">miles</button>
@@ -34,6 +36,29 @@
                     <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
                 </button>
                 <button type="button" ng-click="self.selectedItem = 'gas_station'; self.nearbySearch()" class="btn btn-primary ">
+=======
+       
+             <button type="button"  ng-click="self.mainbtn = !self.mainbtn" class="btn btn-success">Search for a Quick Stop</button><br/>
+             <button type="button"  ng-hide="self.mainbtn=== false"  class="btn btn-default">minutes</button>
+             <button type="button"ng-hide="self.mainbtn=== false"  class="btn btn-default">miles</button>
+             <button type="button"ng-hide="self.mainbtn === false"  class="btn btn-default">hours</button>
+             <label class="timeordistance" ng-hide="self.mainbtn === false" >Please enter the time or distance </label> 
+            <input class="distance" ng-hide="self.mainbtn === false" type="text" ng-model="distance" />
+   
+  <div ng-hide="self.mainbtn === false" class="container">
+    <h2>LookUp</h2>
+     <div class="btn-group">
+                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-primary ">
+                    <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary ">
+                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value4" class="btn btn-primary ">
+>>>>>>> 0f3dd22abfb802f7e9a2ba52c86ec062fc3d2d87
                     <span>
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>
@@ -64,6 +89,7 @@
 
 
     </div>
+</div>
 </div>
  <div class="floating-box">
     

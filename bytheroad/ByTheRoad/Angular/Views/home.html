@@ -50,9 +50,11 @@
 
          </div>
        <div>
-          <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>
-          <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
-       </div>
+           <form ng-submit="self.textSearch()">
+               <button type="submit" id="input-btn"  class="btn btn-primary glyphicon glyphicon-search"></button>
+               <input type="text" class="searchbox" id="textsearch" name="search" />
+           </form>
+</div>
 
 
     </div>

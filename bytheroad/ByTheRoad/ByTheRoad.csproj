@@ -266,9 +266,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-203-shopping-cart.png" />
+    <Content Include="fonts\glyphicons-303-temple-christianity-church.png" />
     <Content Include="fonts\glyphicons-472-gas-station.png" />
     <Content Include="fonts\glyphicons-476-dining-set.png" />
+    <Content Include="fonts\glyphicons-490-handshake.png" />
     <Content Include="fonts\glyphicons-496-bed.png" />
+    <Content Include="fonts\glyphicons-568-transport.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />

@@ -46,60 +46,38 @@
   <div ng-show="self.miles.length > 0 || self.hours.length > 0 || self.minutes.length > 0 " class="container">
     <h2>LookUp</h2>
      <div class="btn-group">
-<<<<<<< HEAD
-                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-success ">
+                <button type="button" onclick="nearbySearch('food')" ng-model="self.value1" class="btn btn-success ">
                     <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
                 </button>
                 <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-success ">
                     <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
                 </button>
+                    
                 <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-success">
                     <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
                 </button>
                 <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value4" class="btn btn-success ">
-=======
-                <button type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()"  class="btn btn-primary ">
-                    <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = 'lodging'; self.nearbySearch()" class="btn btn-primary ">
-                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = 'store'; self.nearbySearch()"  class="btn btn-primary">
-                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = 'gas_station'; self.nearbySearch()" class="btn btn-primary ">
->>>>>>> d9186aeaba6bcadad49b769c47a73ca227f540fb
                     <span>
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>
                 </button>
-                 <button type="button" ng-click="self.selectedItem = 'travel_service'; self.nearbySearch()" ng-model="self.value5"class="btn btn-primary">
-                     <span><img src="../../fonts/glyphicons-568-transport.png"id="img"/></span>
-                 </button> 
-                   <button type="button" ng-click="self.selectedItem = 'local_service'; self.nearbySearch()"ng-model="self.value6"class="btn btn-primary">
-                       <span><img src="../../fonts/glyphicons-490-handshake.png"id="img" /></span>
-                   </button>
-                   <button type="button" ng-click="self.selectedItem = 'churches'; self.nearbySearch(); "ng-model="self.value7"class="btn btn-primary">
-                       <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png"id="img" /></span>
-                   </button>
-
          </div>
        <div>
 <<<<<<< HEAD
-          <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-info glyphicon glyphicon-search"></button>
-          <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
-       </div>
-=======
            <form ng-submit="self.textSearch()">
-               <button type="submit" id="input-btn"  class="btn btn-primary glyphicon glyphicon-search"></button>
+               <button type="submit" id="input-btn"  class="btn btn-primary glyphicon glyphicon-search" value="Search"></button>
                <input type="text" class="searchbox" id="textsearch" name="search" />
            </form>
 </div>
->>>>>>> d9186aeaba6bcadad49b769c47a73ca227f540fb
+=======
+          <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-info glyphicon glyphicon-search"></button>
+          <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
+       </div>
+>>>>>>> 87215102fe445324a039886a1581c210d8d6339c
 
 
     </div>
-</div>
+
 
     <div id="seachResults">
         <div ng-repeat="result in self.results">
@@ -117,13 +95,12 @@
                 <li>result.time</li>
             </ul>
             <label>If you like this places click here </label>
-            <input type="checkbox"name="savesPlaces"ng-model="result.saved"/>
-            
+            <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
 
         </div>
     </div>
     <div id="savedPlaces">
-        <div ng-hide="self.viewingPlaces ===false" >
+        <div ng-hide="self.viewingPlaces ===false">
             <div ng-repeat="saved in self.places">
                 <label> My places</label>
                 <ul>
@@ -141,7 +118,7 @@
             </div>
         </div>
     </div>
-
+</div>
  <div class="floating-box">
     
      <form id="directionsearch">

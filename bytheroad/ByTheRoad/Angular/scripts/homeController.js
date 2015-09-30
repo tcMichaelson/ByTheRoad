@@ -7,6 +7,10 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.results = [];
+            self.getResults = function () {
+                return mapService.results;
+            }
  
             self.mainbtn = false;
             self.login = function () {
@@ -30,11 +34,26 @@
             };
 
             self.nearbySearch = function () {
-                mapService.categorySearch(self.selectedItem);
+                self.results = [];
+                mapService.categorySearch(self);
+                self.startInterval();
             };
 
             self.textSearch = function () {
+                self.results = [];                
                 mapService.initTextSearch();
+                self.startInterval();
+            }
+
+            self.startInterval = function () {
+                var checkResults = window.setInterval(function () {
+                    if (self.results.length === 0 && self.results[0] !== 'none' ) {
+                        self.results = self.getResults();
+                    } else {
+                        console.log(self.results[0]);
+                        clearInterval(checkResults);
+                    }
+                }, 500)
             }
 
         });

@@ -13,7 +13,6 @@ var routeLines = [];
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
-    var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
     var geocoder = new google.maps.Geocoder;
 
@@ -88,7 +87,7 @@ function renderLines(response) {
         minLng = maxLng = route.legs[0].start_location.L;
         route.legs.forEach(function (leg) {
             leg.steps.forEach(function (step) {
-                setMarker(new google.maps.LatLng(step.end_point.H, step.end_point.L), step.distance.value, step.duration.value);
+                //setMarker(new google.maps.LatLng(step.end_point.H, step.end_point.L), step.distance.value, step.duration.value);
                 step.path.forEach(function (line) {
                     coords.push({ lat: line.H, lng: line.L });
                     minLat = minLat < line.H ? minLat : line.H;

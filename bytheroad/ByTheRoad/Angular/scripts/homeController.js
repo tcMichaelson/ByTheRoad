@@ -7,7 +7,7 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-            self.search = false;
+ 
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
@@ -31,6 +31,10 @@
             self.nearbySearch = function () {
                 mapService.categorySearch(self.selectedItem);
             };
+
+            self.textSearch = function () {
+                mapService.initTextSearch();
+            }
 
         });
 

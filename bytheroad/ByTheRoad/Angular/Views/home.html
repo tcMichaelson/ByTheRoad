@@ -40,11 +40,11 @@
                         <img src="../../fonts/glyphicons-472-gas-station.png" />
                     </span>
                 </button>
-              
-                    <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>
-               
+                <form ng-submit="self.textSearch()">
+                    <input type="text" class="searchbox" id="textsearch" name="search" />
+                    <input type="submit" id="input-btn" class="btn btn-primary glyphicon glyphicon-search"/>
+                </form>
 
-                <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
             </div>
         </div>
     </div>

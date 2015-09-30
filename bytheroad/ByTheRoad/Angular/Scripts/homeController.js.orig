@@ -7,12 +7,15 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-<<<<<<< HEAD
+            self.viewingPlaces = false;
  
-=======
-            self.search = false;
             self.mainbtn = false;
->>>>>>> 0f3dd22abfb802f7e9a2ba52c86ec062fc3d2d87
+            self.value1 = false;
+            self.value2 = false;
+            self.value3 = false;
+            self.b1 = false;
+            self.b2 = false;
+            self.b3 = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
@@ -33,6 +36,8 @@
                 roadService.register(self);
             };
 
+<<<<<<< HEAD
+=======
             self.nearbySearch = function () {
                 mapService.categorySearch(self.selectedItem);
             };
@@ -41,6 +46,7 @@
                 mapService.initTextSearch();
             }
 
+>>>>>>> d9186aeaba6bcadad49b769c47a73ca227f540fb
         });
 
 })();

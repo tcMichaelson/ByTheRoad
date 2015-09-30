@@ -8,11 +8,19 @@
             self.loggingin = false;
             self.start = false;
             self.results = [];
+            self.viewingPlaces = false;
             self.getResults = function () {
                 return mapService.results;
             }
- 
+
             self.mainbtn = false;
+            self.value1 = false;
+            self.value2 = false;
+            self.value3 = false;
+            self.b1 = false;
+            self.b2 = false;
+            self.b3 = false;
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
@@ -29,19 +37,21 @@
                 });
             };
 
+
+
             self.register = function () {
                 roadService.register(self);
             };
 
-            self.nearbySearch = function () {
+            self.nearbySearch=function () {
                 self.results = [];
                 mapService.categorySearch(self);
                 self.startInterval();
             };
 
-            self.textSearch = function () {
+                self.textSearch = function () {
                 self.results = [];                
-                mapService.initTextSearch();
+                    mapService.initTextSearch();
                 self.startInterval();
             }
 

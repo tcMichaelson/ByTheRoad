@@ -1,15 +1,21 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($location, $http) {
+        .controller('homeController', function ($location, $http, mapService) {
             var self = this;
-<<<<<<< HEAD
 
-=======
-            self.searching = false;
             self.registering = false;
             self.loggingin = false;
->>>>>>> c356d7f94b6a85994cc4e0806725e99b77af5b4d
+            self.start = false;
+            self.viewingPlaces = false;
+ 
+            self.mainbtn = false;
+            self.value1 = false;
+            self.value2 = false;
+            self.value3 = false;
+            self.b1 = false;
+            self.b2 = false;
+            self.b3 = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
@@ -30,6 +36,17 @@
                 roadService.register(self);
             };
 
+<<<<<<< HEAD
+=======
+            self.nearbySearch = function () {
+                mapService.categorySearch(self.selectedItem);
+            };
+
+            self.textSearch = function () {
+                mapService.initTextSearch();
+            }
+
+>>>>>>> d9186aeaba6bcadad49b769c47a73ca227f540fb
         });
 
 })();

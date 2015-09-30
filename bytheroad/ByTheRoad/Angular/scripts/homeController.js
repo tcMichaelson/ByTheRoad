@@ -1,13 +1,13 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($location, $http) {
+        .controller('homeController', function ($location, $http, mapService) {
             var self = this;
 
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-            self.search = false;
+ 
             self.mainbtn = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
@@ -30,12 +30,12 @@
             };
 
             self.nearbySearch = function () {
-                nearbySearch(self.selectedItem, function (data) {
-                    self.results = data;
-                    console.log(
-                        "results = " + self.results);
-                });
+                mapService.categorySearch(self.selectedItem);
             };
+
+            self.textSearch = function () {
+                mapService.initTextSearch();
+            }
 
         });
 

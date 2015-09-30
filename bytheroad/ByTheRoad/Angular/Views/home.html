@@ -24,16 +24,16 @@
   <div ng-hide="self.mainbtn === false" class="container">
     <h2>LookUp</h2>
      <div class="btn-group">
-                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()"  class="btn btn-primary ">
                     <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
                 </button>
-                <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'lodging'; self.nearbySearch()" class="btn btn-primary ">
                     <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
                 </button>
-                <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'store'; self.nearbySearch()"  class="btn btn-primary">
                     <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
                 </button>
-                <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value4" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'gas_station'; self.nearbySearch()" class="btn btn-primary ">
                     <span>
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>

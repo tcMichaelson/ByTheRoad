@@ -24,50 +24,33 @@
  <div ng-hide="self.mainbtn === false" class=" container">
     <h2>LookUp</h2>
      <div class="btn-group">
-       <div>
-                <ul id="NewProfile" style="width:300px; height: 100px; background: #00FF00; display: none;">
-                   <li>A</li>
-                   <li>B</li>
-                </ul>
-      </div>
-                
-    <button  type="button" onclick="nearbySearch('food')" ng-model="self.value1" class="btn btn-primary glyphicon glyphicon-cutlery " id="food-btn"></button>
-    <script>
-
-    var toggled = false,
-    div2 = document.getElementById("NewProfile"),
-    toggle = function( ) {
-        if( toggled ) {
-           div2.style.display = "none";
-        } else {
-           div2.style.display = "block";
-        }
-        toggled = !toggled;
-    }
-    </script>
-     </div>
+                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-primary ">
+                    <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary ">
+                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
+                </button>
+                <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value4" class="btn btn-primary ">
+                    <span>
+                        <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
+                    </span>
+                </button>
+                <div>
+                    <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>
 
 
-   <div class="btn-group">  
-    <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-primary glyphicon glyphicon-briefcase" ></button>
-    <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-shopping-cart"></button>
-    <button type="button" onclick="nearbySearch('gas_station')" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-dashboard"></button>
-
-   </div>
-
-<div>
-    <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>   
-   <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false"/>
-</div>
-
-</div>
-        
- </div>
+                    <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
+                </div>
+            </div>
 
  <div class="floating-box">
     
 <form id="directionsearch">
     
+    <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Start your search here</button> <br /> <br /> 
     <button type="button"  ng-click="self.start = !self.start" class="btn btn-success">Search for directions here</button> <br /> <br /> 
     <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
     <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />

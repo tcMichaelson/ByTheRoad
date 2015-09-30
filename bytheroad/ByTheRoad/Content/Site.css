@@ -240,5 +240,11 @@ background-color: white;
     color:darkseagreen;
     left: 10%;
     
+}#img{
+    height:20px;
+    width:20px;
+    display:inline;
+    padding:0;
+
 }
 

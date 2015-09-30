@@ -64,7 +64,7 @@ function initMap() {
         findRouteAndDisplay(directionsService);
     }
 
-    document.getElementById('input-btn').addEventListener('click', initTextSearch);
+    //document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
 }
 
@@ -88,11 +88,13 @@ function findRouteAndDisplay(directionsService) {
 
 function renderLines(response) {
     var routeLines = null;
+    var minLat, maxLat, minLng, maxLng;
     routeLines = [];
-    var minLat = maxLat = map.center.H;
-    var minLng = maxLng = map.center.L;
     response.routes.forEach(function (route, idx) {
+        console.log(route);
         var coords = [];
+        minLat = maxLat = route.legs[0].start_location.H;
+        minLng = maxLng = route.legs[0].start_location.L;
         route.legs.forEach(function (leg) {
             leg.steps.forEach(function (step) {
                 step.path.forEach(function (line) {
@@ -107,7 +109,7 @@ function renderLines(response) {
         var colHex = "";
         switch (idx % 4) {
             case 0:
-                colHex = "#ff7f50";
+                colHex = "#ff0000";
                 break;
             case 1:
                 colHex = "#00ff00"
@@ -132,7 +134,6 @@ function renderLines(response) {
     var ne = new google.maps.LatLng(maxLat, maxLng);
     var bounds = new google.maps.LatLngBounds(sw, ne)
     map.fitBounds(bounds);
-    map.panToBounds(bounds);
 }
 
 function displaySubRoute() {

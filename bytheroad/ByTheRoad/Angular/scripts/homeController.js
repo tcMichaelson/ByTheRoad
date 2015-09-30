@@ -7,6 +7,7 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.viewingPlaces = false;
  
             self.mainbtn = false;
             self.login = function () {

@@ -256,11 +256,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\mapService.js" />
     <Content Include="Angular\Views\home.html" />
     <Content Include="Angular\Scripts\homeController.js" />
     <Content Include="Angular\Scripts\mapLocation.js" />
     <Content Include="Angular\Scripts\roadService.js" />
-    <Content Include="Angular\Views\home2.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -313,6 +313,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="TestPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

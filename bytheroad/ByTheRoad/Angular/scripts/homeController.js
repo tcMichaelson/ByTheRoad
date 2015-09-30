@@ -28,6 +28,14 @@
                 roadService.register(self);
             };
 
+            self.nearbySearch = function () {
+                nearbySearch(self.selectedItem, function (data) {
+                    self.results = data;
+                    console.log(
+                        "results = " + self.results);
+                });
+            };
+
         });
 
 })();

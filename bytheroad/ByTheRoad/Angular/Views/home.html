@@ -46,14 +46,13 @@
   <div ng-show="self.miles.length > 0 || self.hours.length > 0 || self.minutes.length > 0 " class="container">
     <h2>LookUp</h2>
      <div class="btn-group">
-                <button type="button" onclick="nearbySearch  ('food')" ng-model="self.value1" class="btn btn-success ">
+                <button type="button" onclick="nearbySearch('food')" ng-model="self.value1" class="btn btn-success ">
                     <span> <img src="../../fonts/glyphicons-476-dining-set.png"id="img" /></span>
                 </button>
                 <button type="button" onclick="nearbySearch('lodging')" ng-model="self.value2" class="btn btn-success ">
                     <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
                 </button>
-                    <span><img src="../../fonts/glyphicons-496-bed.png"id="img"  /></span>
-                </button>
+                    
                 <button type="button" onclick="nearbySearch('store')" ng-model="self.value3" class="btn btn-success">
                     <span><img src="../../fonts/glyphicons-203-shopping-cart.png"id="img" /></span>
                 </button>
@@ -70,7 +69,7 @@
 
 
     </div>
-</div>
+
 
     <div id="seachResults">
         <div ng-repeat="result in self.results">
@@ -88,13 +87,12 @@
                 <li>result.time</li>
             </ul>
             <label>If you like this places click here </label>
-            <input type="checkbox"name="savesPlaces"ng-model="result.saved"/>
-            
+            <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
 
         </div>
     </div>
     <div id="savedPlaces">
-        <div ng-hide="self.viewingPlaces ===false" >
+        <div ng-hide="self.viewingPlaces ===false">
             <div ng-repeat="saved in self.places">
                 <label> My places</label>
                 <ul>
@@ -112,7 +110,7 @@
             </div>
         </div>
     </div>
-
+</div>
  <div class="floating-box">
     
      <form id="directionsearch">

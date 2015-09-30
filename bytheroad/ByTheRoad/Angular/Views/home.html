@@ -38,16 +38,43 @@
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>
                 </button>
-                <form ng-submit="self.textSearch()">
-                    <input type="text" class="searchbox" id="textsearch" name="search" />
-                    <input type="submit" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search"/>
-                </form>
+                 <button type="button"onclick="nearbySearch ('travel_service')"ng-model="self.value5"class="btn btn-primary">
+                     <span><img src="../../fonts/glyphicons-568-transport.png"id="img"/></span>
+                 </button> 
+                   <button type="button"onclick="nerbySearch('local_service')"ng-model="self.value6"class="btn btn-primary">
+                       <span><img src="../../fonts/glyphicons-490-handshake.png"id="img" /></span>
+                   </button>
+                   <button type="button"onclick="nerbysearch('churches')"ng-model="self.value7"class="btn btn-primary">
+                       <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png"id="img" /></span>
+                   </button>
 
+         </div>
+       <div>
+          <button type="button" ng-model="self.value3" id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>
+          <input type="text" class="searchbox" id="textsearch" name="search" ng-hide="self.searching === false" />
        </div>
 
 
     </div>
 </div>
+
+    <div id="seachResults">
+        <div ng-repeat="result in self.results">
+            <ul>
+                <li>result.name</li>
+                <li>result.formatted_address</li>
+                <li>result.formatted_phone_number</li>
+                <li>result.website</li>
+                <li>result.price_level</li>
+                <li>result.rating</li>
+                <li>result.photos</li>
+                <li>result.types</li>
+                <li>result.distance</li>
+                <li>result.time</li>
+            </ul>
+        </div>
+    </div>
+
  <div class="floating-box">
     
      <form id="directionsearch">
@@ -66,7 +93,7 @@
 
 </div>
 </div>
-    </div>
+
     
 
 <div class="rightboxes">

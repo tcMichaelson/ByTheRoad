@@ -38,13 +38,13 @@
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img"/>
                     </span>
                 </button>
-                 <button type="button"onclick="nearbySearch ('travel_service')"ng-model="self.value5"class="btn btn-primary">
+                 <button type="button" ng-click="self.selectedItem = 'travel_service'; self.nearbySearch()" ng-model="self.value5"class="btn btn-primary">
                      <span><img src="../../fonts/glyphicons-568-transport.png"id="img"/></span>
                  </button> 
-                   <button type="button"onclick="nerbySearch('local_service')"ng-model="self.value6"class="btn btn-primary">
+                   <button type="button" ng-click="self.selectedItem = 'local_service'; self.nearbySearch()"ng-model="self.value6"class="btn btn-primary">
                        <span><img src="../../fonts/glyphicons-490-handshake.png"id="img" /></span>
                    </button>
-                   <button type="button"onclick="nerbysearch('churches')"ng-model="self.value7"class="btn btn-primary">
+                   <button type="button" ng-click="self.selectedItem = 'churches'; self.nearbySearch(); "ng-model="self.value7"class="btn btn-primary">
                        <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png"id="img" /></span>
                    </button>
 

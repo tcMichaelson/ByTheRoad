@@ -81,13 +81,43 @@ function findRouteAndDisplay(directionsDisplay, directionsService) {
     console.log(directionsService.route(request, function (response, status) {
         console.log(response);
         if (status === google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-            console.log(response);
+            //response.routes.forEach(function (route, idx) {
+                renderLine(response.routes[0], 0);
+            //});
+            mainRoute = response;
         }
     }));
-    mainRoute = response;
-    directionsDisplay.setMap(map);
+}
 
+function renderLine(route, routeNum) {
+    var routeLine = new google.maps.Polyline;
+    var coords = [];
+    route.legs.forEach(function (leg) {
+        leg.steps.forEach(function (step) {
+            step.path.forEach(function (line) {
+                coords.push({ lat: line.L, lng: line.H });
+            });
+        });
+    });
+    routeLine.path = coords;
+    var colHex = "";
+    switch (routeNum % 4){
+        case 0:
+            colHex = "#ff7f50";
+            break;
+        case 1:
+            colHex = "#00ff00"
+            break;
+        case 2:
+            colHex = "#0000ff"
+            break;
+        case 3:
+            colHex = "#000000";
+            break;
+    }
+    routeLine.strokeColor = colHex;
+    routeLine.strokeWeight = 2;
+    routeLine.setMap(map);
 }
 
 function displaySubRoute (){

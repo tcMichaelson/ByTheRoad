@@ -26,10 +26,20 @@
         <div class="container">
             <h2>LookUp</h2>
             <div class="btn-group">
-                <button  type="button" ng-model="self.value1" class="btn btn-primary glyphicon glyphicon-cutlery "></button>
-                <button type="button" ng-model="self.value2" class="btn btn-primary glyphicon glyphicon-briefcase" ></button>
-                <button type="button" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-shopping-cart"></button>
-                <button type="button" ng-model="self.value3" class="btn btn-primary glyphicon glyphicon-dashboard"></button>
+                <button  type="button" ng-model="self.value1" class="btn btn-primary  ">
+                    <span><img src="../../fonts/glyphicons-476-dining-set.png" /></span>
+                </button>
+                <button type="button" ng-model="self.value2" class="btn btn-primary " >
+                    <span><img src="../../fonts/glyphicons-496-bed.png" /></span>
+                </button>
+                <button type="button" ng-model="self.value3" class="btn btn-primary ">
+                    <span ><img src="../../fonts/glyphicons-203-shopping-cart.png" /></span>
+                </button>
+                <button type="button" ng-model="self.value3" class="btn btn-primary">
+                    <span>
+                        <img src="../../fonts/glyphicons-472-gas-station.png" />
+                    </span>
+                </button>
                 <button type="button" ng-model="self.value3"id="input-btn" ng-click="self.searching = true" class="btn btn-primary glyphicon glyphicon-search"></button>           
              </div>
                 <input type="text" class="searchbox" name="search" ng-hide="self.searching === false"/>
@@ -73,26 +83,26 @@
         </form>
     </div>
 
-    <div ng-hide="self.registering === false"class="rightregisterbox">
-        <form id="registerform" ng-submit="self.registger()">
-            <label class="label1">
-                User Name:
+    <div ng-hide="self.registering === false"class="">
+        <form id="registerfrorm" ng-submit="self.registger()">
+            <label class="label">
+                User Name;
             </label>
-            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true"/>
-            <label class="label1">
-                Email:
+            <input class="box"name="username"ng-model="self.username"type="text"ng-required="true"/>
+            <label class="label">
+                Email
             </label>
-            <input class="box"name="useremail" ng-model="self.email" type="email" ng-required="true"/>
-            <label class="label1">
-                PassWord:
+            <input class="box"name="useremail"ng-model="self.email" type="email"ng-required="true"/>
+            <label class="lable">
+                PassWord
             </label>
-            <input class="box"name="pwd" type="password" ng-model="self.password" ng-required="true"/>
-            <label class="label2">
-                Confirmed Password :
+            <input class="box"name="pwd"type="password"ng-model="self.password"ng-required="true"/>
+            <label class="label">
+                Confromed Password 
             </label>
             <input class="box"name="pwd"type="password"ng-model="self.password" ng-required="true"/>
 
-           
+            I am registering!!
             <input type="submit"class="bnt btn-primary" value="Register"/>
             <button ng-click="self.registering = false">Cancel</button>
         </form>

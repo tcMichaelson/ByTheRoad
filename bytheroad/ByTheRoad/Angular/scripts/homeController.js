@@ -49,7 +49,7 @@
                 roadService.register(self);
             };
 
-            self.nearbySearch=function () {
+            self.nearbySearch = function () {
                 self.results = [];
                 //var posToCheck = findSearchPostionAlongRoute(self.something);
                 mapService.categorySearch(self);
@@ -57,9 +57,12 @@
             };
 
             self.textSearch = function () {
-                self.results = [];                
+                self.results = [];
                 mapService.regTextSearch();
                 self.startInterval();
+                if (!self.animation === "animated slideInLeft") {
+                    self.animation = "animated slideInLeft";
+                }
             }
 
             self.startInterval = function () {
@@ -77,7 +80,7 @@
             var input = document.getElementById('textsearch');
 
             var getSearchBox = window.setInterval(function () {
-                if (!(google.maps.places === undefined)){
+                if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
                     self.setupListeners();
                     clearInterval(getSearchBox);
@@ -135,6 +138,9 @@
                         }
                     });
                     map.fitBounds(bounds);
+                    if (self.animation !== "animated slideInLeft") {
+                        self.animation = "animated slideInLeft";
+                    }
                 });
             }
 

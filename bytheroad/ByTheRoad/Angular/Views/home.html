@@ -112,16 +112,16 @@
                 <label> My places</label>
                 <div ng-repeat="saved in self.places">
                     <ul>
-                        <li>saved.name</li>
-                        <li>saved.formmatted_address</li>
-                        <li>saved.formatted_phone_number</li>
-                        <li>saved.website</li>
-                        <li>saved.price_level</li>
-                        <li>saved.rating</li>
-                        <li>saved.photos</li>
-                        <li>saved.types</li>
-                        <li>saved.distance</li>
-                        <li>saved.time</li>
+                        <li>{{saved.name}}</li>
+                        <li>{{saved.formmatted_address}}</li>
+                        <li>{{saved.formatted_phone_number}}</li>
+                        <li>{{saved.opening_hours.open_now}}</li>
+                        <li>{{saved.website}}</li>
+                        <li>{{saved.price_level}}</li>
+                        <li>{{saved.rating}}</li>
+                        <li>{{saved.photos}}</li>
+                        <li>{{saved.distance}}</li>
+                        <li>{{saved.time}}</li>
                     </ul>
                 </div>
             </div>

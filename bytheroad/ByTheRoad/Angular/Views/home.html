@@ -2,8 +2,8 @@
 
     <ul>
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
-        <li class="about"><a ng-click="self.loggingin = !self.loggingin">Login</a></li>
-        <li class="news"><a ng-click="self.registering = !self.registering">Register</a></li>
+        <li class="about"><a ng-click="self.loggingin = !self.loggingin; self.registering = false">Login</a></li>
+        <li class="news"><a ng-click="self.registering = !self.registering; self.loggingin = false">Register</a></li>
         <li class="contact"><a ng-click="self.viewingPlaces = !self.viewingPlaces">My Places</a></li>
     </ul>
 </div>
@@ -85,9 +85,10 @@
 
 
         <div id="searchResults" ng-show="self.selected === true" class='{{self.animation}}'>
-            
-            <h3><b>Map Search</b>
-            <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
+
+            <h3>
+                <b>Map Search</b>
+                <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
             </h3>
             <div ng-repeat="result in self.results">
 
@@ -112,8 +113,9 @@
 
 
             </div>
+        </div>
 
-
+        <div>
             <div id="savedPlaces">
                 <div ng-hide="self.viewingPlaces ===false">
                     <label> My places</label>
@@ -172,38 +174,41 @@
             <label id="label1">
                 User Name:
             </label>
-            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <input class="loginbox" name="username" ng-model="self.username" type="text" ng-required="true" />
             <label id="label1">
                 Password:
             </label>
-            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" />
-            <input type="submit" class="btn btn-primary" value="Log In" />
-            <button ng-click="self.loggingin = false">Cancel</button>
+            <input class="loginbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />&nbsp;
+            <input type="submit" class="btn btn-success" value="Log In" />&nbsp;
+            <button ng-click="self.loggingin = false" class="bnt btn-warning" >Cancel</button>
         </form>
     </div>
 
-    <div ng-hide="self.registering === false" class="rightregisterbox">
+    <div ng-hide="self.registering === false " class="rightregisterbox">
         <form id="registerform" ng-submit="self.registger()">
             <label class="label1">
                 User Name:
             </label>
-            <input class="box" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <input class="registerbox" name="username" ng-model="self.username" type="text" ng-required="true" />
             <label class="label1">
                 Email:
             </label>
-            <input class="box" name="useremail" ng-model="self.email" type="email" ng-required="true" />
+            <input class="registerbox" name="useremail" ng-model="self.email" type="email" ng-required="true" />
+
+
+           
             <label class="label1">
-                PassWord:
+                Password:
             </label>
-            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" />
-            <label class="label2">
+            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <label class="label1">
                 Confirmed Password :
             </label>
-            <input class="box" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
 
-
-            <input type="submit" class="bnt btn-primary" value="Register" />
-            <button ng-click="self.registering = false">Cancel</button>
+            <button type="submit" class="bnt btn-success">Register</button>
+            
+            <button ng-click="self.registering = false" class="bnt btn-warning" >Cancel</button>
         </form>
     </div>
 </div>

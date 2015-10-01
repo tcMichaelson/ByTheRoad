@@ -90,6 +90,23 @@
             <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
             </h3>
             <div ng-repeat="result in self.results">
+<<<<<<< HEAD
+                <div id="SearchResults">
+                    <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
+                    <div ng-show="result.opening_hours.open_now === true">I'm currently <strong>open</strong> </div>
+                    <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+                    <div><label> Address:</label>{{result.formatted_address}}</div>
+                    <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
+                    <div><label> Price Level:</label>{{result.price_level}}</div>
+                    <div><label> Rating:</label> {{result.rating}}</div>
+                    <div><img src="{{result.photos}}" alt="photo" /></div>
+                    <div><label> Distance:</label>{{result.distance}}</div>
+                    <div><label>Time:</label>{{result.time}} </div>
+
+                    <label>If you like this places click here </label>
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
+                </div>
+=======
 
                 <ul id="listofsearch">
                     <li>{{result.name}}</li>

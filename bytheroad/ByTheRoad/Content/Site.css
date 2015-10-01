@@ -271,6 +271,15 @@ background-color: white;
       border:5px solid blue;
       background-color:lightsalmon;
  }
+<<<<<<< HEAD
+ #SearchResults{
+     width:350px;
+     height:250px;
+     border:1px solid blue;*/
+ }
+
+ 
+=======
 
 .btn btn-sucess{
     height:1px;
@@ -339,3 +348,4 @@ background-color: white;
     background-color:indianred;
     color:green;
 }
+>>>>>>> a7e3a3a6b99a8aaf0cef8ebf8f5a333661103782

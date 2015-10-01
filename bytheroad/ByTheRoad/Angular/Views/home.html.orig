@@ -17,27 +17,27 @@
 
 
         <div>
-            <button type="button" ng-model="self.b1" class="distance" ng-click="self.b1 = true; self.b2 =false; self.b3 = false">minutes</button>
-            <button type="button" ng-model="self.b2" class="distance" ng-click="self.b2 = true; self.b1 =false; self.b3 = false ">hours</button>
-            <button type="button" ng-model="self.b3" class="distance" ng-click="self.b3 = true; self.b1 =false; self.b2 = false">miles</button>
+            <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false;  self.minutesUnit = null">minutes</button>
+            <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.hoursUnit=null ">hours</button>
+            <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.milesUnit = null">miles</button>
 
             <div>
-                <p ng-hide="self.b1 === false || self.b2 === true || self.b3 === true" ng-show="content == 'minutes'">
+                <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                     Enter time in minutes you want to stop in <br />
-                    <input name="content" value="" type="text" ng-model="self.minutes" class="distanceortime" required />
-                    <button ng-click="self.minutes = null" ng-show="self.minutes.length > 0" class="btn btn-danger">Clear</button>
+                    <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" required />
+                    <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="btn btn-danger">Clear</button>
                 </p>
 
-                <p ng-hide="self.b1 === true || self.b2 === false || self.b3 === true" ng-show="content == 'hours'">
+                <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">
                     Enter time in hours you want to stop in<br />
-                    <input type="text" ng-model="self.hours" class="distanceortime" required />
-                    <button ng-click="self.hours = null" ng-show="self.hours.length > 0" class="btn btn-danger">Clear</button>
+                    <input type="text" ng-model="self.hoursUnit" class="distanceortime" required />
+                    <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="btn btn-danger">Clear</button>
                 </p>
 
-                <p ng-hide="self.b1 === true || self.b2 === true || self.b3 === false" ng-show="content == 'miles'">
+                <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
                     Enter miles you want to stop in<br />
-                    <input type="text" ng-model="self.miles" class="distanceortime" required />
-                    <button ng-click="self.miles = null" ng-show="self.miles.length > 0" class="btn btn-danger">Clear</button>
+                    <input type="text" ng-model="self.milesUnit" class="distanceortime" required />
+                    <button ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" class="btn btn-danger">Clear</button>
 
                 </p>
 
@@ -46,13 +46,9 @@
         </div>
 
 
-        <div ng-show="self.miles.length > 0 || self.hours.length > 0 || self.minutes.length > 0 " class="container">
+        <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="container">
             <div class="btn-group">
-<<<<<<< HEAD
-                <button type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()" class="btn btn-primary ">
-=======
                 <button type="button" ng-click="self.selectedItem = 'food'; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
->>>>>>> 97567bd1a10fb8e066c090b063bf565f7ca18d3b
                     <span> <img src="../../fonts/glyphicons-476-dining-set.png" id="img" /></span>
                 </button>
                 <button type="button" ng-click="self.selectedItem = 'lodging'; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
@@ -88,9 +84,12 @@
         </div>
 
 
+        <div id="searchResults" ng-show="self.selected === true" class='{{self.animation}}'>
+            
+            <h3><b>Map Search</b>
+            <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
+            </h3>
 <<<<<<< HEAD
-        <div id="searchResults">
-                <label>Your next stop</label>
 =======
         <div id="searchResults" ng-show="self.selected === true" class='{{self.animation}}'>
             
@@ -137,8 +136,9 @@
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
 
 
-
->>>>>>> 97567bd1a10fb8e066c090b063bf565f7ca18d3b
+=======
+>>>>>>> a7e3a3a6b99a8aaf0cef8ebf8f5a333661103782
+>>>>>>> 2f5c8d6c73715d711bdd112f9d669e64ee12a56b
             </div>
 
 
@@ -234,4 +234,3 @@
             <button ng-click="self.registering = false">Cancel</button>
         </form>
     </div>
-</div>

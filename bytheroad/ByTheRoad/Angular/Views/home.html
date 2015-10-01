@@ -84,20 +84,21 @@
         </div>
 
 
-        <div id="seachResults">
-            <div ng-repeat="result in self.results">
+        <div id="searchResults">
                 <label>Your next stop</label>
+            <div ng-repeat="result in self.results">
                 <ul>
-                    <li>result.name</li>
-                    <li>result.formatted_address</li>
-                    <li>result.formatted_phone_number</li>
-                    <li>result.website</li>
-                    <li>result.price_level</li>
-                    <li>result.rating</li>
-                    <li>result.photos</li>
-                    <li>result.types</li>
-                    <li>result.distance</li>
-                    <li>result.time</li>
+                    <li>{{result.name}}</li>
+                    <li>{{result.opening_hours.open_now}}</li>
+                    <li>{{result.formatted_address}}</li>
+                    <li>{{result.formatted_phone_number}}</li>
+                    <li>{{result.website}}</li>
+                    <li>{{result.price_level}}</li>
+                    <li>{{result.rating}}</li>
+                    <li>{{result.photos}}</li>
+                    <li>{{result.types}}</li>
+                    <li>{{result.distance}}</li>
+                    <li>{{result.time}}</li>
                 </ul>
                 <label>If you like this places click here </label>
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
@@ -106,8 +107,8 @@
         </div>
         <div id="savedPlaces">
             <div ng-hide="self.viewingPlaces ===false">
+                <label> My places</label>
                 <div ng-repeat="saved in self.places">
-                    <label> My places</label>
                     <ul>
                         <li>saved.name</li>
                         <li>saved.formmatted_address</li>

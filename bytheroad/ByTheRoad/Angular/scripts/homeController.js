@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($location, $http, mapService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService) {
             var self = this;
 
             self.registering = false;
@@ -10,7 +10,7 @@
             self.results = [];
             self.viewingPlaces = false;
             self.getResults = function () {
-                return mapService.results;
+                self.results = mapService.results;
             }
 
             self.mainbtn = false;
@@ -57,13 +57,14 @@
 
             self.startInterval = function () {
                 var checkResults = window.setInterval(function () {
-                    if (self.results.length === 0 && self.results[0] !== 'none' ) {
-                        self.results = self.getResults();
+                    if (self.results.length === 0 && self.results[0] !== 'none') {
+                        self.getResults();
+                        $scope.$apply();
                     } else {
-                        console.log(self.results[0]);
+                        console.log(self.results);
                         clearInterval(checkResults);
                     }
-                }, 500)
+                }, 500);
             }
 
         });

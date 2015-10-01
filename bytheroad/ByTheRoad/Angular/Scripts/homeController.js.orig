@@ -7,8 +7,16 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-            self.viewingPlaces = false;
+<<<<<<< HEAD
+            self.results = [];
+            self.getResults = function () {
+                return mapService.results;
+            }
  
+=======
+            self.viewingPlaces = false;
+
+>>>>>>> 18d856d6693c67728dc102cac7b94e23b94c9fcf
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -16,6 +24,7 @@
             self.b1 = false;
             self.b2 = false;
             self.b3 = false;
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {
@@ -32,21 +41,45 @@
                 });
             };
 
+
+
             self.register = function () {
                 roadService.register(self);
             };
 
 <<<<<<< HEAD
-=======
             self.nearbySearch = function () {
-                mapService.categorySearch(self.selectedItem);
+                self.results = [];
+                mapService.categorySearch(self);
+                self.startInterval();
             };
 
             self.textSearch = function () {
+                self.results = [];                
                 mapService.initTextSearch();
+                self.startInterval();
             }
 
->>>>>>> d9186aeaba6bcadad49b769c47a73ca227f540fb
-        });
+            self.startInterval = function () {
+                var checkResults = window.setInterval(function () {
+                    if (self.results.length === 0 && self.results[0] !== 'none' ) {
+                        self.results = self.getResults();
+                    } else {
+                        console.log(self.results[0]);
+                        clearInterval(checkResults);
+                    }
+                }, 500)
+            }
 
+        });
+=======
+            self.nearbySearch=function () {
+                mapService.categorySearch(self.selectedItem);}
+>>>>>>> 18d856d6693c67728dc102cac7b94e23b94c9fcf
+
+                self.textSearch = function () {
+                    mapService.initTextSearch();
+                }
+            });
+        
 })();

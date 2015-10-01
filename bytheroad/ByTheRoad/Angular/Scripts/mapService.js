@@ -7,32 +7,22 @@
             self.results = [];
 
             self.categorySearch = function (model) {
-                self.results = null;
-                var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: pyrmont,
-                    zoom: 13
-                });
+                self.results = [];
+                var currentLocation = { lat: locHist[0].lat, lng: locHist[0].lng };
 
                 infowindow = new google.maps.InfoWindow();
 
                 var service = new google.maps.places.PlacesService(map);
                 service.nearbySearch({
-                    location: pyrmont,
+                    location: currentLocation,
                     radius: 5000,
                     types: [model.selectedItem]
                 }, callback);
             }
 
             self.initTextSearch = function () {
-                self.results = null;
+                self.results = [];
             var currentLoc = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: currentLoc,
-                zoom: 13
-            });
 
             // Create the search box and link it to the UI element.
             var input = document.getElementById('textsearch');
@@ -61,13 +51,13 @@
                 markers = [];
 
                 // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
+                var bounds = map.getBounds();
                 places.forEach(function (place) {
                     var icon = {
                         url: place.icon,
                         size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
+                        origin: new google.maps.Point(29.5529732, -95.392946),
+                        anchor: new google.maps.Point(37.8084987, -122.2535366),
                         scaledSize: new google.maps.Size(25, 25)
                     };
 
@@ -88,18 +78,12 @@
                 });
                 map.fitBounds(bounds);
             });
-            // [END region_getplaces]
+        
         }
 
 
         function regTextSearch() {
-            console.log(locHist);
                 var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: pyrmont,
-                    zoom: 13
-                });
 
                 infowindow = new google.maps.InfoWindow();
 

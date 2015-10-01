@@ -61,13 +61,11 @@ body {
     height: 50px;
     line-height: 50px;
     font-size: 1.4em;
-  }
- 
-  /* Option 1 - Display Inline */
-  .nav li {
-    display: inline-block;
+display: inline-block;
     margin-right: -4px;
   }
+ 
+ 
  
   
 }
@@ -274,8 +272,8 @@ background-color: lightyellow;
 
  #SearchResults{
      width:350px;
-     height:300px;
-     border:1px solid blue;
+     height:250px;
+     border:1px solid blue;*/
  }
 
  

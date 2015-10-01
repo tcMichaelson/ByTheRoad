@@ -8,7 +8,11 @@
             self.loggingin = false;
             self.start = false;
             self.results = [];
+            console.log(self.results);
             self.viewingPlaces = false;
+            self.animation = "animated slideInLeft";
+
+
             self.getResults = function () {
                 self.results = mapService.results;
             }
@@ -21,7 +25,7 @@
             self.hourbtn = false;
             self.milebtn = false;
             self.selected = false;
-
+            self.clear = false;
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
                     {

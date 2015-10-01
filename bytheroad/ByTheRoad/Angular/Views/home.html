@@ -48,27 +48,27 @@
 
         <div ng-show="self.miles.length > 0 || self.hours.length > 0 || self.minutes.length > 0 " class="container">
             <div class="btn-group">
-                <button type="button" ng-click="self.selectedItem = 'food'; self.nearbySearch()" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'food'; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
                     <span> <img src="../../fonts/glyphicons-476-dining-set.png" id="img" /></span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'lodging'; self.nearbySearch()" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'lodging'; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
                     <span><img src="../../fonts/glyphicons-496-bed.png" id="img" /></span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'store'; self.nearbySearch()" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'store';  self.selected= true; self.nearbySearch()" class="btn btn-primary">
                     <span><img src="../../fonts/glyphicons-203-shopping-cart.png" id="img" /></span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'gas_station'; self.nearbySearch()" class="btn btn-primary ">
+                <button type="button" ng-click="self.selectedItem = 'gas_station'; self.selected= true;  self.nearbySearch()" class="btn btn-primary ">
                     <span>
                         <img src="../../fonts/glyphicons-472-gas-station.png" id="img" />
                     </span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'travel_service'; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'travel_service';  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
                     <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'local_service'; self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'local_service';  self.selected= true; self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                     <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
                 </button>
-                <button type="button" ng-click="self.selectedItem = 'churches'; self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'churches'; self.selected= true; self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
                     <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png" id="img" /></span>
                 </button>
 
@@ -84,8 +84,11 @@
         </div>
 
 
-        <div id="searchResults">
-                <label>Your next stop</label>
+        <div id="searchResults" ng-show="self.selected === true" class='{{self.animation}}'>
+            
+            <h3><b>Map Search</b>
+            <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
+            </h3>
             <div ng-repeat="result in self.results">
                 <div id="SearchResults">
                     <div>{{result.name}}</div>
@@ -102,28 +105,38 @@
                     <label>If you like this places click here </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
                 </div>
+
+                <ul id="listofsearch">
+
+
             </div>
-        </div>
-        <div id="savedPlaces">
-            <div ng-hide="self.viewingPlaces ===false">
-                <label> My places</label>
-                <div ng-repeat="saved in self.places">
-                    <ul>
-                        <li>{{saved.name}}</li>
-                        <li>{{saved.formmatted_address}}</li>
-                        <li>{{saved.formatted_phone_number}}</li>
-                        <li>{{saved.opening_hours.open_now}}</li>
-                        <li>{{saved.website}}</li>
-                        <li>{{saved.price_level}}</li>
-                        <li>{{saved.rating}}</li>
-                        <li>{{saved.photos}}</li>
-                        <li>{{saved.distance}}</li>
-                        <li>{{saved.time}}</li>
-                    </ul>
+
+
+            <div id="savedPlaces">
+                <div ng-hide="self.viewingPlaces ===false">
+                    <label> My places</label>
+                    <div ng-repeat="saved in self.places">
+                        <ul>
+                            <li>{{saved.name}}</li>
+                            <li>{{saved.formmatted_address}}</li>
+                            <li>{{saved.formatted_phone_number}}</li>
+                            <li>{{saved.opening_hours.open_now}}</li>
+                            <li>{{saved.website}}</li>
+                            <li>{{saved.price_level}}</li>
+                            <li>{{saved.rating}}</li>
+                            <li>{{saved.photos}}</li>
+                            <li>{{saved.distance}}</li>
+                            <li>{{saved.time}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
     <div class="floating-box">
 
         <form id="directionsearch">

@@ -52,7 +52,7 @@
 
             self.textSearch = function () {
                 self.results = [];                
-                mapService.initTextSearch();
+                mapService.regTextSearch();
                 self.startInterval();
             }
 

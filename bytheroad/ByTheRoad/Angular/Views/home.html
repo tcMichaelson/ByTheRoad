@@ -75,7 +75,7 @@
             </div>
             <div>
                 <form ng-submit="self.textSearch()">
-                    <button type="submit" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search"></button>
+                    <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.textSearch()"></button>
                     <input type="text" class="searchbox" id="textsearch" name="search" />
                 </form>
             </div>

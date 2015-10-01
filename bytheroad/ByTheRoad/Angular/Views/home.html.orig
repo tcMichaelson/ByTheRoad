@@ -89,31 +89,35 @@
             <h3><b>Map Search</b>
             <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
             </h3>
-            <div ng-repeat="result in self.results">
 <<<<<<< HEAD
-
-                <ul id="listofsearch">
 =======
-<<<<<<< HEAD
+        <div id="searchResults" ng-show="self.selected === true" class='{{self.animation}}'>
+            
+            <h3><b>Map Search</b>
+            <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
+            </h3>
+>>>>>>> 97567bd1a10fb8e066c090b063bf565f7ca18d3b
+            <div ng-repeat="result in self.results">
                 <div id="SearchResults">
-                    <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
-                    <div ng-show="result.opening_hours.open_now === true">I'm currently <strong>open</strong> </div>
-                    <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+                    <div>{{result.name}}</div>
+                    <div ng-show="result.opening_hours.open_now === true">I'm currently open</div>
+                    <div ng-show="result.opening_hours.open_now === false">I'm currently closed</div>
                     <div><label> Address:</label>{{result.formatted_address}}</div>
                     <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                     <div><label> Price Level:</label>{{result.price_level}}</div>
                     <div><label> Rating:</label> {{result.rating}}</div>
-                    <div><img src="{{result.photos}}" alt="photo" /></div>
+                    <div> <img src="{{result.photos}}" alt="photo" /> </div>
                     <div><label> Distance:</label>{{result.distance}}</div>
                     <div><label>Time:</label>{{result.time}} </div>
 
                     <label>If you like this places click here </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
                 </div>
+<<<<<<< HEAD
 =======
-               
-                <ul >
->>>>>>> 2f5c8d6c73715d711bdd112f9d669e64ee12a56b
+=======
+
+                <ul id="listofsearch">
                     <li>{{result.name}}</li>
                     <li>{{result.opening_hours.open_now}}</li>
                     <li>{{result.formatted_address}}</li>
@@ -130,8 +134,6 @@
 
                 <label>If you like this places click here </label>
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
-
-<<<<<<< HEAD
 
 
 =======
@@ -232,4 +234,3 @@
             <button ng-click="self.registering = false">Cancel</button>
         </form>
     </div>
-</div>

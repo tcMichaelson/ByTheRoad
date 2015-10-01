@@ -94,23 +94,20 @@
 
                 <div id="SearchResults">
                     <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
-                    <div ng-show="result.opening_hours.open_now === true">I'm currently <strong>open</strong> </div>
+                    <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                     <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                     <div><label> Address:</label>{{result.formatted_address}}</div>
                     <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                     <div><label> Price Level:</label>{{result.price_level}}</div>
                     <div><label> Rating:</label> {{result.rating}}</div>
-                    <div><img src="{{result.photos}}" alt="photo" /></div>
+                    <div> <img src="{{result.photos}}" alt="photo" /> </div>
                     <div><label> Distance:</label>{{result.distance}}</div>
                     <div><label>Time:</label>{{result.time}} </div>
 
                     <label>If you like this places click here </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
                 </div>
-
-                <label>If you like this places click here </label>
-                <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
-
+              
 
             </div>
         </div>
@@ -120,18 +117,18 @@
                 <div ng-hide="self.viewingPlaces ===false">
                     <label> My places</label>
                     <div ng-repeat="saved in self.places">
-                        <ul>
-                            <li>{{saved.name}}</li>
-                            <li>{{saved.formmatted_address}}</li>
-                            <li>{{saved.formatted_phone_number}}</li>
-                            <li>{{saved.opening_hours.open_now}}</li>
-                            <li>{{saved.website}}</li>
-                            <li>{{saved.price_level}}</li>
-                            <li>{{saved.rating}}</li>
-                            <li>{{saved.photos}}</li>
-                            <li>{{saved.distance}}</li>
-                            <li>{{saved.time}}</li>
-                        </ul>
+                        <div id="SavedPlaces">
+                            <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
+                            <div><label>Adress</label>{{saved.formmatted_address}}</div>
+                            <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
+                            <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
+                            <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+                            <div><label>Price Level</label>{{saved.price_level}}</div>
+                            <div><label>Rating</label>{{saved.rating}}</div>
+                            <div>{{saved.photos}}</div>
+                            <div><lable>Destance</lable>{{saved.distance}}</div>
+                            <div><lable>Time</lable>{{saved.time}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

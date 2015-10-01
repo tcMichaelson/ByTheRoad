@@ -1,0 +1,354 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background:white;
+}
+ 
+.nav ul {
+  list-style: none;
+  background-color: #444;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+ 
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+.nav a:hover {
+  background-color: #005f5f;
+}
+ 
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  /* Option 1 - Display Inline */
+  .nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+ 
+  
+}
+
+.distance{
+background-color:coral;
+
+}
+
+.leftboxes{
+
+  height:100%;
+  width: 25%;
+position:absolute;
+border: 1px solid blue;
+}
+
+.floating-box {
+    float: left;
+    width: 100%;
+    height: 50%;    
+    border:3px solid red;  
+     margin:0px;
+     padding:10px;
+    
+    
+}
+
+
+
+.rightboxes{
+  width: 75%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+
+}
+
+
+.floatingmapbox {
+  border: 3px solid salmon;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  right: 0;
+   margin:0px;
+}
+
+.rightloginbox {
+    background-color: white;
+    position: absolute;
+    right:0;
+    top: 0px;
+    border: 3px solid salmon;   
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+.rightregisterbox{
+background-color: white;
+    position: absolute;
+    right:0;
+    top: 0px;
+    border: 3px solid salmon;   
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+.searchbutton{
+    background-color:limegreen;
+   margin:20px;
+   height:30px;
+   width:100px;
+
+}
+
+.label1{
+    font:bold;
+    color:green;
+
+}
+
+.ownsearch{
+
+    color:red;
+    margin:10px;
+}
+
+.btn btn-primary{
+    height:1px;
+    width:1px;
+    display:inline;
+    padding:10px;
+
+}
+
+.searchbox {
+    margin-top: 10px;
+}
+
+#directionsearch{
+    
+    padding:20px;
+}
+.addbox{
+    background-color:coral;
+    border:3px solid blue;
+    margin:10px;
+    width:70%;
+}
+
+
+#time{
+
+    margin-top:150px;
+    margin-left:10px;
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    
+
+}
+
+.timeordistance{
+  
+    margin:10px;
+    font-size:large;
+}
+
+.sliderbody {
+    overflow-x: hidden;
+}
+#slideout {
+    background: blue;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+   top: 200px;
+    padding-left: 300px;
+    margin-top:100px;
+}
+    
+#clickme {
+    position: absolute;
+    top: 0; left: 0;
+    height: 60px;
+    width: 60px;
+    background: red;
+}
+
+#slidecontent {
+    position: absolute;
+    right: 0px;
+}
+#content {
+    background: white;
+     margin-top:70px;  
+    width: 200px;
+    height: 80px;
+}
+
+
+
+.logo{
+    position: absolute;
+    font-size:larger;
+    font-style:italic;
+    color:darkseagreen;
+    left: 10%;
+    
+}#img{
+    height:20px;
+    width:20px;
+    display:inline;
+    padding:0;
+
+}
+ .distance{
+     background-color:green;
+    margin:10px;
+    height:70px;
+    width:90px;
+    padding:0px;
+    color:white;
+ }
+ #stopin{
+    color:blue;
+    font-size:25px;
+    text-align:center;
+ }
+ .distanceortime{
+      width:200px;
+      height:35px;
+      border:5px solid blue;
+      background-color:lightsalmon;
+ }
+<<<<<<< HEAD
+ #SearchResults{
+     width:350px;
+     height:250px;
+     border:1px solid blue;*/
+ }
+
+ 
+=======
+
+.btn btn-sucess{
+    height:1px;
+    width:1px;
+    display:inline;
+    padding:10px;
+  
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: hidden;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+<<<<<<< HEAD
+
+#searchResults {
+    border: 1px solid red;
+    top: 100%;
+    height: 100%;
+    width: 100%;
+    overflow:scroll;
+    
+}
+
+#listofsearch{
+
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+    visibility:visible;
+  }
+
+  to {
+    
+    transform: translate3d(-100%, 0, 0);
+    visibility:hidden;
+  }
+}
+
+.slideOutLeft {
+  animation-name: slideOutLeft;
+}
+#sResult{border: 1px solid red;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+
+}
+
+#hide{
+ 
+    width:70px;
+    height:30px;
+    background-color:indianred;
+    color:green;
+}
+=======
+>>>>>>> a7e3a3a6b99a8aaf0cef8ebf8f5a333661103782
+>>>>>>> 2f5c8d6c73715d711bdd112f9d669e64ee12a56b

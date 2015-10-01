@@ -269,6 +269,7 @@ background-color: white;
       border:5px solid blue;
       background-color:lightsalmon;
  }
+<<<<<<< HEAD
  #SearchResults{
      width:350px;
      height:250px;
@@ -276,3 +277,28 @@ background-color: white;
  }
 
  
+=======
+
+.btn btn-sucess{
+    height:1px;
+    width:1px;
+    display:inline;
+    padding:10px;
+  
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+>>>>>>> a7e3a3a6b99a8aaf0cef8ebf8f5a333661103782

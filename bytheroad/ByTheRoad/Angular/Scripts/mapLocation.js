@@ -148,7 +148,6 @@ function renderLines(response) {
     map.fitBounds(bounds);
 }
 
-
 function executePan(newCenter) {
     //var newLatLng = new google.maps.LatLng(newLat, newLng);
     map.panTo(newCenter);

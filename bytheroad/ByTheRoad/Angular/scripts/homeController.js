@@ -45,8 +45,8 @@
 
             self.nearbySearch=function () {
                 self.results = [];
-                var posToCheck = findSearchPostionAlongRoute(self.something);
-                mapService.categorySearch(self, posToCheck);
+                //var posToCheck = findSearchPostionAlongRoute(self.something);
+                mapService.categorySearch(self);
                 self.startInterval();
             };
 

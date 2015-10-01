@@ -7,13 +7,13 @@ var currLoc;
 var newLat = 45;
 var newLng = -90;
 var selectedRoute;
+var subRoute;
 var routeLines = [];
 
 
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
-    var directionsService = new google.maps.DirectionsService;
     var geocoder = new google.maps.Geocoder;
 
     if (navigator.geolocation) {
@@ -53,14 +53,35 @@ function initMap() {
     console.log(locHist);
 
     var getRouteHandler = function () {
-        findRouteAndDisplay(directionsService);
+        findRouteAndDisplay();
     }
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
 }
 
-function findRouteAndDisplay(directionsService) {
+function findSearchPostionAlongRoute(unitType, amount) {
+    var currPos = locHist[locHist.length - 1];
+    selectedRoute.legs.forEach(function(leg){
+        leg.steps.forEach(function(step){
+            
+        })
+    })
+
+
+    if (end) {
+    } else {
+        return start
+    }
+}
+
+function findSearchPostionAlongDirection(unitType, amount){
+    //if not on a route and a desination is selected, then calculate a new route.
+    //otherwise, we will have to guess about the expected end point, assuming a straight road in the current direction.
+}
+
+function findRouteAndDisplay() {
+    var directionsService = new google.maps.DirectionsService;
     var start = document.getElementById('origin').value;
     var end = document.getElementById('destination').value;
     var request = {
@@ -126,7 +147,6 @@ function renderLines(response) {
     var bounds = new google.maps.LatLngBounds(sw, ne)
     map.fitBounds(bounds);
 }
-
 
 function executePan(newCenter) {
     //var newLatLng = new google.maps.LatLng(newLat, newLng);

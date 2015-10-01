@@ -10,7 +10,6 @@ var selectedRoute;
 var subRoute;
 var routeLines = [];
 
-
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
@@ -42,8 +41,20 @@ function initMap() {
 
 
 
-            //var input = document.getElementById('textsearch');
-            //var searchBox = new google.maps.places.SearchBox(input);
+
+            // BEGIN Autocomplete
+
+            // Create the search box and link it to the UI element.
+
+            // Bias the SearchBox results towards current map's viewport.
+            
+
+
+            // END Autocomplete
+
+
+
+
 
 
 
@@ -57,7 +68,7 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
-    console.log(locHist);
+ 
 
     var getRouteHandler = function () {
         findRouteAndDisplay();
@@ -65,6 +76,9 @@ function initMap() {
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+
+   
+
 }
 
 function findSearchPostionAlongRoute(unitType, amount) {

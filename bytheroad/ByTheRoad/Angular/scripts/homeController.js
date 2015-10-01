@@ -45,13 +45,14 @@
 
             self.nearbySearch=function () {
                 self.results = [];
-                mapService.categorySearch(self);
+                var posToCheck = findSearchPostionAlongRoute(self.something);
+                mapService.categorySearch(self, posToCheck);
                 self.startInterval();
             };
 
-                self.textSearch = function () {
+            self.textSearch = function () {
                 self.results = [];                
-                    mapService.initTextSearch();
+                mapService.initTextSearch();
                 self.startInterval();
             }
 

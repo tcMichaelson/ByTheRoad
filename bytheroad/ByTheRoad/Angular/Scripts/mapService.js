@@ -7,7 +7,7 @@
             self.results = [];
 
             self.categorySearch = function (model) {
-                self.results = null;
+                self.results = [];
                 var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
 
                 map = new google.maps.Map(document.getElementById('map'), {
@@ -26,7 +26,7 @@
             }
 
             self.initTextSearch = function () {
-                self.results = null;
+                self.results = [];
             var currentLoc = { lat: locHist[0].lat, lng: locHist[0].lng };
 
             map = new google.maps.Map(document.getElementById('map'), {

@@ -92,9 +92,9 @@
             <div ng-repeat="result in self.results">
 
                 <div id="SearchResults">
-                    <div>{{result.name}}</div>
-                    <div ng-show="result.opening_hours.open_now === true">I'm currently open</div>
-                    <div ng-show="result.opening_hours.open_now === false">I'm currently closed</div>
+                    <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
+                    <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
+                    <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                     <div><label> Address:</label>{{result.formatted_address}}</div>
                     <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                     <div><label> Price Level:</label>{{result.price_level}}</div>

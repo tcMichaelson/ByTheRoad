@@ -50,9 +50,10 @@
             };
 
             self.nearbySearch = function () {
+                var info = self.getUnitAndAmount;
                 self.results = [];
-                var posToCheck = findSearchPostionAlongRoute(self.something);
-                mapService.categorySearch(self, posToCheck);
+                var searchPos = findSearchPositionAlongRoute(info.unit, info.amount);
+                mapService.categorySearch(self, searchPos);
                 self.startInterval();
             };
 
@@ -144,6 +145,14 @@
                 });
             }
 
+            self.getUnitAndAmount = function(){
+                if (self.minutesUnit !== null)
+                    return {unit: "minutes", amount: self.minutesUnit};
+                if (self.hoursUnit !== null)
+                    return {unit: "hours", amount: self.hoursUnit};
+                if (self.milesUnit !== null)
+                    return {unit: "miles", amount: self.milesUnit};
+            }
 
         });
 

@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
     .module('byTheRoad')
-    .service('roadService', ['$resource', 'routeUrls', '$route', '$location', 'http', function ($resource, routeUrls, $route, $location, $http) {
+    .service('roadService', ['$resource', 'routeUrls', '$route', '$location', '$http', function ($resource, routeUrls, $route, $location, $http) {
         var Register = $resource(routeUrls.registerApi, {}, {});
         var self = this;
 

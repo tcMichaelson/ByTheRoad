@@ -172,41 +172,38 @@
 
         <form id="loginform" ng-submit="self.login()">
             <label id="label1">
-                User Name:
+                User Email:
             </label>
-            <input class="loginbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <input class="loginbox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
             <label id="label1">
                 Password:
             </label>
-            <input class="loginbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />&nbsp;
+            <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
             <input type="submit" class="btn btn-success" value="Log In" />&nbsp;
             <button ng-click="self.loggingin = false" class="bnt btn-warning">Cancel</button>
         </form>
     </div>
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.registger()">
-            <label class="label1">
-                User Name:
-            </label>
-            <input class="registerbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+        <form id="registerform" ng-submit="self.register()">
+
             <label class="label1">
                 Email:
             </label>
-            <input class="registerbox" name="useremail" ng-model="self.email" type="email" ng-required="true" />
+            <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
 
 
 
             <label class="label1">
                 Password:
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
             <label class="label1">
-                Confirmed Password :
+                Confirm Password :
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <button type="submit" class="bnt btn-success">Register</button>
+            <input  type="submit" class="bnt btn-success" value="Register"/>
 
             <button ng-click="self.registering = false" class="bnt btn-warning">Cancel</button>
         </form>

@@ -17,6 +17,16 @@
     <script src="~/Angular/Scripts/app.js"></script>
     <script src="~/Angular/Scripts/mapService.js"></script>
     <script src="~/Angular/Scripts/roadService.js"></script>
+    <script>
+        //C# injects
+        angular
+            .module('byTheRoad')
+            .constant('routeUrls', {
+                POIApi: '@Url.HttpRouteUrl("POIApi", null)',
+                registerApi: '@Url.HttpRouteUrl("Register", null)'
+
+            });
+    </script>
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>
 <body>

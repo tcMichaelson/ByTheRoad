@@ -10,7 +10,6 @@ var selectedRoute;  //currently selected route.
 var routeLines = [];  //path coordinates of the selected route
 var projectedPosition;
 
-
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
@@ -31,6 +30,24 @@ function initMap() {
 
             setOriginTextBox(currLoc);
 
+
+            // BEGIN Autocomplete
+
+            // Create the search box and link it to the UI element.
+
+            // Bias the SearchBox results towards current map's viewport.
+            
+
+
+            // END Autocomplete
+
+
+
+
+
+
+
+
         }, function () {
             handleLocationError(true, null, map.getCenter());
         });
@@ -38,7 +55,7 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
-    console.log(locHist);
+ 
 
     var getRouteHandler = function () {
         findRouteAndDisplay();
@@ -46,6 +63,9 @@ function initMap() {
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+
+   
+
 }
 
 function findSearchPostionAlongRoute(unitType, amount) {
@@ -233,102 +253,3 @@ function setMarker(pos, dist, time) {
         
     });
 }
-
-//// Places Library Functions
-////Note that we need to load Powered by Google Logo in our view...Legal Requirement
-
-////Nearby Search Function
-
-//var infowindow;
-
-//function nearbySearch(type, setResults) {
-
-//    console.log(locHist);
-//    var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-//    map = new google.maps.Map(document.getElementById('map'), {
-//        center: pyrmont,
-//        zoom: 15
-//    });
-
-//    infowindow = new google.maps.InfoWindow();
-
-//    var service = new google.maps.places.PlacesService(map);
-//    service.nearbySearch({
-//        location: pyrmont,
-//        radius: 5000,
-//        types: [type]
-//    }, callback);
-
-//}
-
-////// Text Search Request
-
-//    function initTextSearch() {
-//        console.log(locHist);
-//        var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-//        map = new google.maps.Map(document.getElementById('map'), {
-//            center: pyrmont,
-//            zoom: 15
-//        });
-
-//        infowindow = new google.maps.InfoWindow();
-
-//        var service = new google.maps.places.PlacesService(map);
-
-//        var request = {
-//            location: pyrmont,
-//            radius: 5000,
-//            query: document.getElementById('textsearch').value
-//                    };
-
-//        service = new google.maps.places.PlacesService(map);
-//        service.textSearch(request, callback);
-//    }
-
-
-//// radar search
-
-
-
-
-
-////// Place details function
-
-////function placeDetails(id, place, status)
-////{
-////    var request = {
-////        placeId: id
-////    };
-
-////    service = new google.maps.places.PlacesService(map);
-////    service.getDetails(request, callback);
-
-
-//    function callback(results, status) {
-//        console.log(results);
-//        if (status === google.maps.places.PlacesServiceStatus.OK) {
-//            for (var i = 0; i < results.length; i++) {
-//                createMarker(results[i]);
-//            }
-//        }
-
-//    }
-
-//    function createMarker(place) {
-//        var placeLoc = place.geometry.location;
-//        var marker = new google.maps.Marker({
-//            map: map,
-//            position: place.geometry.location
-//        });
-
-//        google.maps.event.addListener(marker, 'click', function () {
-//            infowindow.setContent(place.name);
-//            infowindow.open(map, this);
-//        });
-//    }
-
-
-// autocomplete
-

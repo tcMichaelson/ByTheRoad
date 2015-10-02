@@ -19,7 +19,7 @@
                 })
 
                 .error(function () {
-                    console.error('Error loggin in.');
+                    console.error('Error logging in.');
                 });
 
                 console.log(data);

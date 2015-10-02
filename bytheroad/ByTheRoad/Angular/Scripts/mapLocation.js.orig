@@ -2,20 +2,17 @@
 var map;
 var service;
 var infowindow;
-var locHist = [];
-var currLoc;
+var locHist = [];  //history of locations the user has been at
+var currLoc;  //coordinates of the user's current position
 var newLat = 45;
 var newLng = -90;
-var selectedRoute;
-var subRoute;
-var routeLines = [];
-
+var selectedRoute;  //currently selected route.
+var routeLines = [];  //path coordinates of the selected route
+var projectedPosition;
 
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
-    var geocoder = new google.maps.Geocoder;
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -23,25 +20,39 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
                 zoom: 18
             });
+
             currLoc = pos;
-            geocoder.geocode({ 'location': pos }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        document.getElementById('origin').value = results[0].formatted_address;
-                    } else {
-                        alert('No results found');
-                    }
-                } else {
-                    alert('GeoCoder has failed due to: ' + status);
-                }
-            });
+
+<<<<<<< HEAD
+            setOriginTextBox(currLoc);
+=======
+
+
+
+            // BEGIN Autocomplete
+
+            // Create the search box and link it to the UI element.
+
+            // Bias the SearchBox results towards current map's viewport.
+            
+
+
+            // END Autocomplete
+
+
+
+
+
+
 
             document.getElementById('origin').value = pos;
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
+>>>>>>> a52e79f4f35176d89315617472a34f6393625b7c
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
@@ -50,7 +61,7 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
-    console.log(locHist);
+ 
 
     var getRouteHandler = function () {
         findRouteAndDisplay();
@@ -58,6 +69,9 @@ function initMap() {
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+
+   
+
 }
 
 function findSearchPostionAlongRoute(unitType, amount) {
@@ -148,10 +162,65 @@ function renderLines(response) {
     map.fitBounds(bounds);
 }
 
-<<<<<<< HEAD
+function setOriginTextBox(pos) {
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({ 'location': pos }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                document.getElementById('origin').value = results[0].formatted_address;
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('GeoCoder has failed due to: ' + status);
+        }
+        while (locHist.length >= 30) {
+            locHist.shift();
+        }
+        if (locHist.length === 0) {
+            firstLoc = pos;
+            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: 0, speed: 0 });
+        } else {
+            var prevLoc = locHist[locHist.length - 1];
+            if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
+                var firstLoc = locHist[0];
+                var currentLoc = pos;
+                var traj = (currentLoc.lat - firstLoc.lat) / (currentLoc.lng - firstLoc.lng);
+                var dist = calculateDistance(currentLoc, firstLoc);  //distance in meters
+                var time = (currentLoc.time - firstLoc.time) * 1000;  //convert milliseconds to seconds
+                var spd = dist / time;  //meters per second
+                locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: traj, speed: spd });
+            }
+        }
 
-=======
->>>>>>> 8550f3a29156e370d88ff56cb3716b1fa2af0cb0
+        console.log(locHist[locHist.length - 1]);
+        
+    });
+}
+
+function calculateDistance(pos1, pos2){
+    var earthRadius = 6371000;
+    var lat1 = toRadians(pos1.lat);
+    var lat2 = toRadians(pos2.lat);
+    var diffLat = toRadians(pos2.lat - pos1.lat);
+    var diffLng = toRadians(pos2.lng - pos1.lng);
+
+    //Haversine Formula
+    var a = Math.sin(diffLat/2) * Math.sin(diffLat/2) +
+            Math.cos(lat1) * Math.cos(lat2) *
+            Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
+    console.log("a: ", a);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    console.log("c: ", c);
+
+    return earthRadius * c;
+}
+
+function toRadians(deg){
+    return deg * Math.PI / 180;
+}
+
 function executePan(newCenter) {
     //var newLatLng = new google.maps.LatLng(newLat, newLng);
     map.panTo(newCenter);
@@ -190,102 +259,3 @@ function setMarker(pos, dist, time) {
         
     });
 }
-
-//// Places Library Functions
-////Note that we need to load Powered by Google Logo in our view...Legal Requirement
-
-////Nearby Search Function
-
-//var infowindow;
-
-//function nearbySearch(type, setResults) {
-
-//    console.log(locHist);
-//    var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-//    map = new google.maps.Map(document.getElementById('map'), {
-//        center: pyrmont,
-//        zoom: 15
-//    });
-
-//    infowindow = new google.maps.InfoWindow();
-
-//    var service = new google.maps.places.PlacesService(map);
-//    service.nearbySearch({
-//        location: pyrmont,
-//        radius: 5000,
-//        types: [type]
-//    }, callback);
-
-//}
-
-////// Text Search Request
-
-//    function initTextSearch() {
-//        console.log(locHist);
-//        var pyrmont = { lat: locHist[0].lat, lng: locHist[0].lng };
-
-//        map = new google.maps.Map(document.getElementById('map'), {
-//            center: pyrmont,
-//            zoom: 15
-//        });
-
-//        infowindow = new google.maps.InfoWindow();
-
-//        var service = new google.maps.places.PlacesService(map);
-
-//        var request = {
-//            location: pyrmont,
-//            radius: 5000,
-//            query: document.getElementById('textsearch').value
-//                    };
-
-//        service = new google.maps.places.PlacesService(map);
-//        service.textSearch(request, callback);
-//    }
-
-
-//// radar search
-
-
-
-
-
-////// Place details function
-
-////function placeDetails(id, place, status)
-////{
-////    var request = {
-////        placeId: id
-////    };
-
-////    service = new google.maps.places.PlacesService(map);
-////    service.getDetails(request, callback);
-
-
-//    function callback(results, status) {
-//        console.log(results);
-//        if (status === google.maps.places.PlacesServiceStatus.OK) {
-//            for (var i = 0; i < results.length; i++) {
-//                createMarker(results[i]);
-//            }
-//        }
-
-//    }
-
-//    function createMarker(place) {
-//        var placeLoc = place.geometry.location;
-//        var marker = new google.maps.Marker({
-//            map: map,
-//            position: place.geometry.location
-//        });
-
-//        google.maps.event.addListener(marker, 'click', function () {
-//            infowindow.setContent(place.name);
-//            infowindow.open(map, this);
-//        });
-//    }
-
-
-// autocomplete
-

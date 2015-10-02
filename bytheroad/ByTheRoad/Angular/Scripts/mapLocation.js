@@ -72,7 +72,10 @@ function findSearchPositionAlongRoute(unitType, amount) {
                         iLine++;
                     }
                 }
-                if(foundStep = true){return currStep.path[iLine - 1]}
+                if (foundStep = true) {
+                    setMarker(currStep.path[iLine - 1]);
+                    return currStep.path[iLine - 1]
+                }
             }
         }
         if (foundStep = false) { return false; }

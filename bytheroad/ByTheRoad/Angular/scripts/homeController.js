@@ -53,6 +53,7 @@
                 var info = self.getUnitAndAmount;
                 self.results = [];
                 var searchPos = findSearchPositionAlongRoute(info.unit, info.amount);
+
                 mapService.categorySearch(self, searchPos);
                 self.startInterval();
             };

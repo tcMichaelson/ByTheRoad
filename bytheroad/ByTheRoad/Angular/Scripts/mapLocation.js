@@ -40,24 +40,6 @@ function initMap() {
             });
 
 
-
-
-            // BEGIN Autocomplete
-
-            // Create the search box and link it to the UI element.
-
-            // Bias the SearchBox results towards current map's viewport.
-            
-
-
-            // END Autocomplete
-
-
-
-
-
-
-
             document.getElementById('origin').value = pos;
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
 
@@ -75,9 +57,7 @@ function initMap() {
     }
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
-    document.getElementById('route-btn').addEventListener('click', getRouteHandler);
-
-   
+    document.getElementById('route-btn').addEventListener('click', getRouteHandler); 
 
 }
 

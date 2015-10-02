@@ -11,9 +11,10 @@
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
-            self.animation = "animated slideInLeft";
+            self.animationResults = "animated slideInLeft";
+            self.animationSaved = "animated slideOutLeft";
 
-
+            
             self.getResults = function () {
                 self.results = mapService.results;
             }
@@ -54,15 +55,14 @@
                 //var posToCheck = findSearchPostionAlongRoute(self.something);
                 mapService.categorySearch(self);
                 self.startInterval();
+                self.showResultsBox();
             };
 
             self.textSearch = function () {
                 self.results = [];
                 mapService.regTextSearch();
                 self.startInterval();
-                if (!self.animation === "animated slideInLeft") {
-                    self.animation = "animated slideInLeft";
-                }
+                self.showResultsBox();
             }
 
             self.startInterval = function () {
@@ -137,13 +137,26 @@
                             console.log("No viewport found");
                         }
                     });
+                    self.showResultsBox();
                     map.fitBounds(bounds);
-                    if (self.animation !== "animated slideInLeft") {
-                        self.animation = "animated slideInLeft";
-                    }
+                    
                 });
             }
 
+            self.showResultsBox = function() {
+                self.animationResults = "animated slideInLeft";
+                self.animationSaved = "animated slideOutLeft";
+            }
+
+            self.toggleSavedBox = function() {
+                if (self.animationSaved === 'animated slideInLeft') {
+                    self.animationSaved = 'animated slideOutLeft';
+                    self.animationResults = 'animated slideInLeft';
+                } else {
+                    self.animationSaved = 'animated slideInLeft';
+                    self.animationResults = 'animated slideOutLeft';
+                }
+            }
 
         });
 

@@ -2,20 +2,18 @@
 var map;
 var service;
 var infowindow;
-var locHist = [];
-var currLoc;
+var locHist = [];  //history of locations the user has been at
+var currLoc;  //coordinates of the user's current position
 var newLat = 45;
 var newLng = -90;
-var selectedRoute;
-var subRoute;
-var routeLines = [];
+var selectedRoute;  //currently selected route.
+var routeLines = [];  //path coordinates of the selected route
+var projectedPosition;
 
 
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
-    var geocoder = new google.maps.Geocoder;
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -23,25 +21,15 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
                 zoom: 18
             });
-            currLoc = pos;
-            geocoder.geocode({ 'location': pos }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        document.getElementById('origin').value = results[0].formatted_address;
-                    } else {
-                        alert('No results found');
-                    }
-                } else {
-                    alert('GeoCoder has failed due to: ' + status);
-                }
-            });
 
-            document.getElementById('origin').value = pos;
-            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
+            currLoc = pos;
+
+            setOriginTextBox(currLoc);
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
@@ -146,6 +134,65 @@ function renderLines(response) {
     var ne = new google.maps.LatLng(maxLat, maxLng);
     var bounds = new google.maps.LatLngBounds(sw, ne)
     map.fitBounds(bounds);
+}
+
+function setOriginTextBox(pos) {
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({ 'location': pos }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                document.getElementById('origin').value = results[0].formatted_address;
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('GeoCoder has failed due to: ' + status);
+        }
+        while (locHist.length >= 30) {
+            locHist.shift();
+        }
+        if (locHist.length === 0) {
+            firstLoc = pos;
+            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: 0, speed: 0 });
+        } else {
+            var prevLoc = locHist[locHist.length - 1];
+            if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
+                var firstLoc = locHist[0];
+                var currentLoc = pos;
+                var traj = (currentLoc.lat - firstLoc.lat) / (currentLoc.lng - firstLoc.lng);
+                var dist = calculateDistance(currentLoc, firstLoc);  //distance in meters
+                var time = (currentLoc.time - firstLoc.time) * 1000;  //convert milliseconds to seconds
+                var spd = dist / time;  //meters per second
+                locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: traj, speed: spd });
+            }
+        }
+
+        console.log(locHist[locHist.length - 1]);
+        
+    });
+}
+
+function calculateDistance(pos1, pos2){
+    var earthRadius = 6371000;
+    var lat1 = toRadians(pos1.lat);
+    var lat2 = toRadians(pos2.lat);
+    var diffLat = toRadians(pos2.lat - pos1.lat);
+    var diffLng = toRadians(pos2.lng - pos1.lng);
+
+    //Haversine Formula
+    var a = Math.sin(diffLat/2) * Math.sin(diffLat/2) +
+            Math.cos(lat1) * Math.cos(lat2) *
+            Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
+    console.log("a: ", a);
+
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    console.log("c: ", c);
+
+    return earthRadius * c;
+}
+
+function toRadians(deg){
+    return deg * Math.PI / 180;
 }
 
 function executePan(newCenter) {

@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
             var self = this;
             var searchBox;
 
@@ -11,7 +11,8 @@
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
-            self.animation = "animated slideInLeft";
+            self.animationResults = "animated slideInLeft";
+            self.animationSaved = "animated slideOutLeft";
 
 
             self.getResults = function () {
@@ -28,7 +29,7 @@
             self.selected = false;
             self.clear = false;
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -37,6 +38,7 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    self.loggingin = false;
                 })
                 .error(function () {
                     console.error('Error loggin in.');
@@ -46,20 +48,22 @@
 
 
             self.register = function () {
-                roadService.register(self);
+                roadService.register(self.register);
             };
 
-            self.nearbySearch=function () {
+            self.nearbySearch = function () {
                 self.results = [];
                 //var posToCheck = findSearchPostionAlongRoute(self.something);
                 mapService.categorySearch(self);
                 self.startInterval();
+                self.showResultsBox();
             };
 
             self.textSearch = function () {
-                self.results = [];                
+                self.results = [];
                 mapService.regTextSearch();
                 self.startInterval();
+                self.showResultsBox();
             }
 
             self.startInterval = function () {
@@ -77,7 +81,7 @@
             var input = document.getElementById('textsearch');
 
             var getSearchBox = window.setInterval(function () {
-                if (!(google.maps.places === undefined)){
+                if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
                     self.setupListeners();
                     clearInterval(getSearchBox);
@@ -128,10 +132,26 @@
                             console.log("No viewport found");
                         }
                     });
+                    self.showResultsBox();
                     map.fitBounds(bounds);
                 });
+            };
+
+
+            self.showResultsBox = function () {
+                self.animationResults = "animated slideInLeft";
+                self.animationSaved = "animated slideOutLeft";
             }
 
+            self.toggleSavedBox = function () {
+                if (self.animationSaved === 'animated slideInLeft') {
+                    self.animationSaved = 'animated slideOutLeft';
+                    self.animationResults = 'animated slideInLeft';
+                } else {
+                    self.animationSaved = 'animated slideInLeft';
+                    self.animationResults = 'animated slideOutLeft';
+                }
+            }
 
         });
 

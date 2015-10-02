@@ -13,7 +13,6 @@
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
-
             
             self.getResults = function () {
                 self.results = mapService.results;

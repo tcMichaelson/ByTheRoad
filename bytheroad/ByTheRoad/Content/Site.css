@@ -1,6 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -267,12 +266,6 @@ background-color: lightyellow;
       
       }
 
- #SearchResults{
-     width:350px;
-     height:250px;
-     border:1px solid blue;
- }
-
  
 
 
@@ -354,14 +347,18 @@ background-color: lightyellow;
 
 
 #searchResults {
+    margin-top:400px;
     border: 1px solid red;
-    height: 110%;
+    height: 65%;
     position: absolute;
-    width: 100%;
+    width: 25%;
     overflow:scroll;
     background-color:white;
     
 }
+
+ 
+
 
 #searchResultsDetail{
     border: 1px solid red;
@@ -369,10 +366,11 @@ background-color: lightyellow;
 
 
 #savedPlaces{
- border: 1px solid red;
-    position:absolute;
-    height: 110%;
-    width: 100%;
+  margin-top:400px;
+    border: 1px solid red;
+    height: 65%;
+    position: absolute;
+    width: 25%;
     overflow:scroll;
     background-color:white;
 }
@@ -396,3 +394,13 @@ background-color: lightyellow;
    width:100px;
 
 }
+#searchVisible{
+    
+    margin-top:150px;
+    width: 40px;
+    height:30px;
+    margin-left:0px;
+   background-color:green;
+ 
+}
+

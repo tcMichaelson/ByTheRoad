@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
             var self = this;
             var searchBox;
 
@@ -11,7 +11,8 @@
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
-            self.animation = "animated slideInLeft";
+            self.animationResults = "animated slideInLeft";
+            self.animationSaved = "animated slideOutLeft";
 
 
             self.getResults = function () {
@@ -28,7 +29,7 @@
             self.selected = false;
             self.clear = false;
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -37,6 +38,7 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    self.loggingin = false;
                 })
                 .error(function () {
                     console.error('Error loggin in.');
@@ -46,7 +48,7 @@
 
 
             self.register = function () {
-                roadService.register(self);
+                roadService.register(self.register);
             };
 
             self.nearbySearch = function () {
@@ -56,15 +58,14 @@
 
                 mapService.categorySearch(self, searchPos);
                 self.startInterval();
+                self.showResultsBox();
             };
 
             self.textSearch = function () {
                 self.results = [];
                 mapService.regTextSearch();
                 self.startInterval();
-                if (!self.animation === "animated slideInLeft") {
-                    self.animation = "animated slideInLeft";
-                }
+                self.showResultsBox();
             }
 
             self.startInterval = function () {
@@ -103,9 +104,10 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length == 0) {
+                    if (places.length === 0) {
                         return;
                     }
+                    mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
 
                     // Clear out the old markers.
                     markers.forEach(function (marker) {
@@ -116,13 +118,6 @@
                     // For each place, get the icon, name and location.
                     var bounds = map.getBounds();
                     places.forEach(function (place) {
-                        //var icon = {
-                        //    url: place.icon,
-                        //    size: new google.maps.Size(71, 71),
-                        //    origin: new google.maps.Point(29.5529732, -95.392946),
-                        //    anchor: new google.maps.Point(37.8084987, -122.2535366),
-                        //    scaledSize: new google.maps.Size(25, 25)
-                        //};
 
                         // Create a marker for each place.
                         markers.push(new google.maps.Marker({
@@ -139,11 +134,15 @@
                             console.log("No viewport found");
                         }
                     });
+                    self.showResultsBox();
                     map.fitBounds(bounds);
-                    if (self.animation !== "animated slideInLeft") {
-                        self.animation = "animated slideInLeft";
-                    }
                 });
+            };
+
+
+            self.showResultsBox = function () {
+                self.animationResults = "animated slideInLeft";
+                self.animationSaved = "animated slideOutLeft";
             }
 
             self.getUnitAndAmount = function(){
@@ -153,6 +152,15 @@
                     return {unit: "hours", amount: self.hoursUnit};
                 if (self.milesUnit !== null)
                     return {unit: "miles", amount: self.milesUnit};
+            }
+            self.toggleSavedBox = function () {
+                if (self.animationSaved === 'animated slideInLeft') {
+                    self.animationSaved = 'animated slideOutLeft';
+                    self.animationResults = 'animated slideInLeft';
+                } else {
+                    self.animationSaved = 'animated slideInLeft';
+                    self.animationResults = 'animated slideOutLeft';
+                }
             }
 
         });

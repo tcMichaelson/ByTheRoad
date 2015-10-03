@@ -43,7 +43,7 @@ function initMap() {
     }
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
-    document.getElementById('route-btn').addEventListener('click', getRouteHandler);
+    document.getElementById('route-btn').addEventListener('click', getRouteHandler); 
 
 }
 //  findSearchPositionAlongRoute("minutes", 30)

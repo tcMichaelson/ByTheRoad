@@ -6,7 +6,10 @@ var locHist = [];  //history of locations the user has been at
 var currLoc;  //coordinates of the user's current position
 var newLat = 45;
 var newLng = -90;
+var lastKnownLeg;
+var lastKnownStep;
 var selectedRoute;  //currently selected route.
+var selectedPath;  //The full path of the currently selected route;
 var routeLines = [];  //path coordinates of the selected route
 var projectedPosition;
 
@@ -25,34 +28,26 @@ function initMap() {
                 center: pos,
                 zoom: 18
             });
-
             currLoc = pos;
-
 <<<<<<< HEAD
             setOriginTextBox(currLoc);
 =======
-
-
-
-            // BEGIN Autocomplete
-
-            // Create the search box and link it to the UI element.
-
-            // Bias the SearchBox results towards current map's viewport.
-            
-
-
-            // END Autocomplete
-
-
-
-
-
+            geocoder.geocode({ 'location': pos }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        document.getElementById('origin').value = results[0].formatted_address;
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('GeoCoder has failed due to: ' + status);
+                }
+            });
 
 
             document.getElementById('origin').value = pos;
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now() });
->>>>>>> a52e79f4f35176d89315617472a34f6393625b7c
+>>>>>>> 20d786ac21dccb9eecbf4a1a91ddb76fff66cd4a
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
@@ -61,35 +56,65 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
- 
-
     var getRouteHandler = function () {
         findRouteAndDisplay();
     }
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
+<<<<<<< HEAD
     document.getElementById('route-btn').addEventListener('click', getRouteHandler);
-
-   
+=======
+    document.getElementById('route-btn').addEventListener('click', getRouteHandler); 
+>>>>>>> 20d786ac21dccb9eecbf4a1a91ddb76fff66cd4a
 
 }
-
-function findSearchPostionAlongRoute(unitType, amount) {
+//  findSearchPositionAlongRoute("minutes", 30)
+function findSearchPositionAlongRoute(unitType, amount) {
     var currPos = locHist[locHist.length - 1];
-    selectedRoute.legs.forEach(function(leg){
-        leg.steps.forEach(function(step){
-            
-        })
-    })
-
-
-    if (end) {
+    var currLeg;
+    var foundStep = false;
+    //var direction = getDirection();
+    if (selectedRoute !== undefined) {
+        for(var iLeg = lastKnownLeg; iLeg < selectedRoute.legs.length; iLeg++) {
+            currLeg = selectedRoute.legs[iLeg];
+            for (var iStep = lastKnownStep; iStep < currLeg.steps.length; iStep++) {
+                currStep = currLeg.steps[iStep];
+                console.log(iLeg + iStep);
+                var diffCheck = calculateDistance(currPos, { lat: currStep.path[0].H, lng: currStep.path[0].L });
+                var iLine = 1
+                while(!foundStep && iLine < currStep.path.length){
+                    diffNext = calculateDistance(currPos, { lat: currStep.path[iLine].H, lng: currStep.path[iLine].L });
+                    if (diffNext > diffCheck) {
+                        console.log("leg: " + iLeg, "step: " + iStep);
+                        lastKnownLeg = iLeg;
+                        lastKnownStep = iStep;
+                        foundStep = true;
+                    } else {
+                        diffCheck = diffNext;
+                        iLine++;
+                    }
+                }
+                if (foundStep = true) {
+                    setMarker(currStep.path[iLine - 1]);
+                    return currStep.path[iLine - 1]
+                }
+            }
+        }
+        if (foundStep = false) { return false; }
     } else {
-        return start
+        findSearchPositionAlongDirection(unittype, amount);
     }
 }
 
-function findSearchPostionAlongDirection(unitType, amount){
+function isBetween(a, b, x) {
+    console.log("num 1: " + a, "num 2: " + b, "checking: " + x);
+    console.log((x - a) * (x - b) <= 0);
+    return (x - a) * (x - b) <= 0;
+}
+
+
+
+function findSearchPostionAlongDirection(unitType, amount) {
     //if not on a route and a desination is selected, then calculate a new route.
     //otherwise, we will have to guess about the expected end point, assuming a straight road in the current direction.
 }
@@ -153,7 +178,10 @@ function renderLines(response) {
             strokeColor: colHex,
             strokeWeight: 2
         });
-        selectedRoute = coords;
+        selectedPath = coords;
+        selectedRoute = response.routes[idx];
+        lastKnownLeg = 0;
+        lastKnownStep = 0;
         routeLines[idx].setMap(map);
     });
     var sw = new google.maps.LatLng(minLat, minLng);
@@ -163,42 +191,44 @@ function renderLines(response) {
 }
 
 function setOriginTextBox(pos) {
-    var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({ 'location': pos }, function (results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-                document.getElementById('origin').value = results[0].formatted_address;
-            } else {
-                alert('No results found');
-            }
-        } else {
-            alert('GeoCoder has failed due to: ' + status);
+    //var geocoder = new google.maps.Geocoder;
+    //geocoder.geocode({ 'location': pos }, function (results, status) {
+    //    if (status === google.maps.GeocoderStatus.OK) {
+    //        if (results[0]) {
+    //            document.getElementById('origin').value = results[0].formatted_address;
+    //        } else {
+    //            alert('No results found');
+    //        }
+    //    } else {
+    //        alert('GeoCoder has failed due to: ' + status);
+    //    }
+    //});
+    while (locHist.length >= 30) {
+        locHist.shift();
+    }
+    if (locHist.length === 0) {
+        firstLoc = pos;
+        locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: 0, speed: 0 });
+    } else {
+        var prevLoc = locHist[locHist.length - 1];
+        if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
+            var firstLoc = locHist[0];
+            var currentLoc = pos;
+            var traj = (currentLoc.lat - firstLoc.lat) / (currentLoc.lng - firstLoc.lng);
+            var dist = calculateDistance(currentLoc, firstLoc);  //distance in meters
+            console.log("dist: " + dist);
+            var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
+            console.log("time: " + time);
+            var spd = dist / time;  //meters per second
+            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: traj, speed: spd });
         }
-        while (locHist.length >= 30) {
-            locHist.shift();
-        }
-        if (locHist.length === 0) {
-            firstLoc = pos;
-            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: 0, speed: 0 });
-        } else {
-            var prevLoc = locHist[locHist.length - 1];
-            if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
-                var firstLoc = locHist[0];
-                var currentLoc = pos;
-                var traj = (currentLoc.lat - firstLoc.lat) / (currentLoc.lng - firstLoc.lng);
-                var dist = calculateDistance(currentLoc, firstLoc);  //distance in meters
-                var time = (currentLoc.time - firstLoc.time) * 1000;  //convert milliseconds to seconds
-                var spd = dist / time;  //meters per second
-                locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: traj, speed: spd });
-            }
-        }
+    }
 
-        console.log(locHist[locHist.length - 1]);
-        
-    });
+    console.log(locHist[locHist.length - 1]);
+
 }
 
-function calculateDistance(pos1, pos2){
+function calculateDistance(pos1, pos2) {
     var earthRadius = 6371000;
     var lat1 = toRadians(pos1.lat);
     var lat2 = toRadians(pos2.lat);
@@ -206,48 +236,42 @@ function calculateDistance(pos1, pos2){
     var diffLng = toRadians(pos2.lng - pos1.lng);
 
     //Haversine Formula
-    var a = Math.sin(diffLat/2) * Math.sin(diffLat/2) +
+    var a = Math.sin(diffLat / 2) * Math.sin(diffLat / 2) +
             Math.cos(lat1) * Math.cos(lat2) *
             Math.sin(diffLng / 2) * Math.sin(diffLng / 2);
-    console.log("a: ", a);
 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    console.log("c: ", c);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
 
     return earthRadius * c;
 }
 
-function toRadians(deg){
+function toRadians(deg) {
     return deg * Math.PI / 180;
 }
 
 function executePan(newCenter) {
     //var newLatLng = new google.maps.LatLng(newLat, newLng);
     map.panTo(newCenter);
-    locHist.push({ lat: newCenter.lat, lng: newCenter.lng, time: Date.now() });
-    getCurrDirection();
-}
-
-function getCurrDirection() {
-    //locHist.forEach(function (item) {
-    //    console.log("lat", item.lat, "lng", item.lng, "time", item.time);
-    //});
+    setOriginTextBox(newCenter);
+    //locHist.push({ lat: newCenter.lat, lng: newCenter.lng, time: Date.now() });
 }
 
 function startRouting() {
     map.setZoom(15);
     var move = 0;
-    map.setCenter(selectedRoute[0]);
-    console.log(selectedRoute[0]);
+    map.setCenter(selectedPath[0]);
+
+    console.log(selectedRoute);
     move++;
     var refreshInterval = window.setInterval(function () {
-        if (move < selectedRoute.length - 1) {
-            executePan(selectedRoute[move]);
+        if (move < 30) {
+            executePan(selectedPath[move]);
             move++;
         } else {
             clearInterval(refreshInterval);
         }
-    }, 50);
+    }, 1000);
 }
 
 
@@ -256,6 +280,6 @@ function setMarker(pos, dist, time) {
         content: "dist: " + dist + "time: " + time,
         map: map,
         position: pos
-        
+
     });
 }

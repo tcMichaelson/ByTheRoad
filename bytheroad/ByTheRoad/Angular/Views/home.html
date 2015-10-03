@@ -108,7 +108,7 @@
                     <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                     <div><label> Price Level:</label>{{result.price_level}}</div>
                     <div><label> Rating:</label> {{result.rating}}</div>
-                     <div><label> Distance:</label>{{result.distance}}</div>
+                    <div><label> Distance:</label>{{result.distance}}</div>
                     <div><label>Time:</label>{{result.time}} </div>
 
                     <label>If you like this places click here </label>
@@ -116,48 +116,48 @@
                 </div>
 
             </div>
-       
-</div>
 
-
-<div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-    <h3> My Favorite places</h3>
-    <button id="hide" type="button" ng-click="self.toggleSavedBox();">Hide</button>
-    <div ng-repeat="saved in self.places">
-        <div id="savedPlacesDetail">
-            <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
-            <div><label>Adress</label>{{saved.formmatted_address}}</div>
-            <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
-            <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
-            <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-            <div><label>Price Level</label>{{saved.price_level}}</div>
-            <div><label>Rating</label>{{saved.rating}}</div>
-            <div><label>Distance</label>{{saved.distance}}</div>
-            <div><label>Time</label>{{saved.time}}</div>
         </div>
-    </div>
-</div>
+
+
+        <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
+            <h3> My Favorite places</h3>
+            <button id="hide" type="button" ng-click="self.toggleSavedBox();">Hide</button>
+            <div ng-repeat="saved in self.places">
+                <div id="savedPlacesDetail">
+                    <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
+                    <div><label>Adress</label>{{saved.formmatted_address}}</div>
+                    <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
+                    <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
+                    <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+                    <div><label>Price Level</label>{{saved.price_level}}</div>
+                    <div><label>Rating</label>{{saved.rating}}</div>
+                    <div><label>Distance</label>{{saved.distance}}</div>
+                    <div><label>Time</label>{{saved.time}}</div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
 
-<div class="floating-box">
+    <div class="floating-box">
 
-    <form id="directionsearch">
-
-
-        <button type="button" ng-click="self.start = !self.start" class="btn btn-success">Search for directions here</button> <br /> <br />
-        <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
-        <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
-
-        <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
-        <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
-        <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>
-    </form>
+        <form id="directionsearch">
 
 
+            <button type="button" ng-click="self.start = !self.start" class="btn btn-success">Search for directions here</button> <br /> <br />
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
+            <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
 
-</div>
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
+            <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>
+        </form>
+
+
+
+    </div>
 
 </div>
 
@@ -203,7 +203,7 @@
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <input  type="submit" class="bnt btn-success" value="Register"/>
+            <input type="submit" class="bnt btn-success" value="Register" />
 
             <button ng-click="self.registering = false" class="bnt btn-warning">Cancel</button>
         </form>

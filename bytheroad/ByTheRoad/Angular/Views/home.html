@@ -36,7 +36,7 @@
 
                 <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
                     Enter miles you want to stop in<br />
-                    <input type="text" ng-model="self.milesUnit" class="distanceortime"  />
+                    <input type="text" ng-model="self.milesUnit" class="distanceortime" />
                     <button ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" class="btn btn-danger">Clear</button>
 
                 </p>
@@ -128,7 +128,7 @@
             <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
             <div><label> Price Level:</label>{{result.price_level}}</div>
             <div><label> Rating:</label> {{result.rating}}</div>
-                    <div><label> Distance:</label>{{result.distance}}</div>
+            <div><label> Distance:</label>{{result.distance}}</div>
             <div><label>Time:</label>{{result.time}} </div>
 
             <label>If you like this places click here </label>
@@ -137,26 +137,26 @@
 
     </div>
 
-        </div>
+</div>
 
 
-        <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-            <h3> My Favorite places</h3>
-            <button id="hide" type="button" ng-click="self.toggleSavedBox();">Hide</button>
-            <div ng-repeat="saved in self.places">
-                <div id="savedPlacesDetail">
-                    <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
-                    <div><label>Adress</label>{{saved.formmatted_address}}</div>
-                    <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
-                    <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
-                    <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                    <div><label>Price Level</label>{{saved.price_level}}</div>
-                    <div><label>Rating</label>{{saved.rating}}</div>
-                    <div><label>Distance</label>{{saved.distance}}</div>
-                    <div><label>Time</label>{{saved.time}}</div>
-                </div>
-            </div>
+<div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
+    <h3> My Favorite places</h3>
+    <button id="hide" type="button" ng-click="self.toggleSavedBox();">Hide</button>
+    <div ng-repeat="saved in self.places">
+        <div id="savedPlacesDetail">
+            <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
+            <div><label>Adress</label>{{saved.formmatted_address}}</div>
+            <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
+            <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
+            <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+            <div><label>Price Level</label>{{saved.price_level}}</div>
+            <div><label>Rating</label>{{saved.rating}}</div>
+            <div><label>Distance</label>{{saved.distance}}</div>
+            <div><label>Time</label>{{saved.time}}</div>
         </div>
+    </div>
+</div>
 
 
 <div class="rightboxes">

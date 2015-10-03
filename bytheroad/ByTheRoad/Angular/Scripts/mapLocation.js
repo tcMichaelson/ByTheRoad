@@ -60,27 +60,35 @@ function findSearchPositionAlongRoute(unitType, amount) {
                 console.log(iLeg + iStep);
                 var diffCheck = calculateDistance(currPos, { lat: currStep.path[0].H, lng: currStep.path[0].L });
                 var iLine = 1
+                var result;
                 while(!foundStep && iLine < currStep.path.length){
                     diffNext = calculateDistance(currPos, { lat: currStep.path[iLine].H, lng: currStep.path[iLine].L });
-                    if (diffNext > diffCheck) {
+                    var distTraveled = calculateDistance({ lat: currStep.path[iLine].H, lng: currStep.path[iLine].L }, { lat: currStep.path[iLine - 1].H, lng: currStep.path[iLine - 1].L })
+                    if (distTraveled >= diffNext && distTraveled >= diffCheck) {
                         console.log("leg: " + iLeg, "step: " + iStep);
                         lastKnownLeg = iLeg;
                         lastKnownStep = iStep;
                         foundStep = true;
+                        if (diffNext < diffCheck) {
+                            result = currStep.path[iLine];
+                        } else {
+                            result = currStep.path[iLine - 1]
+                        }
                     } else {
                         diffCheck = diffNext;
                         iLine++;
                     }
                 }
-                if (foundStep = true) {
-                    setMarker(currStep.path[iLine - 1]);
-                    return currStep.path[iLine - 1]
+                if (foundStep) {
+                    setMarker(locHist[locHist.length - 1], "actual");
+                    setMarker(result, "estimated");
+                    return result;
                 }
             }
         }
         if (foundStep = false) { return false; }
     } else {
-        findSearchPositionAlongDirection(unittype, amount);
+        findSearchPositionAlongDirection(unitType, amount);
     }
 }
 
@@ -156,6 +164,15 @@ function renderLines(response) {
             strokeColor: colHex,
             strokeWeight: 2
         });
+
+        console.log("min dist: " + coords.map(function (a, idy, coords) {
+            if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 999; }
+        }).reduce(function(a, b){return 0 < a && a < b ? a : b;}));
+
+        console.log("max dist: " + coords.map(function (a, idy, coords) {
+            if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 0; }
+        }).reduce(function (a, b) { return a > b ? a : b; }));
+
         selectedPath = coords;
         selectedRoute = response.routes[idx];
         lastKnownLeg = 0;
@@ -181,7 +198,7 @@ function setOriginTextBox(pos) {
     //        alert('GeoCoder has failed due to: ' + status);
     //    }
     //});
-    while (locHist.length >= 30) {
+    while (locHist.length >= 5) {
         locHist.shift();
     }
     if (locHist.length === 0) {
@@ -238,6 +255,7 @@ function executePan(newCenter) {
 function startRouting() {
     map.setZoom(15);
     var move = 0;
+    locHist = [];
     map.setCenter(selectedPath[0]);
 
     console.log(selectedRoute);

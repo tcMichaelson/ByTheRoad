@@ -2,9 +2,10 @@
 
     <ul>
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
-        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false">Login</a></li>
-        <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false">Register</a></li>
+        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false">Login</a></li>
+        <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
         <li class="myplace"><a ng-click="self.toggleSavedBox(); self.viewingPlaces = true;">My Places</a></li>
+        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
     </ul>
 </div>
 
@@ -88,23 +89,7 @@
 
     </div>
 
-    <div class="floating-box1">
-
-        <form id="directionsearch">
-
-
-            <button type="button" ng-click="self.start = !self.start" class="btn btn-success">Search for directions here</button> <br /> <br />
-            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
-            <input type="text" id="origin" class="addbox" ng-hide="self.start === false" /><br />
-
-            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
-            <input type="text" id="destination" class="addbox" ng-hide="self.start === false" /><br /><br />
-            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="btn btn-success">Get Direction</button>
-        </form>
-
-
-
-    </div>
+   
 
 </div>
 
@@ -168,16 +153,16 @@
     <div ng-hide="self.loggingin === false" class="rightloginbox">
 
         <form id="loginform" ng-submit="self.login()">
-            <label id="label1">
+            <label class="label1">
                 User Email:
             </label>
             <input class="loginbox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
-            <label id="label1">
+            <label class="label1">
                 Password:
             </label>
             <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
-            <input type="submit" class="btn btn-success" value="Log In" />&nbsp;
-            <button ng-click="self.loggingin = false" class="bnt btn-warning">Cancel</button>
+            <input type="submit" class="submitbtn" value="Log In" />&nbsp;
+            <button ng-click="self.loggingin = false" class="cancelbtn">Cancel</button>
         </form>
     </div>
 
@@ -200,9 +185,31 @@
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <input  type="submit" class="bnt btn-success" value="Register"/>
+            <input  type="submit" class="submitbtn" value="Register"/>
 
-            <button ng-click="self.registering = false" class="bnt btn-warning">Cancel</button>
+            <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
         </form>
     </div>
+
+  
+    <div ng-hide="self.start === false" class="rightstartbox">
+        <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
+
+
+             <label class="label1">Point</label>
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
+            <input type="text" id="origin" class="addbox" ng-hide="self.start === false" />
+            <label class="label1">Point</label>
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
+            <input type="text" id="destination" class="addbox" ng-hide="self.start === false" />
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitbtn">Get Direction</button>
+        </form>
+
+
+
+    </div>
+
+
+
+
 </div>

@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
             var self = this;
             var searchBox;
 
@@ -28,7 +28,7 @@
             self.selected = false;
             self.clear = false;
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -37,6 +37,7 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    self.loggingin = false;
                 })
                 .error(function () {
                     console.error('Error loggin in.');
@@ -46,7 +47,7 @@
 
 
             self.register = function () {
-                roadService.register(self);
+                roadService.register(self.register);
             };
 
             self.nearbySearch = function () {
@@ -138,16 +139,16 @@
                     });
                     self.showResultsBox();
                     map.fitBounds(bounds);
-                    
                 });
-            }
+            };
 
-            self.showResultsBox = function() {
+
+            self.showResultsBox = function () {
                 self.animationResults = "animated slideInLeft";
                 self.animationSaved = "animated slideOutLeft";
             }
 
-            self.toggleSavedBox = function() {
+            self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
                     self.animationSaved = 'animated slideOutLeft';
                     self.animationResults = 'animated slideInLeft';

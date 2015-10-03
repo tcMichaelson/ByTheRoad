@@ -24,19 +24,19 @@
             <div>
                 <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                     Enter time in minutes you want to stop in <br />
-                    <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" required />
+                    <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" />
                     <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="btn btn-danger">Clear</button>
                 </p>
 
                 <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">
                     Enter time in hours you want to stop in<br />
-                    <input type="text" ng-model="self.hoursUnit" class="distanceortime" required />
-                    <button ng-click="self.hoursUnit = null;" ng-show="self.hoursUnit.length > 0" class="btn btn-danger">Clear</button>
+                    <input type="text" ng-model="self.hoursUnit" class="distanceortime" />
+                    <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="btn btn-danger">Clear</button>
                 </p>
 
                 <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
                     Enter miles you want to stop in<br />
-                    <input type="text" ng-model="self.milesUnit" class="distanceortime" required />
+                    <input type="text" ng-model="self.milesUnit" class="distanceortime"  />
                     <button ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" class="btn btn-danger">Clear</button>
 
                 </p>
@@ -82,13 +82,13 @@
 
         </div>
 
-        <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)  " ng-click="self.nearbySearch()">>></button>
+        <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)  " ng-click="self.nearbySearch()">SearchResults>></button>
 
 
 
     </div>
 
-    <div class="floating-box">
+    <div class="floating-box1">
 
         <form id="directionsearch">
 
@@ -128,8 +128,7 @@
             <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
             <div><label> Price Level:</label>{{result.price_level}}</div>
             <div><label> Rating:</label> {{result.rating}}</div>
-            <div> <img src="{{result.photos}}" alt="photo" /> </div>
-            <div><label> Distance:</label>{{result.distance}}</div>
+                     <div><label> Distance:</label>{{result.distance}}</div>
             <div><label>Time:</label>{{result.time}} </div>
 
             <label>If you like this places click here </label>
@@ -153,7 +152,6 @@
             <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
             <div><label>Price Level</label>{{saved.price_level}}</div>
             <div><label>Rating</label>{{saved.rating}}</div>
-            <div>{{saved.photos}}</div>
             <div><label>Distance</label>{{saved.distance}}</div>
             <div><label>Time</label>{{saved.time}}</div>
         </div>
@@ -171,41 +169,38 @@
 
         <form id="loginform" ng-submit="self.login()">
             <label id="label1">
-                User Name:
+                User Email:
             </label>
-            <input class="loginbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <input class="loginbox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
             <label id="label1">
                 Password:
             </label>
-            <input class="loginbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />&nbsp;
+            <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
             <input type="submit" class="btn btn-success" value="Log In" />&nbsp;
             <button ng-click="self.loggingin = false" class="bnt btn-warning">Cancel</button>
         </form>
     </div>
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.registger()">
-            <label class="label1">
-                User Name:
-            </label>
-            <input class="registerbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+        <form id="registerform" ng-submit="self.register()">
+
             <label class="label1">
                 Email:
             </label>
-            <input class="registerbox" name="useremail" ng-model="self.email" type="email" ng-required="true" />
+            <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
 
 
 
             <label class="label1">
                 Password:
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
             <label class="label1">
-                Confirmed Password :
+                Confirm Password :
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <button type="submit" class="bnt btn-success">Register</button>
+            <input  type="submit" class="bnt btn-success" value="Register"/>
 
             <button ng-click="self.registering = false" class="bnt btn-warning">Cancel</button>
         </form>

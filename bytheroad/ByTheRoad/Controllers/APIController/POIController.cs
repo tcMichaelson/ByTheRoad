@@ -25,7 +25,7 @@ namespace ByTheRoad.Controllers.APIController
         
         // POST: api/POI
         [HttpPost]
-        [Route ("api/POI")]
+        [Route ("api/POI",Name ="POIApi")]
         public void AddPOI(PointOfInterest POI)
         {
             _repo.Add(POI);

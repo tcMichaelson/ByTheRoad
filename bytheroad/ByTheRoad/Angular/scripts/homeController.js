@@ -101,9 +101,10 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length == 0) {
+                    if (places.length === 0) {
                         return;
                     }
+                    mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
 
                     // Clear out the old markers.
                     markers.forEach(function (marker) {
@@ -114,13 +115,6 @@
                     // For each place, get the icon, name and location.
                     var bounds = map.getBounds();
                     places.forEach(function (place) {
-                        //var icon = {
-                        //    url: place.icon,
-                        //    size: new google.maps.Size(71, 71),
-                        //    origin: new google.maps.Point(29.5529732, -95.392946),
-                        //    anchor: new google.maps.Point(37.8084987, -122.2535366),
-                        //    scaledSize: new google.maps.Size(25, 25)
-                        //};
 
                         // Create a marker for each place.
                         markers.push(new google.maps.Marker({

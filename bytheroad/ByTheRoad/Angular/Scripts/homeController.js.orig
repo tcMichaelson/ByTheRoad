@@ -15,6 +15,9 @@
             self.animationSaved = "animated slideOutLeft";
 
 
+
+
+>>>>>>> 0ba2a3907756f113162536e0b0a29b9468e3e604
             self.getResults = function () {
                 self.results = mapService.results;
             }
@@ -161,11 +164,8 @@
                 } else {
                     self.animationSaved = 'animated slideInLeft';
                     self.animationResults = 'animated slideOutLeft';
-                }
->>>>>>> 20d786ac21dccb9eecbf4a1a91ddb76fff66cd4a
-            }
-
-        });
+                        }
+                    });
 
 
 })();

@@ -1,7 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -20,13 +17,14 @@ body {
   margin: 0;
   padding: 0;
   background:white;
+  border:solid 2px black;
 }
  
 .nav ul {
   list-style: none;
   background-color: #444;
   text-align: center;
-  padding: 0;
+  padding:0;
   margin: 0;
   height:10%;
 }
@@ -71,10 +69,7 @@ body {
   
 }
 
-.distance{
-background-color:coral;
 
-}
 
 .leftboxes{
 
@@ -91,10 +86,21 @@ border: 1px solid blue;
     border:3px solid red;  
      margin:0px;
      padding:10px;
-    
+    background-color:rgba(55,107,26,1);
     
 }
 
+
+.floating-box1 {
+    float: left;
+    width: 100%;
+    height: 50%;    
+    border:3px solid red;  
+     margin:0px;
+     padding:10px;
+    
+     background-color:rgba(225,126,10,0.8);
+}
 
 
 .rightboxes{
@@ -158,8 +164,7 @@ background-color: lightyellow;
     height:1px;
     width:1px;
     display:inline;
-    padding:10px;
-
+ 
 }
 
 .searchbox {
@@ -245,7 +250,7 @@ background-color: lightyellow;
 
 }
  .distance{
-     background-color:green;
+     background-color:#dd4b39;
     margin:10px;
     height:70px;
     width:90px;
@@ -266,12 +271,6 @@ background-color: lightyellow;
   width:200px;
       
       }
-
- #SearchResults{
-     width:350px;
-     height:250px;
-     border:1px solid blue;
- }
 
  
 
@@ -321,7 +320,7 @@ background-color: lightyellow;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-#sResult{border: 1px solid red;
+#sResult{border: 1px solid #17DF56;
     top: 50%;
     height: 50%;
     width: 100%;
@@ -333,7 +332,7 @@ background-color: lightyellow;
     width:70px;
     height:30px;
     background-color:indianred;
-    color:green;
+    color:black;
 }
 
 .loginbox{
@@ -354,14 +353,18 @@ background-color: lightyellow;
 
 
 #searchResults {
+    margin-top:400px;
     border: 1px solid red;
-    height: 110%;
+    height: 65%;
     position: absolute;
-    width: 100%;
+    width: 25%;
     overflow:scroll;
     background-color:white;
     
 }
+
+ 
+
 
 #searchResultsDetail{
     border: 1px solid red;
@@ -369,10 +372,11 @@ background-color: lightyellow;
 
 
 #savedPlaces{
- border: 1px solid red;
-    position:absolute;
-    height: 110%;
-    width: 100%;
+  margin-top:400px;
+    border: 1px solid red;
+    height: 65%;
+    position: absolute;
+    width: 25%;
     overflow:scroll;
     background-color:white;
 }
@@ -398,3 +402,13 @@ background-color: lightyellow;
    width:100px;
 
 }
+#searchVisible{
+    
+    margin-top:150px;
+    width: 120px;
+    height:30px;
+    margin-left:-10px;
+   background-color:yellow;
+ border:solid 1px black;
+}
+

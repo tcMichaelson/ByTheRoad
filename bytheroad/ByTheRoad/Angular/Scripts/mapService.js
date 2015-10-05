@@ -18,7 +18,7 @@
                 service.nearbySearch({
                     location: pos,
                     radius: 5000,
-                    types: [model.selectedItem]
+                    types: model.selectedItem
                 }, self.callback);
             }
 
@@ -82,16 +82,19 @@
                             //    infowindow.setContent(place.name + place.formatted_phone_number);
                             //    infowindow.open(map, this);
                             //});
+                        
+                            self.results.forEach(function (result) {
+                                //console.log("result place_id: " + result.place_id);
+                                //console.log("place place_id: " + place.place_id);
+                                if (result.place_id === place.place_id) {
+                                    console.log("name: " + place.name + " typed: " + place.types[0] + ", " + place.types[1] + ", " + place.types[2]);
+                                    result.website = place.website;
+                                    result.formatted_phone_number = place.formatted_phone_number;
+                                    result.formatted_address = place.formatted_address;
+                                }
+
+                            });
                         }
-                        self.results.forEach(function (result) {
-                            //console.log("result place_id: " + result.place_id);
-                            //console.log("place place_id: " + place.place_id);
-                            if (result.place_id === place.place_id) {
-                                result.website = place.website;
-                                result.formatted_phone_number = place.formatted_phone_number;
-                                result.formatted_address = place.formatted_address;
-                            }
-                        });
                     });
 
                 }
@@ -106,7 +109,7 @@
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.setContent(place.name + place.formatted_phone_number);;//gives the name of marker marked
+                    infowindow.setContent(place.name + place.formatted_phone_number);//gives the name of marker marked
                     infowindow.open(map, this);
                 });
                 return marker;

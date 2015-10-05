@@ -88,6 +88,7 @@
             var input = document.getElementById('textsearch');
 
             var getSearchBox = window.setInterval(function () {
+                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
                     self.setupListeners();
@@ -109,7 +110,8 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0) {
+                    if (places.length === 0 || places[0].place_id === null){
+                        console.log(places[0].place_id)
                         return;
                     }
                     mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);

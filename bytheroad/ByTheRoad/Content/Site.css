@@ -383,10 +383,10 @@ height:35px;
 
 #hide{
  
-    width:70px;
-    height:30px;
-    background-color:indianred;
-    color:black;
+    width:110px;
+    height:50px;
+    background-color:#287AA9;
+    color:white;
 }
 
 
@@ -394,7 +394,7 @@ height:35px;
 
 #searchResults {
     margin-top:370px;
-    border: 1px solid red;
+    border: 1px solid #287AA9;
     height: 55%;
     position: absolute;
     width: 100%;
@@ -407,13 +407,13 @@ height:35px;
 
 
 #searchResultsDetail{
-    border: 1px solid red;
+    border: 1px solid #287AA9;
 }
 
 
 #savedPlaces{
   margin-top:400px;
-    border: 1px solid red;
+    border: 1px solid #287AA9;
     height: 55%;
     position: absolute;
     width: 100%;
@@ -422,7 +422,7 @@ height:35px;
 }
 
 #savedPlacesDetail{
-    border: 1px solid red;
+    border: 1px solid #287AA9;
     height: 250px;
     width: 425px;
 }
@@ -461,4 +461,22 @@ background-color:#287AA9;
     padding:0px;
     color:white;
     margin-left:40px;
+    font-size:large;
+}
+.Result2{
+background-color:#143D55;
+    
+    height:70px;
+    width:100px;
+    padding:0px;
+    color:white;
+    margin-left:40px;
+    font-size:large;
+}
+#favorite{
+ 
+    width:110px;
+    height:50px;
+    background-color:#143D55;
+    color:white;
 }

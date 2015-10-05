@@ -84,6 +84,41 @@
                     </form>
                 </div>
 
+<<<<<<< HEAD
+        <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="container">
+            <div class="btn-group">
+                <button type="button" ng-click="self.selectedItem = ['food']; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
+                    <span> <img src="../../fonts/glyphicons-476-dining-set.png" id="img" /></span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['lodging']; self.selected= true;  self.nearbySearch()" class="btn btn-primary ">
+                    <span><img src="../../fonts/glyphicons-496-bed.png" id="img" /></span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['store'];  self.selected= true; self.nearbySearch()" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png" id="img" /></span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['gas_station','convenience_store','car_repair','car_wash']; self.selected= true;  self.nearbySearch()" class="btn btn-primary ">
+                    <span>
+                        <img src="../../fonts/glyphicons-472-gas-station.png" id="img" />
+                    </span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['atm','police','hospital', 'library', 'local_government_office','locksmith','pharmacy','post_office' ];  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
+                </button>
+                <button type="button" ng-click="self.selectedItem = ['church']; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
+                    <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png" id="img" /></span>
+                </button>
+
+            </div>
+            <div>
+                <form ng-submit="self.textSearch()">
+                    <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
+                    <input type="text" class="searchbox" id="textsearch" name="search" />
+                </form>
+=======
+>>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd
             </div>
 
             <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)  " ng-click="self.nearbySearch()">SearchResults>></button>
@@ -109,10 +144,9 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-<<<<<<< HEAD
+                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
                 
                 
-                <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
 =======
                 <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
 >>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd

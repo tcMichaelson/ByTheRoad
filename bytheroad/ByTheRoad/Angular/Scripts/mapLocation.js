@@ -141,6 +141,7 @@ function findFuturePosition(spotOnRoute, unit, amount) {
     }
     var found = false;
     while (!found && false) { }
+
 }
 
 function findRouteAndDisplay() {

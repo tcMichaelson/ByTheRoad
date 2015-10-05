@@ -108,38 +108,18 @@
                     <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                     <div><label> Price Level:</label>{{result.price_level}}</div>
                     <div><label> Rating:</label> {{result.rating}}</div>
+<<<<<<< HEAD
+                    <div> <img src="https://lh4.googleusercontent.com/-8UsvJKxKFqs/VNc6CPxposI/AAAAAAAAAAc/qCadHNu4Sxc/w550-h294-p-k-no/" width="150" alt="photo" /> </div>
+                    <div><label> Distance:</label>{{result.distance}}</div>
+=======
                      <div><label> Distance:</label>{{result.distance}}</div>
+>>>>>>> 0ba2a3907756f113162536e0b0a29b9468e3e604
                     <div><label>Time:</label>{{result.time}} </div>
 
                     <label>If you like this places click here </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
                 </div>
 
-<<<<<<< HEAD
-
-            </div>
-        </div>
-
-    <div>
-
-            <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class="'{{self.animation}}'">
-                <label> My places</label>
-                <button id="hide" type="button" ng-click="self.animation='animated slideOutLeft'">Hide</button>
-                <div ng-repeat="saved in self.places">
-                    <div id="SavedPlaces">
-                        <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
-                        <div><label>Adress</label>{{saved.formmatted_address}}</div>
-                        <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
-                        <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
-                        <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                        <div><label>Price Level</label>{{saved.price_level}}</div>
-                        <div><label>Rating</label>{{saved.rating}}</div>
-                       <div><lable>Destance</lable>{{saved.distance}}</div>
-                        <div><lable>Time</lable>{{saved.time}}</div>
-                    </div>
-                </div>
-=======
->>>>>>> 3dbac9a53c7ccc727dab71cc395bb98ed3833773
             </div>
        
 </div>
@@ -157,7 +137,6 @@
             <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
             <div><label>Price Level</label>{{saved.price_level}}</div>
             <div><label>Rating</label>{{saved.rating}}</div>
-            <div>{{saved.photos}}</div>
             <div><label>Distance</label>{{saved.distance}}</div>
             <div><label>Time</label>{{saved.time}}</div>
         </div>
@@ -198,41 +177,38 @@
 
         <form id="loginform" ng-submit="self.login()">
             <label id="label1">
-                User Name:
+                User Email:
             </label>
-            <input class="loginbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+            <input class="loginbox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
             <label id="label1">
                 Password:
             </label>
-            <input class="loginbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />&nbsp;
+            <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
             <input type="submit" class="btn btn-success" value="Log In" />&nbsp;
             <button ng-click="self.loggingin = false" class="bnt btn-warning">Cancel</button>
         </form>
     </div>
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.registger()">
-            <label class="label1">
-                User Name:
-            </label>
-            <input class="registerbox" name="username" ng-model="self.username" type="text" ng-required="true" />
+        <form id="registerform" ng-submit="self.register()">
+
             <label class="label1">
                 Email:
             </label>
-            <input class="registerbox" name="useremail" ng-model="self.email" type="email" ng-required="true" />
+            <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
 
 
 
             <label class="label1">
                 Password:
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
             <label class="label1">
-                Confirmed Password :
+                Confirm Password :
             </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.password" ng-required="true" />
+            <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <button type="submit" class="bnt btn-success">Register</button>
+            <input  type="submit" class="bnt btn-success" value="Register"/>
 
             <button ng-click="self.registering = false" class="bnt btn-warning">Cancel</button>
         </form>

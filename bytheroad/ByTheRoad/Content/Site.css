@@ -1,7 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -20,15 +17,17 @@ body {
   margin: 0;
   padding: 0;
   background:white;
+  border:solid 2px black;
 }
  
 .nav ul {
   list-style: none;
-  background-color: #444;
+  background-color: #609;
   text-align: center;
-  padding: 0;
+  padding:0;
   margin: 0;
   height:10%;
+  border:10px solid black;
 }
 .nav li {
   font-family: 'Oswald', sans-serif;
@@ -40,7 +39,7 @@ body {
  
 .nav a {
   text-decoration: none;
-  color: #fff;
+  color:#15F7DE;
   display: block;
   transition: .3s background-color;
 }
@@ -62,7 +61,7 @@ body {
     height: 50px;
     line-height: 50px;
     font-size: 1.4em;
-display: inline-block;
+    display: inline-block;
     margin-right: -4px;
   }
  
@@ -71,15 +70,12 @@ display: inline-block;
   
 }
 
-.distance{
-background-color:coral;
 
-}
 
 .leftboxes{
 
   height:100%;
-  width: 25%;
+  width: 27%;
 position:absolute;
 border: 1px solid blue;
 }
@@ -87,13 +83,15 @@ border: 1px solid blue;
 .floating-box {
     float: left;
     width: 100%;
-    height: 50%;    
-    border:3px solid red;  
-     margin:0px;
-     padding:10px;
-    
+    height: 100%;    
+    border:10px solid black;  
+     margin:-10px;
+     padding:20px;
+    background-color:white;
     
 }
+
+
 
 
 
@@ -107,20 +105,22 @@ border: 1px solid blue;
 
 
 .floatingmapbox {
-  border: 3px solid salmon;
+   border:solid 10px black;
+   
   width: 100%;
   height: 100%;
   position: relative;
   right: 0;
-   margin:0px;
+   margin:-5px;
+
 }
 
 .rightloginbox {
-    background-color: lightyellow;
+    background-color:#64B970 ;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid salmon;   
+    border: 3px solid black;   
     width: 100%;   
      height:10%;
     margin:0px;
@@ -129,11 +129,24 @@ border: 1px solid blue;
 }
 
 .rightregisterbox{
-background-color: lightyellow;
+background-color: #64B970;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid salmon;   
+    border: 3px solid black;   
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+.rightstartbox{
+background-color: #64B970;
+    position: absolute;
+    right:0;
+    top: 0px;
+    border: 3px solid black;   
     width: 100%;   
      height:10%;
     margin:0px;
@@ -144,10 +157,53 @@ background-color: lightyellow;
 
 .label1{
     font:bold;
-    color:green;
-
+    color:black;
+    font-size:25px;
 }
 
+
+.submitbtn{
+    background-color:salmon;
+    color:black;
+    font-size:20px;
+    width:150px;
+    height:35px;
+}
+
+.cancelbtn{
+background-color:yellow;
+    color:black;
+    font-size:20px;
+    width:150px;
+    height:35px;
+}
+
+.loginbox{
+  padding: 5px;
+  border: solid 3px salmon;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:35px;
+}
+
+.registerbox{
+ padding: 1px;
+  border: solid 3px salmon;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:140px;
+height:35px;
+}
+
+
+.addbox{
+    background-color:white;
+    border:3px solid black;
+    margin:10px;
+    width:70%;
+    height:35px;
+}
 .ownsearch{
 
     color:red;
@@ -158,8 +214,7 @@ background-color: lightyellow;
     height:1px;
     width:1px;
     display:inline;
-    padding:10px;
-
+ 
 }
 
 .searchbox {
@@ -170,12 +225,7 @@ background-color: lightyellow;
     
     padding:20px;
 }
-.addbox{
-    background-color:coral;
-    border:3px solid blue;
-    margin:10px;
-    width:70%;
-}
+
 
 
 #time{
@@ -245,7 +295,7 @@ background-color: lightyellow;
 
 }
  .distance{
-     background-color:green;
+     background-color:#dd4b39;
     margin:10px;
     height:70px;
     width:90px;
@@ -266,12 +316,6 @@ background-color: lightyellow;
   width:200px;
       
       }
-
- #SearchResults{
-     width:350px;
-     height:250px;
-     border:1px solid blue;
- }
 
  
 
@@ -321,7 +365,7 @@ background-color: lightyellow;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-#sResult{border: 1px solid red;
+#sResult{border: 1px solid #17DF56;
     top: 50%;
     height: 50%;
     width: 100%;
@@ -333,35 +377,25 @@ background-color: lightyellow;
     width:70px;
     height:30px;
     background-color:indianred;
-    color:green;
+    color:black;
 }
 
-.loginbox{
-  padding: 5px;
-  border: solid 3px salmon;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-}
 
-.registerbox{
- padding: 1px;
-  border: solid 3px salmon;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:140px;
-}
 
 
 #searchResults {
+    margin-top:400px;
     border: 1px solid red;
-    height: 110%;
+    height: 65%;
     position: absolute;
-    width: 100%;
+    width: 25%;
     overflow:scroll;
     background-color:white;
     
 }
+
+ 
+
 
 #searchResultsDetail{
     border: 1px solid red;
@@ -369,10 +403,11 @@ background-color: lightyellow;
 
 
 #savedPlaces{
- border: 1px solid red;
-    position:absolute;
-    height: 110%;
-    width: 100%;
+  margin-top:400px;
+    border: 1px solid red;
+    height: 65%;
+    position: absolute;
+    width: 25%;
     overflow:scroll;
     background-color:white;
 }
@@ -398,3 +433,13 @@ background-color: lightyellow;
    width:100px;
 
 }
+#searchVisible{
+    
+    margin-top:150px;
+    width: 120px;
+    height:30px;
+    margin-left:-10px;
+   background-color:yellow;
+ border:solid 1px black;
+}
+

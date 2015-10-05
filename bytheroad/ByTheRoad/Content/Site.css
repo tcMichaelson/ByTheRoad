@@ -386,7 +386,7 @@ height:35px;
 #searchResults {
     margin-top:400px;
     border: 1px solid red;
-    height: 65%;
+    height: 63%;
     position: absolute;
     width: 25%;
     overflow:scroll;
@@ -405,7 +405,7 @@ height:35px;
 #savedPlaces{
   margin-top:400px;
     border: 1px solid red;
-    height: 65%;
+    height:63%;
     position: absolute;
     width: 25%;
     overflow:scroll;
@@ -442,4 +442,15 @@ height:35px;
    background-color:yellow;
  border:solid 1px black;
 }
+#Result1{
+    background-color:#287AA9;
+    height: 75px;
+    width: 90px;
 
+}
+#Result2{
+    background-color:#3087B4;
+    height: 75px;
+    width: 90px;
+
+}

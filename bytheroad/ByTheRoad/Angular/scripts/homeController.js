@@ -4,7 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
             var self = this;
             var searchBox;
-
+            self.distance = false;
             self.registering = false;
             self.loggingin = false;
             self.start = false;

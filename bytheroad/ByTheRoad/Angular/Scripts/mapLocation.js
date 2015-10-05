@@ -131,10 +131,10 @@ function findGenericFuturePosition(unitType, amount) {
 
 function findFuturePosition(spotOnRoute, unit, amount) {
     var meters;
-    if (unit = "miles") {
+    if (unit === "miles") {
         meters = amount * 1609.344;
     } else {
-        if (unit = "hours") {
+        if (unit === "hours") {
             amount *= 3600;
         } else {
             amount *= 60;

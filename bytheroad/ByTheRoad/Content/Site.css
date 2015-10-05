@@ -297,7 +297,7 @@ height:35px;
  .distance{
      background-color:#A0B842;
     margin:10px;
-    height:70px;
+    height:50px;
     width:90px;
     padding:0px;
     color:white;
@@ -393,11 +393,11 @@ height:35px;
 
 
 #searchResults {
-    margin-top:400px;
+    margin-top:370px;
     border: 1px solid red;
-    height: 63%;
+    height: 55%;
     position: absolute;
-    width: 25%;
+    width: 100%;
     overflow:scroll;
     background-color:white;
     
@@ -414,9 +414,9 @@ height:35px;
 #savedPlaces{
   margin-top:400px;
     border: 1px solid red;
-    height: 65%;
+    height: 55%;
     position: absolute;
-    width: 25%;
+    width: 100%;
     overflow:scroll;
     background-color:white;
 }
@@ -445,11 +445,20 @@ height:35px;
 #searchVisible{
     
     margin-top:150px;
-    width: 120px;
-    height:40px;
+    width: 130px;
+    height:30px;
     margin-left:-25px;
    background-color:#143D55;
- border:solid 5px black;
+
  color:aqua;
 }
 
+.Result1{
+background-color:#287AA9;
+    
+    height:70px;
+    width:100px;
+    padding:0px;
+    color:white;
+    margin-left:40px;
+}

@@ -8,36 +8,32 @@
             var placeIdArray = [];
             var markers = [];
 
-            self.categorySearch = function (model) {
+            self.categorySearch = function (model, center) {
                 self.results = [];
-                var pos = { lat: locHist[0].lat, lng: locHist[0].lng };
-
                 infowindow = new google.maps.InfoWindow();
 
                 var service = new google.maps.places.PlacesService(map);
+
                 service.nearbySearch({
-                    location: pos,
-                    radius: 5000,
+                    location: center,
+                    radius: 500,
                     types: [model.selectedItem]
                 }, self.callback);
             }
 
      //text search from  input box
-            self.regTextSearch = function () {
+            self.regTextSearch = function (model, center) {
                 self.results = [];
-                var pos = { lat: locHist[0].lat, lng: locHist[0].lng };
 
                 infowindow = new google.maps.InfoWindow();
 
-                var service = new google.maps.places.PlacesService(map);
-
                 var request = {
-                    location: pos,
-                    radius: 5000,
+                    location: center,
+                    radius: 500,
                     query: document.getElementById('textsearch').value
                 };
 
-                service = new google.maps.places.PlacesService(map);
+                var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
 

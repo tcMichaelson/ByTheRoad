@@ -133,7 +133,7 @@ background-color: #64B970;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid black;   
+    border: 1px solid black;   
     width: 100%;   
      height:10%;
     margin:0px;
@@ -146,7 +146,7 @@ background-color: #64B970;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid black;   
+    border: 1px solid black;   
     width: 100%;   
      height:10%;
     margin:0px;
@@ -158,51 +158,61 @@ background-color: #64B970;
 .label1{
     font:bold;
     color:black;
-    font-size:25px;
+    font-size:20px;
 }
 
 
 .submitbtn{
-    background-color:salmon;
+    background-color:#999999;
     color:black;
     font-size:20px;
-    width:150px;
-    height:35px;
+    width:100px;
+    height:30px;
+    margin:10px;
 }
 
-.cancelbtn{
-background-color:yellow;
+.submitdirection{
+    background-color:#999999;
     color:black;
     font-size:20px;
     width:150px;
-    height:35px;
+    height:30px;
+    margin:10px;
+}
+.cancelbtn{
+background-color:#999999;
+    color:black;
+    font-size:20px;
+    width:100px;
+    height:30px;
 }
 
 .loginbox{
-  padding: 5px;
-  border: solid 3px salmon;
+  padding: 3px;
+  border: solid 1px ;
   box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
   width:150px;
-  height:35px;
+  height:30px;
 }
 
 .registerbox{
- padding: 1px;
-  border: solid 3px salmon;
+ padding: 3px;
+  border: solid 1px ;
   box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
   width:140px;
-height:35px;
+height:30px;
 }
 
 
 .addbox{
-    background-color:white;
-    border:3px solid black;
-    margin:10px;
-    width:70%;
-    height:35px;
+   padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:250px;
+height:30px;
 }
 .ownsearch{
 
@@ -221,10 +231,7 @@ height:35px;
     margin-top: 10px;
 }
 
-#directionsearch{
-    
-    padding:20px;
-}
+
 
 
 
@@ -318,11 +325,12 @@ height:35px;
  }
  .distanceortime{
      
-  padding: 1px;
-  border: solid 3px green;
-  box-shadow: inset 0 0 0 3px yellow;
+  padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
-  width:200px;
+  width:150px;
+  height:30px;
       
       }
 

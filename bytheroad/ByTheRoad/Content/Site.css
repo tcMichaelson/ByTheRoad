@@ -17,24 +17,24 @@ body {
   margin: 0;
   padding: 0;
   background:white;
-  border:solid 2px black;
+  border:solid 1px black;
 }
  
 .nav ul {
   list-style: none;
-  background-color: #609;
+  background-color: #143D55;
   text-align: center;
   padding:0;
   margin: 0;
   height:10%;
-  border:10px solid black;
+
 }
 .nav li {
   font-family: 'Oswald', sans-serif;
   font-size: 1.2em;
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #888;
+  line-height: 70px;
+  height: 70px;
+ 
 }
  
 .nav a {
@@ -45,11 +45,11 @@ body {
 }
  
 .nav a:hover {
-  background-color: #005f5f;
+  background-color: #3087B4;
 }
  
 .nav a.active {
-  background-color: #fff;
+  background-color: #143D55;
   color: #444;
   cursor: default;
 }
@@ -75,7 +75,7 @@ body {
 .leftboxes{
 
   height:100%;
-  width: 27%;
+  width: 25%;
 position:absolute;
 border: 1px solid blue;
 }
@@ -84,9 +84,9 @@ border: 1px solid blue;
     float: left;
     width: 100%;
     height: 100%;    
-    border:10px solid black;  
-     margin:-10px;
-     padding:20px;
+    border:1px solid black;  
+    margin:0px;
+     padding:10px;
     background-color:white;
     
 }
@@ -105,13 +105,13 @@ border: 1px solid blue;
 
 
 .floatingmapbox {
-   border:solid 10px black;
+   border:solid 1px black;
    
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
   right: 0;
-   margin:-5px;
+   margin:0px;
 
 }
 
@@ -295,13 +295,22 @@ height:35px;
 
 }
  .distance{
-     background-color:#dd4b39;
+     background-color:#A0B842;
     margin:10px;
     height:70px;
     width:90px;
     padding:0px;
     color:white;
  }
+
+ .clear{
+     background-color:#143D55;
+     color:#15F7DE;
+     width:100px;
+     height:30px;
+
+ }
+
  #stopin{
     color:blue;
     font-size:25px;
@@ -386,7 +395,7 @@ height:35px;
 #searchResults {
     margin-top:400px;
     border: 1px solid red;
-    height: 65%;
+    height: 63%;
     position: absolute;
     width: 25%;
     overflow:scroll;
@@ -437,9 +446,10 @@ height:35px;
     
     margin-top:150px;
     width: 120px;
-    height:30px;
-    margin-left:-10px;
-   background-color:yellow;
- border:solid 1px black;
+    height:40px;
+    margin-left:-25px;
+   background-color:#143D55;
+ border:solid 5px black;
+ color:aqua;
 }
 

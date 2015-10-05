@@ -25,7 +25,7 @@
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.hoursUnit=null ">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.milesUnit = null">miles</button>
 
-                <div>
+                <div id="distance">
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                         Enter time in minutes you want to stop in <br />
                         <input name="content"  type="text" ng-model="self.minutesUnit" class="distanceortime" />
@@ -103,7 +103,7 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-            <button id="favorite" type="button">Favorites</button>
+            <button id="favorite" type="button">My Places</button>
         </h3>
 
         <div ng-repeat="result in self.results">

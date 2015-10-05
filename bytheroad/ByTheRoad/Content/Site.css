@@ -395,6 +395,7 @@ height:30px;
     height:50px;
     background-color:#287AA9;
     color:white;
+    font-size:medium;
 }
 
 
@@ -489,4 +490,8 @@ background-color:#287AA9;
     height:50px;
     background-color:#143D55;
     color:white;
+    font-size:medium
+}
+#distance{
+    color:#287AA9;
 }

@@ -103,10 +103,10 @@ function isBetween(a, b, x) {
 function findGenericFuturePosition(unitType, amount) {
     var meters;
     var lastLoc = locHist[locHist.length - 1];
-    if (unit = "miles") {
+    if (unit === "miles") {
         meters = amount * 1609.344;
     } else {
-        if (unit = "hours") {
+        if (unit === "hours") {
             amount *= 3600;
         } else {
             amount *= 60;

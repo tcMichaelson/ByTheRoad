@@ -303,8 +303,8 @@ height:30px;
 }
  .distance{
      background-color:#A0B842;
-    margin:10px;
-    height:50px;
+    margin:20px;
+    height:70px;
     width:90px;
     padding:0px;
     color:white;
@@ -467,23 +467,14 @@ height:30px;
 .Result1{
 background-color:#143D55;
     
-    height:70px;
+    height:25px;
     width:100px;
     padding:0px;
     color:white;
-    margin-left:40px;
-    font-size:large;
+    margin-left:150px;
+    font-size:small;
 }
-.Result2{
-background-color:#287AA9;
-    
-    height:70px;
-    width:100px;
-    padding:0px;
-    color:white;
-    margin-left:40px;
-    font-size:large;
-}
+
 #favorite{
  
     width:110px;

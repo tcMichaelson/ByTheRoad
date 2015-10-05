@@ -4,7 +4,7 @@
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
-       
+
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
     </ul>
 </div>
@@ -28,20 +28,20 @@
                 <div>
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                         Enter time in minutes you want to stop in <br />
-                        <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" />
-                        <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="btn btn-danger">Clear</button>
+                        <input name="content"  type="text" ng-model="self.minutesUnit" class="distanceortime" />
+                        <button ng-click="self.minutesUnit = null; self.selected= false" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
                     </p>
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">
                         Enter time in hours you want to stop in<br />
                         <input type="text" ng-model="self.hoursUnit" class="distanceortime" />
-                    <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="clear">Clear</button>
+                        <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="clear">Clear</button>
                     </p>
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
                         Enter miles you want to stop in<br />
                         <input type="text" ng-model="self.milesUnit" class="distanceortime" />
-                    <button class="clear" ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" >Clear</button>
+                        <button class="clear" ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0">Clear</button>
 
                     </p>
 
@@ -72,7 +72,7 @@
                     <button type="button" ng-click="self.selectedItem = 'local_service';  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
                     </button>
-                <button type="button" ng-click="self.selectedItem = 'church'; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
+                    <button type="button" ng-click="self.selectedItem = 'church'; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png" id="img" /></span>
                     </button>
 
@@ -130,7 +130,7 @@
 
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
         <h3> My Favorite places</h3>
-    <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = false;">Hide</button>
+        <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = false;">Hide</button>
         <div ng-repeat="saved in self.places">
             <div id="savedPlacesDetail">
                 <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
@@ -188,24 +188,24 @@
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <input  type="submit" class="submitbtn" value="Register"/>
+            <input type="submit" class="submitbtn" value="Register" />
 
             <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
         </form>
     </div>
 
-  
+
     <div ng-hide="self.start === false" class="rightstartbox">
         <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
 
 
-             <label class="label1">Point</label>
+            <label class="label1">Point</label>
             <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
             <input type="text" id="origin" class="addbox" ng-hide="self.start === false" />
             <label class="label1">Point</label>
             <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
             <input type="text" id="destination" class="addbox" ng-hide="self.start === false" />
-            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitbtn">Get Direction</button>
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
         </form>
 
 

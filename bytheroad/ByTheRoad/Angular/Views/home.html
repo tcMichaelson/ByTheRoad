@@ -28,8 +28,8 @@
                 <div>
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                         Enter time in minutes you want to stop in <br />
-                        <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" />
-                        <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
+                        <input name="content"  type="text" ng-model="self.minutesUnit" class="distanceortime" />
+                        <button ng-click="self.minutesUnit = null; self.selected= false" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
                     </p>
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">

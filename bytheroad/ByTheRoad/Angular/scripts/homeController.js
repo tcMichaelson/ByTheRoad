@@ -51,20 +51,11 @@
             };
 
             self.nearbySearch = function () {
-                var info = self.getUnitAndAmount;
-                self.results = [];
-                var searchPos = findSearchPositionAlongRoute(info.unit, info.amount);
-
-                mapService.categorySearch(self, searchPos);
-                self.startInterval();
-                self.showResultsBox();
+                self.runSearch(mapService.categorySearch);
             };
 
             self.textSearch = function () {
-                self.results = [];
-                mapService.regTextSearch();
-                self.startInterval();
-                self.showResultsBox();
+                self.runSearch(mapService.regTextSearch);
             }
 
             self.startInterval = function () {
@@ -77,6 +68,21 @@
                         clearInterval(checkResults);
                     }
                 }, 500);
+            }
+
+            self.runSearch = function (func) {
+                var info = self.getUnitAndAmount();
+                self.results = [];
+                var spotOnRoute = findCurrentPosition();
+                console.log("spot on route:", spotOnRoute);
+                if (!spotOnRoute) {
+                    var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
+                } else {
+                    var searchPos = findGenericFuturePosition(info.unit, info.amount);
+                }
+                func(self, searchPos);
+                self.startInterval();
+                self.showResultsBox();
             }
 
             var input = document.getElementById('textsearch');
@@ -96,7 +102,7 @@
                     searchBox.setBounds(map.getBounds());
                 });
 
-                var markers = [];
+                //var markers = [];
                 // [START region_getplaces]
                 // Listen for the event fired when the user selects a prediction and retrieve
                 // more details for that place.
@@ -107,7 +113,10 @@
                         return;
                     }
                     mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
+                    self.startInterval();
+                    self.showResultsBox();
 
+                    /*
                     // Clear out the old markers.
                     markers.forEach(function (marker) {
                         marker.setMap(null);
@@ -133,11 +142,11 @@
                             console.log("No viewport found");
                         }
                     });
-                    self.showResultsBox();
+                    
                     map.fitBounds(bounds);
+            */
                 });
             };
-
 
             self.showResultsBox = function () {
                 self.animationResults = "animated slideInLeft";
@@ -145,11 +154,11 @@
             }
 
             self.getUnitAndAmount = function(){
-                if (self.minutesUnit !== null)
+                if (self.minutesUnit)
                     return {unit: "minutes", amount: self.minutesUnit};
-                if (self.hoursUnit !== null)
+                if (self.hoursUnit)
                     return {unit: "hours", amount: self.hoursUnit};
-                if (self.milesUnit !== null)
+                if (self.milesUnit)
                     return {unit: "miles", amount: self.milesUnit};
             }
             self.toggleSavedBox = function () {

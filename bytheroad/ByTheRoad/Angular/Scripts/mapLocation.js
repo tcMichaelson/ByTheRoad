@@ -11,7 +11,8 @@ var lastKnownStep;
 var selectedRoute;  //currently selected route.
 var selectedPath;  //The full path of the currently selected route;
 var routeLines = [];  //path coordinates of the selected route
-var projectedPosition;
+var futureLoc;  //represents the location the user will be at in a given time frame.
+var futurePath;  //represents the path taken to get to the future location
 
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
@@ -47,7 +48,7 @@ function initMap() {
 
 }
 //  findSearchPositionAlongRoute("minutes", 30)
-function findSearchPositionAlongRoute(unitType, amount) {
+function findCurrentPosition() {
     var currPos = locHist[locHist.length - 1];
     var currLeg;
     var foundStep = false;
@@ -69,10 +70,11 @@ function findSearchPositionAlongRoute(unitType, amount) {
                         lastKnownLeg = iLeg;
                         lastKnownStep = iStep;
                         foundStep = true;
+                        result = { route: selectedRoute, leg: iLeg, step: iStep}
                         if (diffNext < diffCheck) {
-                            result = currStep.path[iLine];
+                            result.line = iLine;
                         } else {
-                            result = currStep.path[iLine - 1]
+                            result.line = iLine - 1;
                         }
                     } else {
                         diffCheck = diffNext;
@@ -80,15 +82,13 @@ function findSearchPositionAlongRoute(unitType, amount) {
                     }
                 }
                 if (foundStep) {
-                    setMarker(locHist[locHist.length - 1], "actual");
-                    setMarker(result, "estimated");
                     return result;
                 }
             }
         }
         if (foundStep = false) { return false; }
     } else {
-        findSearchPositionAlongDirection(unitType, amount);
+        return false;
     }
 }
 
@@ -99,10 +99,48 @@ function isBetween(a, b, x) {
 }
 
 
+//  findGenericFuturePosition("minutes", 30)
+function findGenericFuturePosition(unitType, amount) {
+    var meters;
+    var lastLoc = locHist[locHist.length - 1];
+    if (unit = "miles") {
+        meters = amount * 1609.344;
+    } else {
+        if (unit = "hours") {
+            amount *= 3600;
+        } else {
+            amount *= 60;
+        }
+        meters = lastLoc.speed * amount;
+    }
+    console.log("meters:", meters);
+    console.log("speed:", lastLoc.speed);
+    console.log(meters);
 
-function findSearchPostionAlongDirection(unitType, amount) {
-    //if not on a route and a desination is selected, then calculate a new route.
-    //otherwise, we will have to guess about the expected end point, assuming a straight road in the current direction.
+    var futureLoc = calculatePointAlongBearing({ lat: lastLoc.lat, lng: lastLoc.lng }, lastLoc.bearing, meters);
+    futurePath = new google.maps.Polyline({
+        path: [{ lat: lastLoc.lat, lng: lastLoc.lng }, { lat: futureLoc.lat, lng: futureLoc.lng }],
+        strokeWeight: 2,
+        strokeColor: '#000000',
+        map: map
+    });
+    futurePath.setMap(map);
+    console.log(futureLoc);
+}
+
+function findFuturePosition(spotOnRoute, unit, amount) {
+    var meters;
+    if (unit = "miles") {
+        meters = amount * 1609.344;
+    } else {
+        if (unit = "hours") {
+            amount *= 3600;
+        } else {
+            amount *= 60;
+        }
+    }
+    var found = false;
+    while (!found && false) { }
 }
 
 function findRouteAndDisplay() {
@@ -203,24 +241,19 @@ function setOriginTextBox(pos) {
     }
     if (locHist.length === 0) {
         firstLoc = pos;
-        locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: 0, speed: 0 });
+        locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: 0, speed: 0 });
     } else {
         var prevLoc = locHist[locHist.length - 1];
         if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
             var firstLoc = locHist[0];
             var currentLoc = pos;
-            var traj = (currentLoc.lat - firstLoc.lat) / (currentLoc.lng - firstLoc.lng);
-            var dist = calculateDistance(currentLoc, firstLoc);  //distance in meters
-            console.log("dist: " + dist);
+            var brng = calculateInitialBearing(firstLoc, currentLoc);
+            var dist = calculateDistance(firstLoc, currentLoc);  //distance in meters
             var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
-            console.log("time: " + time);
             var spd = dist / time;  //meters per second
-            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), trajectory: traj, speed: spd });
+            locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: brng, speed: spd });
         }
     }
-
-    console.log(locHist[locHist.length - 1]);
-
 }
 
 function calculateDistance(pos1, pos2) {
@@ -241,8 +274,39 @@ function calculateDistance(pos1, pos2) {
     return earthRadius * c;
 }
 
+function calculateInitialBearing(pos1, pos2) {
+    var lat1 = pos1.lat;
+    var lng1 = pos1.lng;
+    var lat2 = pos2.lat;
+    var lng2 = pos2.lng;
+
+    var y = Math.sin(lng2 - lng1) * Math.cos(lat2);
+    var x = Math.cos(lat1) * Math.sin(lat2) -
+            Math.sin(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1);
+    var bearing = toDegrees(Math.atan2(y, x));
+    return bearing;
+}
+
+function calculatePointAlongBearing(pos, brng, dist) {
+    var lat1 = toRadians(pos.lat);
+    var lng1 = toRadians(pos.lng);
+    var bearing = 0 - toRadians(brng);  //reversing bearing.  should be clockwise from north
+    var R = 6371000;
+    console.log("lat1:", lat1, "lng1:", lng1, "bearing:", bearing,"dist:", dist);
+    var lat2 = Math.asin(Math.sin(lat1) * Math.cos(dist / R) +
+                    Math.cos(lat1) * Math.sin(dist / R) * Math.cos(bearing));
+    var lng2 = lng1 + Math.atan2(Math.sin(bearing) * Math.sin(dist / R) * Math.cos(lat1),
+                             Math.cos(dist / R) - Math.sin(lat1) * Math.sin(lat2));
+    return { lat: toDegrees(lat2), lng: toDegrees(lng2) }
+}
+
+
 function toRadians(deg) {
     return deg * Math.PI / 180;
+}
+
+function toDegrees(rad){
+    return rad / Math.PI * 180;
 }
 
 function executePan(newCenter) {
@@ -261,7 +325,7 @@ function startRouting() {
     console.log(selectedRoute);
     move++;
     var refreshInterval = window.setInterval(function () {
-        if (move < 30) {
+        if (move < 60) {
             executePan(selectedPath[move]);
             move++;
         } else {

@@ -109,11 +109,11 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-                <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
+                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div><label> Address:</label>{{result.formatted_address}}</div>
-                <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
+                <div>{{result.formatted_address}}</div>
+                <div>{{result.formatted_phone_number}}</div>
                 <div><label> Price Level:</label>{{result.price_level}}</div>
                 <div><label> Rating:</label> {{result.rating}}</div>
                 <div><label> Distance:</label>{{result.distance}}</div>
@@ -133,9 +133,9 @@
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = false;">Hide</button>
         <div ng-repeat="saved in self.places">
             <div id="savedPlacesDetail">
-                <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
-                <div><label>Adress</label>{{saved.formmatted_address}}</div>
-                <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
+                <div style="color:#143D55"><h4><strong>{{saved.name}}</strong></h4></div>
+                <div>{{saved.formmatted_address}}</div>
+                <div>{{saved.formatted_phone_number}}</div>
                 <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
                 <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div><label>Price Level</label>{{saved.price_level}}</div>

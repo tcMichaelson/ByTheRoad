@@ -13,7 +13,6 @@
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
-            
             self.getResults = function () {
                 self.results = mapService.results;
             }
@@ -73,6 +72,7 @@
             self.runSearch = function (func) {
                 var info = self.getUnitAndAmount();
                 self.results = [];
+                mapService.results = [];
                 var spotOnRoute = findCurrentPosition();
                 console.log("spot on route:", spotOnRoute);
                 if (!spotOnRoute) {

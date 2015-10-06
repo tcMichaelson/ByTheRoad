@@ -98,7 +98,7 @@
                     });
 
                 }
-
+                console.log("self-results" + self.results);
             }
 
             function createMarker(place) {

@@ -276,6 +276,7 @@
     <Content Include="fonts\glyphicons-568-transport.png" />
     <Content Include="fonts\glyphicons-6-car - Copy.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\translucentparki.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-resource.js" />

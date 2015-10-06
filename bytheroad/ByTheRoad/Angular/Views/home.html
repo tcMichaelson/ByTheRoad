@@ -69,7 +69,7 @@
                         </span>
                     </button>
                 <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
-                        <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
+                        <span><img src="../../fonts/glyphicons-6-car - Copy.png" id="img" /></span>     
                     </button>
                 <button type="button" ng-click="self.selectedItem = ['atm','police','hospital', 'library', 'local_government_office','locksmith','pharmacy','post_office' ];  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
@@ -115,7 +115,8 @@
                 
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div>{{result.formatted_address}}</div>
+                <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div>{{result.formatted_phone_number}}</div>
                 <div><label> Price Level:</label>{{result.price_level}}</div>
                 <div><label> Rating:</label> {{result.rating}}</div>

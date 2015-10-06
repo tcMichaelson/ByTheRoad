@@ -144,12 +144,17 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
+<<<<<<< HEAD
+<<<<<<< HEAD
                 
                 
+                <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
 =======
                 <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
 >>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd
+=======
+                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
+>>>>>>> dc96536a78d4e97f608e06d144a745b259d17426
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div>{{result.formatted_address}}</div>

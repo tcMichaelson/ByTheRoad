@@ -145,11 +145,6 @@
 
             <div id="searchResultsDetail">
                 <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
-                
-                
-=======
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
->>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div>{{result.formatted_address}}</div>

@@ -16,33 +16,46 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  background:white;
+  background:rgb(34,30,78);
   border:solid 1px black;
+  height: 100%;
+  min-width: 1000px;
+  width: 100%;
+  position: absolute;
 }
- .nav{
-     height:10%;
- }
+
+    
+ 
+
 .nav ul {
   list-style: none;
-  background-color: #143D55;
+  
   text-align: center;
   padding:0;
   margin: 0;
-  height:10%;
+  height:100%;
+ 
+  
 
 }
-/*.nav li {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 70px;
+nav li {
+     width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+
+}
  
-}*/
- 
+.nav{
+    height:50px;
+}
 .nav a {
   text-decoration: none;
-  color:#15F7DE;
-  display: block;
+  color:white;
+  display:block;
   transition: .3s background-color;
 }
  
@@ -55,50 +68,190 @@ body {
   color: #444;
   cursor: default;
 }
- 
-@media screen and (min-width: 600px) {
-  .nav li {
-    width: 120px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.4em;
-    display: inline-block;
-    margin-right: -4px;
+
     
-  }
- 
- 
- 
-  
+
+.logo {
+    position: absolute;
+    font-size: larger;
+    font-style: italic;
+    color: darkseagreen;
+    left: 10%;
 }
 
 #Name {
     color:white;
 }
-
 .leftboxes{
 
   height:100%;
   width: 25%;
-position:absolute;
-border: 1px solid blue;
+  position:absolute;
+  border: 1px solid blue;
+}
+
+#Result{
+    position: absolute;
+    width: 100%;
 }
 
 .floating-box {
-    float: left;
     
     width: 100%;
     height: 100%;    
-    border:1px solid black;  
-    margin:0px;
-     padding:10px;
+    border:1px solid black;
+    position: absolute;
     background-color:white;
-    
+}
+
+#h4style{
+    color:black;
+    font-size:25px;
+    font-weight:200 bolder;
+    margin-top: 40px;
+    text-align:center;
+ }
+
+.queryInput{
+    position: absolute;
+    width: 100%;
+}
+
+.queryInput div{
+    position: absolute;
+    width: 100%;
 }
 
 
+ .distance{
+     background-color:#E18A07;
+    margin:5px;
+    height:70px;
+    width:90px;
+    padding:0px;
+    color:white;
+    font-size:20px;
+ }
 
+
+ .distanceortime{
+     
+  padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:30px;
+      
+      }
+
+
+.clear{
+     background-color:#143D55;
+     color:white;
+     width:100px;
+     height:30px;
+
+ }
+
+.nearbysearch{
+    margin-top:150px;
+    margin-left:10px;
+    position:absolute;
+}
+
+.btn btn-primary{
+    height:1px;
+    width:1px;
+    display:inline;
+ 
+}
+
+#img{
+    height:20px;
+    width:20px;
+    display:inline;
+    padding:0;
+
+}
+
+
+.searchbox {
+    margin-top: 50px;
+}
+
+#searchVisible{
+    
+    margin-top:500px;
+    width:100px;
+    height:40px;
+    margin-left:-25px;
+   background-color:white;
+   border:1px solid black;
+ color:black;
+}
+
+#slideoutsearchResults {
+    margin-top:370px;
+  
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
+    
+}
+
+#slideboxheading{
+    color:black;
+}
+
+#hide{
+ 
+    width:90px;
+    height:30px;
+    background-color:#428bca;
+    color:white;
+    font-size:medium;
+}
+
+
+#favorite{
+ 
+    width:90px;
+    height:30px;
+    background-color:#428bca;
+    color:white;
+    font-size:medium
+}
+
+
+#searchResultsDetail{
+    border: 1px solid #287AA9;
+}
+
+#resulttitle{
+
+}
+
+#savedPlaces{
+  margin-top:400px;
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
+}
+
+#savedPlacesDetail{
+    border: 1px solid #287AA9;
+    height: 250px;
+    width: 425px;
+}
 
 
 .rightboxes{
@@ -106,27 +259,25 @@ border: 1px solid blue;
   height: 100%;
   position: absolute;
   right: 0;
-
 }
 
 
 .floatingmapbox {
+
    border:solid 1px black;
-   
   width: 100%;
   height: 100%;
   position: absolute;
-  right: 0;
    margin:0px;
 
 }
 
 .rightloginbox {
-    background-color:#64B970 ;
+    background-color:#FA9E25;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid black;   
+    border-top:1px solid white; 
     width: 100%;   
      height:10%;
     margin:0px;
@@ -134,30 +285,12 @@ border: 1px solid blue;
     padding:10px;
 }
 
-.rightregisterbox{
-background-color: #64B970;
-    position: absolute;
-    right:0;
-    top: 0px;
-    border: 1px solid black;   
-    width: 100%;   
-     height:10%;
-    margin:0px;
-    margin-bottom:1px;
-    padding:10px;
-}
-
-.rightstartbox{
-background-color: #64B970;
-    position: absolute;
-    right:0;
-    top: 0px;
-    border: 1px solid black;   
-    width: 100%;   
-     height:10%;
-    margin:0px;
-    margin-bottom:1px;
-    padding:10px;
+.loginbox{
+  padding: 3px;
+   box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:30px;
 }
 
 
@@ -168,8 +301,38 @@ background-color: #64B970;
 }
 
 
+
+
+.rightregisterbox{
+background-color:#FA9E25 ;
+    position: absolute;
+    right:0;
+    top: 0px;
+   border-top:1px solid white;
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+.rightstartbox{
+background-color:#FA9E25;
+    position: absolute;
+    right:0;
+    top: 0px;
+    border: 1px solid white;   
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+
+
 .submitbtn{
-    background-color:#999999;
+    background-color:#3276b1;
     color:black;
     font-size:20px;
     width:100px;
@@ -177,30 +340,15 @@ background-color: #64B970;
     margin:10px;
 }
 
-.submitdirection{
-    background-color:#999999;
-    color:black;
-    font-size:20px;
-    width:150px;
-    height:30px;
-    margin:10px;
-}
+
 .cancelbtn{
-background-color:#999999;
+background-color:#3276b1;
     color:black;
     font-size:20px;
     width:100px;
     height:30px;
 }
 
-.loginbox{
-  padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
-}
 
 .registerbox{
  padding: 3px;
@@ -211,6 +359,14 @@ background-color:#999999;
 height:30px;
 }
 
+.submitdirection{
+    background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:150px;
+    height:30px;
+    margin:10px;
+}
 
 .addbox{
    padding: 3px;
@@ -220,27 +376,17 @@ height:30px;
   width:250px;
 height:30px;
 }
+
+
+
+
+
+
 .ownsearch{
 
     color:red;
     margin:10px;
 }
-
-.btn btn-primary{
-    height:1px;
-    width:1px;
-    display:inline;
- 
-}
-
-.searchbox {
-    margin-top: 10px;
-}
-
-
-
-
-
 #time{
 
     margin-top:150px;
@@ -258,6 +404,8 @@ height:30px;
     margin:10px;
     font-size:large;
 }
+
+
 
 .sliderbody {
     overflow-x: hidden;
@@ -295,42 +443,11 @@ height:30px;
 
 
 
-.logo{
-    position: absolute;
-    font-size:larger;
-    font-style:italic;
-    color:darkseagreen;
-    left: 10%;
-    
-}#img{
-    height:20px;
-    width:20px;
-    display:inline;
-    padding:0;
 
-}
- .distance{
-     background-color:#A0B842;
-    margin:20px;
-    height:70px;
-    width:90px;
-    padding:0px;
-    color:white;
- }
+ 
 
- .clear{
-     background-color:#143D55;
-     color:#15F7DE;
-     width:100px;
-     height:30px;
-
- }
-
- #stopin{
+ 
     color:#287AA9;
-    font-size:25px;
-    text-align:center;
- }
  .distanceortime{
      
   padding: 3px;
@@ -390,62 +507,12 @@ height:30px;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-#sResult{border: 1px solid #17DF56;
-    top: 50%;
-    height: 50%;
-    width: 100%;
-
-}
-
-#hide{
- 
-    width:110px;
-    height:50px;
-    background-color:#287AA9;
-    color:white;
-    font-size:medium;
-}
 
 
-
-
-#searchResults {
-    margin-top:370px;
-    border: 1px solid #287AA9;
-    height: 200%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
     color:#287AA9;
-    
-}
-
- 
 
 
-#searchResultsDetail{
-    border: 1px solid #287AA9;
-}
-
-
-#savedPlaces{
-  margin-top:400px;
-    border: 1px solid #287AA9;
-    height: 55%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
     color:#287AA9;
-}
-
-#savedPlacesDetail{
-    border: 1px solid #287AA9;
-    height: 250px;
-    width: 425px;
-}
-
 #absolute {
     position: absolute;
     right:-50px;
@@ -461,36 +528,23 @@ height:30px;
    width:100px;
 
 }
-#searchVisible{
-    
-    margin-top:150px;
-    width: 130px;
-    height:30px;
-    margin-left:-25px;
-   background-color:#143D55;
 
- color:aqua;
-}
 
 .Result1{
 background-color:#287AA9;
     
+    background-color:#143D55;
     height:25px;
     width:100px;
+    margin: 0 auto;
     padding:0px;
+    position: relative;
     color:white;
-    margin-left:150px;
     font-size:small;
 }
 
-#favorite{
- 
-    width:110px;
-    height:50px;
+
     background-color:#287AA9;
-    color:white;
-    font-size:medium
-}
 #distance{
     color:#287AA9;
 }
@@ -499,4 +553,18 @@ background-color:#287AA9;
 }
 .Result{
     color:#287AA9;
+}
+
+
+@media screen and (min-width: 600px) {
+    .nav li {
+           width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+  
+    }
 }

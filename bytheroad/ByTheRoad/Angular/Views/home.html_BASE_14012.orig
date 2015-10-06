@@ -4,7 +4,7 @@
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
-
+       
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
     </ul>
 </div>
@@ -13,11 +13,35 @@
 <div class="leftboxes">
 
 
+<<<<<<< HEAD
+        <div>
+            <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false;  self.minutesUnit = null">minutes</button>
+            <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.hoursUnit=null ">hours</button>
+            <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.milesUnit = null">miles</button>
+
+            <div>
+                <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
+                    Enter time in minutes you want to stop in <br />
+                    <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" />
+                    <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
+                </p>
+
+                <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">
+                    Enter time in hours you want to stop in<br />
+                    <input type="text" ng-model="self.hoursUnit" class="distanceortime" />
+                    <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="clear">Clear</button>
+                </p>
+
+                <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
+                    Enter miles you want to stop in<br />
+                    <input type="text" ng-model="self.milesUnit" class="distanceortime" />
+                    <button class="clear" ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" >Clear</button>
+=======
     <div class="floating-box ">
-        <h4 id="stopin">Search Maps</h4><br />
+        <h4 id="stopin">Choose the time or the distance you need to stop in</h4><br />
         <div id="Result">
-            <button type="button" ng-click="self.toggleSavedBox();self.viewingPlaces=true" class="Result1">My Places</button>
-            <button type="button" ng-model="seach;" ng-click="self.distance = true" class="Result2">Map search</button>
+            <button type="button" ng-click="self.toggleSavedBox();self.viewingPlaces=true" id="Result1">My Places</button>
+            <button type="button" ng-model="seach;" ng-click="self.distance = true" id="Result2">Map seach</button>
         </div>
         <div ng-hide="self.distance ===false">
             <div>
@@ -28,22 +52,23 @@
                 <div>
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                         Enter time in minutes you want to stop in <br />
-                        <input name="content"  type="text" ng-model="self.minutesUnit" class="distanceortime" />
-                        <button ng-click="self.minutesUnit = null; self.selected= false" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
+                        <input name="content" value="" type="text" ng-model="self.minutesUnit" class="distanceortime" />
+                        <button ng-click="self.minutesUnit = null" ng-show="self.minutesUnit.length > 0" class="btn btn-danger">Clear</button>
                     </p>
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="content == 'hours'">
                         Enter time in hours you want to stop in<br />
                         <input type="text" ng-model="self.hoursUnit" class="distanceortime" />
-                        <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="clear">Clear</button>
+                        <button ng-click="self.hoursUnit = null" ng-show="self.hoursUnit.length > 0" class="btn btn-danger">Clear</button>
                     </p>
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn === true || self.milebtn === false" ng-show="content == 'miles'">
                         Enter miles you want to stop in<br />
                         <input type="text" ng-model="self.milesUnit" class="distanceortime" />
-                        <button class="clear" ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0">Clear</button>
+                        <button ng-click="self.milesUnit = null" ng-show="self.milesUnit.length > 0" class="btn btn-danger">Clear</button>
 
                     </p>
+>>>>>>> b9d15e882c30d5000e6ac641e70905d78d455f50
 
                 </div>
 
@@ -72,7 +97,7 @@
                     <button type="button" ng-click="self.selectedItem = 'local_service';  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
                     </button>
-                    <button type="button" ng-click="self.selectedItem = 'church'; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
+                <button type="button" ng-click="self.selectedItem = 'church'; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png" id="img" /></span>
                     </button>
 
@@ -84,41 +109,6 @@
                     </form>
                 </div>
 
-<<<<<<< HEAD
-        <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="container">
-            <div class="btn-group">
-                <button type="button" ng-click="self.selectedItem = ['food']; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
-                    <span> <img src="../../fonts/glyphicons-476-dining-set.png" id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['lodging']; self.selected= true;  self.nearbySearch()" class="btn btn-primary ">
-                    <span><img src="../../fonts/glyphicons-496-bed.png" id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['store'];  self.selected= true; self.nearbySearch()" class="btn btn-primary">
-                    <span><img src="../../fonts/glyphicons-203-shopping-cart.png" id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['gas_station','convenience_store','car_repair','car_wash']; self.selected= true;  self.nearbySearch()" class="btn btn-primary ">
-                    <span>
-                        <img src="../../fonts/glyphicons-472-gas-station.png" id="img" />
-                    </span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
-                    <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['atm','police','hospital', 'library', 'local_government_office','locksmith','pharmacy','post_office' ];  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
-                    <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
-                </button>
-                <button type="button" ng-click="self.selectedItem = ['church']; self.selected= true;  self.nearbySearch(); " ng-model="self.value7" class="btn btn-primary">
-                    <span><img src="../../fonts/glyphicons-303-temple-christianity-church.png" id="img" /></span>
-                </button>
-
-            </div>
-            <div>
-                <form ng-submit="self.textSearch()">
-                    <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
-                    <input type="text" class="searchbox" id="textsearch" name="search" />
-                </form>
-=======
->>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd
             </div>
 
             <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)  " ng-click="self.nearbySearch()">SearchResults>></button>
@@ -144,16 +134,11 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
-                
-                
-=======
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
->>>>>>> a6e02127d3997285e46d7ff6f5fd10101fc3d4cd
+                <div style="color:blue"><h5><strong>{{result.name}}</strong></h5></div>
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div>{{result.formatted_address}}</div>
-                <div>{{result.formatted_phone_number}}</div>
+                <div><label> Address:</label>{{result.formatted_address}}</div>
+                <div><label> Phone Number:</label>{{result.formatted_phone_number}}</div>
                 <div><label> Price Level:</label>{{result.price_level}}</div>
                 <div><label> Rating:</label> {{result.rating}}</div>
                 <div><label> Distance:</label>{{result.distance}}</div>
@@ -168,14 +153,30 @@
     </div>
 
 
+<<<<<<< HEAD
+<div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
+    <h3> My Favorite places</h3>
+    <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = false;">Hide</button>
+    <div ng-repeat="saved in self.places">
+        <div id="savedPlacesDetail">
+            <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
+            <div><label>Adress</label>{{saved.formmatted_address}}</div>
+            <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
+            <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
+            <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+            <div><label>Price Level</label>{{saved.price_level}}</div>
+            <div><label>Rating</label>{{saved.rating}}</div>
+            <div><label>Distance</label>{{saved.distance}}</div>
+            <div><label>Time</label>{{saved.time}}</div>
+=======
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
         <h3> My Favorite places</h3>
-        <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = false;">Hide</button>
+        <button id="hide" type="button" ng-click="self.toggleSavedBox();">Hide</button>
         <div ng-repeat="saved in self.places">
             <div id="savedPlacesDetail">
-                <div style="color:#143D55"><h4><strong>{{saved.name}}</strong></h4></div>
-                <div>{{saved.formmatted_address}}</div>
-                <div>{{saved.formatted_phone_number}}</div>
+                <div style="color:blue"><h5><strong>{{saved.name}}</strong></h5></div>
+                <div><label>Adress</label>{{saved.formmatted_address}}</div>
+                <div><label>Phone Number</label>{{saved.formatted_phone_number}}</div>
                 <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
                 <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div><label>Price Level</label>{{saved.price_level}}</div>
@@ -183,6 +184,7 @@
                 <div><label>Distance</label>{{saved.distance}}</div>
                 <div><label>Time</label>{{saved.time}}</div>
             </div>
+>>>>>>> b9d15e882c30d5000e6ac641e70905d78d455f50
         </div>
     </div>
 </div>
@@ -228,24 +230,24 @@
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
 
-            <input type="submit" class="submitbtn" value="Register" />
+            <input  type="submit" class="submitbtn" value="Register"/>
 
             <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
         </form>
     </div>
 
-
+  
     <div ng-hide="self.start === false" class="rightstartbox">
         <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
 
 
-            <label class="label1">Point</label>
+             <label class="label1">Point</label>
             <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
             <input type="text" id="origin" class="addbox" ng-hide="self.start === false" />
             <label class="label1">Point</label>
             <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
             <input type="text" id="destination" class="addbox" ng-hide="self.start === false" />
-            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitbtn">Get Direction</button>
         </form>
 
 

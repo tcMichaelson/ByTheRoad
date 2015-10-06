@@ -40,17 +40,39 @@ namespace ByTheRoad.Controllers.APIController
         {
             return _repo.Find<PointOfInterest>(Id);
         }
+
         public HttpResponseMessage Post(PointOfInterest POI)
         {
             if (ModelState.IsValid)
             {
-                _repo.Add<PointOfInterest>(POI);
+
+                string currentUser = User.Identity.Name;
+                POI.Id = "ChIJN1t_tDeuEmsRUsoyG83frY4";
+
+                PointOfInterest newPOI = new PointOfInterest
+                {
+                    Id = POI.Id
+                };
+
+                //Find current logon user
+                var targetUser = _repo.Query<ApplicationUser>().Include(t => t.UserSavedPOIs).FirstOrDefault(t => t.UserName == currentUser);
+
+                // Add newPOI to current logon user and add logon user to newPOI
+                targetUser.UserSavedPOIs.Add(newPOI);
+                newPOI.User = targetUser; 
+                             
                 _repo.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, POI);
 
             }
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);
         }
+
+
+
+
+
+
         // DELETE: api/POI/5
         public void Delete(int id)
         {

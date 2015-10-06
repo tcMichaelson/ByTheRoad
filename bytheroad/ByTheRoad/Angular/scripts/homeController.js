@@ -75,7 +75,7 @@
                 mapService.results = [];
                 var spotOnRoute = findCurrentPosition();
                 console.log("spot on route:", spotOnRoute);
-                if (!spotOnRoute) {
+                if (spotOnRoute) {
                     var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
                     var searchPos = findGenericFuturePosition(info.unit, info.amount);
@@ -110,7 +110,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0 || places[0].place_id === null){
+                    if (places.length === 0 || places[0].place_id === undefined){
                         console.log(places[0].place_id)
                         return;
                     }

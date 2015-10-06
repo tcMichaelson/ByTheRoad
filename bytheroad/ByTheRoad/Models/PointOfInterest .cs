@@ -12,6 +12,6 @@ namespace ByTheRoad.Models
         public string Description { get; set; }
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
-        public IList<UserSavedPOI> Users { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

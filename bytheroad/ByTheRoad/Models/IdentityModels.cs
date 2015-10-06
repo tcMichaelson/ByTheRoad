@@ -4,12 +4,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace ByTheRoad.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ICollection<PointOfInterest> UserSavedPOIs { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -30,7 +33,10 @@ namespace ByTheRoad.Models
         {
             return new ApplicationDbContext();
         }
-        public IList <UserSavedPOI> UserSavedPOI { get; set; }
+
+        public IDbSet <PointOfInterest> PointOfInterests { get; set; }
+    
+
 
     }
 }

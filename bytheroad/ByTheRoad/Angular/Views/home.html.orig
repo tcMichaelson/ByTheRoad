@@ -2,8 +2,12 @@
 <div class="nav">
 
     <ul>
+<<<<<<< HEAD
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
+=======
+        
+>>>>>>> b4cbbf5050cd1c7c009b7f3855b17e4d175509cc
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
 
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
@@ -14,7 +18,6 @@
 <div class="leftboxes">
 
 
-<<<<<<< HEAD
     <div class="floating-box">
         <div id="Result">
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
@@ -55,10 +58,16 @@
 
             <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="nearbysearch">
                 <div>
-                <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
-              </div>
-                
-                  <div class="btn-group">
+                    <form ng-submit="self.textSearch()">
+                        <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
+                        <input type="text" class="searchbox" id="textsearch" name="search" />
+                    </form>
+                </div>
+                <div>
+                    <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
+                </div>
+
+                <div class="btn-group">
                     <button type="button" ng-click="self.selectedItem = ['food']; self.selected= true; self.nearbySearch()" class="btn btn-primary ">
                         <span> <img src="../../fonts/glyphicons-476-dining-set.png" id="img" /></span>
                     </button>
@@ -73,13 +82,8 @@
                             <img src="../../fonts/glyphicons-472-gas-station.png" id="img" />
                         </span>
                     </button>
-<<<<<<< HEAD
                     <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
-                        <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
-=======
-                <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
-                        <span><img src="../../fonts/glyphicons-6-car - Copy.png" id="img" /></span>     
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
+                        <span><img src="../../fonts/glyphicons-6-car - Copy.png" id="img" /></span>
                     </button>
                     <button type="button" ng-click="self.selectedItem = ['atm','police','hospital', 'library', 'local_government_office','locksmith','pharmacy','post_office' ];  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
@@ -90,9 +94,7 @@
 
                 </div>
 
-
             </div>
-
         </div>
 
     </div>
@@ -112,22 +114,17 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-<<<<<<< HEAD
-                <div id="resulttitle" ><h4><strong>{{result.name}}</strong></h4></div>
+                <div id="resulttitle"><h4><strong>{{result.name}}</strong></h4></div>
 
-=======
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
-                <div>{{"result: " + result.id}}</div>
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div>{{result.formatted_phone_number}}</div>
                 <div><label class="resultlabel"> Price Level:</label>{{result.price_level}}</div>
-                <div><label class="resultlabel" > Rating:</label> {{result.rating}}</div>
-                <div><label class="resultlabel" > Distance:</label>{{result.distance}}</div>
-                <div><label  class="resultlabel">Time:</label>{{result.time}} </div>
+                <div><label class="resultlabel"> Rating:</label> {{result.rating}}</div>
+                <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
+                <div><label class="resultlabel">Time:</label>{{result.time}} </div>
 
                 <label>If you like this places click here </label>
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" />

@@ -16,50 +16,44 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  background:white;
+  background:rgb(34,30,78);
   border:solid 1px black;
   height: 100%;
   min-width: 1000px;
   width: 100%;
   position: absolute;
 }
-<<<<<<< HEAD
 
+<<<<<<< HEAD
+    
+ 
 =======
  .nav{
      height:10%;
  }
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
+
+>>>>>>> eb3234363fbd35c7f8e6b5c043998311260a8056
 .nav ul {
   list-style: none;
-  background-color:rgba(34,30,78,1);
+  
   text-align: center;
   padding:0;
   margin: 0;
   height:100%;
+ 
   
 
 }
-<<<<<<< HEAD
-.nav li {
+nav li {
      width: 100px;
         border-bottom: none;
         height: 40px;
         line-height: 50px;
         font-size: 1.4em;
-        display: inline-block;
+        display:inline-block;
         margin-right: -4px;
 
 }
-=======
-/*.nav li {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 70px;
- 
-}*/
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
  
 .nav{
     height:50px;
@@ -67,7 +61,7 @@ body {
 .nav a {
   text-decoration: none;
   color:white;
-  display: block;
+  display:block;
   transition: .3s background-color;
 }
  
@@ -95,8 +89,8 @@ body {
 
   height:100%;
   width: 25%;
-position:absolute;
-border: 1px solid blue;
+  position:absolute;
+  border: 1px solid blue;
 }
 
 #Result{
@@ -105,11 +99,7 @@ border: 1px solid blue;
 }
 
 .floating-box {
-<<<<<<< HEAD
-=======
-    float: left;
     
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
     width: 100%;
     height: 100%;    
     border:1px solid black;
@@ -519,46 +509,6 @@ height:30px;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-<<<<<<< HEAD
-=======
-#sResult{border: 1px solid #17DF56;
-    top: 50%;
-    height: 50%;
-    width: 100%;
-
-}
-
-#hide{
- 
-    width:110px;
-    height:50px;
-    background-color:#287AA9;
-    color:white;
-    font-size:medium;
-}
-
-
-
-
-#searchResults {
-    margin-top:370px;
-    border: 1px solid #287AA9;
-    height: 200%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
-    color:blue;
-    
-}
-
- 
-
-
-#searchResultsDetail{
-    border: 1px solid #287AA9;
-}
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
 
 
 
@@ -598,11 +548,15 @@ height:30px;
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 600px) {
     .nav li {
-       font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 30px;
+           width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+  
     }
 }

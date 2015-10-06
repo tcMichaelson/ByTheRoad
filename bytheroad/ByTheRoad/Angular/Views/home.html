@@ -6,7 +6,8 @@
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
 
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
-    </ul>
+        <li class="logout" ><a ng-hide="self.loggingin === false" onclick="self.loggingin = false">Log Out</a></li>
+     </ul>
 </div>
 
 

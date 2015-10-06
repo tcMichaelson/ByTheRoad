@@ -26,7 +26,10 @@ body {
 
     
  
+ 
 
+
+>>>>>>> eb3234363fbd35c7f8e6b5c043998311260a8056
 .nav ul {
   list-style: none;
   
@@ -535,29 +538,7 @@ height:30px;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-
-
-
-
 <<<<<<< HEAD
-#searchResults {
-    margin-top:370px;
-    border: 1px solid #287AA9;
-    height: 200%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
-    color:#287AA9;
-    
-}
-
- 
-
-
-#searchResultsDetail{
-    border: 1px solid #287AA9;
-}
 
 
 #savedPlaces{

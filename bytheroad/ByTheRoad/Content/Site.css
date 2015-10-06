@@ -230,9 +230,12 @@ nav li {
 
 #searchResultsDetail{
     border: 1px solid #287AA9;
+    color:black;
 }
 
 #resulttitle{
+    font-size:30px;
+    color:black;
 
 }
 

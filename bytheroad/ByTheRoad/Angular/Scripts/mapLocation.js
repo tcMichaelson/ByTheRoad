@@ -10,7 +10,7 @@ var lastKnownLeg;
 var lastKnownStep;
 var selectedRoute;  //currently selected route.
 var selectedPath;  //The full path of the currently selected route;
-var routeLines = [];  //path coordinates of the selected route
+var routeDistances = []; //distances that correspond to path route Lines
 var futureLoc;  //represents the location the user will be at in a given time frame.
 var futurePath;  //represents the path taken to get to the future location
 
@@ -44,7 +44,7 @@ function initMap() {
     }
 
     //document.getElementById('input-btn').addEventListener('click', initTextSearch);
-    document.getElementById('route-btn').addEventListener('click', getRouteHandler); 
+    document.getElementById('route-btn').addEventListener('click', getRouteHandler);
 
 }
 //  findSearchPositionAlongRoute("minutes", 30)
@@ -53,40 +53,32 @@ function findCurrentPosition() {
     var currLeg;
     var foundStep = false;
     //var direction = getDirection();
-    if (selectedRoute !== undefined) {
-        for(var iLeg = lastKnownLeg; iLeg < selectedRoute.legs.length; iLeg++) {
-            currLeg = selectedRoute.legs[iLeg];
-            for (var iStep = lastKnownStep; iStep < currLeg.steps.length; iStep++) {
-                currStep = currLeg.steps[iStep];
-                console.log(iLeg + iStep);
-                var diffCheck = calculateDistance(currPos, { lat: currStep.path[0].H, lng: currStep.path[0].L });
-                var iLine = 1
-                var result;
-                while(!foundStep && iLine < currStep.path.length){
-                    diffNext = calculateDistance(currPos, { lat: currStep.path[iLine].H, lng: currStep.path[iLine].L });
-                    var distTraveled = calculateDistance({ lat: currStep.path[iLine].H, lng: currStep.path[iLine].L }, { lat: currStep.path[iLine - 1].H, lng: currStep.path[iLine - 1].L })
-                    if (distTraveled >= diffNext && distTraveled >= diffCheck) {
-                        console.log("leg: " + iLeg, "step: " + iStep);
-                        lastKnownLeg = iLeg;
-                        lastKnownStep = iStep;
-                        foundStep = true;
-                        result = { route: selectedRoute, leg: iLeg, step: iStep}
-                        if (diffNext < diffCheck) {
-                            result.line = iLine;
-                        } else {
-                            result.line = iLine - 1;
-                        }
-                    } else {
-                        diffCheck = diffNext;
-                        iLine++;
-                    }
+    if (selectedPath !== undefined) {
+        var diffCheck = calculateDistance(currPos, selectedPath[0]);
+        var result;
+        var iLine = 1;
+        while (!foundStep && iLine < selectedPath.length) {
+            diffNext = calculateDistance(currPos, selectedPath[iLine]);
+            var distTraveled = calculateDistance(selectedPath[iLine], selectedPath[iLine - 1]);
+            if (distTraveled >= diffNext && distTraveled >= diffCheck) {
+                foundStep = true;
+                result = { route: selectedRoute }
+                if (diffNext < diffCheck) {
+                    result.line = iLine;
+                } else {
+                    result.line = iLine - 1;
                 }
-                if (foundStep) {
-                    return result;
-                }
+            } else {
+                diffCheck = diffNext;
+                iLine++;
             }
         }
-        if (foundStep = false) { return false; }
+        if (foundStep) {
+            return result;
+        } else {
+            return false;
+        }
+
     } else {
         return false;
     }
@@ -100,8 +92,11 @@ function isBetween(a, b, x) {
 
 
 //  findGenericFuturePosition("minutes", 30)
-function findGenericFuturePosition(unitType, amount) {
+function findGenericFuturePosition(unit, amount) {
     var meters;
+    if (locHist.length === 1) {
+        return { lat: locHist[0].lat, lng: locHist[0].lng };
+    }
     var lastLoc = locHist[locHist.length - 1];
     if (unit === "miles") {
         meters = amount * 1609.344;
@@ -126,22 +121,48 @@ function findGenericFuturePosition(unitType, amount) {
     });
     futurePath.setMap(map);
     console.log(futureLoc);
+    return futureLoc;
 }
 
 function findFuturePosition(spotOnRoute, unit, amount) {
     var meters;
-    if (unit = "miles") {
+    var futureLoc;
+    var currLoc = locHist[locHist.length - 1];
+    if (unit === "miles") {
         meters = amount * 1609.344;
     } else {
-        if (unit = "hours") {
+        if (unit === "hours") {
             amount *= 3600;
         } else {
             amount *= 60;
         }
+        meters = currLoc.speed * amount;
     }
-    var found = false;
-    while (!found && false) { }
 
+    console.log("selectedRoute:", selectedRoute);
+    console.log(spotOnRoute);
+    console.log(selectedRoute);
+    var initLine = spotOnRoute.line;
+
+    var distance = calculateDistance(currLoc, selectedPath[initLine]);
+    var iLine = initLine;
+    while(distance <= meters){
+        iLine++
+        distance += routeDistances[iLine];
+    }
+    if (iLine > selectedPath.length - 1) {
+        console.log("The projected future position is not on the route.");
+        return currLoc;
+    }
+    
+    if (distance > amount){
+        var bearing = calculateInitialBearing(selectedPath[iLine], currLoc);
+        futureLoc = calculatePointAlongBearing(currLoc, bearing, distance - amount);
+    } else{
+        futureloc = selectedPath[iLine];
+    }
+
+    return futureLoc;
 }
 
 function findRouteAndDisplay() {
@@ -151,7 +172,7 @@ function findRouteAndDisplay() {
     var request = {
         origin: start,
         destination: end,
-        provideRouteAlternatives: true,
+        provideRouteAlternatives: false,
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function (response, status) {
@@ -170,11 +191,17 @@ function renderLines(response) {
         var coords = [];
         minLat = maxLat = route.legs[0].start_location.H;
         minLng = maxLng = route.legs[0].start_location.L;
-        route.legs.forEach(function (leg) {
+        route.legs.forEach(function (leg, i) {
             leg.steps.forEach(function (step) {
                 //setMarker(new google.maps.LatLng(step.end_point.H, step.end_point.L), step.distance.value, step.duration.value);
                 step.path.forEach(function (line) {
                     coords.push({ lat: line.H, lng: line.L });
+
+                    if (coords.length === 1)
+                        routeDistances[0] = 0;
+                    else
+                        routeDistances.push(calculateDistance(coords[coords.length - 1], coords[coords.length - 2]));
+
                     minLat = minLat < line.H ? minLat : line.H;
                     maxLat = maxLat > line.H ? maxLat : line.H;
                     minLng = minLng < line.L ? minLng : line.L;
@@ -182,10 +209,11 @@ function renderLines(response) {
                 });
             });
         });
+        console.log(routeDistances);
         var colHex = "";
         switch (idx % 3) {
             case 0:
-                colHex = "#ff0000";
+                colHex = "#3087B4";
                 break;
             case 1:
                 colHex = "#00ff00"
@@ -195,18 +223,27 @@ function renderLines(response) {
                 break;
         }
 
-        if (routeLines[idx]) {
-            routeLines[idx].setMap(null);
+        if (routeLines1) {
+            routeLines1.setMap(null);
+            routeLines2.setMap(null);
         }
-        routeLines[idx] = new google.maps.Polyline({
+        var routeLines1 = new google.maps.Polyline({
+            path: coords,
+            strokeColor: "#000000",
+            strokeWeight: 6,
+            map: map
+        });
+
+        var routeLines2 = new google.maps.Polyline({
             path: coords,
             strokeColor: colHex,
-            strokeWeight: 2
+            strokeWeight: 4,
+            map: map
         });
 
         console.log("min dist: " + coords.map(function (a, idy, coords) {
             if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 999; }
-        }).reduce(function(a, b){return 0 < a && a < b ? a : b;}));
+        }).reduce(function (a, b) { return 0 < a && a < b ? a : b; }));
 
         console.log("max dist: " + coords.map(function (a, idy, coords) {
             if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 0; }
@@ -216,7 +253,6 @@ function renderLines(response) {
         selectedRoute = response.routes[idx];
         lastKnownLeg = 0;
         lastKnownStep = 0;
-        routeLines[idx].setMap(map);
     });
     var sw = new google.maps.LatLng(minLat, minLng);
     var ne = new google.maps.LatLng(maxLat, maxLng);
@@ -293,7 +329,7 @@ function calculatePointAlongBearing(pos, brng, dist) {
     var lng1 = toRadians(pos.lng);
     var bearing = 0 - toRadians(brng);  //reversing bearing.  should be clockwise from north
     var R = 6371000;
-    console.log("lat1:", lat1, "lng1:", lng1, "bearing:", bearing,"dist:", dist);
+    console.log("lat1:", lat1, "lng1:", lng1, "bearing:", bearing, "dist:", dist);
     var lat2 = Math.asin(Math.sin(lat1) * Math.cos(dist / R) +
                     Math.cos(lat1) * Math.sin(dist / R) * Math.cos(bearing));
     var lng2 = lng1 + Math.atan2(Math.sin(bearing) * Math.sin(dist / R) * Math.cos(lat1),
@@ -306,7 +342,7 @@ function toRadians(deg) {
     return deg * Math.PI / 180;
 }
 
-function toDegrees(rad){
+function toDegrees(rad) {
     return rad / Math.PI * 180;
 }
 

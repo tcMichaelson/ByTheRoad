@@ -14,7 +14,8 @@
 <div class="leftboxes">
 
 
-    <div class="floating-box ">
+<<<<<<< HEAD
+    <div class="floating-box">
         <div id="Result">
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
 
@@ -53,12 +54,6 @@
 
 
             <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="nearbysearch">
-                <div>
-                    <form ng-submit="self.textSearch()">
-                        <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
-                        <input type="text" class="searchbox" id="textsearch" name="search" />
-                    </form>
-                </div>
                 <div>
                 <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
               </div>

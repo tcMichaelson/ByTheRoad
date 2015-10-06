@@ -40,7 +40,6 @@
                 service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
-
             }
 
 

@@ -111,7 +111,7 @@
 
             <div id="searchResultsDetail">
                 <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
-                
+                <div>{{"result: " + result.id}}</div>
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
@@ -179,8 +179,6 @@
                 Email:
             </label>
             <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
-
-
 
             <label class="label1">
                 Password:

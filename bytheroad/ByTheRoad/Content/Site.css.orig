@@ -16,50 +16,38 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  background:white;
+  background:rgb(34,30,78);
   border:solid 1px black;
   height: 100%;
   min-width: 1000px;
   width: 100%;
   position: absolute;
 }
-<<<<<<< HEAD
 
-=======
- .nav{
-     height:10%;
- }
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
+    
+ 
+
 .nav ul {
   list-style: none;
-  background-color:rgba(34,30,78,1);
+  
   text-align: center;
   padding:0;
   margin: 0;
   height:100%;
+ 
   
 
 }
-<<<<<<< HEAD
-.nav li {
+nav li {
      width: 100px;
         border-bottom: none;
         height: 40px;
         line-height: 50px;
         font-size: 1.4em;
-        display: inline-block;
+        display:inline-block;
         margin-right: -4px;
 
 }
-=======
-/*.nav li {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 70px;
- 
-}*/
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
  
 .nav{
     height:50px;
@@ -67,7 +55,7 @@ body {
 .nav a {
   text-decoration: none;
   color:white;
-  display: block;
+  display:block;
   transition: .3s background-color;
 }
  
@@ -80,6 +68,29 @@ body {
   color: #444;
   cursor: default;
 }
+<<<<<<< HEAD
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+    display: inline-block;
+    margin-right: -4px;
+    
+  }
+ 
+ 
+ 
+  
+}
+
+#Name {
+    color:white;
+}
+=======
 
 
 .logo {
@@ -90,13 +101,14 @@ body {
     left: 10%;
 }
 
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
 
 .leftboxes{
 
   height:100%;
   width: 25%;
-position:absolute;
-border: 1px solid blue;
+  position:absolute;
+  border: 1px solid blue;
 }
 
 #Result{
@@ -105,11 +117,7 @@ border: 1px solid blue;
 }
 
 .floating-box {
-<<<<<<< HEAD
-=======
-    float: left;
     
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
     width: 100%;
     height: 100%;    
     border:1px solid black;
@@ -459,7 +467,15 @@ height:30px;
 
  
 
+<<<<<<< HEAD
+ #stopin{
+    color:#287AA9;
+    font-size:25px;
+    text-align:center;
+ }
+=======
  
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
  .distanceortime{
      
   padding: 3px;
@@ -519,27 +535,11 @@ height:30px;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
+
+
+
+
 <<<<<<< HEAD
-=======
-#sResult{border: 1px solid #17DF56;
-    top: 50%;
-    height: 50%;
-    width: 100%;
-
-}
-
-#hide{
- 
-    width:110px;
-    height:50px;
-    background-color:#287AA9;
-    color:white;
-    font-size:medium;
-}
-
-
-
-
 #searchResults {
     margin-top:370px;
     border: 1px solid #287AA9;
@@ -548,7 +548,7 @@ height:30px;
     width: 100%;
     overflow:scroll;
     background-color:white;
-    color:blue;
+    color:#287AA9;
     
 }
 
@@ -558,11 +558,27 @@ height:30px;
 #searchResultsDetail{
     border: 1px solid #287AA9;
 }
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
 
 
+#savedPlaces{
+  margin-top:400px;
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:#287AA9;
+}
 
+#savedPlacesDetail{
+    border: 1px solid #287AA9;
+    height: 250px;
+    width: 425px;
+}
 
+=======
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
 #absolute {
     position: absolute;
     right:-50px;
@@ -581,6 +597,10 @@ height:30px;
 
 
 .Result1{
+<<<<<<< HEAD
+background-color:#287AA9;
+=======
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
     
     background-color:#143D55;
     height:25px;
@@ -592,17 +612,41 @@ height:30px;
     font-size:small;
 }
 
+<<<<<<< HEAD
+#favorite{
+ 
+    width:110px;
+    height:50px;
+    background-color:#287AA9;
+    color:white;
+    font-size:medium
+}
+#distance{
+    color:#287AA9;
+}
+#result{
+    color:#287AA9;
+}
+.Result{
+    color:#287AA9;
+}
+=======
 
 #distance{
     color:#287AA9;
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 600px) {
     .nav li {
-       font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 30px;
+           width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+  
     }
 }
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967

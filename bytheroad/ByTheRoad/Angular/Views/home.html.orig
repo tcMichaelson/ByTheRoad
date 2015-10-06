@@ -1,9 +1,15 @@
 ﻿
 <div class="nav">
-
+    
     <ul>
+<<<<<<< HEAD
+        <li class="Name"><img style="width: 80px; height: 80px;" alt="Related image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRsiZrcGEjVzii2MGQXJ0lNKdHNnKLKMhWqjhiqWco44q0jRVUyl394Jw" class="irc_rii"></li>
+        <li id="Name">By the road </li>
+        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false">Login</a></li>
+=======
         <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
 
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
@@ -14,22 +20,33 @@
 <div class="leftboxes">
 
 
-<<<<<<< HEAD
     <div class="floating-box">
         <div id="Result">
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
 
         </div>
+<<<<<<< HEAD
+        <div style="color:#287AA9;">
+            <h4 id="stopin">Search Maps</h4><br />
+        </div>
+        <div ng-hide="self.distance ===false">
+=======
         <h4 id="h4style">Search Maps</h4><br />
 
         <div class="queryInput" ng-hide="self.distance ===false">
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
             <div>
                 <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">minutes</button>
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">miles</button>
 
+<<<<<<< HEAD
+                <div id="result">
+                    <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
+=======
                 <div>
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="mincontent === 'minutes'">
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
                         Enter time in minutes you want to stop in <br />
                         <input name="mincontent" type="text" ng-model="self.minutesUnit" class="distanceortime" />
                         <button ng-click="self.minutesUnit = null; self.selected= false" ng-show="self.minutesUnit.length > 0" class="clear">Clear</button>
@@ -55,6 +72,12 @@
 
             <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="nearbysearch">
                 <div>
+                    <form ng-submit="self.textSearch()">
+                        <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
+                        <input type="text" class="searchbox" id="textsearch" name="search" />
+                    </form>
+                </div>
+                <div>
                 <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
               </div>
                 
@@ -73,13 +96,8 @@
                             <img src="../../fonts/glyphicons-472-gas-station.png" id="img" />
                         </span>
                     </button>
-<<<<<<< HEAD
                     <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
-                        <span><img src="../../fonts/glyphicons-568-transport.png" id="img" /></span>
-=======
-                <button type="button" ng-click="self.selectedItem = ['parking'] ;  self.selected= true; self.nearbySearch()" ng-model="self.value5" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-6-car - Copy.png" id="img" /></span>     
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
                     </button>
                     <button type="button" ng-click="self.selectedItem = ['atm','police','hospital', 'library', 'local_government_office','locksmith','pharmacy','post_office' ];  self.selected= true;  self.nearbySearch()" ng-model="self.value6" class="btn btn-primary">
                         <span><img src="../../fonts/glyphicons-490-handshake.png" id="img" /></span>
@@ -90,9 +108,7 @@
 
                 </div>
 
-
             </div>
-
         </div>
 
     </div>
@@ -112,13 +128,8 @@
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-<<<<<<< HEAD
                 <div id="resulttitle" ><h4><strong>{{result.name}}</strong></h4></div>
 
-=======
-                <div style="color:#143D55"><h4><strong>{{result.name}}</strong></h4></div>
-                <div>{{"result: " + result.id}}</div>
->>>>>>> 9bbbeacc5e6b3840c8bf86cadf301408ea2ef75d
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
                 <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>

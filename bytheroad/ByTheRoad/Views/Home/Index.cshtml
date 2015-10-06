@@ -10,6 +10,8 @@
 <title>@ViewBag.Title</title>
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")  
+    
+
     <link rel="stylesheet" href="~/Content/animate.min.css">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <script src="~/Scripts/angular.min.js"></script>
@@ -27,6 +29,10 @@
                 registerApi: '@Url.HttpRouteUrl("Register", null)'
 
             });
+        if (screen.width <= 480) {
+            location.href = '/mobile.html';
+        }
+        
     </script>
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>
@@ -37,6 +43,8 @@
     </script>
     <script src="~/Angular/scripts/mapLocation.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="base.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="mobile.css" media="handheld" />
 
 </body>
 </html>

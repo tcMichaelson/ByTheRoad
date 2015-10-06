@@ -40,7 +40,6 @@
                 service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
-
             }
 
 
@@ -98,7 +97,7 @@
                     });
 
                 }
-
+                console.log("self-results" + self.results);
             }
 
             function createMarker(place) {

@@ -114,8 +114,8 @@
                 
                 <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div ng-if="result.formatted_address !== null">{{result.formatted_address}}</div>
-                <div ng-if="result.formatted_address === null">{{result.vicinity}}</div>
+                <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div>{{result.formatted_phone_number}}</div>
                 <div><label> Price Level:</label>{{result.price_level}}</div>
                 <div><label> Rating:</label> {{result.rating}}</div>

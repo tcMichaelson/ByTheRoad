@@ -19,9 +19,11 @@ body {
   background:white;
   border:solid 1px black;
 }
+
  .nav{
      height:10%;
  }
+
 .nav ul {
   list-style: none;
   background-color: #143D55;
@@ -78,8 +80,8 @@ body {
 
   height:100%;
   width: 25%;
-position:absolute;
-border: 1px solid blue;
+  position:absolute;
+  border: 1px solid blue;
 }
 
 .floating-box {

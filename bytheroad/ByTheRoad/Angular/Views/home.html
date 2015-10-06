@@ -1,9 +1,9 @@
 ﻿
 <div class="nav">
-
+    
     <ul>
-        <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
-        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
+        <li class="Name"><img style="width: 80px; height: 80px;" alt="Related image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRsiZrcGEjVzii2MGQXJ0lNKdHNnKLKMhWqjhiqWco44q0jRVUyl394Jw" class="irc_rii"></li>
+        <li id="Name">By the road </li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
 
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
@@ -28,7 +28,7 @@
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">miles</button>
 
-                <div>
+                <div id="result">
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="mincontent === 'minutes'">
                         Enter time in minutes you want to stop in <br />
                         <input name="mincontent" type="text" ng-model="self.minutesUnit" class="distanceortime" />

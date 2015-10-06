@@ -69,6 +69,7 @@ nav li {
   cursor: default;
 }
 
+    
 
 .logo {
     position: absolute;
@@ -78,7 +79,9 @@ nav li {
     left: 10%;
 }
 
-
+#Name {
+    color:white;
+}
 .leftboxes{
 
   height:100%;
@@ -447,6 +450,7 @@ height:30px;
  
 
  
+    color:#287AA9;
  .distanceortime{
      
   padding: 3px;
@@ -508,8 +512,10 @@ height:30px;
 }
 
 
+    color:#287AA9;
 
 
+    color:#287AA9;
 #absolute {
     position: absolute;
     right:-50px;
@@ -528,6 +534,7 @@ height:30px;
 
 
 .Result1{
+background-color:#287AA9;
     
     background-color:#143D55;
     height:25px;
@@ -540,7 +547,14 @@ height:30px;
 }
 
 
+    background-color:#287AA9;
 #distance{
+    color:#287AA9;
+}
+#result{
+    color:#287AA9;
+}
+.Result{
     color:#287AA9;
 }
 

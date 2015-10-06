@@ -16,7 +16,7 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  background:white;
+  background:rgb(34,30,78);
   border:solid 1px black;
   height: 100%;
   min-width: 1000px;
@@ -24,28 +24,29 @@ body {
   position: absolute;
 }
 
-     height:10%;
- }
+    
+ 
 .nav ul {
   list-style: none;
-  background-color:rgba(34,30,78,1);
+  
   text-align: center;
   padding:0;
   margin: 0;
   height:100%;
+ 
   
 
 }
-/*.nav li {
+nav li {
      width: 100px;
         border-bottom: none;
         height: 40px;
         line-height: 50px;
         font-size: 1.4em;
-        display: inline-block;
+        display:inline-block;
         margin-right: -4px;
 
-}*/
+}
  
 .nav{
     height:50px;
@@ -53,7 +54,7 @@ body {
 .nav a {
   text-decoration: none;
   color:white;
-  display: block;
+  display:block;
   transition: .3s background-color;
 }
  
@@ -540,11 +541,15 @@ height:30px;
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 600px) {
     .nav li {
-       font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 70px;
-  height: 30px;
+           width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+  
     }
 }

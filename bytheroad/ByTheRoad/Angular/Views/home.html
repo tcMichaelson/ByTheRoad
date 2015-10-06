@@ -1,8 +1,9 @@
 ﻿
 <div class="nav">
-
+    
     <ul>
-        <li class="logo"><h1 class="logo">ByTheRoad</h1></li>
+        <li class="Name"><img style="width: 80px; height: 80px;" alt="Related image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRsiZrcGEjVzii2MGQXJ0lNKdHNnKLKMhWqjhiqWco44q0jRVUyl394Jw" class="irc_rii"></li>
+        <li id="Name">By the road </li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
 
@@ -19,15 +20,16 @@
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
 
         </div>
-        <h4 id="stopin">Search Maps</h4><br />
-        
+        <div style="color:#287AA9;">
+            <h4 id="stopin">Search Maps</h4><br />
+        </div>
         <div ng-hide="self.distance ===false">
             <div>
                 <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null">minutes</button>
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false; self.hoursUnit=null ">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.milesUnit = null">miles</button>
 
-                <div>
+                <div id="result">
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="content == 'minutes'">
                         Enter time in minutes you want to stop in <br />
                         <input name="content"  type="text" ng-model="self.minutesUnit" class="distanceortime" />

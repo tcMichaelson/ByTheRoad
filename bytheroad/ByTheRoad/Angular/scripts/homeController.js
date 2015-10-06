@@ -75,7 +75,7 @@
                 self.results = [];
                 var spotOnRoute = findCurrentPosition();
                 console.log("spot on route:", spotOnRoute);
-                if (!spotOnRoute) {
+                if (spotOnRoute) {
                     var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
                     var searchPos = findGenericFuturePosition(info.unit, info.amount);

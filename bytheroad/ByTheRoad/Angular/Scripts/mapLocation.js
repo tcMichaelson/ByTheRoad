@@ -10,7 +10,7 @@ var lastKnownLeg;
 var lastKnownStep;
 var selectedRoute;  //currently selected route.
 var selectedPath;  //The full path of the currently selected route;
-var routeLines = [];  //path coordinates of the selected route
+var routeDistances = []; //distances that correspond to path route Lines
 var futureLoc;  //represents the location the user will be at in a given time frame.
 var futurePath;  //represents the path taken to get to the future location
 
@@ -100,13 +100,16 @@ function isBetween(a, b, x) {
 
 
 //  findGenericFuturePosition("minutes", 30)
-function findGenericFuturePosition(unitType, amount) {
+function findGenericFuturePosition(unit, amount) {
     var meters;
+    if (locHist.length === 1) {
+        return { lat: locHist[0].lat, lng: locHist[0].lng };
+    }
     var lastLoc = locHist[locHist.length - 1];
-    if (unitType === "miles") {
+    if (unit === "miles") {
         meters = amount * 1609.344;
     } else {
-        if (unitType === "hours") {
+        if (unit === "hours") {
             amount *= 3600;
         } else {
             amount *= 60;
@@ -140,6 +143,32 @@ function findFuturePosition(spotOnRoute, unit, amount) {
             amount *= 60;
         }
     }
+    console.log("selectedRoute:", selectedRoute);
+    console.log(spotOnRoute);
+    console.log(selectedRoute);
+    var currLoc = locHist[locHist.length - 1];
+    var initLeg = spotOnRoute.leg;
+    var initStep = spotOnRoute.step;
+    var initLine = spotOnRoute.line + 1;
+    
+    if(unit === "miles")
+        var distance = selectedRoute.legs[initLeg].step[initStep].distance.value - calculateDistance(currLoc, { lat: currStep.start_location.H, lng: start_location.L });
+    else
+        var distance = selectedRoute.legs[initLeg].step[initStep].duration.value - calculateDistance(currLoc, { lat: currStep.start_location.H, lng: start_location.L });
+
+    for (var iLeg = initLeg; iLeg < selectedRoute.legs.length; iLeg++) {
+        var currLeg = selectedRoute.legs[iLeg];
+        for (var iStep = initStep; iStep < currLeg.steps.length; iStep++) {
+            var currStep = currLeg.steps[iStep];
+
+
+
+            for (var iLine = initLine; iLine < currStep.path.length; iLine++) {
+                distance += calcuateDistance(currloc, { lat: currStep.end_location.H, lng: currStep.end_location.L });
+                if (distance > amount);
+            }
+        }
+    }
     var found = false;
     while (!found && false) { }
 
@@ -152,7 +181,7 @@ function findRouteAndDisplay() {
     var request = {
         origin: start,
         destination: end,
-        provideRouteAlternatives: true,
+        provideRouteAlternatives: false,
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function (response, status) {
@@ -171,11 +200,17 @@ function renderLines(response) {
         var coords = [];
         minLat = maxLat = route.legs[0].start_location.H;
         minLng = maxLng = route.legs[0].start_location.L;
-        route.legs.forEach(function (leg) {
+        route.legs.forEach(function (leg, i) {
             leg.steps.forEach(function (step) {
                 //setMarker(new google.maps.LatLng(step.end_point.H, step.end_point.L), step.distance.value, step.duration.value);
                 step.path.forEach(function (line) {
                     coords.push({ lat: line.H, lng: line.L });
+
+                    if (coords.length === 1)
+                        routeDistances[0] = 0;
+                    else
+                        routeDistances.push(calculateDistance(coords[coords.length - 1], coords[coords.length - 2]));
+
                     minLat = minLat < line.H ? minLat : line.H;
                     maxLat = maxLat > line.H ? maxLat : line.H;
                     minLng = minLng < line.L ? minLng : line.L;
@@ -183,10 +218,11 @@ function renderLines(response) {
                 });
             });
         });
+        console.log(routeDistances);
         var colHex = "";
         switch (idx % 3) {
             case 0:
-                colHex = "#ff0000";
+                colHex = "#3087B4";
                 break;
             case 1:
                 colHex = "#00ff00"
@@ -196,13 +232,22 @@ function renderLines(response) {
                 break;
         }
 
-        if (routeLines[idx]) {
-            routeLines[idx].setMap(null);
+        if (routeLines1) {
+            routeLines1.setMap(null);
+            routeLines2.setMap(null);
         }
-        routeLines[idx] = new google.maps.Polyline({
+        var routeLines1= new google.maps.Polyline({
+            path: coords,
+            strokeColor: "#000000",
+            strokeWeight: 6,
+            map: map
+        });
+
+        var routeLines2 = new google.maps.Polyline({
             path: coords,
             strokeColor: colHex,
-            strokeWeight: 2
+            strokeWeight: 4,
+            map: map
         });
 
         console.log("min dist: " + coords.map(function (a, idy, coords) {
@@ -217,7 +262,6 @@ function renderLines(response) {
         selectedRoute = response.routes[idx];
         lastKnownLeg = 0;
         lastKnownStep = 0;
-        routeLines[idx].setMap(map);
     });
     var sw = new google.maps.LatLng(minLat, minLng);
     var ne = new google.maps.LatLng(maxLat, maxLng);

@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, $window) {
             var self = this;
             var searchBox;
            
@@ -17,6 +17,15 @@
                 self.results = mapService.results;
             }
 
+
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+
+                }
+            }
+
+            self.init();
+
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -26,6 +35,7 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
@@ -36,10 +46,11 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    $window.sessionStorage.setItem("token", data.access_token);
                     self.loggingin = false;
                 })
                 .error(function () {
-                    console.error('Error loggin in.');
+                    console.error('Error loggin in.'); 
                 });
             };
 

@@ -6,8 +6,8 @@
         <li id="ProjectTitle"><h3 >ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
-
-        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
+ <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
+    <li class="logout" ><a ng-hide="self.loggingin === false">Log Out</a></li>
     </ul>
 </div>
 
@@ -214,8 +214,4 @@
 
 
     </div>
-
-
-
-
 </div>

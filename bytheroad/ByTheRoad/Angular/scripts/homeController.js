@@ -25,7 +25,7 @@
             }
 
             self.init();
-
+            self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -54,7 +54,9 @@
                 });
             };
 
-
+            self.logout = function () {
+                $http.post(token) = null;
+            }
 
             self.register = function () {
                 roadService.register(self.register);

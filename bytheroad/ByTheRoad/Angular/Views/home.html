@@ -6,8 +6,8 @@
         <li id="ProjectTitle"><h3 >ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
- <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
-    <li class="logout" ><a ng-hide="self.loggingin === false">Log Out</a></li>
+        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
+        <li class="logout" ><a ng-show="self.logoutbtn === true"  ng-click="self.logout()">Log Out</a></li>
     </ul>
 </div>
 
@@ -17,7 +17,7 @@
 
     <div class="floating-box">
         <div id="Result">
-            <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
+            <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " ng-show="self.logoutbtn === true" class="Result1">My Places</button>
 
         </div>
         <h4 id="h4style">Search Maps</h4><br />
@@ -159,7 +159,7 @@
 
     <div ng-hide="self.loggingin === false" class="rightloginbox">
 
-        <form id="loginform" ng-submit="self.login()">
+        <form id="loginform" ng-submit="self.login(); self.login.email = null; self.login.password = null;">
             <label class="label1">
                 User Email:
             </label>
@@ -168,14 +168,14 @@
                 Password:
             </label>
             <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
-            <input type="submit" class="submitbtn" value="Log In" />&nbsp;
-            <button ng-click="self.loggingin = false" class="cancelbtn">Cancel</button>
+            <input type="submit" class="submitbtn" ng-click="self.logoutbtn = true; self.loggingin = false" value="Log In" />&nbsp;
+         
         </form>
     </div>
 
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.register()">
+        <form id="registerform" ng-submit="self.register(); self.register.email =null; self.register.password = null; self.register.Confirmpassword = null;" >
 
             <label class="label1">
                 Email:
@@ -197,7 +197,7 @@
         </form>
     </div>
 
-
+    
     <div ng-hide="self.start === false" class="rightstartbox">
         <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
 
@@ -214,4 +214,5 @@
 
 
     </div>
+  
 </div>

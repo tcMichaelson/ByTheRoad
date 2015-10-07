@@ -16,6 +16,7 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    
                 })
 
                 .error(function () {

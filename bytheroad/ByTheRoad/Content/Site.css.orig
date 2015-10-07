@@ -1,7 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -19,41 +16,62 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  background:white;
+  background:rgb(34,30,78);
+  border:solid 1px black;
+  height: 100%;
+  min-width: 1000px;
+  width: 100%;
+  position: absolute;
 }
+
+    
  
+ 
+
+
+>>>>>>> eb3234363fbd35c7f8e6b5c043998311260a8056
 .nav ul {
   list-style: none;
-  background-color: #444;
+  
   text-align: center;
-  padding: 0;
+  padding:0;
   margin: 0;
-  height:10%;
+  height:100%;
+ 
+  
+
 }
-.nav li {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #888;
+nav li {
+     width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+
 }
  
+.nav{
+    height:50px;
+}
 .nav a {
   text-decoration: none;
-  color: #fff;
-  display: block;
+  color:white;
+  display:block;
   transition: .3s background-color;
 }
  
 .nav a:hover {
-  background-color: #005f5f;
+  background-color: #3087B4;
 }
  
 .nav a.active {
-  background-color: #fff;
+  background-color: #143D55;
   color: #444;
   cursor: default;
 }
+<<<<<<< HEAD
  
 @media screen and (min-width: 600px) {
   .nav li {
@@ -62,8 +80,9 @@ body {
     height: 50px;
     line-height: 50px;
     font-size: 1.4em;
-display: inline-block;
+    display: inline-block;
     margin-right: -4px;
+    
   }
  
  
@@ -71,30 +90,192 @@ display: inline-block;
   
 }
 
-.distance{
-background-color:coral;
-
+#Name {
+    color:white;
 }
+=======
+
+
+.logo {
+    position: absolute;
+    font-size: larger;
+    font-style: italic;
+    color: darkseagreen;
+    left: 10%;
+}
+
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
 
 .leftboxes{
 
   height:100%;
   width: 25%;
-position:absolute;
-border: 1px solid blue;
+  position:absolute;
+  border: 1px solid blue;
+}
+
+#Result{
+    position: absolute;
+    width: 100%;
 }
 
 .floating-box {
-    float: left;
-    width: 100%;
-    height: 50%;    
-    border:3px solid red;  
-     margin:0px;
-     padding:10px;
     
+    width: 100%;
+    height: 100%;    
+    border:1px solid black;
+    position: absolute;
+    background-color:white;
+}
+
+#h4style{
+    color:black;
+    font-size:25px;
+    font-weight:200 bolder;
+    margin-top: 40px;
+    text-align:center;
+ }
+
+.queryInput{
+    position: absolute;
+    width: 100%;
+}
+
+.queryInput div{
+    position: absolute;
+    width: 100%;
+}
+
+
+ .distance{
+     background-color:#E18A07;
+    margin:5px;
+    height:70px;
+    width:90px;
+    padding:0px;
+    color:white;
+    font-size:20px;
+ }
+
+
+ .distanceortime{
+     
+  padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:30px;
+      
+      }
+
+
+.clear{
+     background-color:#143D55;
+     color:white;
+     width:100px;
+     height:30px;
+
+ }
+
+.nearbysearch{
+    margin-top:150px;
+    margin-left:10px;
+    position:absolute;
+}
+
+.btn btn-primary{
+    height:1px;
+    width:1px;
+    display:inline;
+ 
+}
+
+#img{
+    height:20px;
+    width:20px;
+    display:inline;
+    padding:0;
+
+}
+
+
+.searchbox {
+    margin-top: 50px;
+}
+
+#searchVisible{
+    
+    margin-top:500px;
+    width:100px;
+    height:40px;
+    margin-left:-25px;
+   background-color:white;
+   border:1px solid black;
+ color:black;
+}
+
+#slideoutsearchResults {
+    margin-top:370px;
+  
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
     
 }
 
+#slideboxheading{
+    color:black;
+}
+
+#hide{
+ 
+    width:90px;
+    height:30px;
+    background-color:#428bca;
+    color:white;
+    font-size:medium;
+}
+
+
+#favorite{
+ 
+    width:90px;
+    height:30px;
+    background-color:#428bca;
+    color:white;
+    font-size:medium
+}
+
+
+#searchResultsDetail{
+    border: 1px solid #287AA9;
+}
+
+#resulttitle{
+
+}
+
+#savedPlaces{
+  margin-top:400px;
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
+}
+
+#savedPlacesDetail{
+    border: 1px solid #287AA9;
+    height: 250px;
+    width: 425px;
+}
 
 
 .rightboxes{
@@ -102,25 +283,25 @@ border: 1px solid blue;
   height: 100%;
   position: absolute;
   right: 0;
-
 }
 
 
 .floatingmapbox {
-  border: 3px solid salmon;
+
+   border:solid 1px black;
   width: 100%;
   height: 100%;
-  position: relative;
-  right: 0;
+  position: absolute;
    margin:0px;
+
 }
 
 .rightloginbox {
-    background-color: lightyellow;
+    background-color:#FA9E25;
     position: absolute;
     right:0;
     top: 0px;
-    border: 3px solid salmon;   
+    border-top:1px solid white; 
     width: 100%;   
      height:10%;
     margin:0px;
@@ -128,56 +309,108 @@ border: 1px solid blue;
     padding:10px;
 }
 
-.rightregisterbox{
-background-color: lightyellow;
-    position: absolute;
-    right:0;
-    top: 0px;
-    border: 3px solid salmon;   
-    width: 100%;   
-     height:10%;
-    margin:0px;
-    margin-bottom:1px;
-    padding:10px;
+.loginbox{
+  padding: 3px;
+   box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:30px;
 }
 
 
 .label1{
     font:bold;
-    color:green;
-
+    color:black;
+    font-size:20px;
 }
+
+
+
+
+.rightregisterbox{
+background-color:#FA9E25 ;
+    position: absolute;
+    right:0;
+    top: 0px;
+   border-top:1px solid white;
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+.rightstartbox{
+background-color:#FA9E25;
+    position: absolute;
+    right:0;
+    top: 0px;
+    border: 1px solid white;   
+    width: 100%;   
+     height:10%;
+    margin:0px;
+    margin-bottom:1px;
+    padding:10px;
+}
+
+
+
+.submitbtn{
+    background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:100px;
+    height:30px;
+    margin:10px;
+}
+
+
+.cancelbtn{
+background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:100px;
+    height:30px;
+}
+
+
+.registerbox{
+ padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:140px;
+height:30px;
+}
+
+.submitdirection{
+    background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:150px;
+    height:30px;
+    margin:10px;
+}
+
+.addbox{
+   padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:250px;
+height:30px;
+}
+
+
+
+
+
 
 .ownsearch{
 
     color:red;
     margin:10px;
 }
-
-.btn btn-primary{
-    height:1px;
-    width:1px;
-    display:inline;
-    padding:10px;
-
-}
-
-.searchbox {
-    margin-top: 10px;
-}
-
-#directionsearch{
-    
-    padding:20px;
-}
-.addbox{
-    background-color:coral;
-    border:3px solid blue;
-    margin:10px;
-    width:70%;
-}
-
-
 #time{
 
     margin-top:150px;
@@ -196,6 +429,8 @@ background-color: lightyellow;
     font-size:large;
 }
 
+
+
 .sliderbody {
     overflow-x: hidden;
 }
@@ -207,6 +442,8 @@ background-color: lightyellow;
    top: 200px;
     padding-left: 300px;
     margin-top:100px;
+    
+    
 }
     
 #clickme {
@@ -230,48 +467,28 @@ background-color: lightyellow;
 
 
 
-.logo{
-    position: absolute;
-    font-size:larger;
-    font-style:italic;
-    color:darkseagreen;
-    left: 10%;
-    
-}#img{
-    height:20px;
-    width:20px;
-    display:inline;
-    padding:0;
 
-}
- .distance{
-     background-color:green;
-    margin:10px;
-    height:70px;
-    width:90px;
-    padding:0px;
-    color:white;
- }
+ 
+
+<<<<<<< HEAD
  #stopin{
-    color:blue;
+    color:#287AA9;
     font-size:25px;
     text-align:center;
  }
+=======
+ 
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
  .distanceortime{
      
-  padding: 1px;
-  border: solid 3px green;
-  box-shadow: inset 0 0 0 3px yellow;
+  padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
-  width:200px;
+  width:150px;
+  height:30px;
       
       }
-
- #SearchResults{
-     width:350px;
-     height:250px;
-     border:1px solid blue;
- }
 
  
 
@@ -321,71 +538,28 @@ background-color: lightyellow;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-#sResult{border: 1px solid red;
-    top: 50%;
-    height: 50%;
-    width: 100%;
-
-}
-
-#hide{
- 
-    width:70px;
-    height:30px;
-    background-color:indianred;
-    color:green;
-}
-
-.loginbox{
-  padding: 5px;
-  border: solid 3px salmon;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-}
-
-.registerbox{
- padding: 1px;
-  border: solid 3px salmon;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:140px;
-}
+<<<<<<< HEAD
 
 
-#searchResults {
-    border: 1px solid red;
-    height: 110%;
+#savedPlaces{
+  margin-top:400px;
+    border: 1px solid #287AA9;
+    height: 55%;
     position: absolute;
     width: 100%;
     overflow:scroll;
     background-color:white;
-    
-}
-
-#searchResultsDetail{
-    border: 1px solid red;
-}
-
-
-#savedPlaces{
- border: 1px solid red;
-    position:absolute;
-    height: 110%;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
+    color:#287AA9;
 }
 
 #savedPlacesDetail{
-    border: 1px solid red;
-<<<<<<< HEAD
+    border: 1px solid #287AA9;
     height: 250px;
     width: 425px;
 }
-=======
-}
 
+=======
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
 #absolute {
     position: absolute;
     right:-50px;
@@ -401,4 +575,59 @@ background-color: lightyellow;
    width:100px;
 
 }
->>>>>>> 3dbac9a53c7ccc727dab71cc395bb98ed3833773
+
+
+.Result1{
+<<<<<<< HEAD
+background-color:#287AA9;
+=======
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
+    
+    background-color:#143D55;
+    height:25px;
+    width:100px;
+    margin: 0 auto;
+    padding:0px;
+    position: relative;
+    color:white;
+    font-size:small;
+}
+
+<<<<<<< HEAD
+#favorite{
+ 
+    width:110px;
+    height:50px;
+    background-color:#287AA9;
+    color:white;
+    font-size:medium
+}
+#distance{
+    color:#287AA9;
+}
+#result{
+    color:#287AA9;
+}
+.Result{
+    color:#287AA9;
+}
+=======
+
+#distance{
+    color:#287AA9;
+}
+
+
+@media screen and (min-width: 600px) {
+    .nav li {
+           width: 100px;
+        border-bottom: none;
+        height: 40px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display:inline-block;
+        margin-right: -4px;
+  
+    }
+}
+>>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967

@@ -57,11 +57,11 @@
                 <div>
                     <form ng-submit="self.textSearch()">
                         <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
-                        <input type="text" class="searchbox" id="textsearch" name="search" />
+                        <input type="text" class="searchbox" ng-click="self.selected= true" id="textsearch" name="search" />
                     </form>
                 </div>
-                <div>
-                    <button id="searchVisible" type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
+                <div id="searchVisible">
+                    <button  type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
                 </div>
 
                 <div class="btn-group">
@@ -159,7 +159,7 @@
 
     <div ng-hide="self.loggingin === false" class="rightloginbox">
 
-        <form id="loginform" ng-submit="self.login(); self.login.email = null; self.login.password = null;">
+        <form id="loginform" ng-submit="self.login()">
             <label class="label1">
                 User Email:
             </label>
@@ -168,14 +168,14 @@
                 Password:
             </label>
             <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
-            <input type="submit" class="submitbtn" ng-click="self.logoutbtn = true; self.loggingin = false" value="Log In" />&nbsp;
+            <input type="submit" class="submitbtn"  value="Log In" />&nbsp;
          
         </form>
     </div>
 
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.register(); self.register.email =null; self.register.password = null; self.register.Confirmpassword = null;" >
+        <form id="registerform" ng-submit="self.register();" >
 
             <label class="label1">
                 Email:

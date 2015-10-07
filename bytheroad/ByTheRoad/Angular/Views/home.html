@@ -1,13 +1,13 @@
 ﻿
 <div class="nav">
-   
+
     <ul>
-        <li class="logo"><img src="../../fonts/road.jpg" width="80" height="50"contextmenu="By the Road " /></li>
-        <li id="ProjectTitle"><h3 >ByTheRoad</h3></li>
+        <li class="logo"><img src="../../fonts/road.jpg" width="80" height="50" contextmenu="By the Road " /></li>
+        <li id="ProjectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false">Register</a></li>
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
-        <li class="logout" ><a ng-show="self.logoutbtn === true"  ng-click="self.logout()">Log Out</a></li>
+        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
     </ul>
 </div>
 
@@ -23,7 +23,7 @@
         <h4 id="h4style">Search Maps</h4><br />
 
         <div class="queryInput" ng-hide="self.distance ===false">
-            <div>
+            <div >
                 <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">minutes</button>
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">miles</button>
@@ -61,7 +61,7 @@
                     </form>
                 </div>
                 <div id="searchVisible">
-                    <button  type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
+                    <button type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
                 </div>
 
                 <div class="btn-group">
@@ -118,7 +118,7 @@
                 <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div>{{result.formatted_phone_number}}</div>
-                
+
                 <div><label class="resultlabel"> Rating:</label> {{result.rating}}</div>
                 <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
                 <div><label class="resultlabel">Time:</label>{{result.time}} </div>
@@ -142,7 +142,7 @@
                 <div>{{saved.formatted_phone_number}}</div>
                 <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
                 <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                
+
                 <div><label>Rating</label>{{saved.rating}}</div>
                 <div><label>Distance</label>{{saved.distance}}</div>
                 <div><label>Time</label>{{saved.time}}</div>
@@ -150,12 +150,13 @@
         </div>
     </div>
 </div>
-
 <div class="rightboxes">
+
     <div id="map" class="floatingmapbox">
         map box
 
     </div>
+
 
     <div ng-hide="self.loggingin === false" class="rightloginbox">
 
@@ -168,14 +169,14 @@
                 Password:
             </label>
             <input class="loginbox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />&nbsp;
-            <input type="submit" class="submitbtn"  value="Log In" />&nbsp;
-         
+            <input type="submit" class="submitbtn" value="Log In" />&nbsp;
+
         </form>
     </div>
 
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.register();" >
+        <form id="registerform" ng-submit="self.register();">
 
             <label class="label1">
                 Email:
@@ -197,7 +198,7 @@
         </form>
     </div>
 
-    
+
     <div ng-hide="self.start === false" class="rightstartbox">
         <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
 
@@ -214,5 +215,5 @@
 
 
     </div>
-  
+
 </div>

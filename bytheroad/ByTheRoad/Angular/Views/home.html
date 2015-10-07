@@ -118,7 +118,7 @@
                 <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div>{{result.formatted_phone_number}}</div>
-                <div><label class="resultlabel"> Price Level:</label>{{result.price_level}}</div>
+                
                 <div><label class="resultlabel"> Rating:</label> {{result.rating}}</div>
                 <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
                 <div><label class="resultlabel">Time:</label>{{result.time}} </div>
@@ -142,7 +142,7 @@
                 <div>{{saved.formatted_phone_number}}</div>
                 <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
                 <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div><label>Price Level</label>{{saved.price_level}}</div>
+                
                 <div><label>Rating</label>{{saved.rating}}</div>
                 <div><label>Distance</label>{{saved.distance}}</div>
                 <div><label>Time</label>{{saved.time}}</div>

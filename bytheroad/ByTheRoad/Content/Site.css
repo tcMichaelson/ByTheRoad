@@ -52,6 +52,7 @@ nav li {
 .nav{
     height:50px;
 }
+
 .nav a {
   text-decoration: none;
   color:white;
@@ -75,8 +76,10 @@ nav li {
     position: absolute;
     font-size: larger;
     font-style: italic;
-    color: darkseagreen;
-    left: 10%;
+    color: white;
+    left: 0%;
+    /*margin-left: -10px;*/
+
 }
 
 #Name {
@@ -103,6 +106,17 @@ nav li {
     position: absolute;
     background-color:white;
 }
+
+
+#ProjectTitle{
+    position:absolute;
+    font-size: small;
+    font-style: italic;
+    color: white;
+  
+    left: 90px;
+}
+
 
 #h4style{
     color:black;

@@ -12,7 +12,10 @@ var selectedRoute;  //currently selected route.
 var selectedPath;  //The full path of the currently selected route;
 var routeDistances = []; //distances that correspond to path route Lines
 var futureLoc;  //represents the location the user will be at in a given time frame.
+var routeLines1;
+var routeLines2;
 var futurePath;  //represents the path taken to get to the future location
+var car;
 
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
@@ -30,7 +33,7 @@ function initMap() {
                 zoom: 18
             });
             currLoc = pos;
-            setOriginTextBox(currLoc);
+            updateLocHist(currLoc);
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
@@ -113,6 +116,18 @@ function findGenericFuturePosition(unit, amount) {
     console.log(meters);
 
     var futureLoc = calculatePointAlongBearing({ lat: lastLoc.lat, lng: lastLoc.lng }, lastLoc.bearing, meters);
+
+    var futureSearchRadius = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 1,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0,
+      map: map,
+      center: futureLoc,
+      radius: 500
+    });
+    
     futurePath = new google.maps.Polyline({
         path: [{ lat: lastLoc.lat, lng: lastLoc.lng }, { lat: futureLoc.lat, lng: futureLoc.lng }],
         strokeWeight: 2,
@@ -155,12 +170,19 @@ function findFuturePosition(spotOnRoute, unit, amount) {
         return currLoc;
     }
     
-    if (distance > amount){
+    if (distance > meters){
         var bearing = calculateInitialBearing(selectedPath[iLine], currLoc);
-        futureLoc = calculatePointAlongBearing(currLoc, bearing, distance - amount);
+        futureLoc = calculatePointAlongBearing(selectedPath[iLine], bearing, distance - meters);
     } else{
         futureloc = selectedPath[iLine];
     }
+
+    new google.maps.Polyline({
+        strokeWeight: 5,
+        strokeColor: "#000000",
+        path: [currLoc, futureLoc],
+        map: map
+    })
 
     return futureLoc;
 }
@@ -227,14 +249,14 @@ function renderLines(response) {
             routeLines1.setMap(null);
             routeLines2.setMap(null);
         }
-        var routeLines1 = new google.maps.Polyline({
+        routeLines1 = new google.maps.Polyline({
             path: coords,
             strokeColor: "#000000",
             strokeWeight: 6,
             map: map
         });
 
-        var routeLines2 = new google.maps.Polyline({
+        routeLines2 = new google.maps.Polyline({
             path: coords,
             strokeColor: colHex,
             strokeWeight: 4,
@@ -260,7 +282,7 @@ function renderLines(response) {
     map.fitBounds(bounds);
 }
 
-function setOriginTextBox(pos) {
+function updateLocHist(pos) {
     //var geocoder = new google.maps.Geocoder;
     //geocoder.geocode({ 'location': pos }, function (results, status) {
     //    if (status === google.maps.GeocoderStatus.OK) {
@@ -353,17 +375,33 @@ function executePan(newCenter) {
     //locHist.push({ lat: newCenter.lat, lng: newCenter.lng, time: Date.now() });
 }
 
+function moveCar(newCenter) {
+    car.setPosition(newCenter);
+}
+
 function startRouting() {
     map.setZoom(15);
     var move = 0;
     locHist = [];
     map.setCenter(selectedPath[0]);
+    var carIcon = {
+        url: "../../Content/sportCar.png",
+        scaledSize: new google.maps.Size(30, 60),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(15,30)
+    };
+    car = new google.maps.Marker({
+        position: selectedPath[0],
+        map: map,
+        icon: carIcon
+    });
 
     console.log(selectedRoute);
     move++;
     var refreshInterval = window.setInterval(function () {
-        if (move < 60) {
-            executePan(selectedPath[move]);
+        if (move < 1500) {
+            updateLocHist(selectedPath[move]);
+            moveCar(selectedPath[move]);
             move++;
         } else {
             clearInterval(refreshInterval);

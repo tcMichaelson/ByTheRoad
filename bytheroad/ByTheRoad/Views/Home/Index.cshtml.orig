@@ -1,37 +1,55 @@
 ﻿@{ 
     Layout = null;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 9f92678cdac40984710aaa42c2787993b32fb2df
 <!DOCTYPE html>
 <html ng-app="byTheRoad">
 <head>
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width,user-scalable=yes" />
 <title>@ViewBag.Title</title>
 @Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/modernizr")  
+    
 
-
-   
-   
+    <link rel="stylesheet" href="~/Content/animate.min.css">   
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Angular/Scripts/app.js"></script>
-    <script src="~/Angular/Scripts/mapLocation.js"></script>
-    <script src="~/Angular/Scripts/registerController.js"></script>
+    <script src="~/Angular/Scripts/mapService.js"></script>
     <script src="~/Angular/Scripts/roadService.js"></script>
+    <script>
+        //C# injects
+        angular
+            .module('byTheRoad')
+            .constant('routeUrls', {
+<<<<<<< HEAD
+                registerApi: '@Url.HttpRouteUrl("Register", null)'
+
+            });
+
+=======
+                POIApi: '@Url.HttpRouteUrl("POIApi", null)', 
+                registerApi: '@Url.HttpRouteUrl("Register", null)'
+
+            });
+       
+        
+>>>>>>> aee88d1e1717fac0e9d90dc5fe5b893bd59ffce4
+    </script>
     <script src="~/Angular/Scripts/homeController.js"></script>
-    <script src="../Scripts/mapLocation.js"></script>
 </head>
 <body>
     <ng-view></ng-view>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap&libraries=places"
             async defer>
     </script>
+    <script src="~/Angular/scripts/mapLocation.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="base.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="mobile.css" media="handheld" />
+
 </body>
 </html>

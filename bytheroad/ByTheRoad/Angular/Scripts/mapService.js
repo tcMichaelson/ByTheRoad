@@ -1,12 +1,25 @@
 ﻿(function () {
     angular.module('byTheRoad')
-        .service('mapService', function () {
+        .service('mapService', function ($resource, $http) {
 
             var infowindow;
             var self = this;
             self.results = [];
             var placeIdArray = [];
             var markers = [];
+      
+
+            self.favPOI = function (id) {
+                $http.post('/api/POI?placeId=' + id)
+                .success(function (result) {
+                    console.log("success");
+                })
+                .error(function () {
+                    console.error('fail');
+                });
+
+
+            }
 
             self.categorySearch = function (model) {
                 self.results = [];

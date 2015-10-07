@@ -24,14 +24,10 @@
         angular
             .module('byTheRoad')
             .constant('routeUrls', {
-                POIApi: '@Url.HttpRouteUrl("POIApi", null)',
                 registerApi: '@Url.HttpRouteUrl("Register", null)'
 
             });
-        if (screen.width <= 480) {
-            location.href = '/mobile.html';
-        }
-        
+
     </script>
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>

@@ -124,7 +124,7 @@
                 <div><label>Time:</label>{{result.time}} </div>
 
                 <label>If you like this places click here </label>
-                <input type="checkbox" name="savesPlaces" ng-model="result.saved" />
+                <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
             </div>
 
         </div>

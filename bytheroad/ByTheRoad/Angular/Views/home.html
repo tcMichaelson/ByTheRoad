@@ -105,30 +105,36 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-            <button id="favorite" type="button">My Places</button>
+            <button id="favorite"  ng-show="self.logoutbtn === true" type="button">My Places</button>
         </h3>
 
         <div ng-repeat="result in self.results">
 
             <div id="searchResultsDetail">
-                <div id="resulttitle"><h4><strong>{{result.name}}</strong></h4></div>
 
-                <div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
-                <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
-                <div ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
-                <div>{{result.formatted_phone_number}}</div>
+                <!--<div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
+                <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>-->
 
-                <div><label class="resultlabel"> Rating:</label> {{result.rating}}</div>
+                <div id="resulttitle">
+                    <h3 id="searchh3">{{result.name}}
+                       
+                    </h3>
+              
+                </div>
+
+                <div id="searchadd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div id="searchadd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <!--<div>{{result.formatted_phone_number}}</div>-->
+                
+                <div id="rating">{{result.rating}}</div>
                 <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
-                <div><label class="resultlabel">Time:</label>{{result.time}} </div>
-
-                <label>If you like this places click here </label>
+                <div><label>Mark as Favorite </label>
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
+                    <button id="navigatesearch"  type="button">Navigate</button>
+                </div>
+                
             </div>
-
-        </div>
-
+         </div>
     </div>
 
 

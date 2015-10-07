@@ -8,6 +8,7 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.star = false;
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
@@ -49,8 +50,8 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    //self.login.email = null;
-                    //self.login.password = null;
+                    self.login.email = null;
+                    self.login.password = null;
                 })
                 .error(function () {
                     console.error('Error loggin in.');
@@ -59,8 +60,19 @@
             };
 
             self.logout = function () {
-                $http.post(token) = null;
-            }
+                $http.post('api/Account/Logout')
+
+                .success(function (data) {
+
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+
+               .error(function () {
+                   console.error('Error loggin in.');
+
+               });
+            };
 
             self.register = function () {
                 roadService.register(self.register);

@@ -1,5 +1,4 @@
 ﻿
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -38,7 +37,7 @@ body {
   
 
 }
-nav li {
+.nav li {
      width: 100px;
         border-bottom: none;
         height: 40px;
@@ -52,7 +51,6 @@ nav li {
 .nav{
     height:50px;
 }
-
 .nav a {
   text-decoration: none;
   color:white;
@@ -72,14 +70,20 @@ nav li {
 
     
 
+#ProjectTitle {
+    position: absolute;
+    font-size: small;
+    font-style: italic;
+    color: white;
+    left: 100px;
+}
+
 .logo {
     position: absolute;
     font-size: larger;
     font-style: italic;
     color: white;
     left: 0%;
-    /*margin-left: -10px;*/
-
 }
 
 
@@ -105,17 +109,6 @@ nav li {
     position: absolute;
     background-color:white;
 }
-
-
-#ProjectTitle{
-    position:absolute;
-    font-size: small;
-    font-style: italic;
-    color: white;
-  
-    left: 100px;
-}
-
 
 #h4style{
     color:black;
@@ -195,12 +188,12 @@ nav li {
 
 #searchVisible{
     
-    margin-top:460px;
+    margin-top:450px;
     width:100px;
-    height:48px;
+    height:40px;
     margin-left:-25px;
    background-color:white;
-   
+  
  color:black;
 }
 
@@ -244,12 +237,51 @@ nav li {
 #searchResultsDetail{
     border: 1px solid #287AA9;
     color:black;
+    margin:1px;
+    background-color:beige;
+   
 }
 
-#resulttitle{
-    font-size:30px;
-    color:black;
+#searchh3 {
 
+    font-size:20px;
+    color: black;
+}
+    
+
+#resulttitle{
+  
+    
+  
+}
+
+#navigatesearch{
+    margin-left:80px;
+    margin-bottom:1px;
+    width:80px;
+    height:30px;
+    font-size:15px;
+    background-color:#428bca; 
+
+}
+#searchadd{
+
+    font-size:12px;
+} 
+#rating{
+    color:#E18A07;
+
+}
+
+
+#directsearch{
+    color:black;
+}
+#searchdirectlink{
+    color:black;
+}
+.resultlabel{
+    font-size:15px;
 }
 
 #savedPlaces{
@@ -464,6 +496,7 @@ height:30px;
 
  
   
+   
  .distanceortime{
      
   padding: 3px;
@@ -526,6 +559,7 @@ height:30px;
 
 
     
+  
 #absolute {
     position: absolute;
     right:-50px;
@@ -558,6 +592,7 @@ background-color:#287AA9;
 
 
     
+
 #distance{
     color:#287AA9;
 }
@@ -569,18 +604,4 @@ background-color:#287AA9;
 }
 
 
-@media screen and (min-width: 400px) {
-    .nav li {
-           width: 100px;
-        border-bottom: none;
-        height: 40px;
-        line-height: 50px;
-        font-size: 1.4em;
-        display:inline-block;
-        margin-right: -4px;
-
-  
-    }
     
-}
-

@@ -48,9 +48,13 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     self.loggingin = false;
+                    self.logoutbtn = true;
+                    //self.login.email = null;
+                    //self.login.password = null;
                 })
                 .error(function () {
-                    console.error('Error loggin in.'); 
+                    console.error('Error loggin in.');
+
                 });
             };
 
@@ -60,6 +64,9 @@
 
             self.register = function () {
                 roadService.register(self.register);
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
             };
 
             self.nearbySearch = function () {

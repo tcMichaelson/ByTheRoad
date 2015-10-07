@@ -186,6 +186,10 @@
                 }
             }
 
+            self.favPOI = function (placeId) {
+                mapService.favPOI(placeId);
+            }
+
         });
 
 

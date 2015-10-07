@@ -573,7 +573,7 @@ background-color:#287AA9;
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 400px) {
     .nav li {
            width: 100px;
         border-bottom: none;

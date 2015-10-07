@@ -23,12 +23,12 @@
         <h4 id="h4style">Search Maps</h4><br />
 
         <div class="queryInput" ng-hide="self.distance ===false">
-            <div >
+            <div class="qInput" >
                 <button type="button" ng-model="self.minutebtn" class="distance" ng-click="self.minutebtn = true; self.hourbtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">minutes</button>
                 <button type="button" ng-model="self.hourbtn" class="distance" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distance" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">miles</button>
 
-                <div>
+                <div class="Q-Input">
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="mincontent === 'minutes'">
                         Enter time in minutes you want to stop in <br />
                         <input name="mincontent" type="text" ng-model="self.minutesUnit" class="distanceortime" />
@@ -54,7 +54,7 @@
 
 
             <div ng-show="self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0 " class="nearbysearch">
-                <div>
+                <div class="search">
                     <form ng-submit="self.textSearch()">
                         <button type="button" id="input-btn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
                         <input type="text" class="searchbox" ng-click="self.selected= true" id="textsearch" name="search" />
@@ -110,23 +110,23 @@
 
         <div ng-repeat="result in self.results">
 
-            <div id="searchResultsDetail">
+            <div class="searchResultsDetail">
 
                 <!--<div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
                 <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>-->
 
-                <div id="resulttitle">
-                    <h3 id="searchh3">{{result.name}}
+                <div class="resulttitle">
+                    <h3 class="searchh3">{{result.name}}
                        
                     </h3>
               
                 </div>
 
-                <div id="searchadd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div id="searchadd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <div class="searchadd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div class="searchadd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <!--<div>{{result.formatted_phone_number}}</div>-->
                 
-                <div id="rating">{{result.rating}}</div>
+                <div class="rating">{{result.rating}}</div>
                 <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
                 <div><label>Mark as Favorite </label>
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
@@ -142,16 +142,16 @@
         <h3> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
         <div ng-repeat="saved in self.places">
-            <div id="savedPlacesDetail">
-                <div style="color:#143D55"><h4><strong>{{saved.name}}</strong></h4></div>
-                <div>{{saved.formmatted_address}}</div>
-                <div>{{saved.formatted_phone_number}}</div>
-                <div ng-show="saved.opening_hours.open_now === true">I'm currently<strong>open</strong></div>
-                <div ng-show="saved.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>
+            <div class="savedPlacesDetail">
+                <div style="color:#143D55"class="placseName"><h4><strong>{{saved.name}}</strong></h4></div>
+                <div class="Address">{{saved.formmatted_address}}</div>
+                <div class="phoneNumber">{{saved.formatted_phone_number}}</div>
+                <div ng-show="saved.opening_hours.open_now === true"class="open">I'm currently<strong>open</strong></div>
+                <div ng-show="saved.opening_hours.open_now === false"class="open">I'm currently <strong>closed</strong></div>
 
-                <div><label>Rating</label>{{saved.rating}}</div>
-                <div><label>Distance</label>{{saved.distance}}</div>
-                <div><label>Time</label>{{saved.time}}</div>
+                <div class="Rating"><label>Rating</label>{{saved.rating}}</div>
+                <div class="distance"><label>Distance</label>{{saved.distance}}</div>
+                <div class="time"><label>Time</label>{{saved.time}}</div>
             </div>
         </div>
     </div>

@@ -234,7 +234,7 @@ body {
 }
 
 
-#searchResultsDetail{
+.searchResultsDetail{
     border: 1px solid #287AA9;
     color:black;
     margin:1px;
@@ -249,7 +249,7 @@ body {
 }
     
 
-#resulttitle{
+.resulttitle{
   
     
   
@@ -264,11 +264,11 @@ body {
     background-color:#428bca; 
 
 }
-#searchadd{
+.searchadd{
 
     font-size:12px;
 } 
-#rating{
+.rating{
     color:#E18A07;
 
 }
@@ -295,7 +295,7 @@ body {
     color:blue;
 }
 
-#savedPlacesDetail{
+.savedPlacesDetail{
     border: 1px solid #287AA9;
     height: 250px;
     width: 425px;

@@ -269,6 +269,7 @@
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sportCar.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-203-shopping-cart.png" />
     <Content Include="fonts\glyphicons-303-temple-christianity-church.png" />
@@ -279,6 +280,7 @@
     <Content Include="fonts\glyphicons-568-transport.png" />
     <Content Include="fonts\glyphicons-6-car - Copy.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\road.jpg" />
     <Content Include="fonts\translucentparki.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />

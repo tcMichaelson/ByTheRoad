@@ -5,6 +5,7 @@
         $routeProvider.when('/', {
             templateUrl: 'angular/views/home.html',
             controller: 'homeController',
+
             controllerAs: 'self'
         })
 

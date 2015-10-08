@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace ByTheRoad.Controllers.APIController
 {
-   
+    [Authorize]
     public class POIController : ApiController
     {
         private IGenericRepository _repo;
@@ -35,20 +35,20 @@ namespace ByTheRoad.Controllers.APIController
         [HttpPost]
         public HttpResponseMessage Post(PointOfInterest poi)
         {
-            Console.WriteLine("API hit");
-            Console.ReadLine();
+
             if (ModelState.IsValid)
             {
                 string currentUser = User.Identity.Name;
 
                 PointOfInterest newPOI = new PointOfInterest
                 {
-                    Id = poi.Id,
+                   
+                    Place_id = poi.Place_id,
                     Name = poi.Name,
                     Address = poi.Address,
                     PhoneNum = poi.PhoneNum,
-                    Rating = poi.Rating,
-                    Distance = poi.Distance,                                                        
+                    Rating = poi.Rating
+                                                                   
 
                 };
 

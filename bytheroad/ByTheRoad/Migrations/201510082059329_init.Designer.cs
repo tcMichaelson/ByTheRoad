@@ -7,13 +7,13 @@ namespace ByTheRoad.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class updatedPOI : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedPOI));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510072215591_updatedPOI"; }
+            get { return "201510082059329_init"; }
         }
         
         string IMigrationMetadata.Source

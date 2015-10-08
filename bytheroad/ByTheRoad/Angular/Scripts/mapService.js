@@ -8,11 +8,18 @@
             self.results = [];
             self.places = [];
             var placeIdArray = [];
-            var markers = [];
+            self.markers = [];
       
             // Save POI
             self.favPOI = function (poi) {
-                $http.post('/api/POI?poi=' + poi)
+                console.log(poi);
+                $http.post('/api/POI', {
+                    Place_id: poi.place_id,
+                    Name: poi.name,
+                    Address: poi.formatted_address,
+                    PhoneNum: poi.formatted_phone_number,
+                    Rating: poi.rating
+                })
                 .success(function (result) {
                     console.log("success");
                 })
@@ -38,13 +45,17 @@
                 self.results = [];
                 infowindow = new google.maps.InfoWindow();
 
-                var service = new google.maps.places.PlacesService(map);
-
-                service.nearbySearch({
+                var request = {
                     location: center,
                     radius: 500,
                     types: model.selectedItem
-                }, self.callback);
+                }
+
+                var service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, self.callback);
+
+                displayCircle(center);
+
             }
 
      //text search from  input box
@@ -59,15 +70,31 @@
                     query: document.getElementById('textsearch').value
                 };
 
+
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
+                displayCircle(center);
+
+            }
+
+            function displayCircle(center){
+                var futureSearchRadius = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0,
+                    map: map,
+                    center: center,
+                    radius: 500
+                });
             }
 
 
         //grabbing the info for each place
             self.callback = function (results, status) {
-                markers.forEach(function (marker) {
+                self.markers.forEach(function (marker) {
                     marker.setMap(null);
                 })
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -86,27 +113,15 @@
                 var service = new google.maps.places.PlacesService(map);
                 for (var i = 0; i < placeIdArray.length; i++)
                 {
-                    //console.log("placeIdArray[" + i + "] = " + placeIdArray[i]);               
-
+                    
                     service.getDetails({
                         placeId: placeIdArray[i]
                     }, function (place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-                            markers.push(createMarker(place));
-                            // using a separate function to get markers
-                            //var marker = new google.maps.Marker({
-                            //    map: map,
-                            //    position: place.geometry.location
-                            //});
-                            //google.maps.event.addListener(marker, 'click', function () {
-                            //    infowindow.setContent(place.name + place.formatted_phone_number);
-                            //    infowindow.open(map, this);
-                            //});
+                            self.markers.push(createMarker(place));
                         
                             self.results.forEach(function (result) {
-                                //console.log("result place_id: " + result.place_id);
-                                //console.log("place place_id: " + place.place_id);
                                 if (result.place_id === place.place_id) {
                                     console.log("name: " + place.name + " typed: " + place.types[0] + ", " + place.types[1] + ", " + place.types[2]);
                                     result.website = place.website;

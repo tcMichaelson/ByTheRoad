@@ -8,6 +8,7 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.star = false;
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
@@ -25,7 +26,7 @@
             }
 
             self.init();
-
+            self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -48,16 +49,36 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.login.email = null;
+                    self.login.password = null;
                 })
                 .error(function () {
-                    console.error('Error loggin in.'); 
+                    console.error('Error loggin in.');
+
                 });
             };
 
+            self.logout = function () {
+                $http.post('api/Account/Logout')
 
+                .success(function (data) {
+
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+
+               .error(function () {
+                   console.error('Error loggin in.');
+
+               });
+            };
 
             self.register = function () {
                 roadService.register(self.register);
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
             };
 
             self.nearbySearch = function () {
@@ -102,19 +123,16 @@
                 console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
+                    setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
+                    console.log(searchBox.getBounds());
                 }
             }, 500);
 
 
             self.setupListeners = function () {
 
-                map.addListener('bounds_changed', function () {
-                    searchBox.setBounds(map.getBounds());
-                });
-
-                //var markers = [];
                 // [START region_getplaces]
                 // Listen for the event fired when the user selects a prediction and retrieve
                 // more details for that place.
@@ -184,8 +202,8 @@
                 }
             }
 
-            self.favPOI = function (result) {
-                mapService.favPOI(result);
+            self.favPOI = function () {
+                mapService.favPOI(self.poiToSave);
             }
 
             self.places = function () {

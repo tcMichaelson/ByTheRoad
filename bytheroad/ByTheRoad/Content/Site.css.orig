@@ -1,5 +1,4 @@
 ﻿
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -26,10 +25,7 @@ body {
 
     
  
- 
 
-
->>>>>>> eb3234363fbd35c7f8e6b5c043998311260a8056
 .nav ul {
   list-style: none;
   
@@ -41,7 +37,7 @@ body {
   
 
 }
-nav li {
+.nav li {
      width: 100px;
         border-bottom: none;
         height: 40px;
@@ -71,41 +67,28 @@ nav li {
   color: #444;
   cursor: default;
 }
-<<<<<<< HEAD
- 
-@media screen and (min-width: 600px) {
-  .nav li {
-    width: 120px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.4em;
-    display: inline-block;
-    margin-right: -4px;
+
     
-  }
- 
- 
- 
-  
-}
 
-#Name {
-    color:white;
+#ProjectTitle {
+    position: absolute;
+    font-size: small;
+    font-style: italic;
+    color: white;
+    left: 100px;
 }
-=======
-
 
 .logo {
     position: absolute;
     font-size: larger;
     font-style: italic;
-    color: darkseagreen;
-    left: 10%;
+    color: white;
+    left: 0%;
 }
 
->>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
-
+#Name {
+    color:white;
+}
 .leftboxes{
 
   height:100%;
@@ -206,12 +189,12 @@ nav li {
 
 #searchVisible{
     
-    margin-top:500px;
+    margin-top:450px;
     width:100px;
     height:40px;
     margin-left:-25px;
    background-color:white;
-   border:1px solid black;
+  
  color:black;
 }
 
@@ -254,10 +237,52 @@ nav li {
 
 #searchResultsDetail{
     border: 1px solid #287AA9;
+    color:black;
+    margin:1px;
+    background-color:beige;
+   
 }
 
-#resulttitle{
+#searchh3 {
 
+    font-size:20px;
+    color: black;
+}
+    
+
+#resulttitle{
+  
+    
+  
+}
+
+#navigatesearch{
+    margin-left:80px;
+    margin-bottom:1px;
+    width:80px;
+    height:30px;
+    font-size:15px;
+    background-color:#428bca; 
+
+}
+#searchadd{
+
+    font-size:12px;
+} 
+#rating{
+    color:#E18A07;
+
+}
+
+
+#directsearch{
+    color:black;
+}
+#searchdirectlink{
+    color:black;
+}
+.resultlabel{
+    font-size:15px;
 }
 
 #savedPlaces{
@@ -470,15 +495,8 @@ height:30px;
 
  
 
-<<<<<<< HEAD
- #stopin{
-    color:#287AA9;
-    font-size:25px;
-    text-align:center;
- }
-=======
  
->>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
+   
  .distanceortime{
      
   padding: 3px;
@@ -538,28 +556,9 @@ height:30px;
 .slideOutLeft {
   animation-name: slideOutLeft;
 }
-<<<<<<< HEAD
 
 
-#savedPlaces{
-  margin-top:400px;
-    border: 1px solid #287AA9;
-    height: 55%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
-    color:#287AA9;
-}
-
-#savedPlacesDetail{
-    border: 1px solid #287AA9;
-    height: 250px;
-    width: 425px;
-}
-
-=======
->>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
+  
 #absolute {
     position: absolute;
     right:-50px;
@@ -578,10 +577,7 @@ height:30px;
 
 
 .Result1{
-<<<<<<< HEAD
 background-color:#287AA9;
-=======
->>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
     
     background-color:#143D55;
     height:25px;
@@ -593,15 +589,8 @@ background-color:#287AA9;
     font-size:small;
 }
 
-<<<<<<< HEAD
-#favorite{
- 
-    width:110px;
-    height:50px;
-    background-color:#287AA9;
-    color:white;
-    font-size:medium
-}
+
+
 #distance{
     color:#287AA9;
 }
@@ -611,14 +600,11 @@ background-color:#287AA9;
 .Result{
     color:#287AA9;
 }
+
+<<<<<<< HEAD
 =======
 
-#distance{
-    color:#287AA9;
-}
-
-
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 400px) {
     .nav li {
            width: 100px;
         border-bottom: none;
@@ -627,7 +613,65 @@ background-color:#287AA9;
         font-size: 1.4em;
         display:inline-block;
         margin-right: -4px;
+
   
     }
+    @keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: hidden;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  @keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+    visibility:visible;
+  }
+
+  to {
+    
+    transform: translate3d(-100%, 0, 0);
+    visibility:hidden;
+  }
 }
->>>>>>> 2167f9c73bcd07f8432255551b605a3e42fdd967
+    #slideout {
+    background: white;
+    position: absolute;
+    width: 600%;
+    height: 100%;
+   top: 200px;
+    padding-left: 300px;
+    margin-top:100px;
+    
+    
+}
+#slideoutsearchResults {
+    margin-top:370px;
+  
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 500%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
+    
+}
+#savedPlaces{
+  margin-top:400px;
+    border: 1px solid #287AA9;
+    height: 55%;
+    position: absolute;
+    width: 100%;
+    overflow:scroll;
+    background-color:white;
+    color:blue;
+}
+}
+
+}
+>>>>>>> f27ba976853e6220bd1a69c0a0d9bb723b41e2e3

@@ -9,9 +9,10 @@ namespace ByTheRoad.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Longitude { get; set; }
-        public decimal Latitude { get; set; }
+        public string Address { get; set; }
+        public string PhoneNum { get; set; }
+        public string Rating { get; set; }
+        public int    Distance { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

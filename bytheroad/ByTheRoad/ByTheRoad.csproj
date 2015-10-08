@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201510060248376_changedModel.Designer.cs">
       <DependentUpon>201510060248376_changedModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510072215591_updatedPOI.cs" />
+    <Compile Include="Migrations\201510072215591_updatedPOI.Designer.cs">
+      <DependentUpon>201510072215591_updatedPOI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510060248376_changedModel.resx">
       <DependentUpon>201510060248376_changedModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510072215591_updatedPOI.resx">
+      <DependentUpon>201510072215591_updatedPOI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

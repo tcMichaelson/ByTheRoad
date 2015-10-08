@@ -1,24 +1,37 @@
-﻿(function () {
+﻿/// <reference path="homeController.js" />
+(function () {
     angular.module('byTheRoad')
         .service('mapService', function ($resource, $http) {
 
             var infowindow;
             var self = this;
             self.results = [];
+            self.places = [];
             var placeIdArray = [];
             var markers = [];
       
-
-            self.favPOI = function (id) {
-                $http.post('/api/POI?placeId=' + id)
+            // Save POI
+            self.favPOI = function (poi) {
+                $http.post('/api/POI?poi=' + poi)
                 .success(function (result) {
                     console.log("success");
                 })
                 .error(function () {
                     console.error('fail');
                 });
+            }
+
+            // Retrieve POI
+            self.listFavPOI = function () {
+                $http.get('/api/POI')
+                .success(function (result) {
+                    self.places = result;
 
 
+                })
+                .error(function () {
+                    console.error('fail');
+                });
             }
 
             self.categorySearch = function (model, center) {
@@ -122,9 +135,6 @@
                 });
                 return marker;
             }
-
-
-
 
         });
 

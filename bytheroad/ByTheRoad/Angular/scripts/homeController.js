@@ -184,8 +184,13 @@
                 }
             }
 
-            self.favPOI = function (placeId) {
-                mapService.favPOI(placeId);
+            self.favPOI = function (result) {
+                mapService.favPOI(result);
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
             }
 
         });

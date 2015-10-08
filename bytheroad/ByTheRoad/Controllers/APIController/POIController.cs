@@ -16,30 +16,40 @@ namespace ByTheRoad.Controllers.APIController
         {
             _repo = repo;
         }
-        
+
         //public IEnumerable<PointOfInterest> Get()
         //{
         //    return _repo.Query<PointOfInterest>().ToList();
         //}
 
-        //public PointOfInterest Get(int Id)
-        //{
-        //    return _repo.Find<PointOfInterest>(Id);
-        //}
+        public List<PointOfInterest> Get()
+        {
+            string currentUserName = User.Identity.Name;
+            ApplicationUser currentUser = _repo.Query<ApplicationUser>().Where(p => p.UserName == currentUserName).FirstOrDefault();
+            var userPOIs  = _repo.Query<PointOfInterest>().Where(p => p.User.Id == currentUser.Id).ToList();
+
+            return userPOIs;
+           
+        }
 
         [HttpPost]
-        public HttpResponseMessage Post(string placeId)
+        public HttpResponseMessage Post(PointOfInterest poi)
         {
             Console.WriteLine("API hit");
-
+            Console.ReadLine();
             if (ModelState.IsValid)
             {
                 string currentUser = User.Identity.Name;
-                //POI.Id = "ChIJN1t_tDeuEmsRUsoyG83frY4";
 
                 PointOfInterest newPOI = new PointOfInterest
                 {
-                    Id = placeId
+                    Id = poi.Id,
+                    Name = poi.Name,
+                    Address = poi.Address,
+                    PhoneNum = poi.PhoneNum,
+                    Rating = poi.Rating,
+                    Distance = poi.Distance,                                                        
+
                 };
 
                 //Find current logon user
@@ -56,7 +66,7 @@ namespace ByTheRoad.Controllers.APIController
                 newPOI.User = targetUser; 
                              
                 _repo.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, placeId);
+                return Request.CreateResponse(HttpStatusCode.OK, poi);
 
             }
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);

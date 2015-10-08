@@ -14,10 +14,9 @@
 
 <div class="leftboxes">
 
-
     <div class="floating-box">
         <div id="Result">
-            <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " class="Result1">My Places</button>
+            <button type="button" ng-click="self.places(); self.viewingPlaces=true;" class="Result1">My Places</button>
 
         </div>
         <h4 id="h4style">Search Maps</h4><br />
@@ -105,7 +104,7 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-            <button id="favorite" type="button">My Places</button>
+            <button id="favorite" type="button" >My Places</button>
         </h3>
 
         <div ng-repeat="result in self.results">
@@ -124,13 +123,12 @@
                 <div><label class="resultlabel">Time:</label>{{result.time}} </div>
 
                 <label>If you like this places click here </label>
-                <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
+                <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
             </div>
 
         </div>
 
     </div>
-
 
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
         <h3> My Favorite places</h3>

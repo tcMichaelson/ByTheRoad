@@ -52,10 +52,12 @@
                     self.logoutbtn = true;
                     self.login.email = null;
                     self.login.password = null;
+                   
+
                 })
                 .error(function () {
                     console.error('Error loggin in.');
-
+                    self.loginError = true;
                 });
             };
 

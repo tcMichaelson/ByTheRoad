@@ -602,6 +602,10 @@ background-color:#287AA9;
 .Result{
     color:#287AA9;
 }
+.error{
+    color:blue;
+    padding-left:10px;
+}
 
 
     

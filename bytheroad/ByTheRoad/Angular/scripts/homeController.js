@@ -55,7 +55,7 @@
                 })
                 .error(function () {
                     console.error('Error loggin in.');
-
+                    self.loginError = true;
                 });
             };
 

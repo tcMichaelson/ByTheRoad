@@ -116,6 +116,7 @@
             <div class="searchResultsDetail">
 
                 <div class="resultTitle">
+                    <span class="error" ng-show="self.ResultsEror"> Sorry there are no results!</span>
                     <h3 class="searchResultHeading">
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">

@@ -1,13 +1,14 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, $window) {
             var self = this;
             var searchBox;
            
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.star = false;
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
@@ -17,6 +18,15 @@
                 self.results = mapService.results;
             }
 
+
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+
+                }
+            }
+
+            self.init();
+            self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -26,6 +36,7 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
@@ -36,17 +47,38 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    $window.sessionStorage.setItem("token", data.access_token);
                     self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.login.email = null;
+                    self.login.password = null;
                 })
                 .error(function () {
                     console.error('Error loggin in.');
+
                 });
             };
 
+            self.logout = function () {
+                $http.post('api/Account/Logout')
 
+                .success(function (data) {
+
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+
+               .error(function () {
+                   console.error('Error loggin in.');
+
+               });
+            };
 
             self.register = function () {
                 roadService.register(self.register);
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
             };
 
             self.nearbySearch = function () {
@@ -168,6 +200,10 @@
                     self.animationSaved = 'animated slideInLeft';
                     self.animationResults = 'animated slideOutLeft';
                 }
+            }
+
+            self.favPOI = function (placeId) {
+                mapService.favPOI(placeId);
             }
 
         });

@@ -4,8 +4,9 @@
 
             var infowindow;
             var self = this;
-            self.results = [];
             var placeIdArray = [];
+            var searchCircle;
+            self.results = [];
             self.markers = [];
       
 
@@ -35,6 +36,7 @@
                 service.nearbySearch(request, self.callback);
 
                 displayCircle(center);
+                reCenter(center);
 
             }
 
@@ -55,11 +57,23 @@
                 service.textSearch(request, self.callback);
 
                 displayCircle(center);
+                reCenter(center);
 
             }
 
-            function displayCircle(center){
-                var futureSearchRadius = new google.maps.Circle({
+            function reCenter(center) {
+                var currBounds = map.getBounds();
+                currBounds.extend(center);
+                map.setBounds(currBounds);
+                map.panTo(center);
+                map.setZoom(15);
+            }
+
+            function displayCircle(center) {
+                if (searchCircle) {
+                    searchCircle.setMap(null);
+                }
+                searchCircle = new google.maps.Circle({
                     strokeColor: '#FF0000',
                     strokeOpacity: 1,
                     strokeWeight: 2,

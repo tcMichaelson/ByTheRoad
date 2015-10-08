@@ -15,7 +15,6 @@
 <div id="leftBox">
 
     <div class="leftFloatingDiv">
-
         <div id="favoritesSavedBtn">
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " ng-show="self.logoutbtn === true" class="Result1">My Places</button>
 
@@ -122,21 +121,24 @@
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
                     </h3>
 
+              
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
                 <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
                 <div>
+                 
                     <label>Mark as Favorite </label>
-                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
                     <button class="navigatesearch" type="button">Navigate</button>
                 </div>
 
             </div>
         </div>
-    </div>
+        </div>
 
+    </div>
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
         <h3> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
@@ -150,7 +152,7 @@
 
                 </div>
             </div>
-        </div>
+       
   </div>
 
 

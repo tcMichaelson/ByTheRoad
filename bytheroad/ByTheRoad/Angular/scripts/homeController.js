@@ -207,8 +207,13 @@
                 }
             }
 
-            self.favPOI = function (placeId) {
-                mapService.favPOI(placeId);
+            self.favPOI = function () {
+                mapService.favPOI(self.poiToSave);
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
             }
 
         });

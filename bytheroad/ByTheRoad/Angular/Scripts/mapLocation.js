@@ -178,8 +178,8 @@ function findFuturePosition(spotOnRoute, unit, amount) {
     }
 
     new google.maps.Polyline({
-        strokeWeight: 5,
-        strokeColor: "#000000",
+        strokeWeight: 2,
+        strokeColor: "#7f7f7f",
         path: [currLoc, futureLoc],
         map: map
     })
@@ -211,23 +211,23 @@ function renderLines(response) {
     response.routes.forEach(function (route, idx) {
         console.log(route);
         var coords = [];
-        minLat = maxLat = route.legs[0].start_location.H;
-        minLng = maxLng = route.legs[0].start_location.L;
+        minLat = maxLat = route.legs[0].start_location.J;
+        minLng = maxLng = route.legs[0].start_location.M;
         route.legs.forEach(function (leg, i) {
             leg.steps.forEach(function (step) {
-                //setMarker(new google.maps.LatLng(step.end_point.H, step.end_point.L), step.distance.value, step.duration.value);
+                //setMarker(new google.maps.LatLng(step.end_point.J, step.end_point.M), step.distance.value, step.duration.value);
                 step.path.forEach(function (line) {
-                    coords.push({ lat: line.H, lng: line.L });
+                    coords.push({ lat: line.J, lng: line.M });
 
                     if (coords.length === 1)
                         routeDistances[0] = 0;
                     else
                         routeDistances.push(calculateDistance(coords[coords.length - 1], coords[coords.length - 2]));
 
-                    minLat = minLat < line.H ? minLat : line.H;
-                    maxLat = maxLat > line.H ? maxLat : line.H;
-                    minLng = minLng < line.L ? minLng : line.L;
-                    maxLng = maxLng > line.L ? maxLng : line.L;
+                    minLat = minLat < line.J ? minLat : line.J;
+                    maxLat = maxLat > line.J ? maxLat : line.J;
+                    minLng = minLng < line.M ? minLng : line.M;
+                    maxLng = maxLng > line.M ? maxLng : line.M;
                 });
             });
         });
@@ -386,9 +386,9 @@ function startRouting() {
     map.setCenter(selectedPath[0]);
     var carIcon = {
         url: "../../Content/sportCar.png",
-        scaledSize: new google.maps.Size(30, 60),
+        scaledSize: new google.maps.Size(20, 40),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(15,30)
+        anchor: new google.maps.Point(10,20)
     };
     car = new google.maps.Marker({
         position: selectedPath[0],
@@ -417,4 +417,14 @@ function setMarker(pos, dist, time) {
         position: pos
 
     });
+}
+
+function setInitialSearchBoxBounds(searchBox) {
+    setSearchBoxBounds(searchBox, locHist[locHist.length - 1]);
+}
+
+function setSearchBoxBounds(searchBox, position) {
+    var sw = calculatePointAlongBearing(position, 225, 500);
+    var ne = calculatePointAlongBearing(position, 45, 500);
+    searchBox.setBounds(new google.maps.LatLngBounds(sw, ne));
 }

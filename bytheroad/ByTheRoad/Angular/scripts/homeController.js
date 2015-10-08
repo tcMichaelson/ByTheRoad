@@ -57,7 +57,7 @@
                 })
                 .error(function () {
                     console.error('Error loggin in.');
-
+                    self.loginError = true;
                 });
             };
 
@@ -125,19 +125,16 @@
                 console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
+                    setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
+                    console.log(searchBox.getBounds());
                 }
             }, 500);
 
 
             self.setupListeners = function () {
 
-                map.addListener('bounds_changed', function () {
-                    searchBox.setBounds(map.getBounds());
-                });
-
-                //var markers = [];
                 // [START region_getplaces]
                 // Listen for the event fired when the user selects a prediction and retrieve
                 // more details for that place.

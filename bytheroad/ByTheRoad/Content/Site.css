@@ -14,43 +14,46 @@ textarea {
 
 body {
   margin: 0;
-  padding: 0;
-  background:rgb(34,30,78);
+  background: white;
   border:solid 1px black;
   height: 100%;
-  min-width: 1000px;
+  min-width: 1200px;
   width: 100%;
   position: absolute;
 }
 
     
+.nav{
+    height:10%;
+    min-height: 50px;
+    max-height: 50px;
+}
  
 
 .nav ul {
+  background-color: rgb(34,30,78);
+    position: absolute;
   list-style: none;
-  
   text-align: center;
   padding:0;
   margin: 0;
-  height:100%;
- 
+  height: 50px;
+  width: 100%;
   
 
 }
 .nav li {
-     width: 100px;
-        border-bottom: none;
-        height: 40px;
-        line-height: 50px;
-        font-size: 1.4em;
-        display:inline-block;
-        margin-right: -4px;
-
+    width: 100px;
+    border-bottom: none;
+    left: 40%;
+    top: 0px;
+    float: left;
+    font-size: 1.4em;
+    display: block;
+    position: relative;
+    line-height: 50px;
 }
  
-.nav{
-    height:50px;
-}
 .nav a {
   text-decoration: none;
   color:white;
@@ -70,7 +73,7 @@ body {
 
     
 
-#ProjectTitle {
+#projectTitle {
     position: absolute;
     font-size: small;
     font-style: italic;
@@ -78,30 +81,24 @@ body {
     left: 100px;
 }
 
-.logo {
+#logo {
     position: absolute;
     font-size: larger;
     font-style: italic;
     color: white;
-    left: 0%;
+    left: 0;
 }
 
 
+#leftBox{
 
-.leftboxes{
-
-  height:100%;
+  height: 93%;
   width: 25%;
   position:absolute;
   border: 1px solid blue;
 }
 
-#Result{
-    position: absolute;
-    width: 100%;
-}
-
-.floating-box {
+.leftFloatingDiv {
     
     width: 100%;
     height: 100%;    
@@ -109,29 +106,37 @@ body {
     position: absolute;
     background-color:white;
 }
+#favoritesSavedBtn{
+    position: absolute;
+    width: 100%;
+}
 
-#h4style{
+
+#leftBoxHeading{
     color:black;
     font-size:25px;
     font-weight:200 bolder;
     margin-top: 40px;
-    text-align:center;
+   margin-left:90px;
  }
 
-.queryInput{
+
+
+.leftDivSearchChoices div{
     position: absolute;
     width: 100%;
 }
 
-.queryInput div{
-    position: absolute;
-    width: 100%;
+.distance{
+    margin-left:30px;
+    height:70px;
+    width:100%;
+
 }
 
-
- .distance{
+ .distanceToFindPlaces{
      background-color:#E18A07;
-    margin:5px;
+    margin:2px;
     height:70px;
     width:90px;
     padding:0px;
@@ -140,7 +145,7 @@ body {
  }
 
 
- .distanceortime{
+ .distanceorTimeInputBox{
      
   padding: 3px;
   border: solid 1px ;
@@ -152,7 +157,7 @@ body {
       }
 
 
-.clear{
+.clearBtn{
      background-color:#143D55;
      color:white;
      width:100px;
@@ -166,14 +171,27 @@ body {
     position:absolute;
 }
 
-.btn btn-primary{
-    height:1px;
-    width:1px;
-    display:inline;
+#searchInputBox {
+    margin-top: 50px;
+}
+
+.searchIcons{
+    height:40px;
+    width:100%;
+    margin-left:10px;
  
 }
 
-#img{
+.btnForSearchImg {
+    height:40px;
+    width:50px;
+    display:inline-block;
+    background-color:#428bca;
+   
+    margin:-5px;
+ 
+}
+.imgforSearchNearBy{
     height:20px;
     width:20px;
     display:inline;
@@ -182,11 +200,9 @@ body {
 }
 
 
-.searchbox {
-    margin-top: 50px;
-}
 
-#searchVisible{
+
+.dragOutSearchResult{
     
     margin-top:450px;
     width:100px;
@@ -197,7 +213,7 @@ body {
  color:black;
 }
 
-#slideoutsearchResults {
+#slideoutsearchResultsDiv, #savedPlaces {
     margin-top:370px;
   
     border: 1px solid #287AA9;
@@ -242,29 +258,17 @@ body {
    
 }
 
-#searchh3 {
+.searchResultHeading{
 
     font-size:20px;
     color: black;
 }
     
 
-.resulttitle{
-  
-    
-  
-}
 
-#navigatesearch{
-    margin-left:80px;
-    margin-bottom:1px;
-    width:80px;
-    height:30px;
-    font-size:15px;
-    background-color:#428bca; 
 
-}
-.searchadd{
+
+.searchAdd{
 
     font-size:12px;
 } 
@@ -273,26 +277,27 @@ body {
 
 }
 
-
-#directsearch{
-    color:black;
-}
-#searchdirectlink{
-    color:black;
-}
-.resultlabel{
+.distanceFromLocLabel{
     font-size:15px;
 }
 
-#savedPlaces{
-  margin-top:400px;
-    border: 1px solid #287AA9;
-    height: 55%;
-    position: absolute;
-    width: 100%;
-    overflow:scroll;
-    background-color:white;
-    color:blue;
+
+.navigatesearch{
+    margin-left:80px;
+    margin-bottom:1px;
+    width:80px;
+    height:30px;
+    font-size:15px;
+    background-color:#428bca; 
+
+}
+
+
+
+
+
+#directsearch{
+    color:black;
 }
 
 .savedPlacesDetail{
@@ -302,15 +307,15 @@ body {
 }
 
 
-.rightboxes{
+#rightBox{
   width: 75%;
-  height: 100%;
+  height: 93%;
   position: absolute;
   right: 0;
 }
 
 
-.floatingmapbox {
+.floatingMapBox {
 
    border:solid 1px black;
   width: 100%;
@@ -320,65 +325,50 @@ body {
 
 }
 
-.rightloginbox {
+.rightLoginBox, .rightRegisterBox, .rightStartBox {
     background-color:#FA9E25;
     position: absolute;
-    right:0;
-    top: 0px;
     border-top:1px solid white; 
     width: 100%;   
-     height:10%;
+     height: 90px;
     margin:0px;
-    margin-bottom:1px;
-    padding:10px;
+    padding: 10px 0px 0px 20px;
+ float: left;
+    margin-right: 40px;
+
 }
 
-.loginbox{
+
+.loginInputBox  {
   padding: 3px;
    box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
   width:150px;
   height:30px;
 }
+.registerInputBox{
+ padding: 3px;
+   box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:150px;
+  height:30px;
+}
 
-
-.label1{
+.loginLabel, .registerLabel, .startLabel{
     font:bold;
     color:black;
     font-size:20px;
 }
 
+.origin, .destination{
 
-
-
-.rightregisterbox{
-background-color:#FA9E25 ;
-    position: absolute;
-    right:0;
-    top: 0px;
-   border-top:1px solid white;
-    width: 100%;   
-     height:10%;
-    margin:0px;
-    margin-bottom:1px;
-    padding:10px;
+      padding: 3px;
+  border: solid 1px ;
+  box-shadow: inset 0 0 0 3px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width:250px;
+height:30px;
 }
-
-.rightstartbox{
-background-color:#FA9E25;
-    position: absolute;
-    right:0;
-    top: 0px;
-    border: 1px solid white;   
-    width: 100%;   
-     height:10%;
-    margin:0px;
-    margin-bottom:1px;
-    padding:10px;
-}
-
-
-
 .submitbtn{
     background-color:#3276b1;
     color:black;
@@ -416,19 +406,6 @@ height:30px;
     margin:10px;
 }
 
-.addbox{
-   padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:250px;
-height:30px;
-}
-
-
-
-
-
 
 .ownsearch{
 
@@ -446,13 +423,6 @@ height:30px;
     
 
 }
-
-.timeordistance{
-  
-    margin:10px;
-    font-size:large;
-}
-
 
 
 .sliderbody {
@@ -495,7 +465,6 @@ height:30px;
  
 
  
-  
    
  .distanceortime{
      
@@ -558,7 +527,6 @@ height:30px;
 }
 
 
-    
   
 #absolute {
     position: absolute;
@@ -591,7 +559,6 @@ background-color:#287AA9;
 }
 
 
-    
 
 #distance{
     color:#287AA9;
@@ -602,10 +569,40 @@ background-color:#287AA9;
 .Result{
     color:#287AA9;
 }
-.error{
-    color:blue;
-    padding-left:10px;
+
+
+@media screen and (max-width: 600px) {
+    html {
+        width: 100%;
+    }
+    body{
+        min-width: 0px;
+        width: 100%;
+    }
+
+    .leftBoxes{
+        position: absolute;
+        width: 100%;
+    }
+
+    .floating-box{
+        width: 100%;
+    }
+
+    .rightboxes{
+        width: 100%;
+        left: 100%;
+    }
+
+    .nav li {
+        line-height: 80px;
+        font-size: 1.4em;
+        display:inline-block;
+    }
+
+    .nav ul{
+        width: 100%;
+        height:
+    }
 }
-
-
-    
+}

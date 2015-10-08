@@ -8,7 +8,9 @@
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
         <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
+        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
     </ul>
+    
 </div>
 
 
@@ -111,10 +113,11 @@
             <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
         </h3>
 
-        <div class="resultsDiv" ng-repeat=" result in self.results">
+        <div ng-show="self.results[0] === 'none'">no results found</div>
+
+        <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat=" result in self.results">
 
             <div class="searchResultsDetail">
-
                 <div class="resultTitle">
                     <h3 class="searchResultHeading">
                         {{result.name}}
@@ -184,7 +187,7 @@
                     <label class="registerLabel">
                         Email:
                     </label>
-                    <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
+                    <input class="registerInputBox" id="username" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
            
                     <label class="registerLabel">
                         Password:
@@ -200,6 +203,8 @@
                
                 <input type="submit" class="submitbtn" value="Register" />
 
+              
+
                 <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
             </form>
         </div>
@@ -211,13 +216,13 @@
             
                     <label class="startLabel">Starting Point</label>
                     
-                    <input type="text" class="origin" ng-hide="self.start === false" />
+                    <input type="text" id="origin" ng-hide="self.start === false" />
               
                     <label class="startLabel">Destination</label>
                    
-                    <input type="text" class="destination" ng-hide="self.start === false" />
+                    <input type="text" id="destination" ng-hide="self.start === false" />
            
-                <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
+                <button  id="route-btn" type="button" ng-hide="self.start === false" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
             </form>
 
 

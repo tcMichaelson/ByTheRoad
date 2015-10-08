@@ -48,6 +48,8 @@
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
+                    
+                    self.currentuser = self.login.email;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.email = null;

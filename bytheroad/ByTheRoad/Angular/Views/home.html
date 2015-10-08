@@ -190,21 +190,28 @@
 
     <div ng-hide="self.registering === false " class="rightregisterbox">
         <form id="registerform" ng-submit="self.register();">
-
+            <span class="error" ng-show="self.RegisterError"> Failed to Register!</span>
             <label class="label1">
                 Email:
             </label>
             <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
-
+            <span ng-show="registerform.email.$touched && registerform.email.required" class="error">
+               Failed to Register!
+            </span>
             <label class="label1">
                 Password:
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
+            <!--<span ng-show="redisterform.pwd.$touched && registerform.pwd.required" class="error">
+                 Failed to Register!
+            </span>-->
             <label class="label1">
                 Confirm Password :
             </label>
             <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
-
+            <!--<span ng-show="registerform.pwd.$touched && logingform.pwd.required" class="error">
+                Failed to Register!
+            </span>-->
             <input type="submit" class="submitbtn" value="Register" />
 
             <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>

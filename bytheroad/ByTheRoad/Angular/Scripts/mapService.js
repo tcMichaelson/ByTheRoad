@@ -86,7 +86,7 @@
                     }
                     self.results = results;
                 } else {
-                    self.results = ['none'];
+                    self.results = ['can find result'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();

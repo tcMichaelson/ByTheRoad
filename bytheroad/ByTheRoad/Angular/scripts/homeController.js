@@ -79,7 +79,10 @@
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
+                
+               
             };
+
 
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);

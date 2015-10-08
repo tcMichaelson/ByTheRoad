@@ -64,24 +64,24 @@
             self.logout = function () {
                 $http.post('api/Account/Logout')
 
-                .success(function (data) {
+               .success(function (data) {
 
                     self.logoutbtn = false;
                     console.log('success')
                 })
-
-               .error(function () {
+                .error(function () {
                    console.error('Error loggin in.');
 
                });
             };
 
             self.register = function () {
-                roadService.register(self.register);
+                roadService.register(self.register, function (error) {
+                    self.RegisterError = error;
+                });
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
-                
                
             };
 

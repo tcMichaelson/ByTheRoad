@@ -5,7 +5,7 @@
         var Register = $resource(routeUrls.registerApi, {}, {});
         var self = this;
 
-        self.register = function (user,callBack) {
+        self.register = function (user, callBack) {
             new Register(user).$save(function (data) {
 
                 $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password, 
@@ -16,7 +16,7 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
-                    callBack("You are registered");
+                    
 
                 })
 
@@ -27,6 +27,8 @@
                 });
 
                 console.log(data);
+            }, function (response) {
+                callBack(true);
             })
         }
     }]);

@@ -1,24 +1,45 @@
-﻿(function () {
+﻿/// <reference path="homeController.js" />
+(function () {
     angular.module('byTheRoad')
         .service('mapService', function ($resource, $http) {
 
             var infowindow;
             var self = this;
-            self.results = [];
+            self.places = [];
             var placeIdArray = [];
-            self.markers = [];
+            var searchCircle;
+            var markers = [];
       
-
-            self.favPOI = function (id) {
-                $http.post('/api/POI?placeId=' + id)
+            self.results = [];
+            // Save POI
+            self.favPOI = function (poi) {
+                console.log(poi);
+                $http.post('/api/POI', {
+                    Place_id: poi.place_id,
+                    Name: poi.name,
+                    Address: poi.formatted_address,
+                    PhoneNum: poi.formatted_phone_number,
+                    Rating: poi.rating
+                })
                 .success(function (result) {
                     console.log("success");
                 })
                 .error(function () {
                     console.error('fail');
                 });
+            }
+
+            // Retrieve POI
+            self.listFavPOI = function () {
+                $http.get('/api/POI')
+                .success(function (result) {
+                    self.places = result;
 
 
+                })
+                .error(function () {
+                    console.error('fail');
+                });
             }
 
             self.categorySearch = function (model, center) {
@@ -34,7 +55,7 @@
                 var service = new google.maps.places.PlacesService(map);
                 service.nearbySearch(request, self.callback);
 
-                displayCircle(center);
+                reCenter(center);
 
             }
 
@@ -54,27 +75,70 @@
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
-                displayCircle(center);
+                reCenter(center);
 
             }
 
-            function displayCircle(center){
-                var futureSearchRadius = new google.maps.Circle({
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 1,
-                    strokeWeight: 2,
-                    fillColor: '#FF0000',
-                    fillOpacity: 0,
-                    map: map,
-                    center: center,
-                    radius: 500
-                });
+            function reCenter(center) {
+                var i = 1;
+                var currBounds = map.getBounds();
+                var tempCircle;
+
+                var transitionWindow = window.setInterval(function () {
+                    switch (i) {
+
+                        case 1:
+                            currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
+                            map.fitBounds(currBounds);
+                            if (searchCircle) {
+                                searchCircle.setMap(null);
+                            }
+                            tempCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 1,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0,
+                                map: map,
+                                center: center,
+                                radius: (30 - map.getZoom()) * 10 ^ (30 - map.getZoom()) / 3,
+                                zIndex: 3
+                            })
+                            console.log("far zoom radius: ", tempCircle.radius);
+                            break;
+
+                        case 2:
+                            map.panTo(center);
+                            break;
+
+                        case 3:
+                            tempCircle.setMap(null);
+                            searchCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 1,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0,
+                                map: map,
+                                center: center,
+                                radius: 500
+                            });
+                            map.setZoom(15);
+                            break;
+
+                        case 4:
+                            clearInterval(transitionWindow);
+                            break;
+
+                    }
+                    i++
+                }, 1000);
             }
 
 
         //grabbing the info for each place
             self.callback = function (results, status) {
-                self.markers.forEach(function (marker) {
+                markers.forEach(function (marker) {
                     marker.setMap(null);
                 })
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -86,7 +150,7 @@
                     }
                     self.results = results;
                 } else {
-                    self.results = ['none'];
+                    self.results = ['can find result'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();
@@ -99,8 +163,8 @@
                     }, function (place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-                            self.markers.push(createMarker(place));
-                        
+                            markers.push(createMarker(place));
+                            
                             self.results.forEach(function (result) {
                                 if (result.place_id === place.place_id) {
                                     console.log("name: " + place.name + " typed: " + place.types[0] + ", " + place.types[1] + ", " + place.types[2]);
@@ -130,9 +194,6 @@
                 });
                 return marker;
             }
-
-
-
 
         });
 

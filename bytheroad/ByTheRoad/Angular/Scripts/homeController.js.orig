@@ -1,27 +1,32 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, $window) {
             var self = this;
             var searchBox;
-
+           
             self.registering = false;
             self.loggingin = false;
             self.start = false;
+            self.star = false;
             self.results = [];
             console.log(self.results);
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
-
-
-
-
->>>>>>> 0ba2a3907756f113162536e0b0a29b9468e3e604
             self.getResults = function () {
                 self.results = mapService.results;
             }
 
+
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+
+                }
+            }
+
+            self.init();
+            self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
             self.value2 = false;
@@ -31,6 +36,11 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
+
+            self.findRoute = function () {
+                findRouteAndDisplay();
+            }
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
@@ -41,34 +51,67 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
+                    $window.sessionStorage.setItem("token", data.access_token);
+                    
+                    self.currentuser = self.login.email;
                     self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.login.email = null;
+                    self.login.password = null;
+                   
+
                 })
                 .error(function () {
                     console.error('Error loggin in.');
+                    self.loginError = true;
                 });
             };
 
+            self.logout = function () {
+                $http.post('api/Account/Logout')
 
+               .success(function (data) {
 
-            self.register = function () {
-                roadService.register(self.register);
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+                .error(function () {
+                   console.error('Error loggin in.');
+
+               });
             };
 
-            self.nearbySearch = function () {
-                var info = self.getUnitAndAmount;
-                self.results = [];
-                var searchPos = findSearchPositionAlongRoute(info.unit, info.amount);
+            self.register = function () {
+<<<<<<< HEAD
+                roadService.register(self.register);
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+                
+             
 
-                mapService.categorySearch(self, searchPos);
-                self.startInterval();
-                self.showResultsBox();
+
+=======
+                roadService.register(self.register, function (error) {
+                    self.RegisterError = error;
+                });
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+               
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+            };
+
+
+            self.nearbySearch = function () {
+                self.runSearch(mapService.categorySearch);
             };
 
             self.textSearch = function () {
-                self.results = [];
-                mapService.regTextSearch();
-                self.startInterval();
-                self.showResultsBox();
+                self.runSearch(mapService.regTextSearch);
             }
 
             self.startInterval = function () {
@@ -83,80 +126,68 @@
                 }, 500);
             }
 
+            self.runSearch = function (func) {
+                var info = self.getUnitAndAmount();
+                self.results = [];
+                mapService.results = [];
+                var spotOnRoute = findCurrentPosition();
+                console.log("spot on route:", spotOnRoute);
+                if (spotOnRoute) {
+                    var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
+                } else {
+                    var searchPos = findGenericFuturePosition(info.unit, info.amount);
+                }
+                func(self, searchPos);
+                self.startInterval();
+                self.showResultsBox();
+            }
+
             var input = document.getElementById('textsearch');
 
             var getSearchBox = window.setInterval(function () {
+                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
+                    setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
+                    console.log(searchBox.getBounds());
                 }
             }, 500);
 
 
             self.setupListeners = function () {
 
-                map.addListener('bounds_changed', function () {
-                    searchBox.setBounds(map.getBounds());
-                });
-
-                var markers = [];
                 // [START region_getplaces]
                 // Listen for the event fired when the user selects a prediction and retrieve
                 // more details for that place.
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0) {
+                    if (places.length === 0 || places[0].place_id === undefined){
+                        console.log(places[0].place_id)
                         return;
                     }
                     mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
-
-                    // Clear out the old markers.
-                    markers.forEach(function (marker) {
-                        marker.setMap(null);
-                    });
-                    markers = [];
-
-                    // For each place, get the icon, name and location.
-                    var bounds = map.getBounds();
-                    places.forEach(function (place) {
-
-                        // Create a marker for each place.
-                        markers.push(new google.maps.Marker({
-                            map: map,
-                            //icon: icon,
-                            //title: place.name,
-                            position: place.geometry.location
-                        }));
-
-                        if (place.geometry.viewport) {
-                            // Only geocodes have viewport.
-                            bounds.union(place.geometry.viewport);
-                        } else {
-                            console.log("No viewport found");
-                        }
-                    });
+                    self.startInterval();
                     self.showResultsBox();
-                    map.fitBounds(bounds);
+
                 });
             };
-
 
             self.showResultsBox = function () {
                 self.animationResults = "animated slideInLeft";
                 self.animationSaved = "animated slideOutLeft";
             }
 
-<<<<<<< HEAD
             self.getUnitAndAmount = function(){
-                if (self.minutesUnit !== null)
+                if (self.minutesUnit)
                     return {unit: "minutes", amount: self.minutesUnit};
-                if (self.hoursUnit !== null)
+                if (self.hoursUnit)
                     return {unit: "hours", amount: self.hoursUnit};
-                if (self.milesUnit !== null)
+                if (self.milesUnit)
                     return {unit: "miles", amount: self.milesUnit};
-=======
+            }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
                     self.animationSaved = 'animated slideOutLeft';
@@ -164,8 +195,19 @@
                 } else {
                     self.animationSaved = 'animated slideInLeft';
                     self.animationResults = 'animated slideOutLeft';
-                        }
-                    });
+                }
+            }
+
+            self.favPOI = function () {
+                mapService.favPOI(self.poiToSave);
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
+            }
+
+        });
 
 
 })();

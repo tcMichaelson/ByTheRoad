@@ -6,7 +6,7 @@
 <head>
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>@ViewBag.Title</title>
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")  
@@ -25,20 +25,17 @@
         angular
             .module('byTheRoad')
             .constant('routeUrls', {
-<<<<<<< HEAD
                 registerApi: '@Url.HttpRouteUrl("Register", null)'
 
             });
+
+    </script>
+<<<<<<< HEAD
+   
 
 =======
-                POIApi: '@Url.HttpRouteUrl("POIApi", null)', 
-                registerApi: '@Url.HttpRouteUrl("Register", null)'
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
 
-            });
-       
-        
->>>>>>> aee88d1e1717fac0e9d90dc5fe5b893bd59ffce4
-    </script>
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>
 <body>
@@ -48,8 +45,6 @@
     </script>
     <script src="~/Angular/scripts/mapLocation.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="base.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="mobile.css" media="handheld" />
 
 </body>
 </html>

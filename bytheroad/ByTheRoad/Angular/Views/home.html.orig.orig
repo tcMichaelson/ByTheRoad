@@ -13,22 +13,15 @@
 
 
 <div id="leftBox">
-<<<<<<< HEAD
-
-    <div class="leftFloatingDiv">
-
-        <div id="favoritesSavedBtn">
-=======
 
 <<<<<<< HEAD
-    <div class="floating-box">
-        <div id="Result">
-=======
     <div class="leftFloatingDiv">
-
         <div id="favoritesSavedBtn">
->>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
->>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
+=======
+=======
+>>>>>>> 507bca6ee5121f03ad2febbc5f4b1901f190746e
+    <div class="leftFloatingDiv">
+        <div id="favoritesSavedBtn">
             <button type="button" ng-click="self.toggleSavedBox(); self.viewingPlaces=true; " ng-show="self.logoutbtn === true" class="Result1">My Places</button>
 
         </div>
@@ -120,15 +113,7 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-<<<<<<< HEAD
             <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
-=======
-<<<<<<< HEAD
-            <button id="favorite" type="button" >My Places</button>
-=======
-            <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
->>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
->>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
         </h3>
 
         <div class="resultsDiv" ng-repeat=" result in self.results">
@@ -140,64 +125,40 @@
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
                     </h3>
-<<<<<<< HEAD
 
+              
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
+<<<<<<< HEAD
                 <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
                 <div>
                     <label>Mark as Favorite </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
                     <button class="navigatesearch" type="button">Navigate</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-=======
-<<<<<<< HEAD
-              
-              
-                </div>
-=======
->>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
-
-                </div>
-                <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
-                <div class="rating">{{result.rating}}</div>
-<<<<<<< HEAD
-                <div><label class="resultlabel"> Distance:</label>{{result.distance}}</div>
-                <div><label>Mark as Favorite </label>
-                 
-                
                 <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
-                    <button id="navigatesearch"  type="button">Navigate</button>
 =======
+=======
+>>>>>>> 507bca6ee5121f03ad2febbc5f4b1901f190746e
                 <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
                 <div>
+                 
                     <label>Mark as Favorite </label>
-                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
                     <button class="navigatesearch" type="button">Navigate</button>
->>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
                 </div>
 
             </div>
+        </div>
+        </div>
 <<<<<<< HEAD
-
-        </div>
-
     </div>
-
-=======
-        </div>
-    </div>
-
 >>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
->>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
+=======
+
+    </div>
+>>>>>>> 507bca6ee5121f03ad2febbc5f4b1901f190746e
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
         <h3> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
@@ -211,9 +172,8 @@
 
                 </div>
             </div>
-        </div>
+       
   </div>
-<<<<<<< HEAD
 
 
     <div id="rightBox">
@@ -233,6 +193,12 @@
                     <label class="loginLabel">Password:</label>
                     
                     <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
+             
+               
+                 
+                    <label class="loginLabel">Password:</label>
+                    
+                    <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
                
 
                 <input type="submit" class="submitbtn" value="Log In" />
@@ -241,60 +207,31 @@
         </div>
 
 <<<<<<< HEAD
-    <div ng-hide="self.registering === false " class="rightregisterbox">
-        <form id="registerform" ng-submit="self.register();">
+        <div ng-hide="self.registering === false " class="rightRegisterBox">
+            <form id="registerForm" ng-submit="self.register();">
             <span class="error" ng-show="self.RegisterError"> Failed to Register!</span>
-            <label class="label1">
-                Email:
-            </label>
-            <input class="registerbox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
+                    <label class="registerLabel">
+                        Email:
+                    </label>
+                    <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
             <span ng-show="registerform.email.$touched && registerform.email.required" class="error">
                Failed to Register!
             </span>
-            <label class="label1">
-                Password:
-            </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
-            <!--<span ng-show="redisterform.pwd.$touched && registerform.pwd.required" class="error">
-                 Failed to Register!
-            </span>-->
-            <label class="label1">
-                Confirm Password :
-            </label>
-            <input class="registerbox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
+                        Password:
+                    </label>
+
+                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
+             
+
+                     <label class="registerLabel">
+                        Confirm Password :
+                    </label>
+                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
             <!--<span ng-show="registerform.pwd.$touched && logingform.pwd.required" class="error">
                 Failed to Register!
             </span>-->
             <input type="submit" class="submitbtn" value="Register" />
 =======
-=======
-
-
-    <div id="rightBox">
-        <div id="map" class="floatingMapBox">
-            map box
-
-        </div>
-
-        <div ng-hide="self.loggingin === false" class="rightLoginBox">
-
-            <form class="loginform" ng-submit="self.login()">
-               
-                    <label class="loginLabel">User Email:</label>
-                    <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
-             
-                 
-                    <label class="loginLabel">Password:</label>
-                    
-                    <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
-               
-
-                <input type="submit" class="submitbtn" value="Log In" />
-
-            </form>
-        </div>
-
->>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
 
         <div ng-hide="self.registering === false " class="rightRegisterBox">
             <form id="registerForm" ng-submit="self.register();">
@@ -317,10 +254,7 @@
                     <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
                
                 <input type="submit" class="submitbtn" value="Register" />
-<<<<<<< HEAD
 >>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
-=======
->>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
 
                 <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
             </form>
@@ -342,6 +276,17 @@
                 <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
             </form>
 
+<<<<<<< HEAD
+            <label class="label1">Point</label>
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=A&amp;color=green1" />
+            <input type="text" id="origin" class="addbox" ng-hide="self.start === false" />
+            <label class="label1">Point</label>
+            <img ng-hide="self.start === false" src="http://icons.mqcdn.com/icons/stop.png?text=B&amp;color=red1" />
+            <input type="text" id="destination" class="addbox" ng-hide="self.start === false" />
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
+        </form>
+=======
+>>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
 
 
         </div>

@@ -8,7 +8,9 @@
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
         <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
+        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
     </ul>
+    
 </div>
 
 
@@ -29,7 +31,7 @@
                 <button type="button" ng-model="self.hourbtn" class="distanceToFindPlaces" ng-click="self.hourbtn = true ; self.minutebtn =false; self.milebtn = false; self.selected= false;  self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">hours</button>
                 <button type="button" ng-model="self.milebtn" class="distanceToFindPlaces" ng-click="self.milebtn = true; self.minutebtn =false; self.hourbtn = false; self.selected= false; self.minutesUnit = null; self.hoursUnit =null; self.milesUnit= null">miles</button>
 
-                <div>
+                <div class="distanceDetailed">
 
                     <p ng-hide="self.minutebtn === false || self.hourbtn === true || self.milebtn === true" ng-show="mincontent === 'minutes'">
                         Enter time in minutes you want to stop in <br />
@@ -110,11 +112,13 @@
             <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
         </h3>
 
-        <div class="resultsDiv" ng-repeat=" result in self.results">
+        <div ng-show="self.results[0] === 'none'">no results found</div>
+
+        <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat=" result in self.results">
 
             <div class="searchResultsDetail">
-
                 <div class="resultTitle">
+                    <span class="error" ng-show="self.ResultsEror"> Sorry there are no results!</span>
                     <h3 class="searchResultHeading">
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
@@ -126,7 +130,7 @@
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
                 <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
-                <div>
+                <div class="savedFavaotesButton">
                  
                     <label>Mark as Favorite </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.chkState = result.saved; self.poiToSave = result; self.favPOI()" />
@@ -164,7 +168,7 @@
         <div ng-hide="self.loggingin === false" class="rightLoginBox">
 
             <form class="loginform" ng-submit="self.login()">
-               
+                <span class="error" ng-show="self.loginError"> Failed to login!</span>
                     <label class="loginLabel">User Email:</label>
                     <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
              
@@ -182,25 +186,24 @@
 
         <div ng-hide="self.registering === false " class="rightRegisterBox">
             <form id="registerForm" ng-submit="self.register();">
-            
+            <span class="error" ng-show="self.RegisterError"> </>Failed to Register!</span>
                     <label class="registerLabel">
                         Email:
                     </label>
-                    <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
-           
-                    <label class="registerLabel">
+                    <input class="registerInputBox" id="username" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
+                <label>
                         Password:
                     </label>
-
-                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
-             
-
+                <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
                      <label class="registerLabel">
                         Confirm Password :
                     </label>
-                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
-               
+                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
+           
+
                 <input type="submit" class="submitbtn" value="Register" />
+
+              
 
                 <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
             </form>
@@ -213,13 +216,14 @@
             
                     <label class="startLabel">Starting Point</label>
                     
-                    <input type="text" class="origin" ng-hide="self.start === false" />
+                    <input type="text" id="origin" ng-hide="self.start === false" />
               
                     <label class="startLabel">Destination</label>
                    
-                    <input type="text" class="destination" ng-hide="self.start === false" />
+                    <input type="text" id="destination" ng-hide="self.start === false" />
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
            
-                <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
+                <button  id="route-btn" type="button" ng-hide="self.start === false" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
             </form>
 
 

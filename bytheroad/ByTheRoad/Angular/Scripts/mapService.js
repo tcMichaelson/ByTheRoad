@@ -86,8 +86,8 @@
 
                 var transitionWindow = window.setInterval(function () {
                     switch (i) {
-                        case 1:
 
+                        case 1:
                             currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
                             map.fitBounds(currBounds);
                             if (searchCircle) {
@@ -138,7 +138,7 @@
 
         //grabbing the info for each place
             self.callback = function (results, status) {
-                self.markers.forEach(function (marker) {
+                markers.forEach(function (marker) {
                     marker.setMap(null);
                 })
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -163,8 +163,8 @@
                     }, function (place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-                            self.markers.push(createMarker(place));
-                        
+                            markers.push(createMarker(place));
+                            
                             self.results.forEach(function (result) {
                                 if (result.place_id === place.place_id) {
                                     console.log("name: " + place.name + " typed: " + place.types[0] + ", " + place.types[1] + ", " + place.types[2]);

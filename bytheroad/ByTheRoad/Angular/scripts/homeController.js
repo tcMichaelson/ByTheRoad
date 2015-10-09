@@ -205,7 +205,8 @@
             }
 
             self.favPOI = function () {
-                mapService.favPOI(self.poiToSave);
+                mapService.favPOI(self.poiToSave, self.chkState);
+
             }
 
             self.places = function () {

@@ -12,18 +12,15 @@ namespace ByTheRoad.Controllers.APIController
     public class POIController : ApiController
     {
         private IGenericRepository _repo;
+
         public POIController(GenericRepository repo)
         {
             _repo = repo;
         }
 
-        //public IEnumerable<PointOfInterest> Get()
-        //{
-        //    return _repo.Query<PointOfInterest>().ToList();
-        //}
-
         public List<PointOfInterest> Get()
         {
+
             string currentUserName = User.Identity.Name;
             ApplicationUser currentUser = _repo.Query<ApplicationUser>().Where(p => p.UserName == currentUserName).FirstOrDefault();
             var userPOIs  = _repo.Query<PointOfInterest>().Where(p => p.User.Id == currentUser.Id).ToList();
@@ -35,54 +32,104 @@ namespace ByTheRoad.Controllers.APIController
         [HttpPost]
         public HttpResponseMessage Post(PointOfInterest poi)
         {
+            string message = "";
 
             if (ModelState.IsValid)
             {
-                string currentUser = User.Identity.Name;
+                //Get current logon user
+                string currentUserName = User.Identity.Name;
+                ApplicationUser targetUser = _repo.Query<ApplicationUser>().Include(t => t.UserSavedPOIs).Where(p => p.UserName == currentUserName).FirstOrDefault();
 
-                PointOfInterest newPOI = new PointOfInterest
+
+                // Check if poi already exist
+                bool poiExist = true;
+
+                try
                 {
-                   
-                    Place_id = poi.Place_id,
-                    Name = poi.Name,
-                    Address = poi.Address,
-                    PhoneNum = poi.PhoneNum,
-                    Rating = poi.Rating
-                                                                   
+                   poiExist = targetUser.UserSavedPOIs.Any(m => m.Place_id == poi.Place_id);
 
-                };
+                }
 
-                //Find current logon user
-                var targetUser = _repo.Query<ApplicationUser>().Include(t => t.UserSavedPOIs).FirstOrDefault(t => t.UserName == currentUser);
-
-                //Ensure we have List to hold saved POIs
-                if (targetUser.UserSavedPOIs == null)
+                catch
                 {
-                    targetUser.UserSavedPOIs = new List<PointOfInterest>();
-                }                
+                    poiExist = false;
+                }
+
+               
+                if(!poiExist)
+                {
+                    //Ensure we have a List to hold saved POIs
+                    if (targetUser.UserSavedPOIs == null)
+                    {
+                        targetUser.UserSavedPOIs = new List<PointOfInterest>();
+                    }
+
+                    PointOfInterest newPOI = new PointOfInterest
+                    {
+
+                        Place_id = poi.Place_id,
+                        Name = poi.Name,
+                        Address = poi.Address,
+                        PhoneNum = poi.PhoneNum,
+                        Rating = poi.Rating,
+
+                    };
+
+                    // Add newPOI to current logon user and add logon user to newPOI
+                    targetUser.UserSavedPOIs.Add(newPOI);
+                    newPOI.User = targetUser;
+                    _repo.SaveChanges();
+                    message = "POI has been successfully added.";
+                }
+
+                else
+                {
+                    message = "POI already exist";
+                }
                 
-                // Add newPOI to current logon user and add logon user to newPOI
-                targetUser.UserSavedPOIs.Add(newPOI);
-                newPOI.User = targetUser; 
-                             
-                _repo.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, poi);
 
-            }
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);
+            }                                             
+                
+                return Request.CreateResponse(HttpStatusCode.OK, message);
+            
         }
-
-
-
-
-
 
         // DELETE: api/POI/5
         [HttpDelete]
-        public void Delete(int id)
+        [Route("api/poi/{place_id}")]
+        public HttpResponseMessage Delete(string place_id)
         {
-            _repo.Delete<PointOfInterest>(id);
-            _repo.SaveChanges();
+            string message = "";
+
+            if (ModelState.IsValid)
+            {
+                //Get current logon user
+                string currentUserName = User.Identity.Name;
+                ApplicationUser targetUser = _repo.Query<ApplicationUser>().Include(t => t.UserSavedPOIs).Where(p => p.UserName == currentUserName).FirstOrDefault();
+
+                // Check if poi exist
+                bool poiExist = targetUser.UserSavedPOIs.Any(m => m.Place_id == place_id);
+
+                if (poiExist)
+                {
+                    // Find POI
+                    var targetPOI = targetUser.UserSavedPOIs.Where(m => m.Place_id == place_id).FirstOrDefault();
+                    targetUser.UserSavedPOIs.Remove(targetPOI);
+                    _repo.Delete<PointOfInterest>(targetPOI.Id);                          
+
+                    _repo.SaveChanges();
+                    message = "POI: " + targetPOI.Name + " has been succesfully removed from " + targetUser.Id + ".";
+                }
+
+                else
+                {
+                    message = "No POI with place_id of " + place_id + " was found within " + targetUser.Id + "'s list of saved POIs";
+                }
+
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, message);
+
         }
     }
 }

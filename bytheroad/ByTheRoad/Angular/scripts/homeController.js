@@ -82,18 +82,20 @@
             };
 
             self.register = function () {
-                roadService.register(self.register, function (error) {
-                self.currentuser = self.register.email;
-                self.loggingin = false;
-                self.logoutbtn = true;
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-                
-             
+                roadService.register(self.registerUser, function(){
+                    self.currentuser = self.registerUser.email;
+                    self.registering = false;
+                    self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.registerUser.email = null;
+                    self.registerUser.Password = null;
+                    self.registerUser.ConfirmPassword = null;
+                }, function (error) {
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
 
-
-            };
+                });
+            }
 
 
             self.nearbySearch = function () {

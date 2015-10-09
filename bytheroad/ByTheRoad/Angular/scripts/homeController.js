@@ -80,9 +80,16 @@
 
             self.register = function () {
                 roadService.register(self.register);
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
+                
+             
+
+
             };
 
             self.nearbySearch = function () {
@@ -206,8 +213,13 @@
                 }
             }
 
-            self.favPOI = function (placeId) {
-                mapService.favPOI(placeId);
+            self.favPOI = function () {
+                mapService.favPOI(self.poiToSave);
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
             }
 
         });

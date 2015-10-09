@@ -8,7 +8,7 @@
         self.register = function (user) {
             new Register(user).$save(function (data) {
 
-                $http.post('/token', "grant_type=password&username=" + self.username + "&password=" + self.password, 
+                $http.post('/token', "grant_type=password&username=" + self.register.email+ "&password=" + self.register.password, 
                     { 
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
                     })
@@ -25,8 +25,14 @@
                 });
 
                 console.log(data);
+            }, function (data) {
+                //Register Failed
             })
         }
+
+
+
+
     }]);
 })();
 

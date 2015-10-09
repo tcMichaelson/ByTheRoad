@@ -123,13 +123,13 @@
                 self.showResultsBox();
             }
 
-            var input = document.getElementById('textsearch');
+            var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
                 console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
-                    setInitialSearchBoxBounds(searchBox);
+                    //setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());

@@ -39,7 +39,7 @@
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="hourcontent == 'hours'">
                         Enter time in hours you want to stop in<br />
-                        <input name=" hourcontent" type="text" ng-model="self.hoursUnit" class="distanceorTimeInputBox" />
+                        <input name="hourcontent" type="text" ng-model="self.hoursUnit" class="distanceorTimeInputBox" />
                         <button ng-click="self.hoursUnit = null; self.selected= false " ng-show="self.hoursUnit.length > 0" class="clearBtn">Clear</button>
                     </p>
 
@@ -213,11 +213,11 @@
             
                     <label class="startLabel">Starting Point</label>
                     
-                    <input type="text" class="origin" ng-hide="self.start === false" />
+                    <input type="text" class="origin" id="origin" ng-hide="self.start === false" />
               
                     <label class="startLabel">Destination</label>
                    
-                    <input type="text" class="destination" ng-hide="self.start === false" />
+                    <input type="text" class="destination" id="destination" ng-hide="self.start === false" />
             <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
            
             </form>

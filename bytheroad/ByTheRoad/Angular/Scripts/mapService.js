@@ -138,9 +138,9 @@
 
         //grabbing the info for each place
             self.callback = function (results, status) {
-                markers.forEach(function (marker) {
-                    marker.setMap(null);
-                })
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+                }
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
 
                     for (var i = 0; i < results.length; i++) {

@@ -20,29 +20,81 @@ var car;
 //Create Map and set the center as your current location.
 //Also set the origin location as your current location.
 function initMap() {
+
+    getInitialLocation();
+
+    window.setInterval(function (data) {
+        getCurrentLocation();
+    }, 5000)
+
+}
+
+function getInitialLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
 
-            var pos = {
+            var currLoc = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
             map = new google.maps.Map(document.getElementById('map'), {
-                center: pos,
-                zoom: 18
+                center: currLoc,
+                zoom: 15
             });
-            currLoc = pos;
-            updateLocHist(currLoc);
+
+            var carIcon = {
+                url: "../../Content/Cars/sportCar0.png",
+                scaledSize: new google.maps.Size(40, 40),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(20, 20)
+            };
+
+            if (car) {
+                car.setMap(null);
+            }
+
+            car = new google.maps.Marker({
+                position: currLoc,
+                map: map,
+                icon: carIcon
+            });
+
 
         }, function () {
             handleLocationError(true, null, map.getCenter());
+            return { lat: locHist[locHist.length - 1].lat, lng: locHist[locHist.length - 1].lng } || { lat: 41.8369, lng: -87.6847 };
         });
     } else {
         handleLocationError(false, null, map.getCenter());
+        return { lat: locHist[locHist.length - 1].lat, lng: locHist[locHist.length - 1].lng } || { lat: 41.8369, lng: -87.6847 };
     }
-
 }
+
+function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            var currLoc = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            console.log(currLoc);
+            console.log(locHist);
+            updateLocHist(currLoc);
+            moveCar(currLoc);
+
+        }, function () {
+            handleLocationError(true, null, map.getCenter());
+            return { lat: locHist[locHist.length - 1].lat, lng: locHist[locHist.length - 1].lng };
+        });
+    } else {
+        handleLocationError(false, null, map.getCenter());
+        return { lat: locHist[locHist.length - 1].lat, lng: locHist[locHist.length - 1].lng };
+    }
+}
+
 //  findSearchPositionAlongRoute("minutes", 30)
 function findCurrentPosition() {
     var currPos = locHist[locHist.length - 1];
@@ -277,7 +329,7 @@ function renderLines(response) {
 }
 
 function updateLocHist(pos) {
-    while (locHist.length >= 5) {
+    while (locHist.length > 5) {
         locHist.shift();
     }
     if (locHist.length === 0) {
@@ -285,11 +337,12 @@ function updateLocHist(pos) {
         locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: 0, speed: 0 });
     } else {
         var prevLoc = locHist[locHist.length - 1];
-        if (prevLoc.lat !== pos.lat || prevLoc.lng !== pos.lng) {
-            var firstLoc = locHist[0];
-            var currentLoc = pos;
+        var firstLoc = locHist[0];
+        var currentLoc = pos;
+        var dist = calculateDistance(firstLoc, currentLoc);  //distance in meters
+        if (dist > 1) {
             var brng = calculateInitialBearing(firstLoc, currentLoc);
-            var dist = calculateDistance(firstLoc, currentLoc);  //distance in meters
+            console.log(dist);
             var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
             var spd = dist / time;  //meters per second
             locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: brng, speed: spd });
@@ -348,13 +401,6 @@ function toRadians(deg) {
 
 function toDegrees(rad) {
     return rad / Math.PI * 180;
-}
-
-function executePan(newCenter) {
-    //var newLatLng = new google.maps.LatLng(newLat, newLng);
-    map.panTo(newCenter);
-    setOriginTextBox(newCenter);
-    //locHist.push({ lat: newCenter.lat, lng: newCenter.lng, time: Date.now() });
 }
 
 function moveCar(newCenter) {

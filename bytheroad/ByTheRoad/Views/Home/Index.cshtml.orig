@@ -31,11 +31,10 @@
 
     </script>
 <<<<<<< HEAD
-    
-
+   
 
 =======
->>>>>>> 507bca6ee5121f03ad2febbc5f4b1901f190746e
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
 
     <script src="~/Angular/Scripts/homeController.js"></script>
 </head>

@@ -6,6 +6,14 @@
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
+        <li id="logo"><img src="../../fonts/road.jpg" width="80" height="50" contextmenu="By the Road " /></li>
+        <li id="projectTitle"><h3>ByTheRoad</h3></li>
+        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
+        <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
+<<<<<<< HEAD
+=======
+        <li class="logo"><img src="../../fonts/road.jpg" width="80" height="50" contextmenu="By the Road " /></li>
+        <li id="ProjectTitle"><h3>ByTheRoad</h3></li>
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
         <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
     </ul>
@@ -13,6 +21,11 @@
 
 
 <div id="leftBox">
+<<<<<<< HEAD
+
+    <div class="leftFloatingDiv">
+        <div id="favoritesSavedBtn">
+=======
 
 <<<<<<< HEAD
     <div class="leftFloatingDiv">
@@ -114,6 +127,40 @@
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
             <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
+            <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
+        </h3>
+
+        <div class="resultsDiv" ng-repeat=" result in self.results">
+
+            <div class="searchResultsDetail">
+
+<<<<<<< HEAD
+                <div class="resultTitle">
+                    <h3 class="searchResultHeading">
+                        {{result.name}}
+                        <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
+=======
+                <!--<div ng-show="result.opening_hours.open_now === true">I'm currently<strong>open</strong> </div>
+                <div ng-show="result.opening_hours.open_now === false">I'm currently <strong>closed</strong></div>-->
+
+                <div class="resulttitle">
+                    <h3 class="searchh3">{{result.name}}
+                       
+>>>>>>> 306ef6058b49d385f56c62ea74fd1aca8a2c8d51
+                    </h3>
+
+<<<<<<< HEAD
+=======
+                <div class="searchadd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div class="searchadd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <!--<div>{{result.formatted_phone_number}}</div>-->
+                
+                <div class="rating">{{result.rating}}</div>
+=======
+<<<<<<< HEAD
+=======
+            <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
+>>>>>>> c82e35ab84cbc06f0dee495bb96bd3a85acb996e
         </h3>
 
         <div class="resultsDiv" ng-repeat=" result in self.results">
@@ -125,7 +172,19 @@
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
                     </h3>
-
+                 
+                    <button id="navigatesearch"  type="button">Navigate</button>
+<<<<<<< HEAD
+>>>>>>> 306ef6058b49d385f56c62ea74fd1aca8a2c8d51
+                </div>
+                <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <div class="rating">{{result.rating}}</div>
+                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
+                <div>
+                    <label>Mark as Favorite </label>
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.favPOI(result.place_id)" />
+                    <button class="navigatesearch" type="button">Navigate</button>
               
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
@@ -143,6 +202,10 @@
 >>>>>>> 507bca6ee5121f03ad2febbc5f4b1901f190746e
                 <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
                 <div>
+                </div>
+
+            </div>
+<<<<<<< HEAD
                  
                     <label>Mark as Favorite </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
@@ -178,14 +241,22 @@
 
     <div id="rightBox">
         <div id="map" class="floatingMapBox">
+
+            map box
+>>>>>>> 306ef6058b49d385f56c62ea74fd1aca8a2c8d51
+
+    <div id="rightBox">
+        <div id="map" class="floatingMapBox">
             map box
 
+<<<<<<< HEAD
         </div>
+=======
 
         <div ng-hide="self.loggingin === false" class="rightLoginBox">
 
             <form class="loginform" ng-submit="self.login()">
-               
+            <span class="error" ng-show="self.loginError">Loggin failed!</span>
                     <label class="loginLabel">User Email:</label>
                     <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
              
@@ -219,9 +290,42 @@
             </span>
                         Password:
                     </label>
+           <span class="error" ng-show="submitted && loginform.pwd.$error.required">Required!</span>
+             
 
+>>>>>>> 306ef6058b49d385f56c62ea74fd1aca8a2c8d51
+
+        <div ng-hide="self.loggingin === false" class="rightLoginBox">
+
+<<<<<<< HEAD
+=======
+            </div>
+        </div>
+  </div>
+
+
+    <div id="rightBox">
+        <div id="map" class="floatingMapBox">
+            map box
+
+        </div>
+
+        <div ng-hide="self.loggingin === false" class="rightLoginBox">
+
+>>>>>>> 7f66bb2cd58d4cffd354144345ff06e978db36ee
+            <form class="loginform" ng-submit="self.login()">
+               
+                    <label class="loginLabel">User Email:</label>
+                    <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
+             
                     <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
              
+                    <label class="loginLabel">Password:</label>
+                    
+                    <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
+               
+<<<<<<< HEAD
+=======
 
                      <label class="registerLabel">
                         Confirm Password :
@@ -259,6 +363,7 @@
                 <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
             </form>
         </div>
+<<<<<<< HEAD
 
 
         <div ng-hide="self.start === false" class="rightStartBox">

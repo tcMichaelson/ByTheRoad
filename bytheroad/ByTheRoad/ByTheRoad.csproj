@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201510092018051_intail.Designer.cs">
       <DependentUpon>201510092018051_intail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510090051263_update.cs" />
+    <Compile Include="Migrations\201510090051263_update.Designer.cs">
+      <DependentUpon>201510090051263_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -425,6 +429,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510092018051_intail.resx">
       <DependentUpon>201510092018051_intail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510090051263_update.resx">
+      <DependentUpon>201510090051263_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

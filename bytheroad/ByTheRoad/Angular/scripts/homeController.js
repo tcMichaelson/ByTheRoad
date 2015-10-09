@@ -37,6 +37,10 @@
             self.selected = false;
             self.clear = false;
 
+            self.findRoute = function () {
+                findRouteAndDisplay();
+            }
+
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
@@ -147,35 +151,6 @@
                     self.startInterval();
                     self.showResultsBox();
 
-                    /*
-                    // Clear out the old markers.
-                    markers.forEach(function (marker) {
-                        marker.setMap(null);
-                    });
-                    markers = [];
-
-                    // For each place, get the icon, name and location.
-                    var bounds = map.getBounds();
-                    places.forEach(function (place) {
-
-                        // Create a marker for each place.
-                        markers.push(new google.maps.Marker({
-                            map: map,
-                            //icon: icon,
-                            //title: place.name,
-                            position: place.geometry.location
-                        }));
-
-                        if (place.geometry.viewport) {
-                            // Only geocodes have viewport.
-                            bounds.union(place.geometry.viewport);
-                        } else {
-                            console.log("No viewport found");
-                        }
-                    });
-                    
-                    map.fitBounds(bounds);
-            */
                 });
             };
 

@@ -217,8 +217,8 @@
                     <label class="startLabel">Destination</label>
                    
                     <input type="text" class="destination" ng-hide="self.start === false" />
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
            
-                <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
             </form>
 
 

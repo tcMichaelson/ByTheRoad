@@ -42,13 +42,6 @@ function initMap() {
         handleLocationError(false, null, map.getCenter());
     }
 
-    var getRouteHandler = function () {
-        findRouteAndDisplay();
-    }
-
-    //document.getElementById('input-btn').addEventListener('click', initTextSearch);
-    document.getElementById('route-btn').addEventListener('click', getRouteHandler);
-
 }
 //  findSearchPositionAlongRoute("minutes", 30)
 function findCurrentPosition() {
@@ -128,13 +121,16 @@ function findGenericFuturePosition(unit, amount) {
       radius: 500
     });
     
+    if (futurePath) {
+        futurePath.setMap(null);
+    }
+
     futurePath = new google.maps.Polyline({
         path: [{ lat: lastLoc.lat, lng: lastLoc.lng }, { lat: futureLoc.lat, lng: futureLoc.lng }],
         strokeWeight: 2,
         strokeColor: '#000000',
         map: map
     });
-    futurePath.setMap(map);
     console.log(futureLoc);
     return futureLoc;
 }
@@ -177,7 +173,11 @@ function findFuturePosition(spotOnRoute, unit, amount) {
         futureloc = selectedPath[iLine];
     }
 
-    new google.maps.Polyline({
+    if (futurePath) {
+        futurePath.setMap(null);
+    }
+
+    futurePath = new google.maps.Polyline({
         strokeWeight: 2,
         strokeColor: "#7f7f7f",
         path: [currLoc, futureLoc],
@@ -253,23 +253,17 @@ function renderLines(response) {
             path: coords,
             strokeColor: "#000000",
             strokeWeight: 6,
-            map: map
+            map: map,
+            zIndex: 0
         });
 
         routeLines2 = new google.maps.Polyline({
             path: coords,
             strokeColor: colHex,
             strokeWeight: 4,
-            map: map
+            map: map,
+            zIndex: 1
         });
-
-        console.log("min dist: " + coords.map(function (a, idy, coords) {
-            if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 999; }
-        }).reduce(function (a, b) { return 0 < a && a < b ? a : b; }));
-
-        console.log("max dist: " + coords.map(function (a, idy, coords) {
-            if (idy < coords.length - 1) { return calculateDistance(a, coords[idy + 1]); } else { return 0; }
-        }).reduce(function (a, b) { return a > b ? a : b; }));
 
         selectedPath = coords;
         selectedRoute = response.routes[idx];
@@ -283,18 +277,6 @@ function renderLines(response) {
 }
 
 function updateLocHist(pos) {
-    //var geocoder = new google.maps.Geocoder;
-    //geocoder.geocode({ 'location': pos }, function (results, status) {
-    //    if (status === google.maps.GeocoderStatus.OK) {
-    //        if (results[0]) {
-    //            document.getElementById('origin').value = results[0].formatted_address;
-    //        } else {
-    //            alert('No results found');
-    //        }
-    //    } else {
-    //        alert('GeoCoder has failed due to: ' + status);
-    //    }
-    //});
     while (locHist.length >= 5) {
         locHist.shift();
     }
@@ -376,6 +358,14 @@ function executePan(newCenter) {
 }
 
 function moveCar(newCenter) {
+    var bearing = -1*(locHist[locHist.length - 1].bearing);
+    if (bearing < 0) {
+        brng = 360 + bearing;
+    } else {
+        brng = bearing;
+    }
+    brng = Math.round(brng / 5.0) * 5;
+    car.icon.url = "../../Content/Cars/sportCar" + brng + ".png";
     car.setPosition(newCenter);
 }
 
@@ -385,11 +375,14 @@ function startRouting() {
     locHist = [];
     map.setCenter(selectedPath[0]);
     var carIcon = {
-        url: "../../Content/sportCar.png",
-        scaledSize: new google.maps.Size(20, 40),
+        url: "../../Content/Cars/sportCar0.png",
+        scaledSize: new google.maps.Size(40, 40),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(10,20)
+        anchor: new google.maps.Point(20,20)
     };
+    if (car) {
+        car.setMap(null);
+    }
     car = new google.maps.Marker({
         position: selectedPath[0],
         map: map,

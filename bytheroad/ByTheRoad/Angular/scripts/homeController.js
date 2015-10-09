@@ -60,8 +60,8 @@
 
                 })
                 .error(function () {
-                    console.error('Error loggin in.');
-                    self.loginError = true;
+                    self.hasError = true;
+                    self.errorMessage = "Error loggin in";
                 });
             };
 
@@ -81,11 +81,15 @@
 
             self.register = function () {
                 roadService.register(self.register, function (error) {
-                    self.RegisterError = error;
+
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
                 });
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
+                self.register.firstName = null;
+                self.register.lastName = null;
                
             };
 

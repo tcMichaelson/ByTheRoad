@@ -115,7 +115,7 @@
             <div class="searchResultsDetail">
 
                 <div class="resultTitle">
-                    <span class="error" ng-show="self.ResultsEror"> Sorry there are no results!</span>
+                    
                     <h3 class="searchResultHeading">
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
@@ -165,7 +165,7 @@
         <div ng-hide="self.loggingin === false" class="rightLoginBox">
 
             <form class="loginform" ng-submit="self.login()">
-                <span class="error" ng-show="self.loginError"> Failed to login!</span>
+                
                     <label class="loginLabel">User Email:</label>
                     <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
              
@@ -183,12 +183,13 @@
 
         <div ng-hide="self.registering === false " class="rightRegisterBox">
             <form id="registerForm" ng-submit="self.register();">
-            <span class="error" ng-show="self.RegisterError"> </>Failed to Register!</span>
+            
                     <label class="registerLabel">
                         Email:
                     </label>
                     <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
-                <label>
+                
+                <label class="registerLabel">
                         Password:
                     </label>
                 <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />

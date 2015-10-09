@@ -237,13 +237,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509281529151_Intain.cs" />
-    <Compile Include="Migrations\201509281529151_Intain.Designer.cs">
-      <DependentUpon>201509281529151_Intain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510060248376_changedModel.cs" />
-    <Compile Include="Migrations\201510060248376_changedModel.Designer.cs">
-      <DependentUpon>201510060248376_changedModel.cs</DependentUpon>
+    <Compile Include="Migrations\201510091655408_initial.cs" />
+    <Compile Include="Migrations\201510091655408_initial.Designer.cs">
+      <DependentUpon>201510091655408_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -354,11 +350,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509281529151_Intain.resx">
-      <DependentUpon>201509281529151_Intain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510060248376_changedModel.resx">
-      <DependentUpon>201510060248376_changedModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510091655408_initial.resx">
+      <DependentUpon>201510091655408_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

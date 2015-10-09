@@ -39,7 +39,7 @@ namespace ByTheRoad.Controllers.APIController
 
                 PointOfInterest newPOI = new PointOfInterest
                 {
-                    Id = placeId
+                   
                 };
 
                 //Find current logon user

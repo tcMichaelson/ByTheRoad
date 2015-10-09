@@ -7,13 +7,13 @@ namespace ByTheRoad.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class changedModel : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changedModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510060248376_changedModel"; }
+            get { return "201510091655408_initial"; }
         }
         
         string IMigrationMetadata.Source

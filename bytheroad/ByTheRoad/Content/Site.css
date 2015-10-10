@@ -13,65 +13,75 @@ textarea {
 }
 
 body {
-  margin: 0;
-  background: white;
-  border:solid 1px black;
-  height: 100%;
-  min-width: 1200px;
-  width: 100%;
-  position: absolute;
+    margin: 0;
+    background: white;
+    border: solid 1px black;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
-    
-.nav{
-    height:10%;
+
+@media screen and (min-width: 600px) {
+    body {
+        min-width: 1200px;
+    }
+}
+
+
+.nav {
+    height: 10%;
     min-height: 50px;
     max-height: 50px;
 }
- 
 
-.nav ul {
-  background-color: rgb(34,30,78);
-    position: absolute;
-  list-style: none;
-  text-align: center;
-  padding:0;
-  margin: 0;
-  height: 50px;
-  width: 100%;
-  
 
-}
-.nav li {
-    width: 100px;
-    border-bottom: none;
-    left: 40%;
-    top: 0px;
-    float: left;
-    font-size: 1.4em;
-    display: block;
-    position: relative;
-    line-height: 50px;
-}
- 
-.nav a {
-  text-decoration: none;
-  color:white;
-  display:block;
-  transition: .3s background-color;
-}
- 
-.nav a:hover {
-  background-color: #3087B4;
-}
- 
-.nav a.active {
-  background-color: #143D55;
-  color: #444;
-  cursor: default;
-}
+    .nav ul {
+        background-color: rgb(34,30,78);
+        position: absolute;
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        width: 100%;
+    }
 
-    
+    .nav li {
+        width: 100px;
+        border-bottom: none;
+        left: 40%;
+        top: 0px;
+        float: left;
+        font-size: 1.4em;
+        display: block;
+        position: relative;
+        line-height: 50px;
+    }
+
+    .nav li img{
+        height: 50px;
+        width: 80px;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        transition: .3s background-color;
+    }
+
+        .nav a:hover {
+            background-color: #3087B4;
+        }
+
+        .nav a.active {
+            background-color: #143D55;
+            color: #444;
+            cursor: default;
+        }
+
+
 
 #projectTitle {
     position: absolute;
@@ -90,365 +100,344 @@ body {
 }
 
 
-li.welcome{
-   color:white;
-   font-size: 16px;
-   width: 400px;
-   margin-left: 300px;
+li.welcome {
+    color: white;
+    font-size: 16px;
+    width: 400px;
+    margin-left: 300px;
 }
-#leftBox{
 
-  height: 93%;
-  width: 25%;
-  position:absolute;
-  border: 1px solid blue;
+#leftBox {
+    height: 93%;
+    width: 25%;
+    position: absolute;
+    border: 1px solid blue;
 }
 
 .leftFloatingDiv {
-    
     width: 100%;
-    height: 100%;    
-    border:1px solid black;
+    height: 100%;
+    border: 1px solid black;
     position: absolute;
-    background-color:white;
+    background-color: white;
 }
-#favoritesSavedBtn{
+
+#favoritesSavedBtn {
     position: absolute;
     width: 100%;
 }
 
 
-#leftBoxHeading{
-    color:black;
-    font-size:25px;
-    font-weight:200 bolder;
+#leftBoxHeading {
+    color: black;
+    font-size: 25px;
+    font-weight: 200 bolder;
     margin-top: 40px;
-   margin-left:90px;
- }
+    margin-left: 90px;
+}
 
 
 
-.leftDivSearchChoices div{
+.leftDivSearchChoices div {
     position: absolute;
     width: 100%;
 }
 
-.distance{
-    margin-left:30px;
-    height:70px;
-    width:100%;
-
+.distance {
+    margin-left: 30px;
+    height: 70px;
+    width: 100%;
 }
 
- .distanceToFindPlaces{
-     background-color:#E18A07;
-    margin:2px;
-    height:70px;
-    width:90px;
-    padding:0px;
-    color:white;
-    font-size:20px;
- }
+.distanceToFindPlaces {
+    background-color: #E18A07;
+    margin: 2px;
+    height: 70px;
+    width: 90px;
+    padding: 0px;
+    color: white;
+    font-size: 20px;
+}
 
 
- .distanceorTimeInputBox{
-     
-  padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
-      
-      }
+.distanceorTimeInputBox {
+    padding: 3px;
+    border: solid 1px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 150px;
+    height: 30px;
+}
 
 
-.clearBtn{
-     background-color:#143D55;
-     color:white;
-     width:100px;
-     height:30px;
+.clearBtn {
+    background-color: #143D55;
+    color: white;
+    width: 100px;
+    height: 30px;
+}
 
- }
-
-.nearbysearch{
-    margin-top:150px;
-    margin-left:10px;
-    position:absolute;
+.nearbysearch {
+    margin-top: 150px;
+    margin-left: 10px;
+    position: absolute;
 }
 
 #searchInputBox {
     margin-top: 50px;
 }
 
-.searchIcons{
-    height:40px;
-    width:100%;
-    margin-left:10px;
- 
+.searchIcons {
+    height: 40px;
+    width: 100%;
+    margin-left: 10px;
 }
 
 .btnForSearchImg {
-    height:40px;
-    width:50px;
-    display:inline-block;
-    background-color:#428bca;
-   
-    margin:-5px;
- 
+    height: 40px;
+    width: 50px;
+    display: inline-block;
+    background-color: #428bca;
+    margin: -5px;
 }
-.imgforSearchNearBy{
-    height:20px;
-    width:20px;
-    display:inline;
-    padding:0;
 
+.imgforSearchNearBy {
+    height: 20px;
+    width: 20px;
+    display: inline;
+    padding: 0;
 }
 
 
 
 
-.dragOutSearchResult{
-    
-    margin-top:450px;
-    width:100px;
-    height:40px;
-    margin-left:-25px;
-   background-color:white;
-  
- color:black;
+.dragOutSearchResult {
+    margin-top: 450px;
+    width: 100px;
+    height: 40px;
+    margin-left: -25px;
+    background-color: white;
+    color: black;
 }
 
 #slideoutsearchResultsDiv, #savedPlaces {
-    margin-top:370px;
-  
+    margin-top: 370px;
     border: 1px solid #287AA9;
     height: 55%;
     position: absolute;
     width: 100%;
-    overflow:scroll;
-    background-color:white;
-    color:blue;
-    
+    overflow: scroll;
+    background-color: white;
+    color: blue;
 }
 
-#slideboxheading{
-    color:black;
-}
-
-#hide{
- 
-    width:90px;
-    height:30px;
-    background-color:#428bca;
-    color:white;
-    font-size:medium;
-}
-
-
-#favorite{
- 
-    width:90px;
-    height:30px;
-    background-color:#428bca;
-    color:white;
-    font-size:medium
-}
-
-
-.searchResultsDetail{
-    border: 1px solid #287AA9;
-    color:black;
-    margin:1px;
-    background-color:beige;
-   
-}
-
-.searchResultHeading{
-
-    font-size:20px;
+#slideboxheading {
     color: black;
 }
-    
 
-
-
-
-.searchAdd{
-
-    font-size:12px;
-} 
-.rating{
-    color:#E18A07;
-
-}
-
-.distanceFromLocLabel{
-    font-size:15px;
+#hide {
+    width: 90px;
+    height: 30px;
+    background-color: #428bca;
+    color: white;
+    font-size: medium;
 }
 
 
-.navigatesearch{
-    margin-left:80px;
-    margin-bottom:1px;
-    width:80px;
-    height:30px;
-    font-size:15px;
-    background-color:#428bca; 
+#favorite {
+    width: 90px;
+    height: 30px;
+    background-color: #428bca;
+    color: white;
+    font-size: medium;
+}
 
+
+.searchResultsDetail {
+    border: 1px solid #287AA9;
+    color: black;
+    margin: 1px;
+    background-color: beige;
+}
+
+.searchResultHeading {
+    font-size: 20px;
+    color: black;
 }
 
 
 
 
 
-#directsearch{
-    color:black;
+.searchAdd {
+    font-size: 12px;
 }
 
-.savedPlacesDetail{
+.rating {
+    color: #E18A07;
+}
+
+.distanceFromLocLabel {
+    font-size: 15px;
+}
+
+
+.navigatesearch {
+    margin-left: 80px;
+    margin-bottom: 1px;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #428bca;
+}
+
+
+
+
+
+#directsearch {
+    color: black;
+}
+
+.savedPlacesDetail {
     border: 1px solid #287AA9;
     height: 250px;
     width: 425px;
 }
 
 
-#rightBox{
-  width: 75%;
-  height: 93%;
-  position: absolute;
-  right: 0;
+#rightBox {
+    position: absolute;
+    top: 10%;
+    margin-left: 25%;
+    width: 75%;
+    height: 93%;
+
 }
 
 
 .floatingMapBox {
-
-   border:solid 1px black;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-   margin:0px;
-
+    border: solid 1px black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 .rightLoginBox, .rightRegisterBox, .rightStartBox {
-    background-color:#FA9E25;
+    background-color: #FA9E25;
     position: absolute;
-    border-top:1px solid white; 
-    width: 100%;   
-     height: 90px;
-    margin:0px;
+    border-top: 1px solid white;
+    width: 100%;
+    height: 90px;
+    margin: 0px;
     padding: 10px 0px 0px 20px;
- float: left;
+    float: left;
     margin-right: 40px;
-
 }
 
 
-.loginInputBox  {
-  padding: 3px;
-   box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
-}
-.registerInputBox{
- padding: 3px;
-   box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
+.loginInputBox {
+    padding: 3px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 150px;
+    height: 30px;
 }
 
-.loginLabel, .registerLabel, .startLabel{
-    font:bold;
-    color:black;
-    font-size:20px;
+.registerInputBox {
+    padding: 3px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 150px;
+    height: 30px;
 }
 
-.origin, .destination{
-
-      padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:250px;
-height:30px;
-}
-.submitbtn{
-    background-color:#3276b1;
-    color:black;
-    font-size:20px;
-    width:100px;
-    height:30px;
-    margin:10px;
+.loginLabel, .registerLabel, .startLabel {
+    font: bold;
+    color: black;
+    font-size: 20px;
 }
 
+.origin, .destination {
+    padding: 3px;
+    border: solid 1px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 250px;
+    height: 30px;
+}
 
-.cancelbtn{
-background-color:#3276b1;
-    color:black;
-    font-size:20px;
-    width:100px;
-    height:30px;
+.submitbtn {
+    background-color: #3276b1;
+    color: black;
+    font-size: 20px;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
 }
 
 
-.registerbox{
- padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:140px;
-height:30px;
-}
-
-.submitdirection{
-    background-color:#3276b1;
-    color:black;
-    font-size:20px;
-    width:150px;
-    height:30px;
-    margin:10px;
+.cancelbtn {
+    background-color: #3276b1;
+    color: black;
+    font-size: 20px;
+    width: 100px;
+    height: 30px;
 }
 
 
-.ownsearch{
-
-    color:red;
-    margin:10px;
+.registerbox {
+    padding: 3px;
+    border: solid 1px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 140px;
+    height: 30px;
 }
-#time{
 
-    margin-top:150px;
-    margin-left:10px;
+.submitdirection {
+    background-color: #3276b1;
+    color: black;
+    font-size: 20px;
+    width: 150px;
+    height: 30px;
+    margin: 10px;
+}
+
+
+.ownsearch {
+    color: red;
+    margin: 10px;
+}
+
+#time {
+    margin-top: 150px;
+    margin-left: 10px;
     padding-top: 25px;
     padding-right: 50px;
     padding-bottom: 25px;
     padding-left: 50px;
-    
-
 }
 
 
 .sliderbody {
     overflow-x: hidden;
 }
+
 #slideout {
     background: white;
     position: absolute;
     width: 100%;
     height: 100%;
-   top: 200px;
+    top: 200px;
     padding-left: 300px;
-    margin-top:100px;
-    
-    
+    margin-top: 100px;
 }
-    
+
 #clickme {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     height: 60px;
     width: 60px;
     background: red;
@@ -458,125 +447,118 @@ height:30px;
     position: absolute;
     right: 0px;
 }
+
 #content {
     background: white;
-     margin-top:70px;  
+    margin-top: 70px;
     width: 200px;
     height: 80px;
 }
 
+.distanceortime {
+    padding: 3px;
+    border: solid 1px;
+    box-shadow: inset 0 0 0 3px #707070;
+    transition: box-shadow 0.3s, border 0.3s;
+    width: 150px;
+    height: 30px;
+}
 
 
 
- 
 
- 
-   
- .distanceortime{
-     
-  padding: 3px;
-  border: solid 1px ;
-  box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
-      
-      }
-
- 
-
-
-.btn btn-sucess{
-    height:1px;
-    width:1px;
-    display:inline;
-    padding:10px;
-  
+.btn btn-sucess {
+    height: 1px;
+    width: 1px;
+    display: inline;
+    padding: 10px;
 }
 
 @keyframes slideInLeft {
-  from {
-    transform: translate3d(-100%, 0, 0);
-    visibility: hidden;
-  }
+    from {
+        transform: translate3d(-100%, 0, 0);
+        visibility: hidden;
+    }
 
-  to {
-    transform: translate3d(0, 0, 0);
-    visibility: visible;
-  }
+    to {
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
 }
 
 .slideInLeft {
-  animation-name: slideInLeft;
+    animation-name: slideInLeft;
 }
 
 
-#listofsearch{
-
+#listofsearch {
 }
 
 @keyframes slideOutLeft {
-  from {
-    transform: translate3d(0, 0, 0);
-    visibility:visible;
-  }
+    from {
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+    }
 
-  to {
-    
-    transform: translate3d(-100%, 0, 0);
-    visibility:hidden;
-  }
+    to {
+        transform: translate3d(-100%, 0, 0);
+        visibility: hidden;
+    }
 }
 
 .slideOutLeft {
-  animation-name: slideOutLeft;
+    animation-name: slideOutLeft;
 }
 
 
-  
+
 #absolute {
     position: absolute;
-    right:-50px;
+    right: -50px;
     width: 10px;
-    height:10px;
+    height: 10px;
     border: 3px solid pink;
-} 
+}
 
-.searchbutton{
-    background-color:limegreen;
-   margin:20px;
-   height:30px;
-   width:100px;
-
+.searchbutton {
+    background-color: limegreen;
+    margin: 20px;
+    height: 30px;
+    width: 100px;
 }
 
 
-.Result1{
-background-color:#287AA9;
-    
-    background-color:#143D55;
-    height:25px;
-    width:100px;
+.Result1 {
+    background-color: #287AA9;
+    background-color: #143D55;
+    height: 25px;
+    width: 100px;
     margin: 0 auto;
-    padding:0px;
+    padding: 0px;
     position: relative;
-    color:white;
-    font-size:small;
+    color: white;
+    font-size: small;
 }
 
 
 
-#distance{
-    color:#287AA9;
-}
-#result{
-    color:#287AA9;
-}
-.Result{
-    color:#287AA9;
+#distance {
+    color: #287AA9;
 }
 
-#errorMessages{
+#result {
+    color: #287AA9;
+}
+
+.Result {
+    color: #287AA9;
+}
+
+#mobileSearch, #mobileSearchHide {
+    display: none;
+}
+
+#errorMessages {
     background-color: white;
     position: fixed;
     left: 20%;
@@ -584,49 +566,12 @@ background-color:#287AA9;
     height: 200px;
 }
 
-#errorMessages p {
-    color: red;
-    text-align: center;
-}
-
-#errorMessages button {
-    border: none;
-    background-color: #3276b1;
-}
-
-
-@media screen and (max-width: 600px) {
-    html {
-        width: 100%;
-    }
-    body{
-        min-width: 0px;
-        width: 100%;
+    #errorMessages p {
+        color: red;
+        text-align: center;
     }
 
-    .leftBoxes{
-        position: absolute;
-        width: 100%;
+    #errorMessages button {
+        border: none;
+        background-color: #3276b1;
     }
-
-    .floating-box{
-        width: 100%;
-    }
-
-    .rightboxes{
-        width: 100%;
-        left: 100%;
-    }
-
-    .nav li {
-        line-height: 80px;
-        font-size: 1.4em;
-        display:inline-block;
-    }
-
-    .nav ul{
-        width: 100%;
-        height:
-    }
-}
-}

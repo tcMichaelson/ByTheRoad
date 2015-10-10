@@ -12,6 +12,7 @@
             self.start = false;
             self.star = false;
             self.results = [];
+            self.mobileSearch = false;
 
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
@@ -203,6 +204,15 @@
                 self.toggleSavedBox();
             }
 
+            self.showLeftBox = function () {
+                document.getElementById('leftBox').style.left = '0';
+                document.getElementById('rightBox').style.left = '100%';
+            }
+
+            self.showRightBox = function () {
+                document.getElementById('leftBox').style.left = '-100%';
+                document.getElementById('rightBox').style.left = '0';
+            }
         });
 
 })();

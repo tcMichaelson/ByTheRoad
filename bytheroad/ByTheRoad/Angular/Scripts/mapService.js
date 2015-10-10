@@ -178,7 +178,7 @@
                             markers[i] = (createMarker(places[i]));
                             locationService.findRouteAndDisplay(places[i].geometry.location, i, function (response, idx) {
                                 self.results[idx].route = response;
-                                self.results[idx].distance = Math.round((placeDist / 1609.344) * 100) / 100;
+                                self.results[idx].distance = response.routes[0].legs[0].distance.text;
                                 console.log("placeDist: ", placeDist)
                             });
                         }

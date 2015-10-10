@@ -10,7 +10,7 @@
             var selectedRoute;  //currently selected route.
             var selectedPath;  //The full path of the currently selected route;
             var routeDistances = []; //distances that correspond to path route Lines
-            var futureLoc;  //represents the location the user will be at in a given time frame.
+            //var futureLoc;  //represents the location the user will be at in a given time frame.
             var routeLines1;
             var routeLines2;
             var futurePath;  //represents the path taken to get to the future location
@@ -212,12 +212,16 @@
                     return currLoc;
                 }
 
-                if (distance > meters) {
-                    var bearing = calculateInitialBearing(selectedPath[iLine], currLoc);
-                    futureLoc = calculatePointAlongBearing(selectedPath[iLine], bearing, distance - meters);
-                } else {
-                    futureloc = selectedPath[iLine];
-                }
+                /**Error in the bearing formula**/
+                //if (distance > meters) {
+                //    var bearing = calculateInitialBearing(selectedPath[iLine], selectedPath[iLine - 1]);
+                //    console.log("adjusted bearing: ", bearing);
+                //    futureLoc = calculatePointAlongBearing(selectedPath[iLine], bearing, distance - meters);
+                //} else {
+
+                futureLoc = selectedPath[iLine];
+
+                //}
 
                 if (futurePath) {
                     futurePath.setMap(null);
@@ -278,7 +282,7 @@
                             });
                         });
                     });
-                    console.log(routeDistances);
+                    console.log("routeDistances: ", routeDistances);
                     var colHex = "";
                     switch (idx % 3) {
                         case 0:
@@ -313,6 +317,7 @@
                     });
 
                     selectedPath = coords;
+                    console.log("selectedPath: ", selectedPath);
                     selectedRoute = response.routes[idx];
                     lastKnownLeg = 0;
                     lastKnownStep = 0;
@@ -363,6 +368,10 @@
                 return earthRadius * c;
             }
 
+
+            ///
+            ///Returns a bearing counter-clockwise from north
+            ///
             function calculateInitialBearing (pos1, pos2) {
                 var lat1 = pos1.lat;
                 var lng1 = pos1.lng;
@@ -379,7 +388,7 @@
             function calculatePointAlongBearing (pos, brng, dist) {
                 var lat1 = toRadians(pos.lat);  
                 var lng1 = toRadians(pos.lng);
-                var bearing = 0 - toRadians(brng);  //reversing bearing.  should be clockwise from north
+                var bearing = -1 * (toRadians(brng));  //reversing bearing.  should be clockwise from north
                 var R = 6371000;
                 console.log("lat1:", lat1, "lng1:", lng1, "bearing:", bearing, "dist:", dist);
                 var lat2 = Math.asin(Math.sin(lat1) * Math.cos(dist / R) +

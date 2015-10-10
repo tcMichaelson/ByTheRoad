@@ -9,25 +9,45 @@
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
-      
+
             self.results = [];
             // Save POI
-            self.favPOI = function (poi) {
-                console.log(poi);
-                $http.post('/api/POI', {
-                    Place_id: poi.place_id,
-                    Name: poi.name,
-                    Address: poi.formatted_address,
-                    PhoneNum: poi.formatted_phone_number,
-                    Rating: poi.rating
-                })
-                .success(function (result) {
-                    console.log("success");
-                })
-                .error(function () {
-                    console.error('fail');
-                });
+            self.favPOI = function (poi, chkState) {
+
+                if (chkState) {
+
+                    $http.post('/api/POI', {
+                        Place_id: poi.place_id,
+                        Name: poi.name,
+                        Address: poi.formatted_address,
+                        PhoneNum: poi.formatted_phone_number,
+                        Rating: poi.rating,
+
+                    })
+                    .success(function (result) {
+                        console.log("success");
+                    })
+                    .error(function () {
+                        console.error('fail');
+                    });
+                }
+
+                else {
+                    var place_id = poi.place_id;
+                    console.log(place_id);
+                    $http.delete('/api/POI/' + place_id
+                    )
+                    .success(function (result) {
+                        console.log("success");
+                    })
+                    .error(function () {
+                        console.error('fail');
+                    });
+                }
             }
+
+
+
 
             // Retrieve POI
             self.listFavPOI = function () {
@@ -59,7 +79,7 @@
 
             }
 
-     //text search from  input box
+            //text search from  input box
             self.regTextSearch = function (model, center) {
                 self.results = [];
 
@@ -138,7 +158,7 @@
             }
 
 
-        //grabbing the info for each place
+            //grabbing the info for each place
             self.callback = function (places, status) {
                 for (var i = 0; i < markers.length; i++) {
                     markers[i].setMap(null);
@@ -168,14 +188,13 @@
                         self.results = ['none'];
                     }
                 } else {
-                    self.results = ['none'];
+                    self.results = ['can find result'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();
                 var service = new google.maps.places.PlacesService(map);
-                for (var i = 0; i < placeIdArray.length; i++)
-                {
-                    
+                for (var i = 0; i < placeIdArray.length; i++) {
+
                     service.getDetails({
                         placeId: placeIdArray[i]
                     }, function (place, status) {

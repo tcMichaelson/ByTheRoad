@@ -51,6 +51,8 @@
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
+                    
+                    self.currentuser = self.login.email;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.email = null;
@@ -68,24 +70,35 @@
             self.logout = function () {
                 $http.post('api/Account/Logout')
 
-                .success(function (data) {
+               .success(function (data) {
 
                     self.logoutbtn = false;
                     console.log('success')
                 })
-
-               .error(function () {
+                .error(function () {
                    console.error('Error loggin in.');
 
                });
             };
 
             self.register = function () {
-                roadService.register(self.registerUser);
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-            };
+                roadService.register(self.registerUser, function(){
+                    self.currentuser = self.registerUser.email;
+                    self.registering = false;
+                    self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.registerUser.email = null;
+                    self.registerUser.Password = null;
+                    self.registerUser.ConfirmPassword = null;
+                }, function (error) {
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+                self.register.firstName = null;
+                self.register.lastName = null;
+
+                });
+            }
+
 
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);
@@ -181,7 +194,8 @@
             }
 
             self.favPOI = function () {
-                mapService.favPOI(self.poiToSave);
+                mapService.favPOI(self.poiToSave, self.chkState);
+
             }
 
             self.places = function () {

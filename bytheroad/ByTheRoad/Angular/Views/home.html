@@ -120,14 +120,14 @@
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
                     </h3>
 
-              
+
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
-                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
+                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}} miles</div>
                 <div>
-                 
+
                     <label>Mark as Favorite </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
                     <button class="navigatesearch" type="button">Navigate</button>
@@ -135,95 +135,99 @@
 
             </div>
         </div>
-        </div>
-
     </div>
-    <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-        <h3> My Favorite places</h3>
-        <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
-        <div class="resultsDiv" ng-repeat="saved in self.places">
-            <div class="savedPlacesDetail">
-                <div class="resultTitle">
-                    <h4 class="searchResultHeading"><strong>{{saved.name}}</strong></h4>
-                </div>
-                    <div class="searchAdd">{{saved.formmatted_address}}</div>
-                    <div class="rating">{{saved.rating}}</div>
 
-                </div>
+</div>
+<div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
+    <h3> My Favorite places</h3>
+    <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
+    <div class="resultsDiv" ng-repeat="saved in self.places">
+        <div class="savedPlacesDetail">
+            <div class="resultTitle">
+                <h4 class="searchResultHeading"><strong>{{saved.name}}</strong></h4>
             </div>
-       
-  </div>
-
-
-    <div id="rightBox">
-        <div id="map" class="floatingMapBox">
-            map box
+            <div class="searchAdd">{{saved.formmatted_address}}</div>
+            <div class="rating">{{saved.rating}}</div>
 
         </div>
+    </div>
 
-        <div ng-hide="self.loggingin === false" class="rightLoginBox">
-
-            <form class="loginform" ng-submit="self.login()">
-               
-                    <label class="loginLabel">User Email:</label>
-                    <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
-             
-                 
-                    <label class="loginLabel">Password:</label>
-                    
-                    <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
-               
-
-                <input type="submit" class="submitbtn" value="Log In" />
-
-            </form>
-        </div>
+</div>
 
 
-        <div ng-hide="self.registering === false " class="rightRegisterBox">
-            <form id="registerForm" ng-submit="self.register();">
-            
-                    <label class="registerLabel">
-                        Email:
-                    </label>
-                    <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
-           
-                    <label class="registerLabel">
-                        Password:
-                    </label>
-
-                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
-             
-
-                     <label class="registerLabel">
-                        Confirm Password :
-                    </label>
-                    <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
-               
-                <input type="submit" class="submitbtn" value="Register" />
-
-                <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
-            </form>
-        </div>
-
-
-        <div ng-hide="self.start === false" class="rightStartBox">
-            <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
-
-            
-                    <label class="startLabel">Starting Point</label>
-                    
-                    <input type="text" class="origin" id="origin" ng-hide="self.start === false" />
-              
-                    <label class="startLabel">Destination</label>
-                   
-                    <input type="text" class="destination" id="destination" ng-hide="self.start === false" />
-            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
-           
-            </form>
-
-
-
-        </div>
+<div id="rightBox">
+    <div id="map" class="floatingMapBox">
+        map box
 
     </div>
+
+    <div ng-hide="self.loggingin === false" class="rightLoginBox">
+
+        <form class="loginform" ng-submit="self.login()">
+
+            <label class="loginLabel">User Email:</label>
+            <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
+
+
+            <label class="loginLabel">Password:</label>
+
+            <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
+
+
+            <input type="submit" class="submitbtn" value="Log In" />
+
+        </form>
+    </div>
+
+
+    <div ng-hide="self.registering === false " class="rightRegisterBox">
+        <form id="registerForm" ng-submit="self.register();">
+
+            <label class="registerLabel">
+                Email:
+            </label>
+            <input class="registerInputBox" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
+
+            <label class="registerLabel">
+                Password:
+            </label>
+
+            <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
+
+
+            <label class="registerLabel">
+                Confirm Password :
+            </label>
+            <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-required="true" />
+
+            <input type="submit" class="submitbtn" value="Register" />
+
+            <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
+        </form>
+    </div>
+
+
+    <div ng-hide="self.start === false" class="rightStartBox">
+        <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
+
+
+            <label class="startLabel">Starting Point</label>
+
+            <input type="text" class="origin" id="origin" ng-hide="self.start === false" ng-model="self.directions.origin" />
+
+            <label class="startLabel">Destination</label>
+
+            <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination"/>
+            <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
+
+        </form>
+
+
+
+    </div>
+
+</div>
+<div id="errorMessages" ng-if="self.hasError && self.errorMessage !== ''">
+    <p>{{self.errorMessage}}</p>
+    <button ng-click="self.errorMessage = ''">OK</button>
+</div>

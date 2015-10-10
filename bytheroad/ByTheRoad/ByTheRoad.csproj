@@ -255,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\locationService.js" />
     <Content Include="Angular\Scripts\mapService.js" />
     <Content Include="Angular\Views\home.html" />
     <Content Include="Angular\Scripts\homeController.js" />

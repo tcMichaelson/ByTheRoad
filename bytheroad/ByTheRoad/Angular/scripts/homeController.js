@@ -1,31 +1,26 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, $window) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-           
+
+            self.hasError = false;
+            self.errorMessage = '';
             self.registering = false;
             self.loggingin = false;
             self.start = false;
             self.star = false;
             self.results = [];
-            console.log(self.results);
+
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
+
             self.getResults = function () {
                 self.results = mapService.results;
             }
 
-
-            self.init = function () {
-                if ($window.sessionStorage.token) {
-
-                }
-            }
-
-            self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -37,8 +32,12 @@
             self.selected = false;
             self.clear = false;
 
+
+
             self.findRoute = function () {
-                findRouteAndDisplay();
+                locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
+                    locationService.renderLines(response);
+                })
             }
 
             self.login = function () {
@@ -56,12 +55,13 @@
                     self.logoutbtn = true;
                     self.login.email = null;
                     self.login.password = null;
-                   
+
 
                 })
                 .error(function () {
                     console.error('Error loggin in.');
-                    self.loginError = true;
+                    self.hasError = true;
+                    self.errorMessage = "Error logging in";
                 });
             };
 
@@ -81,7 +81,7 @@
             };
 
             self.register = function () {
-                roadService.register(self.register);
+                roadService.register(self.registerUser);
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
@@ -111,12 +111,14 @@
                 var info = self.getUnitAndAmount();
                 self.results = [];
                 mapService.results = [];
-                var spotOnRoute = findCurrentPosition();
+                var spotOnRoute = locationService.findCurrentPosition();
                 console.log("spot on route:", spotOnRoute);
+                console.log("selectedRoute: ", locationService.selectedRoute);
+
                 if (spotOnRoute) {
-                    var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
+                    var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
-                    var searchPos = findGenericFuturePosition(info.unit, info.amount);
+                    var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
                 }
                 func(self, searchPos);
                 self.startInterval();
@@ -126,7 +128,6 @@
             var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
-                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
                     //setInitialSearchBoxBounds(searchBox);
@@ -145,7 +146,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0 || places[0].place_id === undefined){
+                    if (places.length === 0 || places[0].place_id === undefined) {
                         console.log(places[0].place_id)
                         return;
                     }
@@ -161,13 +162,13 @@
                 self.animationSaved = "animated slideOutLeft";
             }
 
-            self.getUnitAndAmount = function(){
+            self.getUnitAndAmount = function () {
                 if (self.minutesUnit)
-                    return {unit: "minutes", amount: self.minutesUnit};
+                    return { unit: "minutes", amount: self.minutesUnit };
                 if (self.hoursUnit)
-                    return {unit: "hours", amount: self.hoursUnit};
+                    return { unit: "hours", amount: self.hoursUnit };
                 if (self.milesUnit)
-                    return {unit: "miles", amount: self.milesUnit};
+                    return { unit: "miles", amount: self.milesUnit };
             }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
@@ -189,6 +190,5 @@
             }
 
         });
-
 
 })();

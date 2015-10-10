@@ -570,6 +570,24 @@ background-color:#287AA9;
     color:#287AA9;
 }
 
+#errorMessages{
+    background-color: white;
+    position: fixed;
+    left: 20%;
+    width: 200px;
+    height: 200px;
+}
+
+#errorMessages p {
+    color: red;
+    text-align: center;
+}
+
+#errorMessages button {
+    border: none;
+    background-color: #3276b1;
+}
+
 
 @media screen and (max-width: 600px) {
     html {

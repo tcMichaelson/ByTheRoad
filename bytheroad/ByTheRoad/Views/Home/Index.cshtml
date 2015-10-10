@@ -18,6 +18,7 @@
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Angular/Scripts/app.js"></script>
+    <script src="~/Angular/Scripts/locationService.js"></script>
     <script src="~/Angular/Scripts/mapService.js"></script>
     <script src="~/Angular/Scripts/roadService.js"></script>
     <script>
@@ -35,10 +36,10 @@
 </head>
 <body>
     <ng-view></ng-view>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&signed_in=true&callback=initMap&libraries=places"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGJ-JW9CT74QfVHmaO_PVbJiJ9Mj42MqQ&callback=initMap&libraries=places"
             async defer>
     </script>
-    <script src="~/Angular/scripts/mapLocation.js"></script>
+    <script src="~/Angular/Scripts/mapLocation.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
 
 </body>

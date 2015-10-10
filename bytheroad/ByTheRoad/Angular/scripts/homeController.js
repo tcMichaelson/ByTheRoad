@@ -36,7 +36,7 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
-
+            self.editUser = false;
             self.findRoute = function () {
                 findRouteAndDisplay();
             }
@@ -53,12 +53,13 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     
-                    self.currentuser = self.login.email;
+                    self.currentuser = self.login.FirstName;
+                    self.currentEmail = self.login.email;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.email = null;
                     self.login.password = null;
-                   
+                    
 
                 })
                 .error(function () {
@@ -72,28 +73,42 @@
 
                .success(function (data) {
 
-                    self.logoutbtn = false;
+                   self.logoutbtn = false;
+                   self.
                     console.log('success')
                 })
                 .error(function () {
-                   console.error('Error loggin in.');
+                    console.error('Error loggin in.');
+                    self.hasError = true;
 
                });
             };
 
             self.register = function () {
                 roadService.register(self.register, function (error) {
-                self.currentuser = self.register.email;
-                self.loggingin = false;
-                self.logoutbtn = true;
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-                
-             
+                    self.hasError = true;
+                    self.currentuser = self.register.email;
+                    self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.register.email = null;
+                    self.register.password = null;
+                    self.register.Confirmpassword = null;
 
+
+                });
 
             };
+
+           
+
+            self.checkForNumber = function (keyEvent) {
+                if (keyEvent === 69 || keyEvent === 189) {
+                    self.keycode = keyEvent;
+                    var e = angular.element.Event('keypress');
+                    e.which = 8;
+                    self.minutesUnit.trigger(e);
+                };
+            }
 
 
             self.nearbySearch = function () {
@@ -199,5 +214,33 @@
 
         });
 
+    angular
+        .module('byTheRoad')
+        .directive('validNumber',function(){
+
+            return {
+                require: '?ngModel',
+                link: function(scope, element, attrs, ngModelCtrl) {
+                    if(!ngModelCtrl) {
+                        return; 
+                    }
+      
+                    ngModelCtrl.$parsers.push(function(val) {
+                        var clean = val.replace( /[^0-9]+/g, '');
+                        if (val !== clean) {
+                            ngModelCtrl.$setViewValue(clean);
+                            ngModelCtrl.$render();
+                        }
+                        return clean;
+                    });
+      
+                    element.bind('keypress', function(event) {
+                        if(event.keyCode === 32) {
+                            event.preventDefault();
+                        }
+                    });
+                }
+            };
+        });
 
 })();

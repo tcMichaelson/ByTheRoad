@@ -71,7 +71,10 @@ body {
   cursor: default;
 }
 
-    
+ .edituser{
+      width:200px;
+      height:50px;
+  }  
 
 #projectTitle {
     position: absolute;
@@ -94,7 +97,7 @@ li.welcome{
    color:white;
    font-size: 16px;
    width: 400px;
-   margin-left: 300px;
+   margin-left: 100px;
 }
 #leftBox{
 
@@ -331,7 +334,7 @@ li.welcome{
 
 }
 
-.rightLoginBox, .rightRegisterBox, .rightStartBox {
+.rightLoginBox, .rightRegisterBox, .rightStartBox ,.rightEditBox {
     background-color:#FA9E25;
     position: absolute;
     border-top:1px solid white; 
@@ -353,19 +356,26 @@ li.welcome{
   height:30px;
 }
 .registerInputBox{
- padding: 3px;
+ 
    box-shadow: inset 0 0 0 3px #707070;
   transition: box-shadow 0.3s, border 0.3s;
   width:150px;
   height:30px;
+ 
 }
 
-.loginLabel, .registerLabel, .startLabel{
+.loginLabel, .startLabel{
     font:bold;
     color:black;
     font-size:20px;
 }
 
+ .registerLabel{
+ font:bold;
+    color:black;
+    font-size:20px;
+   
+ }
 .origin, .destination{
 
       padding: 3px;
@@ -383,8 +393,29 @@ height:30px;
     height:30px;
     margin:10px;
 }
+.registersubmitbtn{
+ background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:150px;
+    height:30px;
+    margin:10px;
+margin-left:120px;
+}
 
-
+.editsubmitbtn , .deleteUserBtn{
+ background-color:#3276b1;
+    color:black;
+    font-size:20px;
+    width:100px;
+    height:30px;
+ 
+margin-left:20px;
+}
+.registerinfo , .editinfo{
+    display: inline-block;
+    margin: 0;
+}
 .cancelbtn{
 background-color:#3276b1;
     color:black;

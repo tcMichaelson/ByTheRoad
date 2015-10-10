@@ -63,8 +63,8 @@
 
                 })
                 .error(function () {
-                    console.error('Error loggin in.');
-                    self.loginError = true;
+                    self.hasError = true;
+                    self.errorMessage = "Error loggin in";
                 });
             };
 
@@ -85,29 +85,23 @@
             };
 
             self.register = function () {
-                roadService.register(self.register, function (error) {
+                roadService.register(self.registerUser, function(){
                     self.hasError = true;
-                    self.currentuser = self.register.email;
+                    self.currentuser = self.registerUser.email;
+                    self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.register.email = null;
-                    self.register.password = null;
-                    self.register.Confirmpassword = null;
+                    self.registerUser.email = null;
+                    self.registerUser.Password = null;
+                    self.registerUser.ConfirmPassword = null;
+                }, function (error) {
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+                self.register.firstName = null;
+                self.register.lastName = null;
 
 
                 });
-
-            };
-
-           
-
-            self.checkForNumber = function (keyEvent) {
-                if (keyEvent === 69 || keyEvent === 189) {
-                    self.keycode = keyEvent;
-                    var e = angular.element.Event('keypress');
-                    e.which = 8;
-                    self.minutesUnit.trigger(e);
-                };
             }
 
 
@@ -204,7 +198,8 @@
             }
 
             self.favPOI = function () {
-                mapService.favPOI(self.poiToSave);
+                mapService.favPOI(self.poiToSave, self.chkState);
+
             }
 
             self.places = function () {

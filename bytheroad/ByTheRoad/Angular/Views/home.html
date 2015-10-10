@@ -120,7 +120,7 @@
 
             <div class="searchResultsDetail">
                 <div class="resultTitle">
-                    <span class="error" ng-show="self.ResultsEror"> Sorry there are no results!</span>
+                    
                     <h3 class="searchResultHeading">
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
@@ -135,7 +135,7 @@
                 <div class="savedFavaotesButton">
 
                     <label>Mark as Favorite </label>
-                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.poiToSave = result; self.favPOI()" />
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.chkState = result.saved; self.poiToSave = result; self.favPOI()" />
                     <button class="navigatesearch" type="button">Navigate</button>
                 </div>
 

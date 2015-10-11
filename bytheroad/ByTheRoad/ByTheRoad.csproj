@@ -232,18 +232,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIController\POIController.cs" />
+    <Compile Include="Controllers\APIController\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510090059259_initial.cs" />
-    <Compile Include="Migrations\201510090059259_initial.Designer.cs">
-      <DependentUpon>201510090059259_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510090051263_update.cs" />
-    <Compile Include="Migrations\201510090051263_update.Designer.cs">
-      <DependentUpon>201510090051263_update.cs</DependentUpon>
+    <Compile Include="Migrations\201510100650131_initial.cs" />
+    <Compile Include="Migrations\201510100650131_initial.Designer.cs">
+      <DependentUpon>201510100650131_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -259,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\locationService.js" />
     <Content Include="Angular\Scripts\mapService.js" />
     <Content Include="Angular\Views\home.html" />
     <Content Include="Angular\Scripts\homeController.js" />
@@ -328,6 +326,7 @@
     <Content Include="Content\Cars\sportCar35.png" />
     <Content Include="Content\Cars\sportCar350.png" />
     <Content Include="Content\Cars\sportCar355.png" />
+    <Content Include="Content\Cars\sportCar360.png" />
     <Content Include="Content\Cars\sportCar40.png" />
     <Content Include="Content\Cars\sportCar45.png" />
     <Content Include="Content\Cars\sportCar5.png" />
@@ -341,6 +340,7 @@
     <Content Include="Content\Cars\sportCar85.png" />
     <Content Include="Content\Cars\sportCar90.png" />
     <Content Include="Content\Cars\sportCar95.png" />
+    <Content Include="Content\mobile.css" />
     <Content Include="Content\sportCar.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-203-shopping-cart.png" />
@@ -386,6 +386,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
+    <None Include="Properties\PublishProfiles\bytheroad.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -426,11 +427,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510090059259_initial.resx">
-      <DependentUpon>201510090059259_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510090051263_update.resx">
-      <DependentUpon>201510090051263_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510100650131_initial.resx">
+      <DependentUpon>201510100650131_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

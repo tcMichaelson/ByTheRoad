@@ -23,7 +23,7 @@ namespace ByTheRoad.Controllers.APIController
 
             string currentUserName = User.Identity.Name;
             ApplicationUser currentUser = _repo.Query<ApplicationUser>().Where(p => p.UserName == currentUserName).FirstOrDefault();
-            var userPOIs  = _repo.Query<PointOfInterest>().Where(p => p.User.Id == currentUser.Id).ToList();
+            var userPOIs  = _repo.Query<PointOfInterest>().Where(p => p.User == currentUser).ToList();
 
             return userPOIs;
            

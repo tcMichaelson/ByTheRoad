@@ -51,11 +51,10 @@
 
 
             // Retrieve POI
-            self.listFavPOI = function () {
+            self.listFavPOI = function (func) {
                 $http.get('/api/POI')
                 .success(function (result) {
-                    self.places = result;
-
+                    func(result);
 
                 })
                 .error(function () {
@@ -163,6 +162,7 @@
             self.callback = function (places, status) {
                 if (markers[0]) {
                     for (var i = 0; i < markers.length; i++) {
+
                         markers[i].setMap(null);
                     }
                 }

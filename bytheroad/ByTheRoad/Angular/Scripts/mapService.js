@@ -161,12 +161,14 @@
 
             //grabbing the info for each place
             self.callback = function (places, status) {
-                for (var i = 0; i < markers.length; i++) {
-                    markers[i].setMap(null);
+                if (markers[0]) {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(null);
+                    }
                 }
                 markers = [];
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-
+                    var resultIdx = 0;
                     for (var i = 0; i < places.length; i++) {
                         
                         var placeDist = locationService.calculateDistance(
@@ -175,13 +177,14 @@
 
                         if (placeDist <= 500) {
                             placeIdArray.push(places[i].place_id);
-                            self.results[i] = places[i];
-                            markers[i] = (createMarker(places[i]));
-                            locationService.findRouteAndDisplay(places[i].geometry.location, i, function (response, idx) {
+                            self.results[resultIdx] = places[i];
+                            markers[resultIdx] = (createMarker(places[i]));
+                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
                                 self.results[idx].route = response;
                                 self.results[idx].distance = response.routes[0].legs[0].distance.text;
                                 console.log("placeDist: ", placeDist)
                             });
+                            resultIdx++;
                         }
 
                     }
@@ -189,7 +192,7 @@
                         self.results = ['none'];
                     }
                 } else {
-                    self.results = ['can find result'];
+                    self.results = ['none'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
@@ -232,14 +232,25 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIController\POIController.cs" />
+    <Compile Include="Controllers\APIController\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509281529151_Intain.cs" />
-    <Compile Include="Migrations\201509281529151_Intain.Designer.cs">
-      <DependentUpon>201509281529151_Intain.cs</DependentUpon>
+<<<<<<< HEAD
+    <Compile Include="Migrations\201510092018051_intail.cs" />
+    <Compile Include="Migrations\201510092018051_intail.Designer.cs">
+      <DependentUpon>201510092018051_intail.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201510090059259_initial.cs" />
+    <Compile Include="Migrations\201510090059259_initial.Designer.cs">
+      <DependentUpon>201510090059259_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510090051263_update.cs" />
+    <Compile Include="Migrations\201510090051263_update.Designer.cs">
+      <DependentUpon>201510090051263_update.cs</DependentUpon>
+>>>>>>> 76305b4342264fd6ef58adf13c19a41ede4a5bc9
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -247,8 +258,7 @@
     <Compile Include="Models\GenericRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IGenericRepository.cs" />
-    <Compile Include="Models\PointOfInterest .cs" />
-    <Compile Include="Models\UserSavedPOI.cs" />
+    <Compile Include="Models\PointOfInterest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -256,19 +266,101 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
-<<<<<<< HEAD
-    <Content Include="angular\scripts\app.js" />
+    <Content Include="Angular\Scripts\mapService.js" />
     <Content Include="Angular\Views\home.html" />
->>>>>>> 2a4e6fc52be91bbf76df50a31aec843f61a30ed5
+    <Content Include="Angular\Scripts\homeController.js" />
     <Content Include="Angular\Scripts\mapLocation.js" />
-    <Content Include="Angular\Scripts\registerController.js" />
     <Content Include="Angular\Scripts\roadService.js" />
-    <Content Include="Angular\Views\home2.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Cars\sportCar0.png" />
+    <Content Include="Content\Cars\sportCar10.png" />
+    <Content Include="Content\Cars\sportCar100.png" />
+    <Content Include="Content\Cars\sportCar105.png" />
+    <Content Include="Content\Cars\sportCar110.png" />
+    <Content Include="Content\Cars\sportCar115.png" />
+    <Content Include="Content\Cars\sportCar120.png" />
+    <Content Include="Content\Cars\sportCar125.png" />
+    <Content Include="Content\Cars\sportCar130.png" />
+    <Content Include="Content\Cars\sportCar135.png" />
+    <Content Include="Content\Cars\sportCar140.png" />
+    <Content Include="Content\Cars\sportCar145.png" />
+    <Content Include="Content\Cars\sportCar15.png" />
+    <Content Include="Content\Cars\sportCar150.png" />
+    <Content Include="Content\Cars\sportCar155.png" />
+    <Content Include="Content\Cars\sportCar160.png" />
+    <Content Include="Content\Cars\sportCar165.png" />
+    <Content Include="Content\Cars\sportCar170.png" />
+    <Content Include="Content\Cars\sportCar175.png" />
+    <Content Include="Content\Cars\sportCar180.png" />
+    <Content Include="Content\Cars\sportCar185.png" />
+    <Content Include="Content\Cars\sportCar190.png" />
+    <Content Include="Content\Cars\sportCar195.png" />
+    <Content Include="Content\Cars\sportCar20.png" />
+    <Content Include="Content\Cars\sportCar200.png" />
+    <Content Include="Content\Cars\sportCar205.png" />
+    <Content Include="Content\Cars\sportCar210.png" />
+    <Content Include="Content\Cars\sportCar215.png" />
+    <Content Include="Content\Cars\sportCar220.png" />
+    <Content Include="Content\Cars\sportCar225.png" />
+    <Content Include="Content\Cars\sportCar230.png" />
+    <Content Include="Content\Cars\sportCar235.png" />
+    <Content Include="Content\Cars\sportCar240.png" />
+    <Content Include="Content\Cars\sportCar245.png" />
+    <Content Include="Content\Cars\sportCar25.png" />
+    <Content Include="Content\Cars\sportCar250.png" />
+    <Content Include="Content\Cars\sportCar255.png" />
+    <Content Include="Content\Cars\sportCar260.png" />
+    <Content Include="Content\Cars\sportCar265.png" />
+    <Content Include="Content\Cars\sportCar270.png" />
+    <Content Include="Content\Cars\sportCar275.png" />
+    <Content Include="Content\Cars\sportCar280.png" />
+    <Content Include="Content\Cars\sportCar285.png" />
+    <Content Include="Content\Cars\sportCar290.png" />
+    <Content Include="Content\Cars\sportCar295.png" />
+    <Content Include="Content\Cars\sportCar30.png" />
+    <Content Include="Content\Cars\sportCar300.png" />
+    <Content Include="Content\Cars\sportCar305.png" />
+    <Content Include="Content\Cars\sportCar310.png" />
+    <Content Include="Content\Cars\sportCar315.png" />
+    <Content Include="Content\Cars\sportCar320.png" />
+    <Content Include="Content\Cars\sportCar325.png" />
+    <Content Include="Content\Cars\sportCar330.png" />
+    <Content Include="Content\Cars\sportCar335.png" />
+    <Content Include="Content\Cars\sportCar340.png" />
+    <Content Include="Content\Cars\sportCar345.png" />
+    <Content Include="Content\Cars\sportCar35.png" />
+    <Content Include="Content\Cars\sportCar350.png" />
+    <Content Include="Content\Cars\sportCar355.png" />
+    <Content Include="Content\Cars\sportCar40.png" />
+    <Content Include="Content\Cars\sportCar45.png" />
+    <Content Include="Content\Cars\sportCar5.png" />
+    <Content Include="Content\Cars\sportCar50.png" />
+    <Content Include="Content\Cars\sportCar55.png" />
+    <Content Include="Content\Cars\sportCar60.png" />
+    <Content Include="Content\Cars\sportCar65.png" />
+    <Content Include="Content\Cars\sportCar70.png" />
+    <Content Include="Content\Cars\sportCar75.png" />
+    <Content Include="Content\Cars\sportCar80.png" />
+    <Content Include="Content\Cars\sportCar85.png" />
+    <Content Include="Content\Cars\sportCar90.png" />
+    <Content Include="Content\Cars\sportCar95.png" />
+    <Content Include="Content\sportCar.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-203-shopping-cart.png" />
+    <Content Include="fonts\glyphicons-303-temple-christianity-church.png" />
+    <Content Include="fonts\glyphicons-472-gas-station.png" />
+    <Content Include="fonts\glyphicons-476-dining-set.png" />
+    <Content Include="fonts\glyphicons-490-handshake.png" />
+    <Content Include="fonts\glyphicons-496-bed.png" />
+    <Content Include="fonts\glyphicons-568-transport.png" />
+    <Content Include="fonts\glyphicons-6-car - Copy.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\road.jpg" />
+    <Content Include="fonts\translucentparki.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-resource.js" />
@@ -329,7 +421,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\Views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Services\" />
   </ItemGroup>
@@ -342,8 +433,16 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509281529151_Intain.resx">
-      <DependentUpon>201509281529151_Intain.cs</DependentUpon>
+<<<<<<< HEAD
+    <EmbeddedResource Include="Migrations\201510092018051_intail.resx">
+      <DependentUpon>201510092018051_intail.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201510090059259_initial.resx">
+      <DependentUpon>201510090059259_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510090051263_update.resx">
+      <DependentUpon>201510090051263_update.cs</DependentUpon>
+>>>>>>> 76305b4342264fd6ef58adf13c19a41ede4a5bc9
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

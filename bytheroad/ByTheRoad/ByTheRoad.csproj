@@ -238,13 +238,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510092018051_intail.cs" />
-    <Compile Include="Migrations\201510092018051_intail.Designer.cs">
-      <DependentUpon>201510092018051_intail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510090051263_update.cs" />
-    <Compile Include="Migrations\201510090051263_update.Designer.cs">
-      <DependentUpon>201510090051263_update.cs</DependentUpon>
+    <Compile Include="Migrations\201510112010433_intail.cs" />
+    <Compile Include="Migrations\201510112010433_intail.Designer.cs">
+      <DependentUpon>201510112010433_intail.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -427,11 +423,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510092018051_intail.resx">
-      <DependentUpon>201510092018051_intail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510090051263_update.resx">
-      <DependentUpon>201510090051263_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510112010433_intail.resx">
+      <DependentUpon>201510112010433_intail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

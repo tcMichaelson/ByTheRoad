@@ -92,6 +92,7 @@
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
                 }, function (error) {
+                    console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
                 self.register.firstName = null;

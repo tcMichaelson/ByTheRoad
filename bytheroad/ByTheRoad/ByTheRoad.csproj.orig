@@ -239,14 +239,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
 <<<<<<< HEAD
-    <Compile Include="Migrations\201510112010433_intail.cs" />
-    <Compile Include="Migrations\201510112010433_intail.Designer.cs">
-      <DependentUpon>201510112010433_intail.cs</DependentUpon>
+    <Compile Include="Migrations\201510112147528_intail.cs" />
+    <Compile Include="Migrations\201510112147528_intail.Designer.cs">
+      <DependentUpon>201510112147528_intail.cs</DependentUpon>
 =======
-    <Compile Include="Migrations\201510100650131_initial.cs" />
-    <Compile Include="Migrations\201510100650131_initial.Designer.cs">
-      <DependentUpon>201510100650131_initial.cs</DependentUpon>
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+    <Compile Include="Migrations\201510112020139_init.cs" />
+    <Compile Include="Migrations\201510112020139_init.Designer.cs">
+      <DependentUpon>201510112020139_init.cs</DependentUpon>
+>>>>>>> 4cda43e2030d22fcbdbc56bbd0a195499823d524
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -434,12 +434,12 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201510112010433_intail.resx">
-      <DependentUpon>201510112010433_intail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510112147528_intail.resx">
+      <DependentUpon>201510112147528_intail.cs</DependentUpon>
 =======
-    <EmbeddedResource Include="Migrations\201510100650131_initial.resx">
-      <DependentUpon>201510100650131_initial.cs</DependentUpon>
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+    <EmbeddedResource Include="Migrations\201510112020139_init.resx">
+      <DependentUpon>201510112020139_init.cs</DependentUpon>
+>>>>>>> 4cda43e2030d22fcbdbc56bbd0a195499823d524
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

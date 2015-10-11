@@ -1,7 +1,7 @@
 ﻿/// <reference path="homeController.js" />
 (function () {
     angular.module('byTheRoad')
-        .service('mapService', function ($resource, $http) {
+        .service('mapService', function ($resource, $http, locationService) {
 
             var infowindow;
             var self = this;
@@ -9,25 +9,46 @@
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
-      
+
             self.results = [];
+
+
             // Save POI
-            self.favPOI = function (poi) {
-                console.log(poi);
-                $http.post('/api/POI', {
-                    Place_id: poi.place_id,
-                    Name: poi.name,
-                    Address: poi.formatted_address,
-                    PhoneNum: poi.formatted_phone_number,
-                    Rating: poi.rating
-                })
-                .success(function (result) {
-                    console.log("success");
-                })
-                .error(function () {
-                    console.error('fail');
-                });
+            self.favPOI = function (poi, chkState) {
+
+                if (chkState) {
+
+                    $http.post('/api/POI', {
+                        Place_id: poi.place_id,
+                        Name: poi.name,
+                        Address: poi.formatted_address,
+                        PhoneNum: poi.formatted_phone_number,
+                        Rating: poi.rating,
+
+                    })
+                    .success(function (result) {
+                        console.log("success");
+                    })
+                    .error(function () {
+                        console.error('fail');
+                    });
+                }
+
+                else {
+                    var place_id = poi.place_id;
+                    $http.delete('/api/POI/' + place_id
+                    )
+                    .success(function (result) {
+                        console.log("success");
+                    })
+                    .error(function () {
+                        console.error('fail');
+                    });
+                }
             }
+
+
+
 
             // Retrieve POI
             self.listFavPOI = function () {
@@ -51,15 +72,15 @@
                     radius: 500,
                     types: model.selectedItem
                 }
+                reCenter(center);
 
                 var service = new google.maps.places.PlacesService(map);
                 service.nearbySearch(request, self.callback);
 
-                reCenter(center);
 
             }
 
-     //text search from  input box
+            //text search from  input box
             self.regTextSearch = function (model, center) {
                 self.results = [];
 
@@ -68,14 +89,14 @@
                 var request = {
                     location: center,
                     radius: 500,
-                    query: document.getElementById('textsearch').value
+                    query: document.getElementById('searchInputBox').value
                 };
 
+                reCenter(center);
 
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
-                reCenter(center);
 
             }
 
@@ -84,34 +105,36 @@
                 var currBounds = map.getBounds();
                 var tempCircle;
 
+                currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
+                map.fitBounds(currBounds);
+
+                if (searchCircle) {
+                    searchCircle.setMap(null);
+                }
+
+                searchCircle = new google.maps.Circle({
+                    center: center,
+                    radius: 500
+                });
+
+                tempCircle = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0,
+                    map: map,
+                    center: center,
+                    radius: (30 - map.getZoom()) * 10 ^ (30 - map.getZoom()) / 3,
+                    zIndex: 3
+                })
+                console.log("far zoom radius: ", tempCircle.radius);
+                map.panTo(center);
+
                 var transitionWindow = window.setInterval(function () {
                     switch (i) {
 
                         case 1:
-                            currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
-                            map.fitBounds(currBounds);
-                            if (searchCircle) {
-                                searchCircle.setMap(null);
-                            }
-                            tempCircle = new google.maps.Circle({
-                                strokeColor: '#FF0000',
-                                strokeOpacity: 1,
-                                strokeWeight: 2,
-                                fillColor: '#FF0000',
-                                fillOpacity: 0,
-                                map: map,
-                                center: center,
-                                radius: (30 - map.getZoom()) * 10 ^ (30 - map.getZoom()) / 3,
-                                zIndex: 3
-                            })
-                            console.log("far zoom radius: ", tempCircle.radius);
-                            break;
-
-                        case 2:
-                            map.panTo(center);
-                            break;
-
-                        case 3:
                             tempCircle.setMap(null);
                             searchCircle = new google.maps.Circle({
                                 strokeColor: '#FF0000',
@@ -126,7 +149,7 @@
                             map.setZoom(15);
                             break;
 
-                        case 4:
+                        case 2:
                             clearInterval(transitionWindow);
                             break;
 
@@ -136,35 +159,51 @@
             }
 
 
-        //grabbing the info for each place
-            self.callback = function (results, status) {
-                markers.forEach(function (marker) {
-                    marker.setMap(null);
-                })
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-
-                    for (var i = 0; i < results.length; i++) {
-                        // creating markers below.
-                        // createMarker(results[i]);
-                        placeIdArray.push(results[i].place_id);
+            //grabbing the info for each place
+            self.callback = function (places, status) {
+                if (markers[0]) {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(null);
                     }
-                    self.results = results;
+                }
+                markers = [];
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    var resultIdx = 0;
+                    for (var i = 0; i < places.length; i++) {
+                        
+                        var placeDist = locationService.calculateDistance(
+                            { lat: places[i].geometry.location.J, lng: places[i].geometry.location.M },
+                            { lat: searchCircle.getCenter().J, lng: searchCircle.getCenter().M });
+
+                        if (placeDist <= 500) {
+                            placeIdArray.push(places[i].place_id);
+                            self.results[resultIdx] = places[i];
+                            markers[resultIdx] = (createMarker(places[i]));
+                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
+                                self.results[idx].route = response;
+                                self.results[idx].distance = response.routes[0].legs[0].distance.text;
+                                console.log("placeDist: ", placeDist)
+                            });
+                            resultIdx++;
+                        }
+
+                    }
+                    if (self.results.length === 0) {
+                        self.results = ['none'];
+                    }
                 } else {
-                    self.results = ['can find result'];
+                    self.results = ['none'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();
                 var service = new google.maps.places.PlacesService(map);
-                for (var i = 0; i < placeIdArray.length; i++)
-                {
-                    
+                for (var i = 0; i < placeIdArray.length; i++) {
+
                     service.getDetails({
                         placeId: placeIdArray[i]
                     }, function (place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-                            markers.push(createMarker(place));
-                            
                             self.results.forEach(function (result) {
                                 if (result.place_id === place.place_id) {
                                     console.log("name: " + place.name + " typed: " + place.types[0] + ", " + place.types[1] + ", " + place.types[2]);

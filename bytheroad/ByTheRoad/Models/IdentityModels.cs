@@ -12,7 +12,12 @@ namespace ByTheRoad.Models
     public class ApplicationUser : IdentityUser
     {
         public ICollection<PointOfInterest> UserSavedPOIs { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool ShowUserName { get; set; }
+        public bool ShowFirstName { get; set; }
+        public bool ShowLastName { get; set; }
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

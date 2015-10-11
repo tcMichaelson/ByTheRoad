@@ -4,7 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-
+           
             self.hasError = false;
             self.errorMessage = '';
             self.registering = false;
@@ -16,11 +16,16 @@
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
-
             self.getResults = function () {
                 self.results = mapService.results;
             }
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+            }
 
+            }
+
+            self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -62,7 +67,7 @@
                 })
                 .error(function () {
 <<<<<<< HEAD
-                    console.error('Error loggin in.');
+                    self.loginError = true;
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
 =======
@@ -86,12 +91,38 @@
                });
             };
 
-            self.register = function () {
+                    self.logoutbtn = false;
+<<<<<<< HEAD
+                })
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+                
+             
+
+
+=======
+                roadService.register(self.register, function (error) {
+                    self.RegisterError = error;
+                });
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+               
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+            };
+
+                   console.error('Error loggin in.');
+
 <<<<<<< HEAD
                 roadService.register(self.registerUser);
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
+               });
             };
 =======
                 roadService.register(self.registerUser, function(){
@@ -108,10 +139,41 @@
                 self.register.firstName = null;
                 self.register.lastName = null;
 
+            self.register = function () {
+<<<<<<< HEAD
+                roadService.register(self.register, function (error) {
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+                });
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+                self.register.firstName = null;
+                self.register.lastName = null;
+                
+             
+
+=======
+                roadService.register(self.registerUser, function(){
+                    self.currentuser = self.registerUser.email;
+                    self.registering = false;
+                    self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.registerUser.email = null;
+                    self.registerUser.Password = null;
+                    self.registerUser.ConfirmPassword = null;
+                }, function (error) {
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+>>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
+
                 });
             }
 
->>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
 
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);
@@ -154,9 +216,10 @@
             var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
+                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
-                    //setInitialSearchBoxBounds(searchBox);
+                    setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -172,7 +235,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0 || places[0].place_id === undefined) {
+                    if (places.length === 0 || places[0].place_id === undefined){
                         console.log(places[0].place_id)
                         return;
                     }
@@ -205,6 +268,17 @@
                     self.animationResults = 'animated slideOutLeft';
                 }
             }
+
+            self.favPOI = function () {
+                mapService.favPOI(self.poiToSave, self.chkState);
+
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
+            }
+
 
             self.favPOI = function () {
                 mapService.favPOI(self.poiToSave, self.chkState);

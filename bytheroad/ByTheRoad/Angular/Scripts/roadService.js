@@ -24,14 +24,15 @@
 
                 .error(function () {
                     console.error('Error logging in.');
-                    //self.RegisterError = true;
-                    //callBack("Failed to reister");
+                    self.RegisterError = true;
+                    callBack("Failed to reister");
                 });
 
                 console.log(data);
             }, function (response) {
-                error();
+                fail(response);
             })
+            /*
             self.update = function (revievToUpdate) {
                 revievToUpdate.$save();
                 self.updateReview = null;
@@ -43,6 +44,7 @@
                     });
                 });
             };
+            */
         }
     }]);
 })();

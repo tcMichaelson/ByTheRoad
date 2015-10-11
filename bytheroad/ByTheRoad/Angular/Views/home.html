@@ -1,17 +1,16 @@
-﻿
-<div class="nav">
-
-    <ul>
+﻿  <div class="nav">
+       
+            <ul>
         <li id="logo"><img src="../../fonts/road.jpg" contextmenu="By the Road " /></li>
-        <li id="projectTitle"><h3>ByTheRoad</h3></li>
-        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
-        <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
-        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
-        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
-        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
-    </ul>
+                <li id="projectTitle"><h3>ByTheRoad</h3></li>
+                <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
+                <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
+                <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
+                <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
+                <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
+            </ul>
+        </div>
     
-</div>
 
 
 <div id="leftBox">

@@ -35,6 +35,7 @@
 =======
                 error();
 >>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
             })
             self.update = function (revievToUpdate) {
                 revievToUpdate.$save();
@@ -48,6 +49,10 @@
                 });
             };
         }
+
+
+
+
     }]);
 })();
 

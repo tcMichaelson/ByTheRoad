@@ -86,7 +86,7 @@
 
             self.register = function () {
                 roadService.register(self.registerUser, function(){
-                    self.hasError = true;
+                  
                     self.currentuser = self.registerUser.email;
                     self.registering = false;
                     self.loggingin = false;
@@ -97,8 +97,7 @@
                 }, function (error) {
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                self.register.firstName = null;
-                self.register.lastName = null;
+                
 
 
                 });

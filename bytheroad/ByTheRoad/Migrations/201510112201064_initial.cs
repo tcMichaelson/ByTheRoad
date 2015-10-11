@@ -28,6 +28,11 @@ namespace ByTheRoad.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        ShowUserName = c.Boolean(nullable: false),
+                        ShowFirstName = c.Boolean(nullable: false),
+                        ShowLastName = c.Boolean(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

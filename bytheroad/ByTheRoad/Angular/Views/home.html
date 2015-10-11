@@ -2,7 +2,7 @@
 <div class="nav">
 
     <ul>
-        <li id="logo"><img src="../../fonts/road.jpg" width="80" height="50" contextmenu="By the Road " /></li>
+        <li id="logo"><img src="../../fonts/road.jpg" contextmenu="By the Road " /></li>
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
@@ -43,7 +43,7 @@
 
                     <p ng-hide="self.minutebtn === true || self.hourbtn=== false || self.milebtn === true" ng-show="hourcontent == 'hours'">
                         Enter time in hours you want to stop in<br />
-                        <input name=" hourcontent" type="text" ng-model="self.hoursUnit" class="distanceorTimeInputBox" valid-number placeholder="Enter a number" />
+                        <input name="hourcontent" type="text" ng-model="self.hoursUnit" class="distanceorTimeInputBox" />
                         <button ng-click="self.hoursUnit = null; self.selected= false " ng-show="self.hoursUnit.length > 0" class="clearBtn">Clear</button>
                     </p>
 
@@ -63,7 +63,7 @@
                 <div>
                     <form ng-submit="self.textSearch()">
                         <button type="button" id="searchbtn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
-                        <input type="text" id="searchInputBox" ng-click="self.selected= true" name="search" />
+                        <input type="text" id="searchInputBox"  name="search" />
                     </form>
                 </div>
                 <div class="dragOutSearchResult">
@@ -105,6 +105,9 @@
 
 
 
+
+
+
     <div id="slideoutsearchResultsDiv" ng-show="self.selected === true" class='{{self.animationResults}}'>
 
         <h3 id="slideboxheading">
@@ -120,7 +123,7 @@
 
             <div class="searchResultsDetail">
                 <div class="resultTitle">
-                    
+
                     <h3 class="searchResultHeading">
                         {{result.name}}
                         <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
@@ -131,7 +134,7 @@
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
-                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
+                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}} miles</div>
                 <div class="savedFavaotesButton">
 
                     <label>Mark as Favorite </label>
@@ -159,7 +162,9 @@
         </div>
 
     </div>
+
 </div>
+
 
 <div id="rightBox">
     <div id="map" class="floatingMapBox">
@@ -172,12 +177,12 @@
         <form class="loginform" ng-submit="self.login()">
 
             <label class="loginLabel">User Email:</label>
-            <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
+            <input class="loginInputBox" name="email" ng-model="self.login.Email" type="text" ng-required="true" />
 
 
             <label class="loginLabel">Password:</label>
 
-            <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
+            <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.Password" ng-required="true" />
 
 
             <input type="submit" class="submitbtn" value="Log In" />
@@ -192,27 +197,27 @@
                 <label class="registerLabel">
                     First Name
                 </label><br />
-                <input class="registerInputBox" name="firstName" type="text" ng-model="self.register.firstname" />
+                <input class="registerInputBox" name="firstName" type="text" ng-model="self.registerUser.FirstName" />
             </div>
             <div class="registerinfo">
                 <label class="registerLabel">
                     Last Name
                 </label><br />
-                <input class="registerInputBox" name="lastname" type="text" ng-model="self.register.lastname" />
+                <input class="registerInputBox" name="lastname" type="text" ng-model="self.registerUser.LastName" />
 
             </div>
             <div class="registerinfo">
-                <label class="registerLabel">
+            <label class="registerLabel">
                     Email
                 </label><br />
 
-                <input class="registerInputBox" id="username" name="useremail" ng-model="self.register.email" type="email" ng-required="true" />
+                <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.Email" type="email" ng-required="true" />
             </div>
             <div class="registerinfo">
-                <label class="registerLabel">
+            <label class="registerLabel">
                     Password
                 </label><br />
-                <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.Confirmpassword" ng-disabled="" ng-required="true" />
+                <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
 
             </div>
             <div class="registerinfo">
@@ -221,7 +226,7 @@
                     Confirm Password
                 </label><br />
 
-                <input class="registerInputBox" name="pwd" type="password" ng-model="self.register.password" ng-required="true" />
+                <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
             </div>
 
 
@@ -237,17 +242,17 @@
     
 
 
-<div ng-hide="self.start === false" class="rightStartBox">
-    <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
+    <div ng-hide="self.start === false" class="rightStartBox">
+        <form id="directionsearch" ng-submit="self.findRouteAndDisplay()">
 
 
-        <label class="startLabel">Starting Point</label>
+            <label class="startLabel">Starting Point</label>
 
-        <input type="text" id="origin" ng-hide="self.start === false" />
+            <input type="text" class="origin" id="origin" ng-hide="self.start === false" ng-model="self.directions.origin" />
 
-        <label class="startLabel">Destination</label>
+            <label class="startLabel">Destination</label>
 
-        <input type="text" id="destination" ng-hide="self.start === false" />
+            <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination"/>
         <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
 
 
@@ -265,20 +270,20 @@
                 <label class="registerLabel">
                     Email
                 </label><br />
-
-                <label class="registerLabel">{{self.currentEmail}}</label>
+                <input class="registerInputBox" name="Email" value={{self.currentUserName}} type="text" ng-model="self.registerUser.Email" disabled/>
+              
             </div>
             <div class="editinfo">
                 <label class="registerLabel">
                     First Name
                 </label><br />
-                <input class="registerInputBox" name="firstName" value={{self.currentFirstName}} type="text" ng-model="self.register.firstname" />
+                <input class="registerInputBox" name="FirstName" value={{self.currentFirstName}} type="text" ng-model="self.registerUser.FirstName" />
             </div>
             <div class="editinfo">
                 <label class="registerLabel">
                     Last Name
                 </label><br />
-                <input class="registerInputBox" name="lastname" value={{self.currentLastName}} type="text" ng-model="self.register.lastname" />
+                <input class="registerInputBox" name="LastName" value={{self.currentLastName}} type="text" ng-model="self.registerUser.LastName" />
 
             </div>
             
@@ -286,7 +291,7 @@
                 <label class="registerLabel">
                     Password
                 </label><br />
-                <input class="registerInputBox" name="pwd" value={{self.currentPassword}} type="password" ng-model="self.register.Confirmpassword" ng-disabled="" ng-required="true" />
+                <input class="registerInputBox" name="pwd" value={{self.currentPassword}} type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
 
             </div>
             <div class="editinfo">
@@ -295,7 +300,7 @@
                     Confirm Password
                 </label><br />
 
-                <input class="registerInputBox" name="pwd" value={{self.currentConfirmPassword}} type="password" ng-model="self.register.password" ng-required="true" />
+                <input class="registerInputBox" name="pwd" value={{self.currentConfirmPassword}} type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
             </div>
 
             <div class="editinfo">
@@ -313,4 +318,11 @@
 
 
 
+</div>
+
+<div id="mobileSearch" class="glyphicon glyphicon-search" ng-if="self.mobileSearch === false" ng-click="self.mobileSearch = true; self.showLeftBox()"></div>
+<div id="mobileSearchHide" class="glyphicon glyphicon-globe" ng-if="self.mobileSearch === true" ng-click="self.mobileSearch = false; self.showRightBox()"></div>
+<div id="errorMessages" ng-if="self.hasError && self.errorMessage !== ''">
+    <p>{{self.errorMessage}}</p>
+    <button ng-click="self.errorMessage = ''">OK</button>
 </div>

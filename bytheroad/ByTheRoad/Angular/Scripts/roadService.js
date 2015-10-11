@@ -10,7 +10,7 @@
 
                 success();
 
-                $http.post('/token', "grant_type=password&username=" + user.email + "&password=" + user.password,
+                $http.post('/token', "grant_type=password&username=" + user.Email + "&password=" + user.Password,
                     { 
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
                     })

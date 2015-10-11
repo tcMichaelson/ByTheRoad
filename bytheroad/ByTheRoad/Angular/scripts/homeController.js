@@ -1,31 +1,27 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, $window) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-           
+
+            self.hasError = false;
+            self.errorMessage = '';
             self.registering = false;
             self.loggingin = false;
             self.start = false;
             self.star = false;
             self.results = [];
-            console.log(self.results);
+            self.mobileSearch = false;
+
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
+
             self.getResults = function () {
                 self.results = mapService.results;
             }
 
-
-            self.init = function () {
-                if ($window.sessionStorage.token) {
-
-                }
-            }
-
-            self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -37,12 +33,16 @@
             self.selected = false;
             self.clear = false;
             self.editUser = false;
+
+
             self.findRoute = function () {
-                findRouteAndDisplay();
+                locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
+                    locationService.renderLines(response);
+                })
             }
 
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.Email + "&password=" + self.login.Password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,17 +54,18 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     
                     self.currentuser = self.login.FirstName;
-                    self.currentEmail = self.login.email;
+                    //self.currentEmail = self.login.Email;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.login.email = null;
-                    self.login.password = null;
+                    self.login.Email = null;
+                    self.login.Password = null;
                     
 
                 })
                 .error(function () {
+                    console.error('Error loggin in.');
                     self.hasError = true;
-                    self.errorMessage = "Error loggin in";
+                    self.errorMessage = "Error logging in";
                 });
             };
 
@@ -87,11 +88,11 @@
             self.register = function () {
                 roadService.register(self.registerUser, function(){
                   
-                    self.currentuser = self.registerUser.email;
+                    self.currentuser = self.registerUser.FirstName;
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.registerUser.email = null;
+                    self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
                 }, function (error) {
@@ -128,25 +129,26 @@
                 var info = self.getUnitAndAmount();
                 self.results = [];
                 mapService.results = [];
-                var spotOnRoute = findCurrentPosition();
+                var spotOnRoute = locationService.findCurrentPosition();
                 console.log("spot on route:", spotOnRoute);
+                console.log("selectedRoute: ", locationService.selectedRoute);
+
                 if (spotOnRoute) {
-                    var searchPos = findFuturePosition(spotOnRoute, info.unit, info.amount);
+                    var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
-                    var searchPos = findGenericFuturePosition(info.unit, info.amount);
+                    var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
                 }
                 func(self, searchPos);
                 self.startInterval();
                 self.showResultsBox();
             }
 
-            var input = document.getElementById('textsearch');
+            var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
-                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
-                    setInitialSearchBoxBounds(searchBox);
+                    //setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -162,7 +164,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0 || places[0].place_id === undefined){
+                    if (places.length === 0 || places[0].place_id === undefined) {
                         console.log(places[0].place_id)
                         return;
                     }
@@ -178,13 +180,13 @@
                 self.animationSaved = "animated slideOutLeft";
             }
 
-            self.getUnitAndAmount = function(){
+            self.getUnitAndAmount = function () {
                 if (self.minutesUnit)
-                    return {unit: "minutes", amount: self.minutesUnit};
+                    return { unit: "minutes", amount: self.minutesUnit };
                 if (self.hoursUnit)
-                    return {unit: "hours", amount: self.hoursUnit};
+                    return { unit: "hours", amount: self.hoursUnit };
                 if (self.milesUnit)
-                    return {unit: "miles", amount: self.milesUnit};
+                    return { unit: "miles", amount: self.milesUnit };
             }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
@@ -206,8 +208,16 @@
                 self.toggleSavedBox();
             }
 
-        });
+            self.showLeftBox = function () {
+                document.getElementById('leftBox').style.left = '0';
+                document.getElementById('rightBox').style.left = '100%';
+            }
 
+            self.showRightBox = function () {
+                document.getElementById('leftBox').style.left = '-100%';
+                document.getElementById('rightBox').style.left = '0';
+            }
+        });
     angular
         .module('byTheRoad')
         .directive('validNumber',function(){

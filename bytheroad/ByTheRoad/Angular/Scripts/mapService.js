@@ -11,6 +11,8 @@
             var markers = [];
 
             self.results = [];
+
+
             // Save POI
             self.favPOI = function (poi, chkState) {
 
@@ -34,7 +36,6 @@
 
                 else {
                     var place_id = poi.place_id;
-                    console.log(place_id);
                     $http.delete('/api/POI/' + place_id
                     )
                     .success(function (result) {

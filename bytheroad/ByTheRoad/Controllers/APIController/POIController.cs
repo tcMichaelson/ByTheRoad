@@ -18,12 +18,12 @@ namespace ByTheRoad.Controllers.APIController
             _repo = repo;
         }
 
-        public List<PointOfInterest> Get()
+        public ICollection<PointOfInterest> Get()
         {
 
             string currentUserName = User.Identity.Name;
-            ApplicationUser currentUser = _repo.Query<ApplicationUser>().Where(p => p.UserName == currentUserName).FirstOrDefault();
-            var userPOIs  = _repo.Query<PointOfInterest>().Where(p => p.User == currentUser).ToList();
+            ApplicationUser currentUser = _repo.Query<ApplicationUser>().Include(c => c.UserSavedPOIs).Where(p => p.UserName == currentUserName).FirstOrDefault();
+            var userPOIs = currentUser.UserSavedPOIs;
 
             return userPOIs;
            

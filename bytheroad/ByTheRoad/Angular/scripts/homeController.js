@@ -59,6 +59,13 @@
                     self.login.email = null;
                     self.login.password = null;
 
+                    var myFunction = function (userPOI) {
+                        self.places = userPOI;
+                        console.log("User POIs: " + userPOI);
+                    }
+
+                    mapService.listFavPOI(myFunction);
+
 
                 })
                 .error(function () {

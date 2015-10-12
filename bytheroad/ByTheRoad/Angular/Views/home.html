@@ -215,7 +215,7 @@
 
 
     <div ng-hide="self.start === false" class="rightStartBox">
-        <form id="directionsearch" ng-submit="self. findRouteAndDisplay()">
+        <form id="directionsearch" ng-submit="self.findRouteAndDisplay()">
 
 
             <label class="startLabel">Starting Point</label>
@@ -226,7 +226,7 @@
 
             <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination"/>
             <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute()" class="submitdirection">Get Direction</button>
-
+            <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
         </form>
 
 

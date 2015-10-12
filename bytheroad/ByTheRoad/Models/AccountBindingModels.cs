@@ -33,8 +33,9 @@ namespace ByTheRoad.Models
     }
 
     public class RegisterBindingModel
-    {    [Required]
-         [Display(Name = "FirstName")]
+    {   
+        [Required]
+        [Display (Name = "FirstName")]
         public string FirstName { get; set; }
 
         [Required]

@@ -54,19 +54,25 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     
                     self.currentuser = self.login.FirstName;
-                    self.currentEmail = self.login.Email;
+                    //self.currentEmail = self.login.Email;
                     self.loggingin = false;
                     self.logoutbtn = true;
+<<<<<<< HEAD
                     self.login.Email = null;
                     self.login.Password = null;
                     
+=======
+                    self.login.email = null;
+                    self.login.password = null;
+
                     var myFunction = function (userPOI) {
                         self.places = userPOI;
-                        console.log("User POIs: ", userPOI);
+                        console.log("User POIs: " + userPOI);
                     }
 
                     mapService.listFavPOI(myFunction);
 
+>>>>>>> 706048d6b146f49e268365b82e8f07e3198e6cbf
 
                 })
                 .error(function () {
@@ -82,6 +88,7 @@
                .success(function (data) {
 
                    self.logoutbtn = false;
+                   self.
                     console.log('success')
                 })
                 .error(function () {
@@ -101,13 +108,12 @@
                     self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
-
                 }, function (error) {
                     console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                self.register.FirstName = null;
-                self.register.LastName = null;
+                
+
 
                 });
             }
@@ -211,6 +217,11 @@
 
             }
 
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
+            }
+
             self.showLeftBox = function () {
                 document.getElementById('leftBox').style.left = '0';
                 document.getElementById('rightBox').style.left = '100%';
@@ -221,7 +232,6 @@
                 document.getElementById('rightBox').style.left = '0';
             }
         });
-
     angular
         .module('byTheRoad')
         .directive('validNumber',function(){

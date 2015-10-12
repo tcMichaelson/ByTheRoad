@@ -23,8 +23,6 @@
                 if ($window.sessionStorage.token) {
             }
 
-            }
-
             self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
@@ -36,6 +34,8 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
+            self.editUser = false;
+
 
 
 
@@ -57,7 +57,7 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     
-                    self.currentuser = self.login.email;
+                    self.currentuser = self.login.FirstName;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.email = null;
@@ -66,8 +66,7 @@
 
                 })
                 .error(function () {
-<<<<<<< HEAD
-                    self.loginError = true;
+                    self.errorMessage = "Error loggin in";
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
 =======
@@ -87,75 +86,14 @@
                 })
                 .error(function () {
                    console.error('Error loggin in.');
-
-               });
-            };
-
-                    self.logoutbtn = false;
-<<<<<<< HEAD
-                })
-                self.currentuser = self.register.email;
-                self.loggingin = false;
-                self.logoutbtn = true;
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-                
-             
-
-
-=======
-                roadService.register(self.register, function (error) {
-                    self.RegisterError = error;
-                });
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-               
->>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
-            };
-
-                   console.error('Error loggin in.');
-
-<<<<<<< HEAD
-                roadService.register(self.registerUser);
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-               });
-            };
-=======
-                roadService.register(self.registerUser, function(){
-                    self.currentuser = self.registerUser.email;
-                    self.registering = false;
-                    self.loggingin = false;
-                    self.logoutbtn = true;
-                    self.registerUser.email = null;
-                    self.registerUser.Password = null;
-                    self.registerUser.ConfirmPassword = null;
-                }, function (error) {
+                    console.error('Error loggin in.');
                     self.hasError = true;
-                    self.errorMessage = "Registration Error";
-                self.register.firstName = null;
-                self.register.lastName = null;
+
+               });
+            };
 
             self.register = function () {
 <<<<<<< HEAD
-                roadService.register(self.register, function (error) {
-                self.currentuser = self.register.email;
-                self.loggingin = false;
-                self.logoutbtn = true;
-
-                    self.hasError = true;
-                    self.errorMessage = "Registration Error";
-                });
-                self.register.email = null;
-                self.register.password = null;
-                self.register.Confirmpassword = null;
-                self.register.firstName = null;
-                self.register.lastName = null;
-                
-             
 
 =======
                 roadService.register(self.registerUser, function(){
@@ -169,9 +107,21 @@
                 }, function (error) {
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
->>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
+                self.register.firstName = null;
+                self.register.lastName = null;
 
                 });
+            }
+
+           
+
+            self.checkForNumber = function (keyEvent) {
+                if (keyEvent === 69 || keyEvent === 189) {
+                    self.keycode = keyEvent;
+                    var e = angular.element.Event('keypress');
+                    e.which = 8;
+                    self.minutesUnit.trigger(e);
+                };
             }
 
 
@@ -219,7 +169,6 @@
                 console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
-                    setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -235,7 +184,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-                    if (places.length === 0 || places[0].place_id === undefined){
+                    if (places.length === 0 || places[0].place_id === undefined) {
                         console.log(places[0].place_id)
                         return;
                     }
@@ -280,16 +229,33 @@
             }
 
 
-            self.favPOI = function () {
-                mapService.favPOI(self.poiToSave, self.chkState);
 
-            }
+    angular
+        .module('byTheRoad')
+        .directive('validNumber',function(){
 
-            self.places = function () {
-                mapService.listFavPOI();
-                self.toggleSavedBox();
-            }
-
+            return {
+                require: '?ngModel',
+                link: function(scope, element, attrs, ngModelCtrl) {
+                    if(!ngModelCtrl) {
+                        return; 
+                    }
+      
+                    ngModelCtrl.$parsers.push(function(val) {
+                        var clean = val.replace( /[^0-9]+/g, '');
+                        if (val !== clean) {
+                            ngModelCtrl.$setViewValue(clean);
+                            ngModelCtrl.$render();
+                        }
+                        return clean;
+      
+                    element.bind('keypress', function(event) {
+                        if(event.keyCode === 32) {
+                            event.preventDefault();
+                        }
+                    });
+                }
+            };
         });
 
 })();

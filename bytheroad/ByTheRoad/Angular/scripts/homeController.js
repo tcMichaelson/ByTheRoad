@@ -14,6 +14,7 @@
             self.results = [];
             self.mobileSearch = false;
             self.showFav = false;
+            self.foundRoute = false;
 
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
@@ -37,9 +38,15 @@
 
 
             self.findRoute = function () {
-                locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
+                locationService.findRouteAndDisplay(self.directions.destination, 0, function (response) {
                     locationService.renderLines(response);
+                    self.foundRoute = true;
+                    $scope.$apply();
                 })
+            }
+
+            self.startRouting = function(){
+                locationService.startRouting();
             }
 
             self.login = function () {
@@ -161,7 +168,6 @@
                     //setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
-                    console.log(searchBox.getBounds());
                 }
             }, 500);
 

@@ -12,6 +12,8 @@
 
             self.results = [];
 
+            
+
 
             // Save POI
             self.favPOI = function (poi, chkState, addFav, deleteFav) {
@@ -77,8 +79,6 @@
 
                 var service = new google.maps.places.PlacesService(map);
                 service.nearbySearch(request, self.callback);
-
-
             }
 
             //text search from  input box
@@ -184,13 +184,17 @@
                             self.results[resultIdx] = places[i];
 
                             //self.places is the current user's saved places...  From our database
-                            self.places.forEach(function (poi) { 
-                                if (poi.Place_id === places[i].place_id)
-                                {
-                                   self.results[resultIdx].saved = true;
-                                }
-                                    
-                            });
+                            //If self.places has a POI
+                            if (self.places)
+                            {
+                                self.places.forEach(function (poi) {
+                                    if (poi.Place_id === places[i].place_id)
+                                    {
+                                        self.results[resultIdx].saved = true;
+                                    }                                   
+                                
+                               });
+                            }
                             markers[resultIdx] = (createMarker(places[i]));
                             locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
                                 self.results[idx].route = response;

@@ -28,6 +28,7 @@
                     })
                     .success(function (result) {
                         console.log("success");
+                        
                     })
                     .error(function () {
                         console.error('fail');

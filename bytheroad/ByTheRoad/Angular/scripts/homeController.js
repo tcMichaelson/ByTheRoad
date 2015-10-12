@@ -61,7 +61,7 @@
 
                     var myFunction = function (userPOI) {
                         self.places = userPOI;
-                        console.log("User POIs: " + userPOI);
+                        console.log("User POIs: ", userPOI);
                     }
 
                     mapService.listFavPOI(myFunction);
@@ -205,11 +205,6 @@
             self.favPOI = function () {
                 mapService.favPOI(self.poiToSave, self.chkState);
 
-            }
-
-            self.places = function () {
-                mapService.listFavPOI();
-                self.toggleSavedBox();
             }
 
             self.showLeftBox = function () {

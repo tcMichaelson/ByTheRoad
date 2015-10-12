@@ -13,6 +13,7 @@
             self.star = false;
             self.results = [];
             self.mobileSearch = false;
+            self.showFav = false;
             self.foundRoute = false;
 
             self.viewingPlaces = false;
@@ -121,7 +122,7 @@
 
 
             self.nearbySearch = function () {
-                self.runSearch(mapService.categorySearch);
+                self.runSearch(mapService.categorySearch);//self.runSearch(func);
             };
 
             self.textSearch = function () {
@@ -154,7 +155,7 @@
                     var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
                 }
                 mapService.places = self.places;
-                func(self, searchPos);
+                func(self, searchPos);//Invoked func
                 self.startInterval();
                 self.showResultsBox();
             }

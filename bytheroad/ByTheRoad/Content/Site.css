@@ -241,20 +241,20 @@ li.welcome {
 }
 
 #hide {
-    width: 90px;
+    width: 110px;
     height: 30px;
     background-color: #428bca;
     color: white;
-    font-size: medium;
+    font-size:14px;
 }
 
 
 #favorite {
-    width: 90px;
+    width: 110px;
     height: 30px;
     background-color: #428bca;
     color: white;
-    font-size: medium;
+    font-size: 14px;
 }
 
 

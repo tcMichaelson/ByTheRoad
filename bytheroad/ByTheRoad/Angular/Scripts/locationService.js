@@ -25,13 +25,15 @@
                     });
                     getInitialLocation();
                     clearInterval(waitForMap);
-                    window.setInterval(function (data) {
-                        getCurrentLocation();
-                    }, 5000);
+                    //window.setInterval(function (data) {
+                    //    getCurrentLocation();
+                    //}, 5000);
                 } catch(e) {
                     console.log("no dice");
                 }
             }, 750);
+
+
 
             function getInitialLocation () {
                 if (navigator.geolocation) {
@@ -63,6 +65,8 @@
                             map: map,
                             icon: carIcon
                         });
+
+                        updateLocHist(currLoc);
 
 
                     }, function () {
@@ -239,6 +243,7 @@
 
             self.findRouteAndDisplay = function (destination, index, func) {
                 var directionsService = new google.maps.DirectionsService;
+                console.log(locHist);
                 var start = locHist[locHist.length - 1];
                 var end = destination;
                 var request = {
@@ -250,6 +255,7 @@
                 directionsService.route(request, function (response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         console.log(response);
+
                         func(response, index);
                     }
                 });
@@ -435,6 +441,39 @@
                 var sw = calculatePointAlongBearing(position, 225, 500);
                 var ne = calculatePointAlongBearing(position, 45, 500);
                 searchBox.setBounds(new google.maps.LatLngBounds(sw, ne));
+            }
+
+            self.startRouting = function() {
+                map.setZoom(15);
+                var move = 0;
+                locHist = [];
+                map.setCenter(selectedPath[0]);
+                var carIcon = {
+                    url: "../../Content/Cars/sportCar0.png",
+                    scaledSize: new google.maps.Size(40, 40),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(20, 20)
+                };
+                if (car) {
+                    car.setMap(null);
+                }
+                car = new google.maps.Marker({
+                    position: selectedPath[0],
+                    map: map,
+                    icon: carIcon
+                });
+
+                console.log(selectedRoute);
+                move++;
+                var refreshInterval = window.setInterval(function () {
+                    if (selectedPath[move]) {
+                        updateLocHist(selectedPath[move]);
+                        moveCar(selectedPath[move]);
+                        move++;
+                    } else {
+                        clearInterval(refreshInterval);
+                    }
+                }, 1000);
             }
 
         });

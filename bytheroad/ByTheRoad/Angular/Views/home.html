@@ -113,12 +113,12 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-            <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
+        <button id="favorite" ng-show="self.logoutbtn === true" type="button">Favorites Only</button>
         </h3>
 
         <div ng-show="self.results[0] === 'none'">no results found</div>
 
-        <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat=" result in self.results">
+    <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat="result in self.results">
 
             <div class="searchResultsDetail">
                 <div class="resultTitle">
@@ -152,11 +152,11 @@
         <div class="resultsDiv" ng-repeat="saved in self.places">
             <div class="savedPlacesDetail">
                 <div class="resultTitle">
-                    <h4 class="searchResultHeading"><strong>{{saved.name}}</strong></h4>
+                <h4 class="searchResultHeading"><strong>{{saved.Name}}</strong></h4>
                 </div>
-                <div class="searchAdd">{{saved.formmatted_address}}</div>
-                <div class="rating">{{saved.rating}}</div>
-
+            <div class="searchAdd">{{saved.Address}}</div>
+            <div class="rating">{{saved.Rating}}</div>
+            <div class="phoneNum">{{saved.PhoneNum}}</div>
             </div>
         </div>
 

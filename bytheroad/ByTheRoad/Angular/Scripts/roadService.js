@@ -7,8 +7,8 @@
 
         self.register = function (user, success, fail) {
             new Register(user).$save(function (data) {
-
-                success();
+                console.log("user in register/login", user);
+                
 
                 $http.post('/token', "grant_type=password&username=" + user.Email + "&password=" + user.Password,
                     { 
@@ -18,14 +18,14 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
-                    
+                    success();
 
                 })
 
                 .error(function () {
                     console.error('Error logging in.');
-                    self.RegisterError = true;
-                    callBack("Failed to reister");
+                    self.hasError = true;
+                    self.errorMessage = "Error logging in during registration";
                 });
 
                 console.log(data);

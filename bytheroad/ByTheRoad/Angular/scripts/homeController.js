@@ -54,7 +54,7 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     
                     self.currentuser = self.login.FirstName;
-                    //self.currentEmail = self.login.Email;
+                    self.currentEmail = self.login.Email;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.Email = null;
@@ -62,7 +62,7 @@
                     
                     var myFunction = function (userPOI) {
                         self.places = userPOI;
-                        console.log("User POIs: " + userPOI);
+                        console.log("User POIs: ", userPOI);
                     }
 
                     mapService.listFavPOI(myFunction);
@@ -82,7 +82,6 @@
                .success(function (data) {
 
                    self.logoutbtn = false;
-                   self.
                     console.log('success')
                 })
                 .error(function () {
@@ -102,6 +101,7 @@
                     self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
+
                 }, function (error) {
                     console.error('Registration Error' );
                     self.hasError = true;
@@ -211,11 +211,6 @@
 
             }
 
-            self.places = function () {
-                mapService.listFavPOI();
-                self.toggleSavedBox();
-            }
-
             self.showLeftBox = function () {
                 document.getElementById('leftBox').style.left = '0';
                 document.getElementById('rightBox').style.left = '100%';
@@ -226,6 +221,7 @@
                 document.getElementById('rightBox').style.left = '0';
             }
         });
+
     angular
         .module('byTheRoad')
         .directive('validNumber',function(){

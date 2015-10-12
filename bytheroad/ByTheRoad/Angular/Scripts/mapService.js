@@ -75,6 +75,7 @@
                     radius: 500,
                     types: model.selectedItem
                 }
+
                 reCenter(center);
 
                 var service = new google.maps.places.PlacesService(map);

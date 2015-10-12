@@ -138,14 +138,14 @@
                 }
             }
 
-            self.findGenericFuturePosition = function (unit, amount) {
+            self.findGenericFuturePosition = function (unit, amount, offset) {
                 var meters;
                 if (locHist.length === 1) {
                     return { lat: locHist[0].lat, lng: locHist[0].lng };
                 }
                 var lastLoc = locHist[locHist.length - 1];
                 if (unit === "miles") {
-                    meters = amount * 1609.344;
+                    meters = amount * 1609.344
                 } else {
                     if (unit === "hours") {
                         amount *= 3600;
@@ -154,6 +154,14 @@
                     }
                     meters = lastLoc.speed * amount;
                 }
+
+                meters = meters + (offset * 500);
+
+                if (meters < 0)
+                {
+                    meters = 0;
+                }
+
                 console.log("meters:", meters);
                 console.log("speed:", lastLoc.speed);
                 console.log(meters);
@@ -185,7 +193,7 @@
                 return futureLoc;
             }
 
-            self.findFuturePosition = function (spotOnRoute, unit, amount) {
+            self.findFuturePosition = function (spotOnRoute, unit, amount, offset) {
                 var meters;
                 var futureLoc;
                 var currLoc = locHist[locHist.length - 1];
@@ -197,8 +205,13 @@
                     } else {
                         amount *= 60;
                     }
-                    meters = currLoc.speed * amount;
+                    meters = currLoc.speed * amount
                 }
+
+                meters = meters + (offset * 500);
+
+                if (meters < 0)
+                    meters = 0;
 
                 console.log("selectedRoute:", selectedRoute);
                 console.log(spotOnRoute);
@@ -348,7 +361,6 @@
                     var dist = self.calculateDistance(firstLoc, currentLoc);  //distance in meters
                     if (dist > 1) {
                         var brng = calculateInitialBearing(firstLoc, currentLoc);
-                        console.log(dist);
                         var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
                         var spd = dist / time;  //meters per second
                         locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: brng, speed: spd });

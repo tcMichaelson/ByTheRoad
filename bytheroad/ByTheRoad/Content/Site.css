@@ -316,6 +316,7 @@ li.welcome {
     margin-left: 25%;
     width: 75%;
     height: 100%;
+    
 
 }
 
@@ -587,7 +588,8 @@ margin-left:20px;
 }
 
 #mobileSearch, #mobileSearchHide {
-    display: none;
+    display:none;
+
 }
 
 #errorMessages {

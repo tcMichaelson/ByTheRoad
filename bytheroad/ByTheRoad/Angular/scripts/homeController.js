@@ -42,7 +42,7 @@
             }
 
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.Email + "&password=" + self.login.Password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -53,11 +53,11 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     
-                    self.currentuser = self.login.email;
+                    self.currentuser = self.login.FirstName;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.login.email = null;
-                    self.login.password = null;
+                    self.login.Email = null;
+                    self.login.Password = null;
 
 
                 })
@@ -84,18 +84,18 @@
 
             self.register = function () {
                 roadService.register(self.registerUser, function(){
-                    self.currentuser = self.registerUser.email;
+                    self.currentuser = self.registerUser.FirstName;
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.registerUser.email = null;
+                    self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
                 }, function (error) {
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                self.register.firstName = null;
-                self.register.lastName = null;
+                self.register.FirstName = null;
+                self.register.LastName = null;
 
                 });
             }

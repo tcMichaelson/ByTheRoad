@@ -10,10 +10,10 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-
+           
             self.hasError = false;
             self.errorMessage = '';
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             self.registering = false;
             self.loggingin = false;
             self.start = false;
@@ -25,9 +25,9 @@
             self.animationSaved = "animated slideOutLeft";
             self.getResults = function () {
                 self.results = mapService.results;
+<<<<<<< HEAD
             }
 
-<<<<<<< HEAD
 
             self.init = function () {
                 if ($window.sessionStorage.token) {
@@ -35,13 +35,15 @@
                 }
             }
 
-            self.init();
 =======
-            self.getResults = function () {
-                self.results = mapService.results;
             }
 
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+            }
+
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+            self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -63,7 +65,7 @@
                 locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
                     locationService.renderLines(response);
                 })
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             }
 
             self.login = function () {
@@ -88,22 +90,22 @@
 
                 })
                 .error(function () {
-                    self.hasError = true;
-                    self.errorMessage = "Error loggin in";
+                    console.error('Error loggin in.');
+                    self.loginError = true;
 =======
 
 
                 })
                 .error(function () {
 <<<<<<< HEAD
-                    console.error('Error loggin in.');
+                    self.errorMessage = "Error loggin in";
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
 =======
                     self.hasError = true;
                     self.errorMessage = "Error loggin in";
 >>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
                 });
             };
 
@@ -120,6 +122,33 @@
                    console.error('Error loggin in.');
 
                });
+            };
+
+            self.register = function () {
+<<<<<<< HEAD
+                roadService.register(self.register);
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+                
+             
+
+
+=======
+                roadService.register(self.register, function (error) {
+                    self.RegisterError = error;
+                });
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+               
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+            };
+
+
 =======
 
                     self.logoutbtn = false;
@@ -128,16 +157,21 @@
                 .error(function () {
                    console.error('Error loggin in.');
 
-               });
+               .success(function (data) {
             };
 
-            self.register = function () {
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+                .error(function () {
+                   console.error('Error loggin in.');
+
 <<<<<<< HEAD
                 roadService.register(self.registerUser);
                 self.register.email = null;
                 self.register.password = null;
                 self.register.Confirmpassword = null;
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+               });
             };
 =======
                 roadService.register(self.registerUser, function(){
@@ -154,7 +188,6 @@
                 self.register.firstName = null;
                 self.register.lastName = null;
 
-<<<<<<< HEAD
             self.register = function () {
 <<<<<<< HEAD
                 roadService.register(self.register, function (error) {
@@ -190,13 +223,8 @@
                 });
             }
 
-=======
-                });
-            }
 
->>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
-
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);
             };
@@ -237,7 +265,7 @@
                     var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
                     var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
                 }
                 func(self, searchPos);
                 self.startInterval();
@@ -248,17 +276,13 @@
             var input = document.getElementById('textsearch');
 =======
             var input = document.getElementById('searchInputBox');
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
 
             var getSearchBox = window.setInterval(function () {
                 console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
-<<<<<<< HEAD
                     setInitialSearchBoxBounds(searchBox);
-=======
-                    //setInitialSearchBoxBounds(searchBox);
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -274,11 +298,7 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
-<<<<<<< HEAD
                     if (places.length === 0 || places[0].place_id === undefined){
-=======
-                    if (places.length === 0 || places[0].place_id === undefined) {
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
                         console.log(places[0].place_id)
                         return;
                     }
@@ -310,7 +330,7 @@
                     return { unit: "hours", amount: self.hoursUnit };
                 if (self.milesUnit)
                     return { unit: "miles", amount: self.milesUnit };
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
@@ -323,6 +343,24 @@
             }
 
             self.favPOI = function () {
+<<<<<<< HEAD
+                mapService.favPOI(self.poiToSave);
+=======
+                mapService.favPOI(self.poiToSave, self.chkState);
+
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+            }
+
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
+            }
+
+<<<<<<< HEAD
+        });
+=======
+
+            self.favPOI = function () {
                 mapService.favPOI(self.poiToSave, self.chkState);
 
             }
@@ -331,11 +369,7 @@
                 mapService.listFavPOI();
                 self.toggleSavedBox();
             }
-<<<<<<< HEAD
-
-        });
-=======
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
 
         });
 

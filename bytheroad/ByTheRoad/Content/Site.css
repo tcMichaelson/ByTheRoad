@@ -108,7 +108,7 @@ li.welcome {
 }
 
 #leftBox {
-    height: 93%;
+    height: 100%;
     width: 25%;
     position: absolute;
     border: 1px solid blue;
@@ -160,7 +160,7 @@ li.welcome {
 }
 
 
-.0 {
+.distanceorTimeInputBox {
     padding: 3px;
     border: solid 1px;
     box-shadow: inset 0 0 0 3px #707070;
@@ -185,6 +185,7 @@ li.welcome {
 
 #searchInputBox {
     margin-top: 50px;
+    width:300px;
 }
 
 .searchIcons {
@@ -223,9 +224,9 @@ li.welcome {
 #slideoutsearchResultsDiv, #savedPlaces {
     margin-top: 370px;
     border: 1px solid #287AA9;
-    height: 55%;
+    height: 59%;
     position: absolute;
-    width: 25%;
+    width: 100%;
     overflow: scroll;
     background-color: white;
     color: blue;
@@ -308,10 +309,10 @@ li.welcome {
 
 #rightBox {
     position: absolute;
-    top: 10%;
+    
     margin-left: 25%;
     width: 75%;
-    height: 93%;
+    height: 100%;
 
 }
 

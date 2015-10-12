@@ -61,7 +61,7 @@
                 <div>
                     <form ng-submit="self.textSearch()">
                         <button type="button" id="searchbtn" class="btn btn-primary glyphicon glyphicon-search" value="Search" ng-click="self.selected= true; self.animation='animated slideInLeft'; self.textSearch()"></button>
-                        <input type="text" id="searchInputBox" ng-click="self.selected= true" name="search" />
+                        <input type="text" id="searchInputBox"  name="search" />
                     </form>
                 </div>
                 <div class="dragOutSearchResult">
@@ -104,7 +104,7 @@
 
 
 
-</div>
+
 
 <div id="slideoutsearchResultsDiv" ng-show="self.selected === true" class='{{self.animationResults}}'>
 
@@ -160,7 +160,7 @@
     </div>
 
 </div>
-
+</div>
 
 <div id="rightBox">
     <div id="map" class="floatingMapBox">
@@ -191,16 +191,16 @@
         <form id="registerForm" ng-submit="self.register();">
 
             <label class="registerLabel">
-                Email:
+                Email
             </label>
                     <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.email" type="email" ng-required="true" />
 
             <label class="registerLabel">
-                Password:
+                Password
             </label>
                 <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.password" ng-required="true" />
             <label class="registerLabel">
-                Confirm Password :
+                Confirm Password 
             </label>
                     <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
            

@@ -5,12 +5,19 @@
         var Register = $resource(routeUrls.registerApi, {}, {});
         var self = this;
 
+<<<<<<< HEAD
+        self.register = function (user, callBack) {
+            new Register(user).$save(function (data) {
+
+                $http.post('/token', "grant_type=password&username=" + self.register.email+ "&password=" + self.register.password, 
+=======
         self.register = function (user, success, fail) {
             new Register(user).$save(function (data) {
 
                 success();
 
                 $http.post('/token', "grant_type=password&username=" + user.email + "&password=" + user.password,
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
                     { 
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
                     })
@@ -29,13 +36,22 @@
                 });
 
                 console.log(data);
+<<<<<<< HEAD
+<<<<<<< HEAD
+            }, function (data) {
+                //Register Failed
+=======
+            }, function (response) {
+                callBack(true);
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+=======
             }, function (response) {
 <<<<<<< HEAD
                 callBack();
 =======
                 error();
 >>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
->>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             })
             self.update = function (revievToUpdate) {
                 revievToUpdate.$save();

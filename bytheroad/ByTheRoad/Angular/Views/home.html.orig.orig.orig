@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+﻿<div class"reenu"></div>
+<div class="nav">
+
+    <ul>
+        <li id="logo"><img src="../../fonts/road.jpg" contextmenu="By the Road " /></li>
+        <li id="projectTitle"><h3>ByTheRoad</h3></li>
+        <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
+        <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
+        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
+        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
+        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
+        <li class="edit"><a class="edituser" ng-click=" self.editUser = true" ng-show="self.logoutbtn === true">Edit Profile</a></li>
+    </ul>
+
+</div>
+=======
 ﻿  <div class="nav">
        
             <ul>
@@ -8,10 +25,10 @@
                 <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
                 <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
                 <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
-        <li class="edit"><a class="edituser" ng-click=" self.editUser = true" ng-show="self.logoutbtn === true">Edit Profile</a></li>
             </ul>
         </div>
     
+>>>>>>> 706048d6b146f49e268365b82e8f07e3198e6cbf
 
 
 <div id="leftBox">
@@ -113,12 +130,12 @@
             <b>Map Search</b>
             <button id="hide" type="button" ng-click="self.hidesearchResult = true; self.animationResults='animated slideOutLeft'">Hide</button>
 
-        <button id="favorite" ng-show="self.logoutbtn === true" type="button" >Favorites Only</button>
+            <button id="favorite" ng-show="self.logoutbtn === true" type="button">My Places</button>
         </h3>
 
         <div ng-show="self.results[0] === 'none'">no results found</div>
 
-    <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat="result in self.results">
+        <div ng-show="self.results[0] !== 'none'" class="resultsDiv" ng-repeat=" result in self.results">
 
             <div class="searchResultsDetail">
                 <div class="resultTitle">
@@ -152,16 +169,16 @@
         <div class="resultsDiv" ng-repeat="saved in self.places">
             <div class="savedPlacesDetail">
                 <div class="resultTitle">
-                <h4 class="searchResultHeading"><strong>{{saved.Name}}</strong></h4>
+                    <h4 class="searchResultHeading"><strong>{{saved.name}}</strong></h4>
                 </div>
-            <div class="searchAdd">{{saved.Address}}</div>
-            <div class="rating">{{saved.Rating}}</div>
-            <div class="phoneNum">{{saved.PhoneNum}}</div>
+                <div class="searchAdd">{{saved.formmatted_address}}</div>
+                <div class="rating">{{saved.rating}}</div>
+
             </div>
         </div>
 
     </div>
-</div>
+
 </div>
 
 
@@ -207,14 +224,14 @@
             </div>
             <div class="registerinfo">
             <label class="registerLabel">
-                Email
+                    Email
                 </label><br />
 
                 <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.Email" type="email" ng-required="true" />
             </div>
             <div class="registerinfo">
             <label class="registerLabel">
-                Password
+                    Password
                 </label><br />
                 <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
 
@@ -253,7 +270,8 @@
 
             <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination"/>
         <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true" class="submitdirection">Get Direction</button>
-            <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
+
+
     </form>
 
 

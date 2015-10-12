@@ -11,8 +11,10 @@
             var markers = [];
 
             self.results = [];
+
+
             // Save POI
-            self.favPOI = function (poi, chkState) {
+            self.favPOI = function (poi, chkState, addFav, deleteFav) {
 
                 if (chkState) {
 
@@ -26,6 +28,7 @@
                     })
                     .success(function (result) {
                         console.log("success");
+                        addFav(result)
                     })
                     .error(function () {
                         console.error('fail');
@@ -34,11 +37,11 @@
 
                 else {
                     var place_id = poi.place_id;
-                    console.log(place_id);
                     $http.delete('/api/POI/' + place_id
                     )
                     .success(function (result) {
                         console.log("success");
+                        deleteFav(result);
                     })
                     .error(function () {
                         console.error('fail');
@@ -50,11 +53,10 @@
 
 
             // Retrieve POI
-            self.listFavPOI = function () {
+            self.listFavPOI = function (func) {
                 $http.get('/api/POI')
                 .success(function (result) {
-                    self.places = result;
-
+                    func(result);
 
                 })
                 .error(function () {
@@ -160,12 +162,15 @@
 
             //grabbing the info for each place
             self.callback = function (places, status) {
-                for (var i = 0; i < markers.length; i++) {
-                    markers[i].setMap(null);
+                if (markers[0]) {
+                    for (var i = 0; i < markers.length; i++) {
+
+                        markers[i].setMap(null);
+                    }
                 }
                 markers = [];
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-
+                    var resultIdx = 0;
                     for (var i = 0; i < places.length; i++) {
                         
                         var placeDist = locationService.calculateDistance(
@@ -174,13 +179,25 @@
 
                         if (placeDist <= 500) {
                             placeIdArray.push(places[i].place_id);
-                            self.results[i] = places[i];
-                            markers[i] = (createMarker(places[i]));
-                            locationService.findRouteAndDisplay(places[i].geometry.location, i, function (response, idx) {
+
+                            //places is the results from the google place search
+                            self.results[resultIdx] = places[i];
+
+                            //self.places is the current user's saved places...  From our database
+                            self.places.forEach(function (poi) { 
+                                if (poi.Place_id === places[i].place_id)
+                                {
+                                   self.results[resultIdx].saved = true;
+                                }
+                                    
+                            });
+                            markers[resultIdx] = (createMarker(places[i]));
+                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
                                 self.results[idx].route = response;
                                 self.results[idx].distance = response.routes[0].legs[0].distance.text;
                                 console.log("placeDist: ", placeDist)
                             });
+                            resultIdx++;
                         }
 
                     }
@@ -188,7 +205,7 @@
                         self.results = ['none'];
                     }
                 } else {
-                    self.results = ['can find result'];
+                    self.results = ['none'];
                 }
 
                 var infowindow = new google.maps.InfoWindow();

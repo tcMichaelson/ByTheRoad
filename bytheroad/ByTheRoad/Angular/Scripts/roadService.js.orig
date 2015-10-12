@@ -5,10 +5,12 @@
         var Register = $resource(routeUrls.registerApi, {}, {});
         var self = this;
 
-        self.register = function (user, callBack) {
+        self.register = function (user, success, fail) {
             new Register(user).$save(function (data) {
 
-                $http.post('/token', "grant_type=password&username=" + self.register.email+ "&password=" + self.register.password, 
+                success();
+
+                $http.post('/token', "grant_type=password&username=" + user.email + "&password=" + user.password,
                     { 
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
                     })
@@ -27,14 +29,25 @@
                 });
 
                 console.log(data);
-<<<<<<< HEAD
-            }, function (data) {
-                //Register Failed
-=======
             }, function (response) {
-                callBack(true);
+<<<<<<< HEAD
+                callBack();
+=======
+                error();
+>>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
 >>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
             })
+            self.update = function (revievToUpdate) {
+                revievToUpdate.$save();
+                self.updateReview = null;
+            };
+            self.remove = function (ReviewToRemove) {
+                ReviewToRemove.$remove({ id: ReviewToRemove.Id }, function () {
+                    self.reviews = self.reviews.filter(function (review) {
+                        return review.Id !== ReviewToRemove.Id;
+                    });
+                });
+            };
         }
 
 

@@ -164,7 +164,7 @@ li.welcome {
 }
 
 
-.distanceorTimeInputBox {
+.0 {
     padding: 3px;
     border: solid 1px;
     box-shadow: inset 0 0 0 3px #707070;
@@ -230,7 +230,7 @@ li.welcome {
     border: 1px solid #287AA9;
     height: 59%;
     position: absolute;
-    width: 100%;
+    width: 25%;
     overflow: scroll;
     background-color: white;
     color: blue;

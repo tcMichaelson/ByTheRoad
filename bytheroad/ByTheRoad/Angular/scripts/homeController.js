@@ -60,6 +60,13 @@
                     self.login.Email = null;
                     self.login.Password = null;
                     
+                    var myFunction = function (userPOI) {
+                        self.places = userPOI;
+                        console.log("User POIs: " + userPOI);
+                    }
+
+                    mapService.listFavPOI(myFunction);
+
 
                 })
                 .error(function () {
@@ -96,6 +103,7 @@
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
                 }, function (error) {
+                    console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
                 

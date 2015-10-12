@@ -1,7 +1,8 @@
 ﻿<div class"reenu"></div>
-<div class="nav">
-
-    <ul>
+<<<<<<< HEAD
+    <div class="nav">
+       
+            <ul>
         <li id="logo"><img src="../../fonts/road.jpg" contextmenu="By the Road " /></li>
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
@@ -146,7 +147,6 @@
                     {{result.name}}
                     <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20">
                 </h3>
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
 
 
             </div>

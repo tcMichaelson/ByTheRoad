@@ -4,7 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-
+           
             self.hasError = false;
             self.errorMessage = '';
             self.registering = false;
@@ -13,11 +13,19 @@
             self.star = false;
             self.results = [];
             self.mobileSearch = false;
-
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
+            self.getResults = function () {
+                self.results = mapService.results;
+            }
 
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+                }
+            }
+            self.init();
+=======
             self.getResults = function () {
                 self.results = mapService.results;
             }
@@ -38,12 +46,13 @@
 
 
 
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+
             self.findRoute = function () {
                 locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
                     locationService.renderLines(response);
                 })
             }
+
 
             self.login = function () {
                 $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
@@ -71,6 +80,7 @@
 
                 })
                 .error(function () {
+<<<<<<< HEAD
                     console.error('Error loggin in.');
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
@@ -81,21 +91,25 @@
                 $http.post('api/Account/Logout')
 
                .success(function (data) {
+<<<<<<< HEAD
 
-                   self.logoutbtn = false;
-                   self.
+                    self.logoutbtn = false;
                     console.log('success')
                 })
                 .error(function () {
-                    console.error('Error loggin in.');
-                    self.hasError = true;
+                   console.error('Error loggin in.');
 
                });
-            };
+=======
+
 
             self.register = function () {
+                roadService.register(self.register);
+            };
+
+
+=======
                 roadService.register(self.registerUser, function(){
-                  
                     self.currentuser = self.registerUser.email;
                     self.registering = false;
                     self.loggingin = false;
@@ -106,12 +120,17 @@
                 }, function (error) {
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                
-
+>>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
 
                 });
             }
 
+=======
+                });
+            }
+
+>>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
+>>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
 
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);
@@ -154,6 +173,7 @@
             var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
+                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
                     //setInitialSearchBoxBounds(searchBox);
@@ -196,6 +216,15 @@
                 if (self.milesUnit)
                     return { unit: "miles", amount: self.milesUnit };
             }
+            self.getUnitAndAmount = function () {
+                if (self.minutesUnit)
+                    return { unit: "minutes", amount: self.minutesUnit };
+                if (self.hoursUnit)
+                    return { unit: "hours", amount: self.hoursUnit };
+                if (self.milesUnit)
+                    return { unit: "miles", amount: self.milesUnit };
+>>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+            }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
                     self.animationSaved = 'animated slideOutLeft';
@@ -205,12 +234,9 @@
                     self.animationResults = 'animated slideOutLeft';
                 }
             }
-
             self.favPOI = function () {
                 mapService.favPOI(self.poiToSave, self.chkState);
-
             }
-
             self.places = function () {
                 mapService.listFavPOI();
                 self.toggleSavedBox();
@@ -220,19 +246,17 @@
                 document.getElementById('leftBox').style.left = '0';
                 document.getElementById('rightBox').style.left = '100%';
             }
-
 <<<<<<< HEAD
     angular
         .module('byTheRoad')
         .directive('validNumber',function(){
-
             return {
                 require: '?ngModel',
                 link: function(scope, element, attrs, ngModelCtrl) {
                     if(!ngModelCtrl) {
                         return; 
                     }
-      
+
                     ngModelCtrl.$parsers.push(function(val) {
                         var clean = val.replace( /[^0-9]+/g, '');
                         if (val !== clean) {
@@ -241,20 +265,17 @@
                         }
                         return clean;
                     });
-      
                     element.bind('keypress', function(event) {
                         if(event.keyCode === 32) {
                             event.preventDefault();
                         }
                     });
-                }
             };
 =======
             self.showRightBox = function () {
                 document.getElementById('leftBox').style.left = '-100%';
                 document.getElementById('rightBox').style.left = '0';
             }
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
         });
 
 })();

@@ -171,13 +171,15 @@
     <div ng-hide="self.loggingin === false" class="rightLoginBox">
 
         <form class="loginform" ng-submit="self.login()">
-
+                
             <label class="loginLabel">User Email:</label>
             <input class="loginInputBox" name="email" ng-model="self.login.email" type="text" ng-required="true" />
 
 
             <label class="loginLabel">Password:</label>
 
+
+                <input type="submit" class="submitbtn" value="Log In" />
             <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
 =======
 
@@ -189,13 +191,10 @@
 
                     <input class="loginInputBox" name="pwd" type="password" ng-model="self.login.password" ng-required="true" />
                
->>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
-
 
             <input type="submit" class="submitbtn" value="Log In" />
         </form>
     </div>
-<<<<<<< HEAD
         <div ng-hide="self.registering === false " class="rightRegisterBox">
             <form id="registerForm" ng-submit="self.register();">
             
@@ -216,6 +215,9 @@
 
                 <input type="submit" class="submitbtn" value="Register" />
 
+                    <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.email" type="email" ng-required="true" />
+                <label>
+>>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
               
 
                 <button ng-click="self.registering = false" class="cancelbtn">Cancel</button>
@@ -263,6 +265,7 @@
 
 
             <input type="submit" class="registersubmitbtn" value="Register" />
+           
 
 
 

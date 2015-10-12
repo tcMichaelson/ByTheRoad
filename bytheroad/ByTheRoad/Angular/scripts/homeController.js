@@ -142,6 +142,7 @@
                 } else {
                     var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
                 }
+                mapService.places = self.places;
                 func(self, searchPos);
                 self.startInterval();
                 self.showResultsBox();
@@ -203,7 +204,13 @@
             }
 
             self.favPOI = function () {
-                mapService.favPOI(self.poiToSave, self.chkState);
+                mapService.favPOI(self.poiToSave, self.chkState, function (item) {
+                    self.places.push(item);
+                }, function (item) {
+                    self.places = self.places.filter(function (compareItem) {
+                        return item.Place_id !== compareItem.Place_id;
+                    });
+                });
 
             }
 

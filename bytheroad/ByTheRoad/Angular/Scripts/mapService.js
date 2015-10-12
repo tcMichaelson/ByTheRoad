@@ -14,7 +14,7 @@
 
 
             // Save POI
-            self.favPOI = function (poi, chkState) {
+            self.favPOI = function (poi, chkState, addFav, deleteFav) {
 
                 if (chkState) {
 
@@ -28,7 +28,7 @@
                     })
                     .success(function (result) {
                         console.log("success");
-                        
+                        addFav(result)
                     })
                     .error(function () {
                         console.error('fail');
@@ -41,6 +41,7 @@
                     )
                     .success(function (result) {
                         console.log("success");
+                        deleteFav(result);
                     })
                     .error(function () {
                         console.error('fail');
@@ -178,7 +179,18 @@
 
                         if (placeDist <= 500) {
                             placeIdArray.push(places[i].place_id);
+
+                            //places is the results from the google place search
                             self.results[resultIdx] = places[i];
+
+                            //self.places is the current user's saved places...  From our database
+                            self.places.forEach(function (poi) { 
+                                if (poi.Place_id === places[i].place_id)
+                                {
+                                   self.results[resultIdx].saved = true;
+                                }
+                                    
+                            });
                             markers[resultIdx] = (createMarker(places[i]));
                             locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
                                 self.results[idx].route = response;

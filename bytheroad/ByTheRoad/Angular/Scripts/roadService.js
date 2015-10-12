@@ -32,20 +32,9 @@
             }, function (response) {
                 fail(response);
             })
-            /*
-            self.update = function (revievToUpdate) {
-                revievToUpdate.$save();
-                self.updateReview = null;
-            };
-            self.remove = function (ReviewToRemove) {
-                ReviewToRemove.$remove({ id: ReviewToRemove.Id }, function () {
-                    self.reviews = self.reviews.filter(function (review) {
-                        return review.Id !== ReviewToRemove.Id;
-                    });
-                });
-            };
-            */
+            
         }
+
     }]);
 })();
 

@@ -32,7 +32,7 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
-
+            self.editUser = false;
 
 
             self.findRoute = function () {
@@ -42,7 +42,7 @@
             }
 
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.Email + "&password=" + self.login.Password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -53,12 +53,13 @@
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
                     
-                    self.currentuser = self.login.email;
+                    self.currentuser = self.login.FirstName;
+                    self.currentEmail = self.login.Email;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.login.email = null;
-                    self.login.password = null;
-
+                    self.login.Email = null;
+                    self.login.Password = null;
+                    
                     var myFunction = function (userPOI) {
                         self.places = userPOI;
                         console.log("User POIs: ", userPOI);
@@ -80,30 +81,33 @@
 
                .success(function (data) {
 
-                    self.logoutbtn = false;
+                   self.logoutbtn = false;
                     console.log('success')
                 })
                 .error(function () {
-                   console.error('Error loggin in.');
+                    console.error('Error loggin in.');
+                    self.hasError = true;
 
                });
             };
 
             self.register = function () {
                 roadService.register(self.registerUser, function(){
-                    self.currentuser = self.registerUser.email;
+                  
+                    self.currentuser = self.registerUser.FirstName;
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.registerUser.email = null;
+                    self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
+
                 }, function (error) {
                     console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                self.register.firstName = null;
-                self.register.lastName = null;
+                self.register.FirstName = null;
+                self.register.LastName = null;
 
                 });
             }
@@ -223,6 +227,35 @@
                 document.getElementById('leftBox').style.left = '-100%';
                 document.getElementById('rightBox').style.left = '0';
             }
+        });
+
+    angular
+        .module('byTheRoad')
+        .directive('validNumber',function(){
+
+            return {
+                require: '?ngModel',
+                link: function(scope, element, attrs, ngModelCtrl) {
+                    if(!ngModelCtrl) {
+                        return; 
+                    }
+      
+                    ngModelCtrl.$parsers.push(function(val) {
+                        var clean = val.replace( /[^0-9]+/g, '');
+                        if (val !== clean) {
+                            ngModelCtrl.$setViewValue(clean);
+                            ngModelCtrl.$render();
+                        }
+                        return clean;
+                    });
+      
+                    element.bind('keypress', function(event) {
+                        if(event.keyCode === 32) {
+                            event.preventDefault();
+                        }
+                    });
+                }
+            };
         });
 
 })();

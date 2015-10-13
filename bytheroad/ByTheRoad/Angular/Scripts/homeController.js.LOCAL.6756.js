@@ -41,12 +41,11 @@
            
 
             self.findRoute = function () {
-                locationService.findRouteAndDisplay(self.directions.destination, 0)
-                .then(function (response) {
-                    locationService.renderLines(response.response);
+                locationService.findRouteAndDisplay(self.directions.destination, 0, function (response) {
+                    locationService.renderLines(response);
                     self.foundRoute = true;
-
-                });
+                    $scope.$apply();
+                })
             }
 
             self.startRouting = function(){
@@ -103,7 +102,6 @@
                .success(function (data) {
 
                    self.logoutbtn = false;
-                   self.places = [];
                     console.log('success')
                 })
                 .error(function () {
@@ -125,7 +123,7 @@
                         self.data = dataResponse;
                         
                     });
-                    self.places = [];
+
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
@@ -182,7 +180,7 @@
 
             self.startInterval = function (func, searchPos) {
                 var checkResults = window.setInterval(function () {
-                    if (self.results[0] === 'none' && queryLimit < 20) {
+                    if (self.results[0] === 'none' && queryLimit < 10) {
                         self.runSearch(func, queryLimit);
                         if (queryLimit > 0){
                             queryLimit *= -1;
@@ -195,20 +193,12 @@
                         self.getResults();
                         $scope.$apply();
                     } else {
-                        
-                        $scope.$apply(function () {
-                            self.showResultsBox();
-
+                        self.showResultsBox();
                         queryLimit = 1;
-
-                            mapService.reCenter();
-                        });
-                        mapService.distancesFound = 0;
-                        queryLimit = 1;
-                        console.log("one distance: ", self.results[0].distance);
+                        console.log(self.results);
                         clearInterval(checkResults);
                     }
-                }, 100);
+                }, 500);
             }
 
             self.runSearch = function (func, offset) {
@@ -226,10 +216,7 @@
                 }
                 mapService.places = self.places;
                 func(self, searchPos);//Invoked func
-                if (offset === 0) {
-                    mapService.reCenterCustom(searchPos, 13);
-                    self.startInterval(func, searchPos);
-                }
+                self.startInterval(func, searchPos);
             }
 
             var input = document.getElementById('searchInputBox');
@@ -258,14 +245,10 @@
                     }
                     mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
                     self.startInterval();
+                    self.showResultsBox();
 
                 });
             };
-
-            self.hideResultsBox = function () {
-                self.animationResults = "animated slideOutLeft";
-                self.animationSaved = "animated slideOutLeft";
-            }
 
             self.showResultsBox = function () {
                 self.animationResults = "animated slideInLeft";

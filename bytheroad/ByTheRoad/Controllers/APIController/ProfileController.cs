@@ -66,11 +66,17 @@ namespace ByTheRoad.Controllers.APIController
             
             if (ModelState.IsValid)
             {
-               
-               
-                    _repo.Delete<ApplicationUser>(Id);
-                    _repo.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK);
+
+                var savedPlaces = _repo.Query<PointOfInterest>().Where(m => m.User.Id == Id).ToList();
+                
+                foreach(var place in savedPlaces)
+                {
+                    _repo.Delete<PointOfInterest>(place.Id);
+                }
+
+                _repo.Delete<ApplicationUser>(Id);
+                _repo.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK);
                 }
             
 

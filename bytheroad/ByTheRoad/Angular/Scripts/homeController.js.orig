@@ -4,7 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-           
+
             self.hasError = false;
             self.errorMessage = '';
             self.registering = false;
@@ -12,18 +12,16 @@
             self.start = false;
             self.star = false;
             self.results = [];
+            self.mobileSearch = false;
 
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
+
             self.getResults = function () {
                 self.results = mapService.results;
             }
-            self.init = function () {
-                if ($window.sessionStorage.token) {
-            }
 
-            self.init();
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -37,8 +35,6 @@
             self.editUser = false;
 
 
-
-
             self.findRoute = function () {
                 locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
                     locationService.renderLines(response);
@@ -46,7 +42,7 @@
             }
 
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
+                $http.post('/token', "grant_type=password&username=" + self.login.Email + "&password=" + self.login.Password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -58,21 +54,32 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     
                     self.currentuser = self.login.FirstName;
+<<<<<<< HEAD
+=======
+                    self.currentEmail = self.login.Email;
+>>>>>>> rtest
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.login.email = null;
-                    self.login.password = null;
+                    self.login.Email = null;
+                    self.login.Password = null;
+<<<<<<< HEAD
+
+=======
+                    
+>>>>>>> rtest
+                    var myFunction = function (userPOI) {
+                        self.places = userPOI;
+                        console.log("User POIs: ", userPOI);
+                    }
+
+                    mapService.listFavPOI(myFunction);
 
 
                 })
                 .error(function () {
-                    self.errorMessage = "Error loggin in";
+                    console.error('Error loggin in.');
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
-=======
-                    self.hasError = true;
-                    self.errorMessage = "Error loggin in";
->>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
                 });
             };
 
@@ -81,11 +88,10 @@
 
                .success(function (data) {
 
-                    self.logoutbtn = false;
+                   self.logoutbtn = false;
                     console.log('success')
                 })
                 .error(function () {
-                   console.error('Error loggin in.');
                     console.error('Error loggin in.');
                     self.hasError = true;
 
@@ -93,35 +99,32 @@
             };
 
             self.register = function () {
-<<<<<<< HEAD
-
-=======
                 roadService.register(self.registerUser, function(){
-                    self.currentuser = self.registerUser.email;
+<<<<<<< HEAD
+=======
+                  
+>>>>>>> rtest
+                    self.currentuser = self.registerUser.FirstName;
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.registerUser.email = null;
+                    self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
+
                 }, function (error) {
+                    console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                self.register.firstName = null;
-                self.register.lastName = null;
+<<<<<<< HEAD
+                self.register.FirstName = null;
+                self.register.LastName = null;
+=======
+                
+
+>>>>>>> rtest
 
                 });
-            }
-
-           
-
-            self.checkForNumber = function (keyEvent) {
-                if (keyEvent === 69 || keyEvent === 189) {
-                    self.keycode = keyEvent;
-                    var e = angular.element.Event('keypress');
-                    e.which = 8;
-                    self.minutesUnit.trigger(e);
-                };
             }
 
 
@@ -166,9 +169,9 @@
             var input = document.getElementById('searchInputBox');
 
             var getSearchBox = window.setInterval(function () {
-                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
+                    //setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -223,12 +226,16 @@
 
             }
 
-            self.places = function () {
-                mapService.listFavPOI();
-                self.toggleSavedBox();
+            self.showLeftBox = function () {
+                document.getElementById('leftBox').style.left = '0';
+                document.getElementById('rightBox').style.left = '100%';
             }
 
-
+            self.showRightBox = function () {
+                document.getElementById('leftBox').style.left = '-100%';
+                document.getElementById('rightBox').style.left = '0';
+            }
+        });
 
     angular
         .module('byTheRoad')
@@ -248,6 +255,7 @@
                             ngModelCtrl.$render();
                         }
                         return clean;
+                    });
       
                     element.bind('keypress', function(event) {
                         if(event.keyCode === 32) {

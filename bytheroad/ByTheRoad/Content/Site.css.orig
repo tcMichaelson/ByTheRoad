@@ -35,12 +35,6 @@ body {
     max-height: 50px;
 }
 
-<<<<<<< HEAD
- .edituser{
-      width:200px;
-      height:50px;
-  }  
-=======
 
     .nav ul {
         background-color: rgb(34,30,78);
@@ -87,8 +81,11 @@ body {
             cursor: default;
         }
 
-
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+ .edituser{
+      width:200px;
+      height:50px;
+      margin-left:-10px;
+  }  
 
 #projectTitle {
     position: absolute;
@@ -107,23 +104,15 @@ body {
 }
 
 
-<<<<<<< HEAD
-li.welcome{
-   color:white;
-   font-size: 16px;
-   width: 400px;
-   margin-left: 100px;
-=======
 li.welcome {
     color: white;
     font-size: 16px;
     width: 400px;
     margin-left: 300px;
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
 }
 
 #leftBox {
-    height: 93%;
+    height: 100%;
     width: 25%;
     position: absolute;
     border: 1px solid blue;
@@ -147,8 +136,8 @@ li.welcome {
     color: black;
     font-size: 25px;
     font-weight: 200 bolder;
-    margin-top: 40px;
     margin-left: 90px;
+    margin-bottom: 0;
 }
 
 
@@ -200,6 +189,7 @@ li.welcome {
 
 #searchInputBox {
     margin-top: 50px;
+    width:300px;
 }
 
 .searchIcons {
@@ -238,7 +228,7 @@ li.welcome {
 #slideoutsearchResultsDiv, #savedPlaces {
     margin-top: 370px;
     border: 1px solid #287AA9;
-    height: 55%;
+    height: 59%;
     position: absolute;
     width: 100%;
     overflow: scroll;
@@ -309,7 +299,6 @@ li.welcome {
 
 
 
-
 #directsearch {
     color: black;
 }
@@ -323,10 +312,14 @@ li.welcome {
 
 #rightBox {
     position: absolute;
-    top: 10%;
+<<<<<<< HEAD
+    
+=======
+   
+>>>>>>> rtest
     margin-left: 25%;
     width: 75%;
-    height: 93%;
+    height: 100%;
 
 }
 
@@ -338,13 +331,8 @@ li.welcome {
     position: absolute;
 }
 
-<<<<<<< HEAD
 .rightLoginBox, .rightRegisterBox, .rightStartBox ,.rightEditBox {
-    background-color:#FA9E25;
-=======
-.rightLoginBox, .rightRegisterBox, .rightStartBox {
     background-color: #FA9E25;
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
     position: absolute;
     border-top: 1px solid white;
     width: 100%;
@@ -356,37 +344,6 @@ li.welcome {
 }
 
 
-<<<<<<< HEAD
-.loginInputBox  {
-  padding: 3px;
-   box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
-}
-.registerInputBox{
- 
-   box-shadow: inset 0 0 0 3px #707070;
-  transition: box-shadow 0.3s, border 0.3s;
-  width:150px;
-  height:30px;
- 
-}
-
-.loginLabel, .startLabel{
-    font:bold;
-    color:black;
-    font-size:20px;
-}
-
- .registerLabel{
- font:bold;
-    color:black;
-    font-size:20px;
-   
- }
-.origin, .destination{
-=======
 .loginInputBox {
     padding: 3px;
     box-shadow: inset 0 0 0 3px #707070;
@@ -401,6 +358,7 @@ li.welcome {
     transition: box-shadow 0.3s, border 0.3s;
     width: 150px;
     height: 30px;
+ 
 }
 
 .loginLabel, .registerLabel, .startLabel {
@@ -408,8 +366,13 @@ li.welcome {
     color: black;
     font-size: 20px;
 }
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
 
+ .registerLabel{
+ font:bold;
+    color:black;
+    font-size:20px;
+   
+ }
 .origin, .destination {
     padding: 3px;
     border: solid 1px;
@@ -437,7 +400,6 @@ li.welcome {
 margin-left:120px;
 }
 
-<<<<<<< HEAD
 .editsubmitbtn , .deleteUserBtn{
  background-color:#3276b1;
     color:black;
@@ -451,21 +413,12 @@ margin-left:20px;
     display: inline-block;
     margin: 0;
 }
-.cancelbtn{
-background-color:#3276b1;
-    color:black;
-    font-size:20px;
-    width:100px;
-    height:30px;
-=======
-
 .cancelbtn {
     background-color: #3276b1;
     color: black;
     font-size: 20px;
     width: 100px;
     height: 30px;
->>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
 }
 
 

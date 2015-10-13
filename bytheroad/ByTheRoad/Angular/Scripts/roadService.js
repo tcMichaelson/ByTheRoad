@@ -18,7 +18,22 @@
                 .success(function (data) {
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
-                    success();
+                    
+
+                    success(data.access_token);
+                    //this.getData = function (callbackFunc) {
+                    //    $http({
+
+                    //        method: 'GET',
+                    //        url: 'Api/Profile',
+                    //        headers: { 'Authorization': 'bearer ' + sessionStorage.getItem('token') }
+                    //    }).success(function (data) {
+
+                    //        callbackFunc(data);
+                    //    }).error(function () {
+                    //        alert("error");
+                    //    });
+                    //}
 
                 })
 

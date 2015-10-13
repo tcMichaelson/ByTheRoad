@@ -4,24 +4,52 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
-
+           
             self.hasError = false;
             self.errorMessage = '';
+<<<<<<< HEAD
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
             self.registering = false;
             self.loggingin = false;
             self.start = false;
             self.star = false;
             self.results = [];
             self.mobileSearch = false;
-
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
             self.animationSaved = "animated slideOutLeft";
-
             self.getResults = function () {
                 self.results = mapService.results;
+<<<<<<< HEAD
             }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> rtest
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+                }
+            }
+<<<<<<< HEAD
+
+=======
+            self.init();
+>>>>>>> rtest
+=======
+            }
+
+<<<<<<< HEAD
+            self.init = function () {
+                if ($window.sessionStorage.token) {
+            }
+
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+            self.init();
+=======
+>>>>>>> rtest
             self.logoutbtn = false;
             self.mainbtn = false;
             self.value1 = false;
@@ -32,17 +60,26 @@
             self.milebtn = false;
             self.selected = false;
             self.clear = false;
+<<<<<<< HEAD
             self.editUser = false;
+=======
+
+
 
 
             self.findRoute = function () {
                 locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
                     locationService.renderLines(response);
                 })
+<<<<<<< HEAD
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
             }
 
+
             self.login = function () {
-                $http.post('/token', "grant_type=password&username=" + self.login.Email + "&password=" + self.login.Password,
+                $http.post('/token', "grant_type=password&username=" + self.login.email + "&password=" + self.login.password,
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -54,31 +91,40 @@
                     $window.sessionStorage.setItem("token", data.access_token);
                     
                     self.currentuser = self.login.FirstName;
-                    //self.currentEmail = self.login.Email;
+                    self.currentEmail = self.login.email;
                     self.loggingin = false;
                     self.logoutbtn = true;
-<<<<<<< HEAD
-                    self.login.Email = null;
-                    self.login.Password = null;
-                    
-=======
                     self.login.email = null;
                     self.login.password = null;
-
-                    var myFunction = function (userPOI) {
-                        self.places = userPOI;
-                        console.log("User POIs: " + userPOI);
-                    }
-
-                    mapService.listFavPOI(myFunction);
-
->>>>>>> 706048d6b146f49e268365b82e8f07e3198e6cbf
+<<<<<<< HEAD
+<<<<<<< HEAD
+                   
 
                 })
                 .error(function () {
                     console.error('Error loggin in.');
+                    self.loginError = true;
+=======
+                    
+>>>>>>> rtest
+=======
+
+>>>>>>> f7c208b07cdfa9db3b5861e2f66fe665e94fcbf8
+
+                })
+                .error(function () {
+<<<<<<< HEAD
+                    self.errorMessage = "Error loggin in";
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
+<<<<<<< HEAD
+=======
+                    self.hasError = true;
+                    self.errorMessage = "Error loggin in";
+>>>>>>> 612f1b547c4bd2874e4ee4fea41fda53fc17fb84
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
                 });
             };
 
@@ -86,39 +132,115 @@
                 $http.post('api/Account/Logout')
 
                .success(function (data) {
+<<<<<<< HEAD
 
-                   self.logoutbtn = false;
-                   self.
+                    self.logoutbtn = false;
                     console.log('success')
                 })
                 .error(function () {
-                    console.error('Error loggin in.');
-                    self.hasError = true;
+                   console.error('Error loggin in.');
 
                });
             };
 
             self.register = function () {
+<<<<<<< HEAD
+                roadService.register(self.register);
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+                
+             
+
+
+=======
+                roadService.register(self.register, function (error) {
+                    self.RegisterError = error;
+                });
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+               
+>>>>>>> a98b73081fd57848ca2546bd6878927cea48e2d8
+            };
+
+
+=======
+
+<<<<<<< HEAD
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+                .error(function () {
+                   console.error('Error loggin in.');
+
+               .success(function (data) {
+            };
+
+                    self.logoutbtn = false;
+                    console.log('success')
+                })
+                .error(function () {
+                   console.error('Error loggin in.');
+
+<<<<<<< HEAD
+                roadService.register(self.registerUser);
+                self.register.email = null;
+                self.register.password = null;
+                self.register.Confirmpassword = null;
+               });
+            };
+=======
                 roadService.register(self.registerUser, function(){
-                  
-                    self.currentuser = self.registerUser.FirstName;
+                    self.currentuser = self.registerUser.email;
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
-                    self.registerUser.Email = null;
+                    self.registerUser.email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
                 }, function (error) {
-                    console.error('Registration Error' );
                     self.hasError = true;
                     self.errorMessage = "Registration Error";
-                
+                self.register.firstName = null;
+                self.register.lastName = null;
 
+            self.register = function () {
+<<<<<<< HEAD
+                roadService.register(self.register, function (error) {
+                self.currentuser = self.register.email;
+                self.loggingin = false;
+                self.logoutbtn = true;
+=======
+
+            self.register = function () {
+                roadService.register(self.register);
+            };
+>>>>>>> rtest
+
+
+=======
+                roadService.register(self.registerUser, function(){
+                    self.currentuser = self.registerUser.email;
+                    self.registering = false;
+                    self.loggingin = false;
+                    self.logoutbtn = true;
+                    self.registerUser.email = null;
+                    self.registerUser.Password = null;
+                    self.registerUser.ConfirmPassword = null;
+                }, function (error) {
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+>>>>>>> 464626a91e9bb47a2c3229c8168f4c71dd1a241c
 
                 });
             }
 
 
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
             self.nearbySearch = function () {
                 self.runSearch(mapService.categorySearch);
             };
@@ -151,6 +273,10 @@
                     var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount);
                 } else {
                     var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
+<<<<<<< HEAD
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
                 }
                 func(self, searchPos);
                 self.startInterval();
@@ -158,11 +284,20 @@
             }
 
             var input = document.getElementById('searchInputBox');
+<<<<<<< HEAD
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
 
             var getSearchBox = window.setInterval(function () {
+                console.log(google.maps.places);
                 if (!(google.maps.places === undefined)) {
                     searchBox = new google.maps.places.SearchBox(input);
+<<<<<<< HEAD
+                    setInitialSearchBoxBounds(searchBox);
+=======
                     //setInitialSearchBoxBounds(searchBox);
+>>>>>>> rtest
                     self.setupListeners();
                     clearInterval(getSearchBox);
                     console.log(searchBox.getBounds());
@@ -178,7 +313,11 @@
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
 
+<<<<<<< HEAD
+                    if (places.length === 0 || places[0].place_id === undefined){
+=======
                     if (places.length === 0 || places[0].place_id === undefined) {
+>>>>>>> rtest
                         console.log(places[0].place_id)
                         return;
                     }
@@ -202,6 +341,15 @@
                 if (self.milesUnit)
                     return { unit: "miles", amount: self.milesUnit };
             }
+            self.getUnitAndAmount = function () {
+                if (self.minutesUnit)
+                    return { unit: "minutes", amount: self.minutesUnit };
+                if (self.hoursUnit)
+                    return { unit: "hours", amount: self.hoursUnit };
+                if (self.milesUnit)
+                    return { unit: "miles", amount: self.milesUnit };
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+            }
             self.toggleSavedBox = function () {
                 if (self.animationSaved === 'animated slideInLeft') {
                     self.animationSaved = 'animated slideOutLeft';
@@ -211,6 +359,26 @@
                     self.animationResults = 'animated slideOutLeft';
                 }
             }
+            self.favPOI = function () {
+<<<<<<< HEAD
+                mapService.favPOI(self.poiToSave);
+=======
+                mapService.favPOI(self.poiToSave, self.chkState);
+<<<<<<< HEAD
+
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+=======
+>>>>>>> rtest
+            }
+            self.places = function () {
+                mapService.listFavPOI();
+                self.toggleSavedBox();
+            }
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+        });
+=======
 
             self.favPOI = function () {
                 mapService.favPOI(self.poiToSave, self.chkState);
@@ -221,28 +389,25 @@
                 mapService.listFavPOI();
                 self.toggleSavedBox();
             }
+>>>>>>> 00dfe839a55bcbb17a32766d42d32a75d67dafd9
+
+=======
 
             self.showLeftBox = function () {
                 document.getElementById('leftBox').style.left = '0';
                 document.getElementById('rightBox').style.left = '100%';
             }
-
-            self.showRightBox = function () {
-                document.getElementById('leftBox').style.left = '-100%';
-                document.getElementById('rightBox').style.left = '0';
-            }
-        });
+<<<<<<< HEAD
     angular
         .module('byTheRoad')
         .directive('validNumber',function(){
-
             return {
                 require: '?ngModel',
                 link: function(scope, element, attrs, ngModelCtrl) {
                     if(!ngModelCtrl) {
                         return; 
                     }
-      
+
                     ngModelCtrl.$parsers.push(function(val) {
                         var clean = val.replace( /[^0-9]+/g, '');
                         if (val !== clean) {
@@ -251,14 +416,18 @@
                         }
                         return clean;
                     });
-      
                     element.bind('keypress', function(event) {
                         if(event.keyCode === 32) {
                             event.preventDefault();
                         }
                     });
-                }
             };
+=======
+            self.showRightBox = function () {
+                document.getElementById('leftBox').style.left = '-100%';
+                document.getElementById('rightBox').style.left = '0';
+            }
+>>>>>>> rtest
         });
 
 })();

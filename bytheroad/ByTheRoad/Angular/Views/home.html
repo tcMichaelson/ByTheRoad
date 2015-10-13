@@ -139,7 +139,7 @@
                     <label ng-if="self.logoutbtn === true">Mark as Favorite </label>
                     <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.chkState = result.saved; self.poiToSave = result; self.favPOI()" ng-if="self.logoutbtn === true"/>
                     <label ng-if="self.logoutbtn === false">Login to save as favorite</label>
-                    <button class="navigatesearch" type="button">Navigate</button>
+                    <button class="navigatesearch" type="button" ng-if="false">Navigate</button>
                 </div>
 
             </div>

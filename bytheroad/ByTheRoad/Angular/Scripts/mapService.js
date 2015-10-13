@@ -6,6 +6,7 @@
             var infowindow;
             var self = this;
             self.places = [];
+            self.distancesFound = 0;
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
@@ -147,6 +148,11 @@
                 }, 1000);
             }
 
+            self.reCenterCustom = function (pos, zoom) {
+                map.panTo(pos);
+                map.setZoom(zoom);
+            }
+
             //grabbing the info for each place
             self.callback = function (places, status) {
                 if (markers[0]) {
@@ -187,6 +193,7 @@
                                 self.results[idx].route = response;
                                 self.results[idx].distance = response.routes[0].legs[0].distance.text;
                                 console.log("placeDist: ", placeDist)
+                                self.distancesFound++;
                             });
                             resultIdx++;
                         }

@@ -216,6 +216,7 @@
                                     result.website = place.website;
                                     result.formatted_phone_number = place.formatted_phone_number;
                                     result.formatted_address = place.formatted_address;
+                                    result.vicinity = place.vicinity;
                                 }
 
                             });
@@ -223,7 +224,7 @@
                     });
 
                 }
-                console.log("self-results" + self.results);
+                console.log("self-results", self.results);
             }
 
             function createMarker(place) {

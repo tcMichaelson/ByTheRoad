@@ -3,6 +3,7 @@
     angular
         .module('byTheRoad')
         .service('authUserService', function ($http) {
+            var self = this;
             this.getData = function (callbackFunc) {
                 $http({
 
@@ -50,11 +51,13 @@
                 })
                 .success(function (data) {
                     success("This was a success");
+                   self.status = "The Person Deleted Successfully!!!";
                    
                   getData();
                 })
                 .error(function (error) {
                     error();
+                    self.status = 'Unable to delete a person: ' + error.message;
                 });
             }
 

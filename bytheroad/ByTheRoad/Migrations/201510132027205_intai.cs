@@ -19,6 +19,7 @@ namespace ByTheRoad.Migrations
                         PhoneNum = c.String(),
                         Rating = c.Double(),
                         User_Id = c.String(maxLength: 128),
+
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.User_Id)

@@ -25,13 +25,15 @@
                     });
                     getInitialLocation();
                     clearInterval(waitForMap);
-                    window.setInterval(function (data) {
-                        getCurrentLocation();
-                    }, 5000);
+                    //window.setInterval(function (data) {
+                    //    getCurrentLocation();
+                    //}, 5000);
                 } catch(e) {
                     console.log("no dice");
                 }
             }, 750);
+
+
 
             function getInitialLocation () {
                 if (navigator.geolocation) {
@@ -63,6 +65,8 @@
                             map: map,
                             icon: carIcon
                         });
+
+                        updateLocHist(currLoc);
 
 
                     }, function () {
@@ -134,14 +138,14 @@
                 }
             }
 
-            self.findGenericFuturePosition = function (unit, amount) {
+            self.findGenericFuturePosition = function (unit, amount, offset) {
                 var meters;
                 if (locHist.length === 1) {
                     return { lat: locHist[0].lat, lng: locHist[0].lng };
                 }
                 var lastLoc = locHist[locHist.length - 1];
                 if (unit === "miles") {
-                    meters = amount * 1609.344;
+                    meters = amount * 1609.344
                 } else {
                     if (unit === "hours") {
                         amount *= 3600;
@@ -150,6 +154,14 @@
                     }
                     meters = lastLoc.speed * amount;
                 }
+
+                meters = meters + (offset * 500);
+
+                if (meters < 0)
+                {
+                    meters = 0;
+                }
+
                 console.log("meters:", meters);
                 console.log("speed:", lastLoc.speed);
                 console.log(meters);
@@ -181,7 +193,7 @@
                 return futureLoc;
             }
 
-            self.findFuturePosition = function (spotOnRoute, unit, amount) {
+            self.findFuturePosition = function (spotOnRoute, unit, amount, offset) {
                 var meters;
                 var futureLoc;
                 var currLoc = locHist[locHist.length - 1];
@@ -193,8 +205,13 @@
                     } else {
                         amount *= 60;
                     }
-                    meters = currLoc.speed * amount;
+                    meters = currLoc.speed * amount
                 }
+
+                meters = meters + (offset * 500);
+
+                if (meters < 0)
+                    meters = 0;
 
                 console.log("selectedRoute:", selectedRoute);
                 console.log(spotOnRoute);
@@ -239,6 +256,7 @@
 
             self.findRouteAndDisplay = function (destination, index, func) {
                 var directionsService = new google.maps.DirectionsService;
+                console.log(locHist);
                 var start = locHist[locHist.length - 1];
                 var end = destination;
                 var request = {
@@ -250,6 +268,7 @@
                 directionsService.route(request, function (response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         console.log(response);
+
                         func(response, index);
                     }
                 });
@@ -342,7 +361,6 @@
                     var dist = self.calculateDistance(firstLoc, currentLoc);  //distance in meters
                     if (dist > 1) {
                         var brng = calculateInitialBearing(firstLoc, currentLoc);
-                        console.log(dist);
                         var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
                         var spd = dist / time;  //meters per second
                         locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: brng, speed: spd });
@@ -435,6 +453,39 @@
                 var sw = calculatePointAlongBearing(position, 225, 500);
                 var ne = calculatePointAlongBearing(position, 45, 500);
                 searchBox.setBounds(new google.maps.LatLngBounds(sw, ne));
+            }
+
+            self.startRouting = function() {
+                map.setZoom(15);
+                var move = 0;
+                locHist = [];
+                map.setCenter(selectedPath[0]);
+                var carIcon = {
+                    url: "../../Content/Cars/sportCar0.png",
+                    scaledSize: new google.maps.Size(40, 40),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(20, 20)
+                };
+                if (car) {
+                    car.setMap(null);
+                }
+                car = new google.maps.Marker({
+                    position: selectedPath[0],
+                    map: map,
+                    icon: carIcon
+                });
+
+                console.log(selectedRoute);
+                move++;
+                var refreshInterval = window.setInterval(function () {
+                    if (selectedPath[move]) {
+                        updateLocHist(selectedPath[move]);
+                        moveCar(selectedPath[move]);
+                        move++;
+                    } else {
+                        clearInterval(refreshInterval);
+                    }
+                }, 1000);
             }
 
         });

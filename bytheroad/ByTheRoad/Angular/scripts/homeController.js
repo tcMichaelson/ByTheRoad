@@ -14,6 +14,8 @@
             self.star = false;
             self.results = [];
             self.mobileSearch = false;
+            self.showFav = false;
+            self.foundRoute = false;
 
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
@@ -38,9 +40,15 @@
            
 
             self.findRoute = function () {
-                locationService.findRouteAndDisplay(self.directions.destination, 0, function(response){
+                locationService.findRouteAndDisplay(self.directions.destination, 0, function (response) {
                     locationService.renderLines(response);
+                    self.foundRoute = true;
+                    $scope.$apply();
                 })
+            }
+
+            self.startRouting = function(){
+                locationService.startRouting();
             }
 
             self.login = function () {
@@ -162,26 +170,37 @@
 
 
             self.nearbySearch = function () {
-                self.runSearch(mapService.categorySearch);
+                self.runSearch(mapService.categorySearch, 0);//self.runSearch(func);
             };
 
             self.textSearch = function () {
-                self.runSearch(mapService.regTextSearch);
+                self.runSearch(mapService.regTextSearch, 0);
             }
 
-            self.startInterval = function () {
+            self.startInterval = function (func, searchPos) {
+                var queryLimit = 1;
                 var checkResults = window.setInterval(function () {
-                    if (self.results.length === 0 && self.results[0] !== 'none') {
+                    if (self.results[0] === 'none' && queryLimit < 10) {
+                        self.runSearch(func, queryLimit);
+                        if (queryLimit > 0){
+                            queryLimit *= -1;
+                        }
+                        else
+                        {
+                            queryLimit = (queryLimt * -1) + 1;
+                        }
+                    } else if (self.results.length === 0 && self.results[0] !== 'none') {
                         self.getResults();
                         $scope.$apply();
                     } else {
+                        self.showResultsBox();
                         console.log(self.results);
                         clearInterval(checkResults);
                     }
                 }, 500);
             }
 
-            self.runSearch = function (func) {
+            self.runSearch = function (func, offset) {
                 var info = self.getUnitAndAmount();
                 self.results = [];
                 mapService.results = [];
@@ -190,13 +209,13 @@
                 console.log("selectedRoute: ", locationService.selectedRoute);
 
                 if (spotOnRoute) {
-                    var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount);
+                    var searchPos = locationService.findFuturePosition(spotOnRoute, info.unit, info.amount, offset);
                 } else {
-                    var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount);
+                    var searchPos = locationService.findGenericFuturePosition(info.unit, info.amount, offset);
                 }
-                func(self, searchPos);
-                self.startInterval();
-                self.showResultsBox();
+                mapService.places = self.places;
+                func(self, searchPos);//Invoked func
+                self.startInterval(func, searchPos);
             }
 
             var input = document.getElementById('searchInputBox');
@@ -207,7 +226,6 @@
                     //setInitialSearchBoxBounds(searchBox);
                     self.setupListeners();
                     clearInterval(getSearchBox);
-                    console.log(searchBox.getBounds());
                 }
             }, 500);
 
@@ -255,7 +273,13 @@
             }
 
             self.favPOI = function () {
-                mapService.favPOI(self.poiToSave, self.chkState);
+                mapService.favPOI(self.poiToSave, self.chkState, function (item) {
+                    self.places.push(item);
+                }, function (item) {
+                    self.places = self.places.filter(function (compareItem) {
+                        return item.Place_id !== compareItem.Place_id;
+                    });
+                });
 
             }
 

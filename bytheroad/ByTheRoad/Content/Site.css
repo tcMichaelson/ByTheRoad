@@ -22,7 +22,7 @@ body {
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
     body {
         min-width: 1200px;
     }
@@ -241,20 +241,20 @@ li.welcome {
 }
 
 #hide {
-    width: 90px;
+    width: 110px;
     height: 30px;
     background-color: #428bca;
     color: white;
-    font-size: medium;
+    font-size:14px;
 }
 
 
 #favorite {
-    width: 90px;
+    width: 110px;
     height: 30px;
     background-color: #428bca;
     color: white;
-    font-size: medium;
+    font-size: 14px;
 }
 
 
@@ -316,6 +316,7 @@ li.welcome {
     margin-left: 25%;
     width: 75%;
     height: 100%;
+    
 
 }
 
@@ -587,14 +588,16 @@ margin-left:20px;
 }
 
 #mobileSearch, #mobileSearchHide {
-    display: none;
+    display:none;
+
 }
 
 #errorMessages {
     background-color: white;
     position: fixed;
-    left: 20%;
-    width: 200px;
+    top: 20%;
+    left: 40%;
+    width: 40%;
     height: 200px;
 }
 

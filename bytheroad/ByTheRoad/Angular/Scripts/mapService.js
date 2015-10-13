@@ -61,7 +61,7 @@
                 });
             }
 
-            self.categorySearch = function (model, center) {
+            self.categorySearch = function (model, center, updateResultsFunc) {
                 self.results = [];
                 infowindow = new google.maps.InfoWindow();
 
@@ -78,7 +78,7 @@
             }
 
             //text search from  input box
-            self.regTextSearch = function (model, center) {
+            self.regTextSearch = function (model, center, updateResultsFunc) {
                 self.results = [];
 
                 infowindow = new google.maps.InfoWindow();
@@ -182,12 +182,14 @@
                                });
                             }
                             markers[resultIdx] = (createMarker(places[i]));
-                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
-                                self.results[idx].route = response;
-                                self.results[idx].distance = response.routes[0].legs[0].distance.text;
-                                console.log("placeDist: ", placeDist)
-                                self.distancesFound++;
-                            });
+                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx)
+                                .then(function (response) {
+                                    
+                                    self.results[response.index].distance = response.response.routes[0].legs[0].distance.text;
+                                    self.results[response.index].route = response.response;
+                                    console.log("placeDist: ", placeDist);
+                                    self.distancesFound++;
+                                });
                             resultIdx++;
                         }
 

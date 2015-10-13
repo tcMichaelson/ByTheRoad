@@ -41,11 +41,12 @@
            
 
             self.findRoute = function () {
-                locationService.findRouteAndDisplay(self.directions.destination, 0, function (response) {
-                    locationService.renderLines(response);
+                locationService.findRouteAndDisplay(self.directions.destination, 0)
+                .then(function (response) {
+                    locationService.renderLines(response.response);
                     self.foundRoute = true;
-                    $scope.$apply();
-                })
+
+                });
             }
 
             self.startRouting = function(){
@@ -124,7 +125,6 @@
                         self.data = dataResponse;
                         
                     });
-
                     self.places = [];
                     self.registering = false;
                     self.loggingin = false;

@@ -148,7 +148,7 @@
 
 
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-        <h3> My Favorite places</h3>
+        <h3 id="places"> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
         <div class="resultsDiv" ng-repeat="saved in self.places">
             <div class="savedPlacesDetail">

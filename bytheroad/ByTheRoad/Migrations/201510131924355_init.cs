@@ -15,6 +15,7 @@ namespace ByTheRoad.Migrations
                         Place_id = c.String(),
                         Name = c.String(),
                         Address = c.String(),
+                        Vicinity = c.String(),
                         PhoneNum = c.String(),
                         Rating = c.Double(),
                         User_Id = c.String(maxLength: 128),

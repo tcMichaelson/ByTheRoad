@@ -5,11 +5,11 @@
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
-                <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false">Direction</a></li>
+                <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false; ">Direction</a></li>
                 
-                <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false">Log Out</a></li>
+                <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false;" >Log Out</a></li>
                 <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.data.FirstName}}</li>
-        <li class="edit"><a class="edituser" ng-click=" self.editUser = !self.editUser" ng-show="self.logoutbtn === true">Edit Profile</a></li>
+        <li class="edit"><a class="edituser" ng-click=" self.editUser = !self.editUser; self.start = false" ng-show="self.logoutbtn === true">Edit Profile</a></li>
     </ul>
 </div>
 
@@ -123,11 +123,9 @@
 
             <div class="searchResultsDetail">
                 <div class="resultTitle">
-
                     <h3 class="searchResultHeading">
-                        {{result.name}}                        <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20" ng-if="self.logoutbtn === true">
+                        {{result.name}} <img class="starimg" ng-show="result.saved === true" src="http://pngimg.com/upload/star_PNG1592.png" width="20" height="20" ng-if="self.logoutbtn === true">
                     </h3>
-
 
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
@@ -148,16 +146,19 @@
 
 
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-        <h3> My Favorite places</h3>
+        <h3 id="slideboxheading"> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
-        <div class="resultsDiv" ng-repeat="saved in self.places">
+        <div class="searchFavoriteDetail" ng-repeat="saved in self.places">
             <div class="savedPlacesDetail">
                 <div class="resultTitle">
                     <h4 class="searchResultHeading"><strong>{{saved.Name}}</strong></h4>
                 </div>
                 <div class="searchAdd">{{saved.Address}}</div>
                 <div class="rating">{{saved.Rating}}</div>
-                <div class="phoneNum">{{saved.PhoneNum}}</div>
+                <div><button class="deleteFav"  ng-if="self.logoutbtn === true">Delete </button>
+              
+               
+                </div>
             </div>
         </div>
 
@@ -280,22 +281,7 @@
 
             </div>
 
-            <!--<div class="editinfo">
-                <label class="registerLabel">
-                    Password
-                </label><br />
-                <input class="registerInputBox" name="pwd"  type="password" ng-model="self.currentPassword"  ng-required="true" />
-
-            </div>
-            <div class="editinfo">
-
-                <label class="registerLabel">
-                    Confirm Password
-                </label><br />
-
-                <input class="registerInputBox" name="pwd"  type="password" ng-model="self.currentConfirmPassword" ng-required="true" />
-            </div>-->
-
+           
             <div class="editinfo">
                 <input type="submit" class="editsubmitbtn" value="Update" ng-click="self.editUser = false" />
             <button type="button" class="deleteUserBtn" ng-click="self.deleteProfile(); self.editUser = false; self.logoutbtn = false ">Delete</button>

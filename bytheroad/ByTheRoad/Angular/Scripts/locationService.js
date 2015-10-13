@@ -1,7 +1,7 @@
 ﻿var map;
 (function () {
     angular.module('byTheRoad')
-        .service('locationService', function () {
+        .service('locationService', function ($q) {
             var self = this;
 
             var locHist = [];  //history of locations the user has been at
@@ -155,7 +155,7 @@
                     meters = lastLoc.speed * amount;
                 }
 
-                meters = meters + (offset * 500);
+                meters = meters + (offset * 200);
 
                 if (meters < 0)
                 {
@@ -208,7 +208,7 @@
                     meters = currLoc.speed * amount
                 }
 
-                meters = meters + (offset * 500);
+                meters = meters + (offset * 200);
 
                 if (meters < 0)
                     meters = 0;
@@ -254,7 +254,8 @@
                 return futureLoc;
             }
 
-            self.findRouteAndDisplay = function (destination, index, func) {
+            self.findRouteAndDisplay = function (destination, index/*, func*/) {
+                var deferred = $q.defer();
                 var directionsService = new google.maps.DirectionsService;
                 console.log(locHist);
                 var start = locHist[locHist.length - 1];
@@ -268,10 +269,14 @@
                 directionsService.route(request, function (response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         console.log(response);
+                        
+                        deferred.resolve({ response: response, index: index });
+                        //func(response, index);
 
-                        func(response, index);
                     }
                 });
+
+                return deferred.promise;
                 
             }
 

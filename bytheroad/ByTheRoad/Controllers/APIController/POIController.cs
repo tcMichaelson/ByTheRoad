@@ -52,6 +52,7 @@ namespace ByTheRoad.Controllers.APIController
                     Place_id = poi.Place_id,
                     Name = poi.Name,
                     Address = poi.Address,
+                    Vicinity = poi.Vicinity,
                     PhoneNum = poi.PhoneNum,
                     Rating = poi.Rating,
 

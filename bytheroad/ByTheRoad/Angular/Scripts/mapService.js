@@ -6,14 +6,11 @@
             var infowindow;
             var self = this;
             self.places = [];
+            self.distancesFound = 0;
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
-
-            self.results = [];
-
-            
-
+            self.results = [];          
 
             // Save POI
             self.favPOI = function (poi, chkState, addFav, deleteFav) {
@@ -24,6 +21,7 @@
                         Place_id: poi.place_id,
                         Name: poi.name,
                         Address: poi.formatted_address,
+                        Vicinity: poi.vicinity,
                         PhoneNum: poi.formatted_phone_number,
                         Rating: poi.rating,
 
@@ -51,9 +49,6 @@
                 }
             }
 
-
-
-
             // Retrieve POI
             self.listFavPOI = function (func) {
                 $http.get('/api/POI')
@@ -66,7 +61,7 @@
                 });
             }
 
-            self.categorySearch = function (model, center) {
+            self.categorySearch = function (model, center, updateResultsFunc) {
                 self.results = [];
                 infowindow = new google.maps.InfoWindow();
 
@@ -83,7 +78,7 @@
             }
 
             //text search from  input box
-            self.regTextSearch = function (model, center) {
+            self.regTextSearch = function (model, center, updateResultsFunc) {
                 self.results = [];
 
                 infowindow = new google.maps.InfoWindow();
@@ -98,7 +93,6 @@
 
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
-
 
             }
 
@@ -147,6 +141,11 @@
                 }, 1000);
             }
 
+            self.reCenterCustom = function (pos, zoom) {
+                map.panTo(pos);
+                map.setZoom(zoom);
+            }
+
             //grabbing the info for each place
             self.callback = function (places, status) {
                 if (markers[0]) {
@@ -183,11 +182,14 @@
                                });
                             }
                             markers[resultIdx] = (createMarker(places[i]));
-                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx, function (response, idx) {
-                                self.results[idx].route = response;
-                                self.results[idx].distance = response.routes[0].legs[0].distance.text;
-                                console.log("placeDist: ", placeDist)
-                            });
+                            locationService.findRouteAndDisplay(places[i].geometry.location, resultIdx)
+                                .then(function (response) {
+                                    
+                                    self.results[response.index].distance = response.response.routes[0].legs[0].distance.text;
+                                    self.results[response.index].route = response.response;
+                                    console.log("placeDist: ", placeDist);
+                                    self.distancesFound++;
+                                });
                             resultIdx++;
                         }
 
@@ -214,6 +216,7 @@
                                     result.website = place.website;
                                     result.formatted_phone_number = place.formatted_phone_number;
                                     result.formatted_address = place.formatted_address;
+                                    result.vicinity = place.vicinity;
                                 }
 
                             });
@@ -221,7 +224,7 @@
                     });
 
                 }
-                console.log("self-results" + self.results);
+                console.log("self-results", self.results);
             }
 
             function createMarker(place) {

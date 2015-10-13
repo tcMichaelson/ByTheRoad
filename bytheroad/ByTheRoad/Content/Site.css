@@ -136,7 +136,7 @@ li.welcome {
     color: black;
     font-size: 25px;
     font-weight: 200 bolder;
-    margin-left: 90px;
+    margin-left: 25%;
     margin-bottom: 0;
     margin-top:50px;
 }
@@ -146,6 +146,7 @@ li.welcome {
 .leftDivSearchChoices div {
     position: absolute;
     width: 100%;
+    color:black;
 }
 
 .distance {
@@ -234,11 +235,11 @@ li.welcome {
     width: 100%;
     overflow: scroll;
     background-color: white;
-    color: blue;
+    color: black;
 }
 
 #slideboxheading {
-    color: black;
+    color:black;
 }
 
 #hide {

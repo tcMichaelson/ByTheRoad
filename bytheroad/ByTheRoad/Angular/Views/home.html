@@ -15,8 +15,6 @@
     </ul>
 </div>
 
-
-
 <div id="leftBox">
 
     <div class="leftFloatingDiv">
@@ -69,7 +67,7 @@
                     </form>
                 </div>
                 <div class="dragOutSearchResult">
-                    <button type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'">Search Results</button>
+                    <button type="button" ng-show="self.selected === true && (self.milesUnit.length > 0 || self.hoursUnit.length > 0 || self.minutesUnit.length > 0)" ng-click="self.selected = true;  self.animationResults='animated slideInLeft'"class="ButttonResultsSearch">Search Results</button>
                 </div>
 
                 <div class="searchIcons">
@@ -131,7 +129,7 @@
 
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <div class="searchAdd" ng-if="result.formatted_address === undefined" >{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
                 <div><label class="distanceFromLocLabel"> Distance:</label> {{result.distance}}</div>
                 <div class="savedFavaotesButton">
@@ -157,11 +155,14 @@
                 <div class="resultTitle">
                     <h3 class="searchResultHeading"><strong>{{saved.Name}}</strong></h3>
                 </div>
-                <div class="searchAdd" ng-if="saved.Address !== undefined">{{saved.Address}}</div>
-                <div class="searchAdd" ng-if="saved.Address === undefined">{{saved.Vicinity}}</div>
+
+                <!--C# will return null as opposed to undefine-->
+                <div class="searchAdd" ng-if="saved.Address !== null">{{saved.Address}}</div>
+                <div class="searchAdd" ng-if="saved.Address === null">{{saved.Vicinity}}</div>
+
                 <div class="rating">{{saved.Rating}}</div>
                 <div>
-                    <button class="deleteFav" ng-if="self.logoutbtn === true">Delete </button>
+                    <button class="deleteFav" ng-if="self.logoutbtn === true" ng-click="self.poiToSave = saved; self.chkState = false; self.favPOI()">Delete</button>
 
 
                 </div>

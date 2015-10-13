@@ -1,10 +1,11 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService,authUserService, $window) {
             var self = this;
             var searchBox;
 
+            self.displayName = "";
             self.hasError = false;
             self.errorMessage = '';
             self.registering = false;
@@ -36,6 +37,7 @@
             self.clear = false;
             self.editUser = false;
 
+           
 
             self.findRoute = function () {
                 locationService.findRouteAndDisplay(self.directions.destination, 0, function (response) {
@@ -60,9 +62,14 @@
                     token = data.access_token;
                     $http.defaults.headers.common['Authorization'] = 'bearer ' + token;
                     $window.sessionStorage.setItem("token", data.access_token);
-                    
-                    self.currentuser = self.login.FirstName;
-                    self.currentEmail = self.login.Email;
+                   
+                    self.data=null;
+                    authUserService.getData(function(dataResponse){
+                        self.data = dataResponse;
+                        self.displayName = self.data.FirstName;
+                        
+                    });
+
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.login.Email = null;
@@ -81,9 +88,13 @@
                     console.error('Error loggin in.');
                     self.hasError = true;
                     self.errorMessage = "Error logging in";
+                    self.login.Email = null;
+                    self.login.Password = null;
                 });
             };
 
+          
+          
             self.logout = function () {
                 $http.post('api/Account/Logout')
 
@@ -100,15 +111,26 @@
             };
 
             self.register = function () {
-                roadService.register(self.registerUser, function(){
-                  
-                    self.currentuser = self.registerUser.FirstName;
+
+
+                roadService.register(self.registerUser, function (token) {
+
+                    $window.sessionStorage.setItem("token", token);
+
+                    self.data=null;
+                    authUserService.getData(function(dataResponse){
+                        self.data = dataResponse;
+                        
+                    });
+
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
                     self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
+                    self.registeringUser.FirstName = null;
+                    self.registeringUser.LastName = null;
 
                 }, function (error) {
                     console.error('Registration Error' );
@@ -118,6 +140,32 @@
                 self.register.LastName = null;
 
                 });
+            }
+
+            self.updateProfile=function(data){
+
+                authUserService.update(data,function(){
+                  
+                },function(error){
+                    console.error('Registration Error' );
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+                })
+            }
+
+            var successAction = function () {
+                self.data.FirstName = null;
+                self.data.LastName = null;
+                self.data.Email = null;
+            }
+
+            self.deleteProfile = function () {
+                authUserService.delete(self.data.Id, successAction, function(error){
+                    console.error('Registration Error' );
+                    self.hasError = true;
+                    self.errorMessage = "Registration Error";
+                })
+           
             }
 
 
@@ -274,5 +322,8 @@
                 }
             };
         });
+
+
+  
 
 })();

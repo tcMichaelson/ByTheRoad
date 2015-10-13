@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace ByTheRoad.Controllers.APIController
 {
+    [Authorize]
     public class ProfileController : ApiController
     {
         private IGenericRepository _repo;
@@ -16,42 +17,66 @@ namespace ByTheRoad.Controllers.APIController
             _repo = repo;
         }
 
-        public IEnumerable<ApplicationUser> GetReviews()
-        {
-            return _repo.Query<ApplicationUser>().ToList();
-        }
-
-        public void AddReview(ApplicationUser user)
-        {
-            _repo.Add(user);
-            _repo.SaveChanges();
-        }
-
 
 
         // GET: api/Profile/5
         public ApplicationUser Get()
         {
-            return _repo.Query<ApplicationUser>().FirstOrDefault();
-        }
+            //stays here in controller
+            var curr = (from u in _repo.Query<ApplicationUser>()
+                        where u.UserName == User.Identity.Name
+                        select u).SingleOrDefault();
 
-        // POST: api/Profile
-        public void Post(ApplicationUser user)
+            return curr; }
+
+            public HttpResponseMessage Post(ApplicationUser user)
         {
+
+            if (ModelState.IsValid)
+            {
+                if (user.Id == null)
+                {
+                    _repo.Add<ApplicationUser>(user);
+                    _repo.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, user);
+
+                }
+                else
+                {
+      
             var userToUpdate = _repo.Query<ApplicationUser>().Where(m => m.UserName == User.Identity.Name).FirstOrDefault();
             userToUpdate.FirstName = user.FirstName;
             userToUpdate.LastName = user.LastName;
-            userToUpdate.ShowFirstName = user.ShowFirstName;
-            userToUpdate.ShowLastName = user.ShowLastName;
-            userToUpdate.ShowUserName = user.ShowUserName;
+            
+            
 
             _repo.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, user);
+                }
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, this.ModelState);
+            }
         }
 
-        // DELETE: api/Profile/5
-        public void Delete(int id)
+       [HttpDelete]
+        public HttpResponseMessage DeleteProfile(string Id)
         {
+            
+            if (ModelState.IsValid)
+            {
+               
+               
+                    _repo.Delete<ApplicationUser>(Id);
+                    _repo.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+            
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
             
         }
     }
 }
+

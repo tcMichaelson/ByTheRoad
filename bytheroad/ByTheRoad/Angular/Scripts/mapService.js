@@ -9,11 +9,7 @@
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
-
-            self.results = [];
-
-            
-
+            self.results = [];          
 
             // Save POI
             self.favPOI = function (poi, chkState, addFav, deleteFav) {
@@ -24,6 +20,7 @@
                         Place_id: poi.place_id,
                         Name: poi.name,
                         Address: poi.formatted_address,
+                        Vicinity: poi.vicinity,
                         PhoneNum: poi.formatted_phone_number,
                         Rating: poi.rating,
 
@@ -51,9 +48,6 @@
                 }
             }
 
-
-
-
             // Retrieve POI
             self.listFavPOI = function (func) {
                 $http.get('/api/POI')
@@ -76,7 +70,7 @@
                     types: model.selectedItem
                 }
 
-                reCenter(center);
+                setCircle(center);
 
                 var service = new google.maps.places.PlacesService(map);
                 service.nearbySearch(request, self.callback);
@@ -94,32 +88,25 @@
                     query: document.getElementById('searchInputBox').value
                 };
 
-                reCenter(center);
+                setCircle(center);
 
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
 
-
             }
 
-            function reCenter(center) {
-                var i = 1;
-                var currBounds = map.getBounds();
-                var tempCircle;
-
-                currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
-                map.fitBounds(currBounds);
+            function setCircle(center) {
 
                 if (searchCircle) {
                     searchCircle.setMap(null);
                 }
 
-                searchCircle = new google.maps.Circle({
-                    center: center,
-                    radius: 500
-                });
+                //var currBounds = map.getBounds();
 
-                tempCircle = new google.maps.Circle({
+                //currBounds.extend(new google.maps.LatLng(center.lat, center.lng));
+                //map.fitBounds(currBounds);
+
+                searchCircle = new google.maps.Circle({
                     strokeColor: '#FF0000',
                     strokeOpacity: 1,
                     strokeWeight: 2,
@@ -127,27 +114,20 @@
                     fillOpacity: 0,
                     map: map,
                     center: center,
-                    radius: (30 - map.getZoom()) * 10 ^ (30 - map.getZoom()) / 3,
-                    zIndex: 3
-                })
-                console.log("far zoom radius: ", tempCircle.radius);
+                    radius: 500
+                });
+                
+            }
+
+            self.reCenter = function () {
+                var i = 1;
+                var center = searchCircle.getCenter();
                 map.panTo(center);
 
                 var transitionWindow = window.setInterval(function () {
                     switch (i) {
 
                         case 1:
-                            tempCircle.setMap(null);
-                            searchCircle = new google.maps.Circle({
-                                strokeColor: '#FF0000',
-                                strokeOpacity: 1,
-                                strokeWeight: 2,
-                                fillColor: '#FF0000',
-                                fillOpacity: 0,
-                                map: map,
-                                center: center,
-                                radius: 500
-                            });
                             map.setZoom(15);
                             break;
 
@@ -159,7 +139,6 @@
                     i++
                 }, 1000);
             }
-
 
             //grabbing the info for each place
             self.callback = function (places, status) {
@@ -175,8 +154,8 @@
                     for (var i = 0; i < places.length; i++) {
                         
                         var placeDist = locationService.calculateDistance(
-                            { lat: places[i].geometry.location.J, lng: places[i].geometry.location.M },
-                            { lat: searchCircle.getCenter().J, lng: searchCircle.getCenter().M });
+                            { lat: places[i].geometry.location.lat(), lng: places[i].geometry.location.lng() },
+                            { lat: searchCircle.getCenter().lat(), lng: searchCircle.getCenter().lng() });
 
                         if (placeDist <= 500) {
                             placeIdArray.push(places[i].place_id);

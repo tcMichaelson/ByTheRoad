@@ -102,7 +102,6 @@
                .success(function (data) {
 
                    self.logoutbtn = false;
-                   self.places = [];
                     console.log('success')
                 })
                 .error(function () {
@@ -125,7 +124,6 @@
                         
                     });
 
-                    self.places = [];
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
@@ -195,18 +193,12 @@
                         self.getResults();
                         $scope.$apply();
                     } else {
-                        queryLimit = 1;
                         self.showResultsBox();
-
                         queryLimit = 1;
-
-                        mapService.reCenter();
-
                         console.log(self.results);
                         clearInterval(checkResults);
-                        $scope.$apply();
                     }
-                }, 100);
+                }, 500);
             }
 
             self.runSearch = function (func, offset) {
@@ -224,9 +216,7 @@
                 }
                 mapService.places = self.places;
                 func(self, searchPos);//Invoked func
-                if (offset === 0) {
-                    self.startInterval(func, searchPos);
-                }
+                self.startInterval(func, searchPos);
             }
 
             var input = document.getElementById('searchInputBox');

@@ -102,7 +102,6 @@
                .success(function (data) {
 
                    self.logoutbtn = false;
-                   self.places = [];
                     console.log('success')
                 })
                 .error(function () {
@@ -125,7 +124,6 @@
                         
                     });
 
-                    self.places = [];
                     self.registering = false;
                     self.loggingin = false;
                     self.logoutbtn = true;
@@ -197,11 +195,11 @@
                     } else {
                         queryLimit = 1;
                         self.showResultsBox();
-
+<<<<<<< HEAD
                         queryLimit = 1;
-
+=======
                         mapService.reCenter();
-
+>>>>>>> 95224c611daed2009b99eeb460379b0cf1b630d2
                         console.log(self.results);
                         clearInterval(checkResults);
                         $scope.$apply();

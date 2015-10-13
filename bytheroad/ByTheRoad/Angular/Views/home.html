@@ -146,8 +146,8 @@
 
 
     <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
-        <h3 id="slideboxheading"> My Favorite places</h3>
-            My Favorite places
+        <h3 id="slideboxheading">My Favorite places</h3>
+            
             <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
         <div class="searchFavoriteDetail" ng-repeat="saved in self.places">
             <div class="searchResultsDetail">
@@ -155,8 +155,8 @@
                     <h3 class="searchResultHeading"><strong>{{saved.Name}}</strong></h3>
                 </div>
                 <div class="searchAdd">{{saved.Address}}</div>
-                <!--<div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</di-->v>
+                <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
+                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{saved.Rating}}</div>
                 <div><button class="deleteFav"  ng-if="self.logoutbtn === true">Delete </button>
               

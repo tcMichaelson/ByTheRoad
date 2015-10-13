@@ -30,13 +30,11 @@
                     }
                 }).success(function (data) {
 
-                    this.status = "The Person Saved Successfully!!!";
 
                     GetUser();
                 })
                        .error(function (error) {
 
-                           this.status = 'Unable to create a person: ' + error.message;
                        });
             }
 
@@ -52,13 +50,11 @@
                 })
                 .success(function (data) {
                     success("This was a success");
-                   this.status = "The Person Deleted Successfully!!!";
                    
                   getData();
                 })
                 .error(function (error) {
                     error();
-                    this.status = 'Unable to delete a person: ' + error.message;
                 });
             }
 

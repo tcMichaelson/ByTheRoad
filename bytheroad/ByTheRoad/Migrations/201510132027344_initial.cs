@@ -3,7 +3,7 @@ namespace ByTheRoad.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class intai : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {

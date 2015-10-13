@@ -6,7 +6,8 @@
             var searchBox;
             var queryLimit = 1;
 
-            self.displayName = "";
+           
+
             self.hasError = false;
             self.errorMessage = '';
             self.registering = false;
@@ -67,7 +68,8 @@
                     self.data=null;
                     authUserService.getData(function(dataResponse){
                         self.data = dataResponse;
-                        self.displayName = self.data.FirstName;
+                       // self.displayName = self.data.FirstName;
+                       
                         
                     });
 
@@ -130,8 +132,8 @@
                     self.registerUser.Email = null;
                     self.registerUser.Password = null;
                     self.registerUser.ConfirmPassword = null;
-                    self.registeringUser.FirstName = null;
-                    self.registeringUser.LastName = null;
+                    self.registerUser.FirstName = null;
+                    self.registerUser.LastName = null;
 
                 }, function (error) {
                     console.error('Registration Error' );

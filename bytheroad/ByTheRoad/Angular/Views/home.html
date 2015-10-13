@@ -5,10 +5,12 @@
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
-                <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false; ">Direction</a></li>
-                
-                <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false;" >Log Out</a></li>
-                <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.data.FirstName}}</li>
+        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false; ">Direction</a></li>
+
+        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false; self.viewingPlaces === false; self.toggleSavedBox();">Log Out</a></li>
+        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.data.FirstName}}</li>
+        <!--<li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.welcomeDisplay}}</li>-->
+
         <li class="edit"><a class="edituser" ng-click=" self.editUser = !self.editUser; self.start = false" ng-show="self.logoutbtn === true">Edit Profile</a></li>
     </ul>
 </div>
@@ -135,7 +137,8 @@
                 <div class="savedFavaotesButton">
 
                     <label ng-if="self.logoutbtn === true">Mark as Favorite </label>
-                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.chkState = result.saved; self.poiToSave = result; self.favPOI()" ng-if="self.logoutbtn === true"/>
+
+                    <input type="checkbox" name="savesPlaces" ng-model="result.saved" ng-change="self.chkState = result.saved; self.poiToSave = result; self.favPOI()" ng-if="self.logoutbtn === true" />
                     <label ng-if="self.logoutbtn === false">Login to save as favorite</label>
                     <button class="navigateSearch" type="button">Navigate</button>
                 </div>
@@ -145,7 +148,7 @@
     </div>
 
 
-    <div id="savedPlaces" ng-hide="self.viewingPlaces === false" class='{{self.animationSaved}}'>
+    <div id="savedPlaces" ng-hide="self.viewingPlaces === false || self.logout=== false" class='{{self.animationSaved}}'>
         <h3 id="slideboxheading"> My Favorite places</h3>
         <button id="hide" type="button" ng-click="self.toggleSavedBox(); self.selected = self.selected ;">Hide</button>
         <div class="searchFavoriteDetail" ng-repeat="saved in self.places">
@@ -155,9 +158,10 @@
                 </div>
                 <div class="searchAdd">{{saved.Address}}</div>
                 <div class="rating">{{saved.Rating}}</div>
-                <div><button class="deleteFav"  ng-if="self.logoutbtn === true">Delete </button>
-              
-               
+                <div>
+                    <button class="deleteFav" ng-if="self.logoutbtn === true">Delete </button>
+
+
                 </div>
             </div>
         </div>
@@ -190,109 +194,112 @@
         </form>
     </div>
 
+ 
     <div class="rightRegisterBox" ng-hide="self.registering === false ">
 
-        <form id="registerForm" ng-submit="self.register();">
-            <div class="registerinfo">
-                <label class="registerLabel">
-                    First Name
-                </label><br />
-                <input class="registerInputBox" name="firstName" type="text" ng-model="self.registerUser.FirstName" />
-            </div>
-            <div class="registerinfo">
-                <label class="registerLabel">
-                    Last Name
-                </label><br />
-                <input class="registerInputBox" name="lastname" type="text" ng-model="self.registerUser.LastName" />
+    <form id="registerForm" ng-submit="self.register();">
+        <div class="registerinfo">
+            <label class="registerLabel">
+                First Name
+            </label><br />
+            <input class="registerInputBox" name="firstName" type="text" ng-model="self.registerUser.FirstName" />
+        </div>
+        <div class="registerinfo">
+            <label class="registerLabel">
+                Last Name
+            </label><br />
+            <input class="registerInputBox" name="lastname" type="text" ng-model="self.registerUser.LastName" />
 
-            </div>
-            <div class="registerinfo">
-                <label class="registerLabel">
-                    Email
-                </label><br />
+        </div>
+        <div class="registerinfo">
+            <label class="registerLabel">
+                Email
+            </label><br />
 
-                <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.Email" type="email" ng-required="true" />
-            </div>
-            <div class="registerinfo">
-                <label class="registerLabel">
-                    Password
-                </label><br />
-                <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
+            <input class="registerInputBox" id="username" name="useremail" ng-model="self.registerUser.Email" type="email" ng-required="true" />
+        </div>
+        <div class="registerinfo">
+            <label class="registerLabel">
+                Password
+            </label><br />
+            <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
 
-            </div>
-            <div class="registerinfo">
+        </div>
+        <div class="registerinfo">
 
-                <label class="registerLabel">
-                    Confirm Password
-                </label><br />
+            <label class="registerLabel">
+                Confirm Password
+            </label><br />
 
-                <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
-            </div>
+            <input class="registerInputBox" name="pwd" type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
+        </div>
 
-
-            <input type="submit" class="registersubmitbtn" value="Register" />
-
+       
 
 
-            <!--<button ng-click="self.registering = false" class="cancelbtn">Cancel</button>-->
-        </form>
-    </div>
+        <input type="submit" class="registersubmitbtn" value="Register" />
 
 
 
+        <!--<button ng-click="self.registering = false" class="cancelbtn">Cancel</button>-->
+    </form>
+</div>
 
 
-    <div ng-hide="self.start === false" class="rightStartBox">
-        <form id="directionsearch">
 
-            <label class="startLabel">Destination</label>
 
-            <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination" />
+
+<div ng-hide="self.start === false" class="rightStartBox">
+    <form id="directionsearch">
+
+        <label class="startLabel">Destination</label>
+
+        <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination" />
         <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute();" class="submitdirection">Get Direction</button>
-            <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
-        </form>
+        <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
+    </form>
 
 
 
-    </div>
+</div>
 
-    <div class="rightEditBox" ng-show="self.editUser === true ">
+<div class="rightEditBox" ng-show="self.editUser === true ">
 
-        <form id="registerForm" ng-submit="self.updateProfile(self.data);">
+    <form id="registerForm" ng-submit="self.updateProfile(self.data);">
 
-            <div class="editinfo">
-                <label class="registerLabel">
-                    Email
-                </label><br />
-                <input class="registerInputBox" name="Email"  type="text" ng-model="self.data.Email" disabled/>
+        <div class="editinfo">
+            <label class="registerLabel">
+                Email
+            </label><br />
+            <input class="registerInputBox" name="Email" type="text" ng-model="self.data.Email" disabled />
 
-            </div>
-            <div class="editinfo">
-                <label class="registerLabel">
-                    First Name
-                </label><br />
-                <input class="registerInputBox" name="FirstName" type="text" ng-model="self.data.FirstName" />
-            </div>
-            <div class="editinfo">
-                <label class="registerLabel">
-                    Last Name
-                </label><br />
-                <input class="registerInputBox" name="LastName"  type="text" ng-model="self.data.LastName" />
+        </div>
+        <div class="editinfo">
+            <label class="registerLabel">
+                First Name
+            </label><br />
+            <input class="registerInputBox" name="FirstName" type="text" ng-model="self.data.FirstName" />
+        </div>
+        <div class="editinfo">
+            <label class="registerLabel">
+                Last Name
+            </label><br />
+            <input class="registerInputBox" name="LastName" type="text" ng-model="self.data.LastName" />
 
-            </div>
+        </div>
+        
 
-           
-            <div class="editinfo">
-                <input type="submit" class="editsubmitbtn" value="Update" ng-click="self.editUser = false" />
+        <div class="editinfo">
+            <input type="submit" class="editsubmitbtn" value="Update" ng-click="self.editUser = false" />
             <button type="button" class="deleteUserBtn" ng-click="self.deleteProfile(); self.editUser = false; self.logoutbtn = false ">Delete</button>
 
-            </div>
+        </div>
 
 
 
 
-        </form>
-    </div>
+    </form>
+</div>
 
 
 

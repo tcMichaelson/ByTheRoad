@@ -13,7 +13,7 @@ namespace ByTheRoad.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201510131852286_intai"; }
+            get { return "201510132027205_intai"; }
         }
         
         string IMigrationMetadata.Source

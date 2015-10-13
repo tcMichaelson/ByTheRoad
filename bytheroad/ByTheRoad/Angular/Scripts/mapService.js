@@ -12,7 +12,7 @@
             var markers = [];
             self.results = [];          
 
-            // Save/Deletge POI from results
+            // Save POI
             self.favPOI = function (poi, chkState, addFav, deleteFav) {
 
                 if (chkState) {

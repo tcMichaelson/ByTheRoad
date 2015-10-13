@@ -15,8 +15,6 @@
     </ul>
 </div>
 
-
-
 <div id="leftBox">
 
     <div class="leftFloatingDiv">
@@ -131,7 +129,7 @@
 
                 </div>
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
+                <div class="searchAdd" ng-if="result.formatted_address === undefined" >{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
                 <div><label class="distanceFromLocLabel"> Distance:</label> {{result.distance}}</div>
                 <div class="savedFavaotesButton">

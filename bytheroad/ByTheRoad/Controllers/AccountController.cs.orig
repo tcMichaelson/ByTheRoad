@@ -59,7 +59,7 @@ namespace ByTheRoad.Controllers
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
             return new UserInfoViewModel
-            {  
+            {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
@@ -328,7 +328,11 @@ namespace ByTheRoad.Controllers
                 return BadRequest(ModelState);
             }
 
+<<<<<<< HEAD
+            var user = new ApplicationUser() { FirstName= model.FirstName, LastName= model.LastName , UserName = model.Email, Email = model.Email, };
+=======
             var user = new ApplicationUser() { FirstName = model.FirstName, LastName = model.LastName,UserName = model.Email, Email = model.Email, };
+>>>>>>> rtest
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

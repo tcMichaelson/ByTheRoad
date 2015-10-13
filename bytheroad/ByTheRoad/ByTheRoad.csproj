@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201510120136377_initial.Designer.cs">
       <DependentUpon>201510120136377_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510121435310_test.cs" />
+    <Compile Include="Migrations\201510121435310_test.Designer.cs">
+      <DependentUpon>201510121435310_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Scripts\app.js" />
+    <Content Include="Angular\Scripts\authUserService.js" />
     <Content Include="Angular\Scripts\locationService.js" />
     <Content Include="Angular\Scripts\mapService.js" />
     <Content Include="Angular\Views\home.html" />
@@ -429,6 +434,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510120136377_initial.resx">
       <DependentUpon>201510120136377_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510121435310_test.resx">
+      <DependentUpon>201510121435310_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

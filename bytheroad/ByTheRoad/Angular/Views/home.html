@@ -5,10 +5,11 @@
         <li id="projectTitle"><h3>ByTheRoad</h3></li>
         <li class="login"><a ng-click="self.loggingin = !self.loggingin; self.registering = false; self.start= false;" ng-hide="self.logoutbtn === true">Login</a></li>
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
-        <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false">Direction</a></li>
-        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout()">Log Out</a></li>
-        <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.currentuser}}</li>
-        <li class="edit"><a class="edituser" ng-click=" self.editUser = true" ng-show="self.logoutbtn === true">Edit Profile</a></li>
+                <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false">Direction</a></li>
+                
+                <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false">Log Out</a></li>
+                <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.data.FirstName}}</li>
+        <li class="edit"><a class="edituser" ng-click=" self.editUser = !self.editUser" ng-show="self.logoutbtn === true">Edit Profile</a></li>
     </ul>
 </div>
 
@@ -261,36 +262,36 @@
 
     </div>
 
-    <div class="rightEditBox" ng-hide="self.editUser === false ">
+    <div class="rightEditBox" ng-show="self.editUser === true ">
 
-        <form id="registerForm" ng-submit="self.updateProfile();">
+        <form id="registerForm" ng-submit="self.updateProfile(self.data);">
 
             <div class="editinfo">
                 <label class="registerLabel">
                     Email
                 </label><br />
-                <input class="registerInputBox" name="Email" value={{self.currentUserName}} type="text" ng-model="self.registerUser.Email" disabled />
+                <input class="registerInputBox" name="Email"  type="text" ng-model="self.data.Email" disabled/>
 
             </div>
             <div class="editinfo">
                 <label class="registerLabel">
                     First Name
                 </label><br />
-                <input class="registerInputBox" name="FirstName" value={{self.currentFirstName}} type="text" ng-model="self.registerUser.FirstName" />
+                <input class="registerInputBox" name="FirstName" type="text" ng-model="self.data.FirstName" />
             </div>
             <div class="editinfo">
                 <label class="registerLabel">
                     Last Name
                 </label><br />
-                <input class="registerInputBox" name="LastName" value={{self.currentLastName}} type="text" ng-model="self.registerUser.LastName" />
+                <input class="registerInputBox" name="LastName"  type="text" ng-model="self.data.LastName" />
 
             </div>
 
-            <div class="editinfo">
+            <!--<div class="editinfo">
                 <label class="registerLabel">
                     Password
                 </label><br />
-                <input class="registerInputBox" name="pwd" value={{self.currentPassword}} type="password" ng-model="self.registerUser.Password" ng-disabled="" ng-required="true" />
+                <input class="registerInputBox" name="pwd"  type="password" ng-model="self.currentPassword"  ng-required="true" />
 
             </div>
             <div class="editinfo">
@@ -299,12 +300,12 @@
                     Confirm Password
                 </label><br />
 
-                <input class="registerInputBox" name="pwd" value={{self.currentConfirmPassword}} type="password" ng-model="self.registerUser.ConfirmPassword" ng-required="true" />
-            </div>
+                <input class="registerInputBox" name="pwd"  type="password" ng-model="self.currentConfirmPassword" ng-required="true" />
+            </div>-->
 
             <div class="editinfo">
                 <input type="submit" class="editsubmitbtn" value="Update" ng-click="self.editUser = false" />
-                <button type="button" class="deleteUserBtn" ng-click="self.editUser = false">Delete</button>
+            <button type="button" class="deleteUserBtn" ng-click="self.deleteProfile(); self.editUser = false; self.logoutbtn = false ">Delete</button>
 
             </div>
 

@@ -4,6 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService,authUserService, $window) {
             var self = this;
             var searchBox;
+            var queryLimit = 1;
 
             self.displayName = "";
             self.hasError = false;
@@ -178,7 +179,6 @@
             }
 
             self.startInterval = function (func, searchPos) {
-                var queryLimit = 1;
                 var checkResults = window.setInterval(function () {
                     if (self.results[0] === 'none' && queryLimit < 10) {
                         self.runSearch(func, queryLimit);
@@ -187,17 +187,20 @@
                         }
                         else
                         {
-                            queryLimit = (queryLimt * -1) + 1;
+                            queryLimit = (queryLimit * -1) + 1;
                         }
                     } else if (self.results.length === 0 && self.results[0] !== 'none') {
                         self.getResults();
                         $scope.$apply();
                     } else {
+                        queryLimit = 1;
                         self.showResultsBox();
+                        mapService.reCenter();
                         console.log(self.results);
                         clearInterval(checkResults);
+                        $scope.$apply();
                     }
-                }, 500);
+                }, 100);
             }
 
             self.runSearch = function (func, offset) {
@@ -215,7 +218,9 @@
                 }
                 mapService.places = self.places;
                 func(self, searchPos);//Invoked func
-                self.startInterval(func, searchPos);
+                if (offset === 0) {
+                    self.startInterval(func, searchPos);
+                }
             }
 
             var input = document.getElementById('searchInputBox');

@@ -133,7 +133,7 @@
                 <div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
                 <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</div>
                 <div class="rating">{{result.rating}}</div>
-                <div><label class="distanceFromLocLabel"> Distance:</label>{{result.distance}}</div>
+                <div><label class="distanceFromLocLabel"> Distance:</label> {{result.distance}}</div>
                 <div class="savedFavaotesButton">
 
                     <label ng-if="self.logoutbtn === true">Mark as Favorite </label>
@@ -244,11 +244,6 @@
     <div ng-hide="self.start === false" class="rightStartBox">
         <form id="directionsearch">
 
-
-            <label class="startLabel">Starting Point</label>
-
-            <input type="text" class="origin" id="origin" ng-hide="self.start === false" ng-model="self.directions.origin" />
-
             <label class="startLabel">Destination</label>
 
             <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination" />
@@ -305,7 +300,11 @@
 
 <div id="mobileSearch" class="glyphicon glyphicon-search" ng-if="self.mobileSearch === false" ng-click="self.mobileSearch = true; self.showLeftBox()"></div>
 <div id="mobileSearchHide" class="glyphicon glyphicon-globe" ng-if="self.mobileSearch === true" ng-click="self.mobileSearch = false; self.showRightBox()"></div>
-<div id="errorMessages" ng-if="self.hasError && self.errorMessage !== ''">
-    <p>{{self.errorMessage}}</p>
-    <button ng-click="self.errorMessage = ''">OK</button>
+
+<div id="errorCover" ng-if="self.hasError && self.errorMessage !== ''">
+    <div id="errorMessages">
+
+        <p>{{self.errorMessage}}</p>
+        <button ng-click="self.errorMessage = ''">OK</button>
+    </div>
 </div>

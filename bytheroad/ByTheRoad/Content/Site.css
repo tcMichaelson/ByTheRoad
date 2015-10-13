@@ -229,7 +229,7 @@ li.welcome {
 #slideoutsearchResultsDiv, #savedPlaces {
     margin-top: 370px;
     border: 1px solid #287AA9;
-    height: 59%;
+    height: 54%;
     position: absolute;
     width: 100%;
     overflow: scroll;
@@ -259,12 +259,13 @@ li.welcome {
 }
 
 
-.searchResultsDetail {
+.searchResultsDetail ,.searchFavoriteDetail {
     border: 1px solid #287AA9;
     color: black;
     margin: 1px;
     background-color: beige;
 }
+
 
 .searchResultHeading {
     font-size: 20px;
@@ -288,7 +289,7 @@ li.welcome {
 }
 
 
-.navigatesearch {
+.navigateSearch {
     margin-left: 80px;
     margin-bottom: 1px;
     width: 80px;
@@ -297,7 +298,16 @@ li.welcome {
     background-color: #428bca;
 }
 
+.deleteFav{
+margin-left: 210px;
+    margin-bottom: 1px;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    background-color: #428bca;
+    color:white;
 
+}
 
 
 #directsearch {
@@ -306,8 +316,8 @@ li.welcome {
 
 .savedPlacesDetail {
     border: 1px solid #287AA9;
-    height: 250px;
-    width: 425px;
+    height: 130px;
+    width: 350px;  
 }
 
 

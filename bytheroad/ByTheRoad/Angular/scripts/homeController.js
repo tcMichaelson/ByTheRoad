@@ -299,6 +299,21 @@
                     self.places = self.places.filter(function (compareItem) {
                         return item.Place_id !== compareItem.Place_id;
                     });
+
+                    var resultIdx = 0;
+                    //places is the results from the google place search
+                    
+                    //self.places is the current user's saved places...  From our database
+                    //If self.places has a POI
+                    var placeId = self.poiToSave.place_id || self.poiToSave.Place_id;
+                    self.results.forEach(function (result) {
+                        if (placeId === result.place_id) {
+                            result.saved = false;
+                        }
+
+                    });
+                    
+
                 });
 
             }

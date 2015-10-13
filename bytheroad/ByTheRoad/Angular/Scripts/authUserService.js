@@ -31,13 +31,11 @@
                     }
                 }).success(function (data) {
 
-                    this.status = "The Person Saved Successfully!!!";
 
                     GetUser();
                 })
                        .error(function (error) {
 
-                           this.status = 'Unable to create a person: ' + error.message;
                        });
             }
 

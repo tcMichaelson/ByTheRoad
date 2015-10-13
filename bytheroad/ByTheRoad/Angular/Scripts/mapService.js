@@ -36,7 +36,7 @@
                 }
 
                 else {
-                    var place_id = poi.place_id;
+                    var place_id = poi.place_id || poi.Place_id;
                     $http.delete('/api/POI/' + place_id
                     )
                     .success(function (result) {

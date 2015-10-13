@@ -155,11 +155,14 @@
                 <div class="resultTitle">
                     <h3 class="searchResultHeading"><strong>{{saved.Name}}</strong></h3>
                 </div>
-                <div class="searchAdd" ng-if="saved.Address !== undefined">{{saved.Address}}</div>
-                <div class="searchAdd" ng-if="saved.Address === undefined">{{saved.Vicinity}}</div>
+
+                <!--C# will return null as opposed to undefine-->
+                <div class="searchAdd" ng-if="saved.Address !== null">{{saved.Address}}</div>
+                <div class="searchAdd" ng-if="saved.Address === null">{{saved.Vicinity}}</div>
+
                 <div class="rating">{{saved.Rating}}</div>
                 <div>
-                    <button class="deleteFav" ng-if="self.logoutbtn === true">Delete </button>
+                    <button class="deleteFav" ng-if="self.logoutbtn === true" ng-click="self.poiToSave = saved; self.chkState = false; self.favPOI()">Delete</button>
 
 
                 </div>

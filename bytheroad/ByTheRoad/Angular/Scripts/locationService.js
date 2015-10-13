@@ -367,7 +367,7 @@
                     if (dist > 1) {
                         var brng = calculateInitialBearing(firstLoc, currentLoc);
                         var time = (Date.now() - firstLoc.time) / 1000;  //convert milliseconds to seconds
-                        var spd = dist / time;  //meters per second
+                        var spd = 30;  //meters per second
                         locHist.push({ lat: pos.lat, lng: pos.lng, time: Date.now(), bearing: brng, speed: spd });
                     }
                 }

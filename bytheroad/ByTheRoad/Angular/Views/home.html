@@ -7,7 +7,7 @@
         <li class="register"><a ng-click="self.registering = !self.registering; self.loggingin = false; self.start = false" ng-hide="self.logoutbtn === true">Register</a></li>
         <li class="searchdirection"><a ng-click="self.start = !self.start; self.registering=false;  self.loggingin = false; self.editUser = false; ">Direction</a></li>
 
-        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false; self.viewingPlaces === false; self.toggleSavedBox();">Log Out</a></li>
+        <li class="logout"><a ng-show="self.logoutbtn === true" ng-click="self.logout(); self.editUser = false; self.viewingPlaces === false; self.animationSaved = 'animated slideOutLeft';">Log Out</a></li>
         <li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.data.FirstName}}</li>
         <!--<li class="welcome" ng-show="self.logoutbtn === true">Welcome, {{self.welcomeDisplay}}</li>-->
 

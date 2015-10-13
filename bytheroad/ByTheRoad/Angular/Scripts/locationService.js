@@ -281,23 +281,23 @@
                 response.routes.forEach(function (route, idx) {
                     console.log(route);
                     var coords = [];
-                    minLat = maxLat = route.legs[0].start_location.J;
-                    minLng = maxLng = route.legs[0].start_location.M;
+                    minLat = maxLat = route.legs[0].start_location.lat();
+                    minLng = maxLng = route.legs[0].start_location.lng();
                     route.legs.forEach(function (leg, i) {
                         leg.steps.forEach(function (step) {
                             //setMarker(new google.maps.LatLng(step.end_point.J, step.end_point.M), step.distance.value, step.duration.value);
                             step.path.forEach(function (line) {
-                                coords.push({ lat: line.J, lng: line.M });
+                                coords.push({ lat: line.lat(), lng: line.lng() });
 
                                 if (coords.length === 1)
                                     routeDistances[0] = 0;
                                 else
                                     routeDistances.push(self.calculateDistance(coords[coords.length - 1], coords[coords.length - 2]));
 
-                                minLat = minLat < line.J ? minLat : line.J;
-                                maxLat = maxLat > line.J ? maxLat : line.J;
-                                minLng = minLng < line.M ? minLng : line.M;
-                                maxLng = maxLng > line.M ? maxLng : line.M;
+                                minLat = minLat < line.lat() ? minLat : line.lat();
+                                maxLat = maxLat > line.lat() ? maxLat : line.lat();
+                                minLng = minLng < line.lng() ? minLng : line.lng();
+                                maxLng = maxLng > line.lng() ? maxLng : line.lng();
                             });
                         });
                     });

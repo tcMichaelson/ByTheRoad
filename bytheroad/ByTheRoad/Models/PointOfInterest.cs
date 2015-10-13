@@ -13,6 +13,7 @@ namespace ByTheRoad.Models
         public string Place_id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string Vicinity { get; set; }
         public string PhoneNum { get; set; }
         public double? Rating { get; set; }
         public ApplicationUser User { get; set; }

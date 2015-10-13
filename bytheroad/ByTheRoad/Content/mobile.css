@@ -79,11 +79,13 @@
     #leftBox{
         position: absolute;
         left: -100%;
-        top: 5%;
+        top: 0%;
         width: 100%;
     }
 
-    
+    #leftBoxHeading{
+        margin-left: 30%;
+    }
 
     /*.leftFloatingDiv{
         position:relative;

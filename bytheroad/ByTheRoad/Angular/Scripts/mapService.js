@@ -10,11 +10,7 @@
             var placeIdArray = [];
             var searchCircle;
             var markers = [];
-
-            self.results = [];
-
-            
-
+            self.results = [];          
 
             // Save POI
             self.favPOI = function (poi, chkState, addFav, deleteFav) {
@@ -25,6 +21,7 @@
                         Place_id: poi.place_id,
                         Name: poi.name,
                         Address: poi.formatted_address,
+                        Vicinity: poi.vicinity,
                         PhoneNum: poi.formatted_phone_number,
                         Rating: poi.rating,
 
@@ -51,9 +48,6 @@
                     });
                 }
             }
-
-
-
 
             // Retrieve POI
             self.listFavPOI = function (func) {
@@ -99,7 +93,6 @@
 
                 var service = new google.maps.places.PlacesService(map);
                 service.textSearch(request, self.callback);
-
 
             }
 

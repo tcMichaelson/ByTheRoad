@@ -303,7 +303,7 @@
 
             <div class="editinfo">
                 <input type="submit" class="editsubmitbtn" value="Update" ng-click="self.editUser = false" />
-            <button type="button" class="deleteUserBtn" ng-click="self.deleteProfile();">Delete</button>
+            <button type="button" class="deleteUserBtn" ng-click="self.deleteProfile(); self.editUser = false; self.logoutbtn = false ">Delete</button>
 
             </div>
 

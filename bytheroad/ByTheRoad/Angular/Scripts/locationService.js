@@ -155,7 +155,7 @@
                     meters = lastLoc.speed * amount;
                 }
 
-                meters = meters + (offset * 500);
+                meters = meters + (offset * 200);
 
                 if (meters < 0)
                 {
@@ -208,7 +208,7 @@
                     meters = currLoc.speed * amount
                 }
 
-                meters = meters + (offset * 500);
+                meters = meters + (offset * 200);
 
                 if (meters < 0)
                     meters = 0;

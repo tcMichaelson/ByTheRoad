@@ -182,7 +182,7 @@
 
             self.startInterval = function (func, searchPos) {
                 var checkResults = window.setInterval(function () {
-                    if (self.results[0] === 'none' && queryLimit < 10) {
+                    if (self.results[0] === 'none' && queryLimit < 20) {
                         self.runSearch(func, queryLimit);
                         if (queryLimit > 0){
                             queryLimit *= -1;
@@ -195,16 +195,18 @@
                         self.getResults();
                         $scope.$apply();
                     } else {
-                        queryLimit = 1;
-                        self.showResultsBox();
+                        
+                        $scope.$apply(function () {
+                            self.showResultsBox();
 
                         queryLimit = 1;
 
-                        mapService.reCenter();
-
-                        console.log(self.results);
+                            mapService.reCenter();
+                        });
+                        mapService.distancesFound = 0;
+                        queryLimit = 1;
+                        console.log("one distance: ", self.results[0].distance);
                         clearInterval(checkResults);
-                        $scope.$apply();
                     }
                 }, 100);
             }
@@ -225,6 +227,7 @@
                 mapService.places = self.places;
                 func(self, searchPos);//Invoked func
                 if (offset === 0) {
+                    mapService.reCenterCustom(searchPos, 13);
                     self.startInterval(func, searchPos);
                 }
             }
@@ -255,10 +258,14 @@
                     }
                     mapService.callback(places, google.maps.places.PlacesServiceStatus.OK);
                     self.startInterval();
-                    self.showResultsBox();
 
                 });
             };
+
+            self.hideResultsBox = function () {
+                self.animationResults = "animated slideOutLeft";
+                self.animationSaved = "animated slideOutLeft";
+            }
 
             self.showResultsBox = function () {
                 self.animationResults = "animated slideInLeft";

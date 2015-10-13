@@ -238,13 +238,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510130234020_init.cs" />
-    <Compile Include="Migrations\201510130234020_init.Designer.cs">
-      <DependentUpon>201510130234020_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510131634413_updatePOImodel.cs" />
-    <Compile Include="Migrations\201510131634413_updatePOImodel.Designer.cs">
-      <DependentUpon>201510131634413_updatePOImodel.cs</DependentUpon>
+    <Compile Include="Migrations\201510131852286_intai.cs" />
+    <Compile Include="Migrations\201510131852286_intai.Designer.cs">
+      <DependentUpon>201510131852286_intai.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -432,11 +428,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510130234020_init.resx">
-      <DependentUpon>201510130234020_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510131634413_updatePOImodel.resx">
-      <DependentUpon>201510131634413_updatePOImodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510131852286_intai.resx">
+      <DependentUpon>201510131852286_intai.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

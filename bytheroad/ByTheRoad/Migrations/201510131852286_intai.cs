@@ -3,7 +3,7 @@ namespace ByTheRoad.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class intai : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@ namespace ByTheRoad.Migrations
                         Place_id = c.String(),
                         Name = c.String(),
                         Address = c.String(),
+                        Vicinity = c.String(),
                         PhoneNum = c.String(),
                         Rating = c.Double(),
                         User_Id = c.String(maxLength: 128),

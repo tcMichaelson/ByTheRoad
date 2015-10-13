@@ -154,9 +154,8 @@
                 <div class="resultTitle">
                     <h3 class="searchResultHeading"><strong>{{saved.Name}}</strong></h3>
                 </div>
-                <div class="searchAdd">{{saved.Address}}</div>
-                <!--<div class="searchAdd" ng-if="result.formatted_address !== undefined">{{result.formatted_address}}</div>
-                <div class="searchAdd" ng-if="result.formatted_address === undefined">{{result.vicinity}}</di-->v>
+                <div class="searchAdd" ng-if="saved.Address !== undefined">{{saved.Address}}</div>
+                <div class="searchAdd" ng-if="saved.Address === undefined">{{saved.Vicinity}}</div>
                 <div class="rating">{{saved.Rating}}</div>
                 <div><button class="deleteFav"  ng-if="self.logoutbtn === true">Delete </button>
               

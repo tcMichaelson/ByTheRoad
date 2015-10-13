@@ -193,11 +193,14 @@
                         self.getResults();
                         $scope.$apply();
                     } else {
+                        queryLimit = 1;
                         self.showResultsBox();
+                        mapService.reCenter();
                         console.log(self.results);
                         clearInterval(checkResults);
+                        $scope.$apply();
                     }
-                }, 500);
+                }, 100);
             }
 
             self.runSearch = function (func, offset) {
@@ -215,7 +218,9 @@
                 }
                 mapService.places = self.places;
                 func(self, searchPos);//Invoked func
-                self.startInterval(func, searchPos);
+                if (offset === 0) {
+                    self.startInterval(func, searchPos);
+                }
             }
 
             var input = document.getElementById('searchInputBox');

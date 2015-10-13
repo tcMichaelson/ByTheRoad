@@ -4,6 +4,7 @@
         .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, $window) {
             var self = this;
             var searchBox;
+            var queryLimit = 1;
 
             self.hasError = false;
             self.errorMessage = '';
@@ -130,7 +131,6 @@
             }
 
             self.startInterval = function (func, searchPos) {
-                var queryLimit = 1;
                 var checkResults = window.setInterval(function () {
                     if (self.results[0] === 'none' && queryLimit < 10) {
                         self.runSearch(func, queryLimit);
@@ -139,13 +139,14 @@
                         }
                         else
                         {
-                            queryLimit = (queryLimt * -1) + 1;
+                            queryLimit = (queryLimit * -1) + 1;
                         }
                     } else if (self.results.length === 0 && self.results[0] !== 'none') {
                         self.getResults();
                         $scope.$apply();
                     } else {
                         self.showResultsBox();
+                        queryLimit = 1;
                         console.log(self.results);
                         clearInterval(checkResults);
                     }

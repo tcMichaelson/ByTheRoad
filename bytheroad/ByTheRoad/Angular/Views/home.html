@@ -15,7 +15,7 @@
     </ul>
 </div>
 
-<div id="leftBox">
+<div id="leftBox" ng-show="self.routing === true">
 
     <div class="leftFloatingDiv">
         <div id="favoritesSavedBtn">
@@ -257,9 +257,14 @@
 
         <label class="startLabel">Destination</label>
 
-        <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination" />
-        <button type="button" ng-hide="self.start === false" id="route-btn" ng-click="self.direction = true; self.findRoute();" class="submitdirection">Get Direction</button>
-        <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
+        <div ng-if="self.routing === false">
+            <input type="text" class="destination" id="destination" ng-hide="self.start === false" ng-model="self.directions.destination" />
+            <button type="button" ng-hide="self.start === false || self.foundRoute === true" id="route-btn" ng-click="self.direction = true; self.findRoute();" class="submitdirection">Get Direction</button>
+            <button type="button" ng-hide="self.foundRoute === false" ng-click="self.start = false; self.startRouting()" class="submitdirection">Use this Route</button>
+        </div>
+        <div ng-if="self.routing === true">
+            <button ng-click="self.enterNewDestination()">Enter a new destination</button>
+        </div>
     </form>
 
 

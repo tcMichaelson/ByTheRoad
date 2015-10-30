@@ -14,6 +14,7 @@
             var routeLines1;
             var routeLines2;
             var futurePath;  //represents the path taken to get to the future location
+            var refreshInterval;
             var car;
 
 
@@ -463,6 +464,7 @@
             self.startRouting = function() {
                 map.setZoom(15);
                 var move = 0;
+
                 locHist = [];
                 map.setCenter(selectedPath[0]);
                 var carIcon = {
@@ -482,7 +484,7 @@
 
                 console.log(selectedRoute);
                 move++;
-                var refreshInterval = window.setInterval(function () {
+                refreshInterval = window.setInterval(function () {
                     if (selectedPath[move]) {
                         updateLocHist(selectedPath[move]);
                         moveCar(selectedPath[move]);
@@ -491,6 +493,13 @@
                         clearInterval(refreshInterval);
                     }
                 }, 1000);
+            }
+
+            self.cancelRoute = function () {
+                clearInterval(refreshInterval);
+                locHist = [];
+                futurePath.setMap(null);
+                getInitialLocation();
             }
 
         });

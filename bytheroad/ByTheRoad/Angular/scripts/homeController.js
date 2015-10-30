@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
         .module('byTheRoad')
-        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService,authUserService, $window) {
+        .controller('homeController', function ($scope, $route, $location, $http, mapService, roadService, locationService, authUserService, $window) {
             var self = this;
             var searchBox;
             var queryLimit = 1;
@@ -13,11 +13,12 @@
             self.registering = false;
             self.loggingin = false;
             self.start = false;
-            self.star = false;
             self.results = [];
             self.mobileSearch = false;
             self.showFav = false;
             self.foundRoute = false;
+
+            self.routing = false;
 
             self.viewingPlaces = false;
             self.animationResults = "animated slideInLeft";
@@ -52,6 +53,17 @@
 
             self.startRouting = function(){
                 locationService.startRouting();
+                self.routing = true;
+            }
+
+            self.enterNewDestination = function () {
+                self.routing = false;
+                self.foundRoute = false;
+                locationService.cancelRoute();
+                self.milesUnit = null;
+                self.hoursUnit = null;
+                self.minutesUnit = null;
+                self.selected = null;
             }
 
             self.login = function () {
